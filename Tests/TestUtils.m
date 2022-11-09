@@ -66,7 +66,7 @@
 
     // For regex pattern matching to verify if it's of UUID type 4
     NSString *pattern = @"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}";
-    NSRange searchRange = NSMakeRange(0, [sample_uuid length]);
+    NSRange searchRange = NSMakeRange(0, sample_uuid.length);
     NSError *error = NULL;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&error];
     NSArray *matches = [regex matchesInString:sample_uuid options:0 range:searchRange];
@@ -76,11 +76,11 @@
 }
 
 - (void)testGetTimestamp {
-    NSString *sample_rand = [NSString stringWithFormat:@"%lld", [[SPUtilities getTimestamp] longLongValue]];
+    NSString *sample_rand = [NSString stringWithFormat:@"%lld", [SPUtilities getTimestamp].longLongValue];
     
     // For regex pattern matching to verify if it's of UUID type 4
     NSString *pattern = @"[0-9]+";
-    NSRange searchRange = NSMakeRange(0, [sample_rand length]);
+    NSRange searchRange = NSMakeRange(0, sample_rand.length);
     NSError *error = NULL;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&error];
     NSArray *matches = [regex matchesInString:sample_rand options:0 range:searchRange];

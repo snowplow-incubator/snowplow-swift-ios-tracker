@@ -35,7 +35,7 @@
 - (instancetype)initWithEvent:(SPEvent *)event state:(id<SPTrackerStateSnapshot>)state {
     if (self = [super init]) {
         self.eventId = [NSUUID UUID];
-        self.timestamp = (long long)([[[NSDate alloc] init] timeIntervalSince1970] * 1000);
+        self.timestamp = (long long)([[NSDate alloc] init].timeIntervalSince1970 * 1000);
         self.trueTimestamp = event.trueTimestamp;
         self.contexts = [event.contexts mutableCopy];
         self.payload = [event.payload mutableCopy];
@@ -43,10 +43,10 @@
 
         self.isService = [event isKindOfClass:SPTrackerError.class];
         if ([event isKindOfClass:SPPrimitiveAbstract.class]) {
-            self.eventName = [(SPPrimitiveAbstract *)event eventName];
+            self.eventName = ((SPPrimitiveAbstract *)event).eventName;
             self.isPrimitive = true;
         } else {
-            self.schema = [(SPSelfDescribingAbstract *)event schema];
+            self.schema = ((SPSelfDescribingAbstract *)event).schema;
             self.isPrimitive = false;
         }
     }
@@ -58,8 +58,8 @@
 - (BOOL)addPayloadValues:(nonnull NSDictionary<NSString *,NSObject *> *)payload {
     __block BOOL result = YES;
     [payload enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSObject * _Nonnull obj, BOOL * _Nonnull stop) {
-        if (![self.payload objectForKey:key]) {
-            [self.payload setObject:obj forKey:key];
+        if (!(self.payload)[key]) {
+            (self.payload)[key] = obj;
         } else {
             result = NO;
         }

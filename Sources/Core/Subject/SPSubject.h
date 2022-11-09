@@ -50,7 +50,7 @@ NS_SWIFT_NAME(Subject)
  @brief Initializes a newly allocated SPSubject object.
  @return A new SPSubject.
  */
-- (id) init;
+- (instancetype) init;
 
 /*!
  @brief Creates a subject which optionally adds platform and geolocation pairs.
@@ -58,7 +58,7 @@ NS_SWIFT_NAME(Subject)
  @param geoContext Whether to enabled the geolocation context.
  @return A new SPSubject.
  */
-- (id) initWithPlatformContext:(BOOL)platformContext andGeoContext:(BOOL)geoContext;
+- (instancetype) initWithPlatformContext:(BOOL)platformContext andGeoContext:(BOOL)geoContext;
 
 /*!
  @warning Internal method - do not use in production

@@ -41,7 +41,7 @@
 }
 
 - (NSString *)endpoint {
-    return [self.emitter urlEndpoint].absoluteString;
+    return (self.emitter).urlEndpoint.absoluteString;
 }
 
 - (void)setMethod:(SPHttpMethod)method {
@@ -49,7 +49,7 @@
 }
 
 - (SPHttpMethod)method {
-    return [self.emitter httpMethod];
+    return (self.emitter).httpMethod;
 }
 
 - (void)setCustomPostPath:(NSString *)customPostPath {
@@ -59,7 +59,7 @@
 }
 
 - (NSString *)customPostPath {
-    return [self.emitter customPostPath];
+    return (self.emitter).customPostPath;
 }
 
 - (void)setRequestHeaders:(NSDictionary<NSString *, NSString *> *)requestHeaders {
@@ -69,7 +69,7 @@
 }
 
 - (NSDictionary<NSString *, NSString *> *)requestHeaders {
-    return [self.emitter requestHeaders];
+    return (self.emitter).requestHeaders;
 }
 
 // MARK: - Private methods

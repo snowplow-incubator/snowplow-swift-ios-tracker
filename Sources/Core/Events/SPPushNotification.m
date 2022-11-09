@@ -46,11 +46,11 @@
         _category = category;
         _thread = thread;
         _notification = notification;
-        [SPUtilities checkArgument:([_date length] != 0) withMessage:@"Delivery date cannot be nil or empty."];
-        [SPUtilities checkArgument:([_action length] != 0) withMessage:@"Action cannot be nil or empty."];
-        [SPUtilities checkArgument:([_trigger length] != 0) withMessage:@"Trigger cannot be nil or empty."];
-        [SPUtilities checkArgument:([_category length] != 0) withMessage:@"Category identifier cannot be nil or empty."];
-        [SPUtilities checkArgument:([_thread length] != 0) withMessage:@"Thread identifier cannot be nil or empty."];
+        [SPUtilities checkArgument:(_date.length != 0) withMessage:@"Delivery date cannot be nil or empty."];
+        [SPUtilities checkArgument:(_action.length != 0) withMessage:@"Action cannot be nil or empty."];
+        [SPUtilities checkArgument:(_trigger.length != 0) withMessage:@"Trigger cannot be nil or empty."];
+        [SPUtilities checkArgument:(_category.length != 0) withMessage:@"Category identifier cannot be nil or empty."];
+        [SPUtilities checkArgument:(_thread.length != 0) withMessage:@"Thread identifier cannot be nil or empty."];
     }
     return self;
 }
@@ -64,11 +64,11 @@
         _category = category;
         _thread = thread;
         _notification = notification;
-        [SPUtilities checkArgument:([_date length] != 0) withMessage:@"Delivery date cannot be nil or empty."];
-        [SPUtilities checkArgument:([_action length] != 0) withMessage:@"Action cannot be nil or empty."];
-        [SPUtilities checkArgument:([_trigger length] != 0) withMessage:@"Trigger cannot be nil or empty."];
-        [SPUtilities checkArgument:([_category length] != 0) withMessage:@"Category identifier cannot be nil or empty."];
-        [SPUtilities checkArgument:([_thread length] != 0) withMessage:@"Thread identifier cannot be nil or empty."];
+        [SPUtilities checkArgument:(_date.length != 0) withMessage:@"Delivery date cannot be nil or empty."];
+        [SPUtilities checkArgument:(_action.length != 0) withMessage:@"Action cannot be nil or empty."];
+        [SPUtilities checkArgument:(_trigger.length != 0) withMessage:@"Trigger cannot be nil or empty."];
+        [SPUtilities checkArgument:(_category.length != 0) withMessage:@"Category identifier cannot be nil or empty."];
+        [SPUtilities checkArgument:(_thread.length != 0) withMessage:@"Thread identifier cannot be nil or empty."];
     }
     return self;
 }
@@ -127,8 +127,8 @@
         _title = title;
         _body = body;
         _badge = badge;
-        [SPUtilities checkArgument:([_title length] != 0) withMessage:@"Title cannot be nil or empty."];
-        [SPUtilities checkArgument:([_body length] != 0) withMessage:@"Body cannot be nil or empty."];
+        [SPUtilities checkArgument:(_title.length != 0) withMessage:@"Title cannot be nil or empty."];
+        [SPUtilities checkArgument:(_body.length != 0) withMessage:@"Body cannot be nil or empty."];
     }
     return self;
 }
@@ -145,20 +145,20 @@ SP_BUILDER_METHOD(NSArray *, attachments)
 
 - (NSDictionary *)payload {
     NSMutableDictionary * event = [[NSMutableDictionary alloc] init];
-    [event setObject:_title forKey:kSPPnTitle];
-    [event setObject:_body forKey:kSPPnBody];
+    event[kSPPnTitle] = _title;
+    event[kSPPnBody] = _body;
     [event setValue:_badge forKey:kSPPnBadge];
     if (_subtitle != nil) {
-        [event setObject:_subtitle forKey:kSPPnSubtitle];
+        event[kSPPnSubtitle] = _subtitle;
     }
     if (_subtitle != nil) {
-        [event setObject:_subtitle forKey:kSPPnSubtitle];
+        event[kSPPnSubtitle] = _subtitle;
     }
     if (_sound != nil) {
-        [event setObject:_sound forKey:kSPPnSound];
+        event[kSPPnSound] = _sound;
     }
     if (_launchImageName != nil) {
-        [event setObject:_launchImageName forKey:kSPPnLaunchImageName];
+        event[kSPPnLaunchImageName] = _launchImageName;
     }
     if (_userInfo != nil) {
         NSMutableDictionary * aps = nil;
@@ -166,18 +166,18 @@ SP_BUILDER_METHOD(NSArray *, attachments)
 
         // modify contentAvailable value "1" and "0" to @YES and @NO to comply with schema
         if (![[_userInfo valueForKeyPath:@"aps.contentAvailable"] isEqual:nil] &&
-            [[_userInfo objectForKey:@"aps"] isKindOfClass:[NSDictionary class]]) {
+            [_userInfo[@"aps"] isKindOfClass:[NSDictionary class]]) {
             aps = [[NSMutableDictionary alloc] initWithDictionary:_userInfo[@"aps"]];
 
             if ([[_userInfo valueForKeyPath:@"aps.contentAvailable"] isEqual:@1]) {
-                [aps setObject:@YES forKey:@"contentAvailable"];
+                aps[@"contentAvailable"] = @YES;
             } else if ([[_userInfo valueForKeyPath:@"aps.contentAvailable"] isEqual:@0]) {
-                [aps setObject:@NO forKey:@"contentAvailable"];
+                aps[@"contentAvailable"] = @NO;
             }
             newUserInfo = [[NSMutableDictionary alloc] initWithDictionary:_userInfo];
-            [newUserInfo setObject:aps forKey:@"aps"];
+            newUserInfo[@"aps"] = aps;
         }
-        [event setObject:[[NSDictionary alloc] initWithDictionary:newUserInfo] forKey:kSPPnUserInfo];
+        event[kSPPnUserInfo] = [[NSDictionary alloc] initWithDictionary:newUserInfo];
     }
     if (_attachments.count) {
         NSMutableArray<NSDictionary *> * converting = [[NSMutableArray alloc] init];
@@ -189,7 +189,7 @@ SP_BUILDER_METHOD(NSArray *, attachments)
             [converting addObject: (NSDictionary *)[newAttachment copy]];
             [newAttachment removeAllObjects];
         }
-        [event setObject:[NSArray arrayWithArray:converting] forKey:kSPPnAttachments];
+        event[kSPPnAttachments] = [NSArray arrayWithArray:converting];
     }
     return [[NSDictionary alloc] initWithDictionary:event copyItems:YES];
 }

@@ -95,11 +95,11 @@
 }
 
 - (NSString *)appId {
-    return [self.tracker appId];
+    return (self.tracker).appId;
 }
 
 - (NSString *)namespace {
-    return [self.tracker trackerNamespace];
+    return (self.tracker).trackerNamespace;
 }
 
 - (void)setDevicePlatform:(SPDevicePlatform)devicePlatform {
@@ -109,7 +109,7 @@
 }
 
 - (SPDevicePlatform)devicePlatform {
-    return [self.tracker devicePlatform];
+    return (self.tracker).devicePlatform;
 }
 
 - (void)setBase64Encoding:(BOOL)base64Encoding {
@@ -119,7 +119,7 @@
 }
 
 - (BOOL)base64Encoding {
-    return [self.tracker base64Encoded];
+    return (self.tracker).base64Encoded;
 }
 
 - (void)setLogLevel:(SPLogLevel)logLevel {
@@ -251,7 +251,7 @@
 }
 
 - (NSString *)trackerVersionSuffix {
-    return [self.tracker trackerVersionSuffix];
+    return (self.tracker).trackerVersionSuffix;
 }
 
 - (void)setSessionContext:(BOOL)sessionContext {

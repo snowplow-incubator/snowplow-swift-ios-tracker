@@ -41,7 +41,7 @@
         _orderId = orderId;
         _totalValue = totalValue;
         _items = items.copy;
-        [SPUtilities checkArgument:([_orderId length] != 0) withMessage:@"OrderId cannot be nil or empty."];
+        [SPUtilities checkArgument:(_orderId.length != 0) withMessage:@"OrderId cannot be nil or empty."];
     }
     return self;
 }
@@ -64,9 +64,9 @@ SP_BUILDER_METHOD(NSString *, currency)
 
 - (NSDictionary<NSString *, NSObject *> *)payload {
     NSMutableDictionary *payload = [NSMutableDictionary dictionary];
-    if (_totalValue) [payload setObject:[NSString stringWithFormat:@"%.02f", [_totalValue doubleValue]] forKey:kSPEcommTotal];
-    if (_taxValue) [payload setObject:[NSString stringWithFormat:@"%.02f", [_taxValue doubleValue]] forKey:kSPEcommTax];
-    if (_shipping) [payload setObject:[NSString stringWithFormat:@"%.02f", [_shipping doubleValue]] forKey:kSPEcommShipping];
+    if (_totalValue) payload[kSPEcommTotal] = [NSString stringWithFormat:@"%.02f", _totalValue.doubleValue];
+    if (_taxValue) payload[kSPEcommTax] = [NSString stringWithFormat:@"%.02f", _taxValue.doubleValue];
+    if (_shipping) payload[kSPEcommShipping] = [NSString stringWithFormat:@"%.02f", _shipping.doubleValue];
     [payload setValue:_orderId forKey:kSPEcommId];
     [payload setValue:_affiliation forKey:kSPEcommAffiliation];
     [payload setValue:_city forKey:kSPEcommCity];

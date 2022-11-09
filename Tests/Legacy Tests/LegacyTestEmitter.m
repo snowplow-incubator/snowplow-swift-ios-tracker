@@ -156,7 +156,7 @@ NSString *const TEST_SERVER_EMITTER = @"www.notarealurl.com";
     SPEmitter *emitter = [self emitterWithNetworkConnection:networkConnection bufferOption:SPBufferOptionSingle];
     [emitter addPayloadToBuffer:[self generatePayloads:1].firstObject];
     
-    for (int i = 0; i < 10 && ([networkConnection sendingCount] < 1 || [emitter getSendingStatus]); i++) {
+    for (int i = 0; i < 10 && (networkConnection.sendingCount < 1 || [emitter getSendingStatus]); i++) {
         [NSThread sleepForTimeInterval:1];
     }
 
@@ -173,7 +173,7 @@ NSString *const TEST_SERVER_EMITTER = @"www.notarealurl.com";
     SPEmitter *emitter = [self emitterWithNetworkConnection:networkConnection bufferOption:SPBufferOptionSingle];
     [emitter addPayloadToBuffer:[self generatePayloads:1].firstObject];
     
-    for (int i = 0; i < 10 && ([networkConnection sendingCount] < 1 || [emitter getSendingStatus]); i++) {
+    for (int i = 0; i < 10 && (networkConnection.sendingCount < 1 || [emitter getSendingStatus]); i++) {
         [NSThread sleepForTimeInterval:1];
     }
 
@@ -193,7 +193,7 @@ NSString *const TEST_SERVER_EMITTER = @"www.notarealurl.com";
         [emitter addPayloadToBuffer:payload];
     }
     
-    for (int i = 0; i < 10 && ([networkConnection sendingCount] < 2 || [emitter getSendingStatus]); i++) {
+    for (int i = 0; i < 10 && (networkConnection.sendingCount < 2 || [emitter getSendingStatus]); i++) {
         [NSThread sleepForTimeInterval:1];
     }
 
@@ -218,7 +218,7 @@ NSString *const TEST_SERVER_EMITTER = @"www.notarealurl.com";
         [emitter addPayloadToBuffer:payload];
     }
     
-    for (int i = 0; i < 10 && ([networkConnection sendingCount] < 2 || [emitter getSendingStatus]); i++) {
+    for (int i = 0; i < 10 && (networkConnection.sendingCount < 2 || [emitter getSendingStatus]); i++) {
         [NSThread sleepForTimeInterval:1];
     }
 
@@ -238,7 +238,7 @@ NSString *const TEST_SERVER_EMITTER = @"www.notarealurl.com";
     
     [emitter addPayloadToBuffer:[self generatePayloads:1].firstObject];
     
-    for (int i = 0; i < 10 && ([networkConnection sendingCount] < 1 || [emitter getSendingStatus]); i++) {
+    for (int i = 0; i < 10 && (networkConnection.sendingCount < 1 || [emitter getSendingStatus]); i++) {
         [NSThread sleepForTimeInterval:1];
     }
 
@@ -259,16 +259,16 @@ NSString *const TEST_SERVER_EMITTER = @"www.notarealurl.com";
         [emitter addPayloadToBuffer:payloads[i]];
     }
     
-    for (int i = 0; i < 10 && ([networkConnection sendingCount] < 1 || [emitter getSendingStatus]); i++) {
+    for (int i = 0; i < 10 && (networkConnection.sendingCount < 1 || [emitter getSendingStatus]); i++) {
         [NSThread sleepForTimeInterval:1];
     }
 
     XCTAssertEqual(14, [emitter getDbCount]);
     networkConnection.statusCode = 200;
-    NSUInteger prevSendingCount = [networkConnection sendingCount];
+    NSUInteger prevSendingCount = networkConnection.sendingCount;
     [emitter addPayloadToBuffer:payloads[14]];
     
-    for (int i = 0; i < 10 && ([networkConnection sendingCount] - prevSendingCount < 1 || [emitter getSendingStatus]); i++) {
+    for (int i = 0; i < 10 && (networkConnection.sendingCount - prevSendingCount < 1 || [emitter getSendingStatus]); i++) {
         [NSThread sleepForTimeInterval:1];
     }
 
@@ -303,16 +303,16 @@ NSString *const TEST_SERVER_EMITTER = @"www.notarealurl.com";
         [emitter addPayloadToBuffer:payloads[i]];
     }
     
-    for (int i = 0; i < 10 && ([networkConnection sendingCount] < 1 || [emitter getSendingStatus]); i++) {
+    for (int i = 0; i < 10 && (networkConnection.sendingCount < 1 || [emitter getSendingStatus]); i++) {
         [NSThread sleepForTimeInterval:1];
     }
 
     XCTAssertEqual(0, [emitter getDbCount]);
     networkConnection.statusCode = 200;
-    NSUInteger prevSendingCount = [networkConnection sendingCount];
+    NSUInteger prevSendingCount = networkConnection.sendingCount;
     [emitter addPayloadToBuffer:payloads[14]];
     
-    for (int i = 0; i < 10 && ([networkConnection sendingCount] - prevSendingCount < 1 || [emitter getSendingStatus]); i++) {
+    for (int i = 0; i < 10 && (networkConnection.sendingCount - prevSendingCount < 1 || [emitter getSendingStatus]); i++) {
         [NSThread sleepForTimeInterval:1];
     }
 
@@ -364,8 +364,8 @@ NSString *const TEST_SERVER_EMITTER = @"www.notarealurl.com";
     SPEmitter *emitter = [self emitterWithNetworkConnection:networkConnection bufferOption:SPBufferOptionSingle];
     
     NSMutableDictionary *customRules = [[NSMutableDictionary alloc] init];
-    [customRules setObject:@YES forKey:@403];
-    [customRules setObject:@NO forKey:@500];
+    customRules[@403] = @YES;
+    customRules[@500] = @NO;
     [emitter setCustomRetryForStatusCodes:customRules];
 
     [emitter addPayloadToBuffer:[self generatePayloads:1].firstObject];

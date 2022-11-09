@@ -57,7 +57,7 @@ static NSString * const _queryDeleteAll   = @"DELETE FROM 'events'";
 #if SNOWPLOW_TARGET_TV
     NSString *libraryPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 #else
-    NSString *libraryPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *libraryPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
 #endif
     NSString *snowplowDirPath = [libraryPath stringByAppendingPathComponent:@"snowplow"];
     NSArray<NSString *> *files = [NSFileManager.defaultManager contentsOfDirectoryAtPath:snowplowDirPath error:nil];
@@ -91,7 +91,7 @@ static NSString * const _queryDeleteAll   = @"DELETE FROM 'events'";
 #if SNOWPLOW_TARGET_TV
         NSString *libraryPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 #else
-        NSString *libraryPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        NSString *libraryPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
 #endif
         // Create snowplow subdirectory if it doesn't exist
         NSString *snowplowDirPath = [libraryPath stringByAppendingPathComponent:@"snowplow"];
@@ -131,7 +131,7 @@ static NSString * const _queryDeleteAll   = @"DELETE FROM 'events'";
     [self.queue inDatabase:^(FMDatabase *db) {
         if ([db open]) {
             SPLogDebug(@"Removing %@ from database now.", [@(storeId) stringValue]);
-            res = [db executeUpdate:_queryDeleteId, [NSNumber numberWithLongLong:storeId]];
+            res = [db executeUpdate:_queryDeleteId, @(storeId)];
         }
     }];
     return res;
@@ -167,7 +167,7 @@ static NSString * const _queryDeleteAll   = @"DELETE FROM 'events'";
         if ([db open]) {
             FMResultSet *s = [db executeQuery:_querySelectCount];
             while ([s next]) {
-                num = [[NSNumber numberWithInt:[s intForColumnIndex:0]] integerValue];
+                num = @([s intForColumnIndex:0]).integerValue;
             }
             [s close];
         }
@@ -207,7 +207,7 @@ static NSString * const _queryDeleteAll   = @"DELETE FROM 'events'";
                 return;
             }
             [db executeUpdate:_queryInsertEvent, data];
-            res = (long long int) [db lastInsertRowId];
+            res = (long long int) db.lastInsertRowId;
         }
     }];
     return res;
@@ -217,7 +217,7 @@ static NSString * const _queryDeleteAll   = @"DELETE FROM 'events'";
     __block SPEmitterEvent *event = nil;
     [self.queue inDatabase:^(FMDatabase *db) {
         if ([db open]) {
-            FMResultSet *s = [db executeQuery:_querySelectId, [NSNumber numberWithLongLong:id_]];
+            FMResultSet *s = [db executeQuery:_querySelectId, @(id_)];
             while ([s next]) {
                 NSData *data = [s dataForColumn:@"eventData"];
                 NSDictionary *dict = [SPJSONSerialization deserializeData:data];
@@ -238,7 +238,7 @@ static NSString * const _queryDeleteAll   = @"DELETE FROM 'events'";
 }
 
 - (NSArray<SPEmitterEvent *> *)getAllEventsLimited:(NSUInteger)limit {
-    NSString *query = [NSString stringWithFormat:@"%@ LIMIT %@", _querySelectAll, [@(limit) stringValue]];
+    NSString *query = [NSString stringWithFormat:@"%@ LIMIT %@", _querySelectAll, (@(limit)).stringValue];
     return [self getAllEventsWithQuery:query];
 }
 
@@ -267,7 +267,7 @@ static NSString * const _queryDeleteAll   = @"DELETE FROM 'events'";
 - (long long int) getLastInsertedRowId {
     __block long long int res = -1;
     [self.queue inDatabase:^(FMDatabase *db) {
-        res = [db lastInsertRowId];
+        res = db.lastInsertRowId;
     }];
     return res;
 }

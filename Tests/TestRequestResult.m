@@ -79,8 +79,8 @@
 
 - (void)testFailedRequestWithCustomNoRetryStatus {
     NSMutableDictionary *customRetryRules = [[NSMutableDictionary alloc] init];
-    [customRetryRules setObject:@YES forKey:@403];
-    [customRetryRules setObject:@NO forKey:@500];
+    customRetryRules[@403] = @YES;
+    customRetryRules[@500] = @NO;
     
     SPRequestResult *result = [[SPRequestResult alloc] initWithStatusCode:403 oversize:NO storeIds:@[]];
     XCTAssertEqual([result shouldRetry:customRetryRules], YES);

@@ -39,9 +39,9 @@
 
 - (instancetype)initWithName:(NSString *)name screenId:(nullable NSUUID *)screenId {
     if (self = [super init]) {
-        _screenId = [(screenId ?: [NSUUID UUID]) UUIDString];
+        _screenId = (screenId ?: [NSUUID UUID]).UUIDString;
         _name = name;
-        [SPUtilities checkArgument:([_name length] != 0) withMessage:@"Name cannot be empty."];
+        [SPUtilities checkArgument:(_name.length != 0) withMessage:@"Name cannot be empty."];
         [SPUtilities checkArgument:([SPUtilities isUUIDString:_screenId]) withMessage:@"ScreenID has to be a valid UUID string."];
     }
     return self;

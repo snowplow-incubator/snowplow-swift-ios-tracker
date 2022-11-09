@@ -56,14 +56,14 @@
     }
 
     // don't retry if request is larger than max byte limit
-    if ([self isOversize]) {
+    if (self.isOversize) {
         return false;
     }
 
     // status code has a custom retry rule
-    NSNumber *code = [NSNumber numberWithInteger:_statusCode];
-    if ([customRetryForStatusCodes objectForKey:code]) {
-        return [[customRetryForStatusCodes objectForKey:code] boolValue];
+    NSNumber *code = @(_statusCode);
+    if (customRetryForStatusCodes[code]) {
+        return customRetryForStatusCodes[code].boolValue;
     }
 
     // retry if status code is not in the list of no-retry status codes

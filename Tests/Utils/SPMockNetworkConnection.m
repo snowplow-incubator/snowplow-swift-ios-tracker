@@ -24,7 +24,7 @@
 
 @implementation SPMockNetworkConnection
 
-- initWithRequestOption:(SPHttpMethod)httpMethod statusCode:(NSInteger)statusCode {
+- (instancetype) initWithRequestOption:(SPHttpMethod)httpMethod statusCode:(NSInteger)statusCode {
     if (self = [super init]) {
         self.httpMethod = httpMethod;
         self.statusCode = statusCode;

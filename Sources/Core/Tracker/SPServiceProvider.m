@@ -97,7 +97,7 @@
         if (!self.trackerConfigurationUpdate.sourceConfig) {
             self.trackerConfigurationUpdate.sourceConfig = [SPTrackerConfiguration new];
         }
-        [self tracker]; // Build tracker to initialize NotificationCenter receivers
+        self.tracker; // Build tracker to initialize NotificationCenter receivers
     }
     return self;
 }
@@ -107,7 +107,7 @@
     [self resetConfigurationUpdates];
     [self processConfigurations:configurations];
     [self resetServices];
-    [self tracker];
+    self.tracker;
 }
 
 - (void)shutdown {

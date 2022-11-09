@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SPMockWKScriptMessage : WKScriptMessage
 
-- (id) initWithBody:(id)body;
+- (instancetype) initWithBody:(id)body;
 
 @end
 

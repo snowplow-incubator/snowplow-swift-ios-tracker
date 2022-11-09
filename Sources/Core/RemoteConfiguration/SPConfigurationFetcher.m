@@ -42,7 +42,7 @@
 - (void)performRequest {
     NSURL *url = [[NSURL alloc] initWithString:self.remoteConfiguration.endpoint];
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
-    [urlRequest setHTTPMethod:@"GET"];
+    urlRequest.HTTPMethod = @"GET";
 
     __block NSHTTPURLResponse *httpResponse = nil;
     __block NSError *connectionError = nil;
@@ -51,7 +51,7 @@
                                      completionHandler:^(NSData *data, NSURLResponse *urlResponse, NSError *error) {
         connectionError = error;
         httpResponse = (NSHTTPURLResponse *)urlResponse;
-        BOOL isSuccessful = [httpResponse statusCode] >= 200 && [httpResponse statusCode] < 300;
+        BOOL isSuccessful = httpResponse.statusCode >= 200 && httpResponse.statusCode < 300;
         if (isSuccessful) {
             [self resolveRequestWithData:data];
         }

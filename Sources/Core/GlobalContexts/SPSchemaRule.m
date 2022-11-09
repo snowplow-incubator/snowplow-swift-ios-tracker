@@ -39,7 +39,7 @@ static NSString * const kUriPattern = @"^iglu:((?:(?:[a-zA-Z0-9-_]+)\\.)+(?:[a-z
     return [[SPSchemaRule alloc] initWithRule:self.rule];
 }
 
-- (id)initWithRule:(NSString *)rule {
+- (instancetype)initWithRule:(NSString *)rule {
     if (self = [super init]) {
         if (!rule || rule.length == 0) {
             return nil;
@@ -143,11 +143,11 @@ static NSString * const kUriPattern = @"^iglu:((?:(?:[a-zA-Z0-9-_]+)\\.)+(?:[a-z
     if (self == object) {
         return YES;
     }
-    return [object isKindOfClass:SPSchemaRule.class] && [self.rule isEqualToString:[(SPSchemaRule *)object rule]];
+    return [object isKindOfClass:SPSchemaRule.class] && [self.rule isEqualToString:((SPSchemaRule *)object).rule];
 }
 
 - (NSUInteger)hash {
-    return [_rule hash];
+    return _rule.hash;
 }
 
 @end

@@ -51,11 +51,11 @@ NSString *sessionKey = @"session";
 
 + (SPDataPersistence *)dataPersistenceForNamespace:(NSString *)namespace storedOnFile:(BOOL)isStoredOnFile {
     NSString *escapedNamespace = [SPDataPersistence stringFromNamespace:namespace];
-    if ([escapedNamespace length] <= 0) return nil;
+    if (escapedNamespace.length <= 0) return nil;
     @synchronized (SPDataPersistence.class) {
         SPDataPersistence *instance = nil;
         if (instances) {
-            instance = [instances objectForKey:escapedNamespace];
+            instance = instances[escapedNamespace];
             if (instance) {
                 return instance;
             }
@@ -102,10 +102,10 @@ NSString *sessionKey = @"session";
                 ?: [self sessionDictionaryFromLegacyTrackerV1].mutableCopy
                 ?: [NSMutableDictionary new];
             // Add missing fields
-            [sessionDict setObject:@"" forKey:kSPSessionFirstEventId];
-            [sessionDict setObject:@"LOCAL_STORAGE" forKey:kSPSessionStorage];
+            sessionDict[kSPSessionFirstEventId] = @"";
+            sessionDict[kSPSessionStorage] = @"LOCAL_STORAGE";
             // Wrap up
-            [result setObject:sessionDict forKey:sessionKey];
+            result[sessionKey] = sessionDict;
             [self storeDictionary:result fileURL:self.fileUrl];
         }
         
@@ -124,7 +124,7 @@ NSString *sessionKey = @"session";
 }
 
 - (NSDictionary<NSString *, NSObject *> *)session {
-    return [self.data objectForKey:sessionKey];
+    return (self.data)[sessionKey];
 }
 
 - (void)setSession:(NSDictionary<NSString *, NSObject *> *)session {

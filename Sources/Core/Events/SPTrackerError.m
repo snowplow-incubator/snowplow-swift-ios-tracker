@@ -66,8 +66,8 @@ const int kMaxExceptionNameLength = 1024;
     }
     if (self.exception) {
         [payload setValue:[self truncate:self.exception.name maxLength:kMaxExceptionNameLength] forKey:kSPDiagnosticErrorExceptionName];
-        NSArray<NSString *> *symbols = [self.exception callStackSymbols];
-        if ([symbols count]) {
+        NSArray<NSString *> *symbols = (self.exception).callStackSymbols;
+        if (symbols.count) {
             NSString *stackTrace = [NSString stringWithFormat:@"Stacktrace:\n%@", symbols];
             [payload setValue:[self truncate:stackTrace maxLength:kMaxStackLength] forKey:kSPDiagnosticErrorStack];
         }

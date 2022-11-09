@@ -31,7 +31,7 @@
     if (self = [super init]) {
         _name = theName;
         if (!theScreenId) {
-            _screenId = [[NSUUID UUID] UUIDString];
+            _screenId = [NSUUID UUID].UUIDString;
         } else {
             _screenId = theScreenId;
         }

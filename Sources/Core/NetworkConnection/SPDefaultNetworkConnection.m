@@ -91,7 +91,7 @@
     _urlEndpoint = [[NSURL URLWithString:endpoint] URLByAppendingPathComponent:urlSuffix];
     
     // Log
-    if ([_urlEndpoint scheme] && [_urlEndpoint host]) {
+    if (_urlEndpoint.scheme && _urlEndpoint.host) {
         SPLogDebug(@"Emitter URL created successfully '%@'", _urlEndpoint);
     } else {
         SPLogDebug(@"Invalid emitter URL: '%@'", _urlEndpoint);
@@ -183,7 +183,7 @@
             
             dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
-            SPRequestResult *result = [[SPRequestResult alloc] initWithStatusCode:[httpResponse statusCode] oversize:request.oversize storeIds:request.emitterEventIds];
+            SPRequestResult *result = [[SPRequestResult alloc] initWithStatusCode:httpResponse.statusCode oversize:request.oversize storeIds:request.emitterEventIds];
             if (![result isSuccessful]) {
                 SPLogError(@"Connection error: %@", connectionError);
             }
@@ -209,8 +209,8 @@
         [urlRequest setValue:@"*" forHTTPHeaderField:@"SP-Anonymous"];
     }
     [self applyValuesAndHeaderFields:_requestHeaders toRequest:urlRequest];
-    [urlRequest setHTTPMethod:@"POST"];
-    [urlRequest setHTTPBody:requestData];
+    urlRequest.HTTPMethod = @"POST";
+    urlRequest.HTTPBody = requestData;
     return urlRequest;
 }
 
@@ -223,7 +223,7 @@
         [urlRequest setValue:@"*" forHTTPHeaderField:@"SP-Anonymous"];
     }
     [self applyValuesAndHeaderFields:_requestHeaders toRequest:urlRequest];
-    [urlRequest setHTTPMethod:@"GET"];
+    urlRequest.HTTPMethod = @"GET";
     return urlRequest;
 }
 

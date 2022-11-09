@@ -34,7 +34,7 @@
 
 - (instancetype)initWithSchema:(NSString *)schema andData:(NSObject *)data {
     if (self = [super init]) {
-        [self setSchema:schema];
+        self.schema = schema;
         [self setDataWithObject:data];
     }
     return self;
@@ -53,7 +53,7 @@
 }
 
 - (void) setSchema:(NSString *)schema {
-    [SPUtilities checkArgument:([schema length] != 0) withMessage:@"Schema cannot be nil or empty."];
+    [SPUtilities checkArgument:(schema.length != 0) withMessage:@"Schema cannot be nil or empty."];
     _schema = schema;
 }
 
@@ -77,7 +77,7 @@
 }
 
 - (NSString *) description {
-    return [[self getAsDictionary] description];
+    return [self getAsDictionary].description;
 }
 
 @end

@@ -78,11 +78,11 @@
 @end
 
 void uncaughtExceptionHandler(NSException *exception) {
-    NSArray* symbols = [exception callStackSymbols];
+    NSArray* symbols = exception.callStackSymbols;
     NSString * stacktrace = [NSString stringWithFormat:@"Stacktrace:\n%@", symbols];
-    NSString * message = [exception reason];
+    NSString * message = exception.reason;
     dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if (message == nil || [message length] == 0) {
+        if (message == nil || message.length == 0) {
             return;
         }
         
@@ -257,11 +257,11 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void) setTrackerData {
     NSString *trackerVersion = kSPVersion;
-    if ([_trackerVersionSuffix length]) {
+    if (_trackerVersionSuffix.length) {
         NSMutableCharacterSet *allowedCharSet = [NSMutableCharacterSet alphanumericCharacterSet];
         [allowedCharSet formUnionWithCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@".-"]];
-        NSString *suffix = [[_trackerVersionSuffix componentsSeparatedByCharactersInSet:[allowedCharSet invertedSet]] componentsJoinedByString:@""];
-        if ([suffix length]) {
+        NSString *suffix = [[_trackerVersionSuffix componentsSeparatedByCharactersInSet:allowedCharSet.invertedSet] componentsJoinedByString:@""];
+        if (suffix.length) {
             trackerVersion = [NSString stringWithFormat:@"%@ %@", trackerVersion, suffix];
         }
     }
@@ -415,15 +415,15 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 - (BOOL)addGlobalContext:(SPGlobalContext *)generator tag:(NSString *)tag {
-    if ([self.globalContextGenerators objectForKey:tag]) {
+    if ((self.globalContextGenerators)[tag]) {
         return NO;
     }
-    [self.globalContextGenerators setObject:generator forKey:tag];
+    (self.globalContextGenerators)[tag] = generator;
     return YES;
 }
 
 - (SPGlobalContext *)removeGlobalContext:(NSString *)tag {
-    SPGlobalContext *toDelete = [self.globalContextGenerators objectForKey:tag];
+    SPGlobalContext *toDelete = (self.globalContextGenerators)[tag];
     if (toDelete) {
         [self.globalContextGenerators removeObjectForKey:tag];
     }
@@ -497,10 +497,10 @@ void uncaughtExceptionHandler(NSException *exception) {
 #pragma mark - Notifications management
 
 - (void) receiveScreenViewNotification:(NSNotification *)notification {
-    NSString *name = [[notification userInfo] objectForKey:@"name"];
-    NSString *type = stringWithSPScreenType([[[notification userInfo] objectForKey:@"type"] integerValue]);
-    NSString *topViewControllerClassName = [[notification userInfo] objectForKey:@"topViewControllerClassName"];
-    NSString *viewControllerClassName = [[notification userInfo] objectForKey:@"viewControllerClassName"];
+    NSString *name = notification.userInfo[@"name"];
+    NSString *type = stringWithSPScreenType([notification.userInfo[@"type"] integerValue]);
+    NSString *topViewControllerClassName = notification.userInfo[@"topViewControllerClassName"];
+    NSString *viewControllerClassName = notification.userInfo[@"viewControllerClassName"];
 
     if (_autotrackScreenViews) {
         SPScreenView *event = [[SPScreenView alloc] initWithName:name screenId:nil];
@@ -512,11 +512,11 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 - (void)receiveDiagnosticNotification:(NSNotification *)notification {
-    NSDictionary *userInfo = [notification userInfo];
-    NSString *tag = [userInfo objectForKey:@"tag"];
-    NSString *message = [userInfo objectForKey:@"message"];
-    NSError *error = [userInfo objectForKey:@"error"];
-    NSException *exception = [userInfo objectForKey:@"exception"];
+    NSDictionary *userInfo = notification.userInfo;
+    NSString *tag = userInfo[@"tag"];
+    NSString *message = userInfo[@"message"];
+    NSError *error = userInfo[@"error"];
+    NSException *exception = userInfo[@"exception"];
 
     if (_trackerDiagnostic) {
         SPTrackerError *event = [[SPTrackerError alloc] initWithSource:tag message:message error:error exception:exception];
@@ -525,9 +525,9 @@ void uncaughtExceptionHandler(NSException *exception) {
 }
 
 - (void)receiveCrashReportingNotification:(NSNotification *)notification {
-    NSDictionary *userInfo = [notification userInfo];
-    NSString *message = [userInfo objectForKey:@"message"];
-    NSString *stacktrace = [userInfo objectForKey:@"stacktrace"];
+    NSDictionary *userInfo = notification.userInfo;
+    NSString *message = userInfo[@"message"];
+    NSString *stacktrace = userInfo[@"stacktrace"];
     
     
     if (_exceptionEvents) {
@@ -557,7 +557,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     [self transformEvent:trackerEvent];
     SPPayload *payload = [self payloadWithEvent:trackerEvent];
     [_emitter addPayloadToBuffer:payload];
-    return [trackerEvent eventId];
+    return trackerEvent.eventId;
 }
 
 - (void)transformEvent:(SPTrackerEvent *)event {

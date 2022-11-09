@@ -52,13 +52,13 @@
 - (void)addEvent:(nonnull SPPayload *)payload {
     @synchronized (self) {
         self.lastInsertedRow++;
-        [self.db setObject:payload forKey:@(self.lastInsertedRow)];
+        (self.db)[@(self.lastInsertedRow)] = payload;
     }
 }
 
 - (BOOL)removeEventWithId:(long long)storeId {
     @synchronized (self) {
-        BOOL exist = [self.db objectForKey:@(storeId)];
+        BOOL exist = (self.db)[@(storeId)];
         [self.db removeObjectForKey:@(storeId)];
         return exist;
     }
@@ -67,7 +67,7 @@
 - (BOOL)removeEventsWithIds:(nonnull NSArray<NSNumber *> *)storeIds {
     BOOL result = YES;
     for (NSNumber *storeId in storeIds) {
-        result = [self.db objectForKey:storeId];
+        result = (self.db)[storeId];
         [self.db removeObjectForKey:storeId];
     }
     return result;
@@ -113,7 +113,7 @@
 @property SPHttpMethod httpMethod;
 @property NSURL *url;
 
-- (instancetype)initWithResultCode:(NSInteger)resultCode method:(SPHttpMethod)httpMethod url:(NSString *)url;
+- (instancetype)initWithResultCode:(NSInteger)resultCode method:(SPHttpMethod)httpMethod url:(NSString *)url NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -295,8 +295,8 @@
 
 - (int)trackUnstructuredEventWithTracker:(SPTracker *)tracker_ {
     NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
-    [data setObject:@23 forKey:@"level"];
-    [data setObject:@56473 forKey:@"score"];
+    data[@"level"] = @23;
+    data[@"score"] = @56473;
     SPSelfDescribingJson * sdj = [[SPSelfDescribingJson alloc] initWithSchema:@"iglu:com.acme_company/demo_ios_event/jsonschema/1-0-0"
                                                                       andData:data];
     SPSelfDescribing *event = [[SPSelfDescribing alloc] initWithEventData:sdj];

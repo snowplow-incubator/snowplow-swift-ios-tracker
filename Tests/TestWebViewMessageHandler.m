@@ -46,7 +46,7 @@
     [trackerConfig platformContext:NO];
 
     [SPSnowplow removeAllTrackers];
-    [SPSnowplow createTrackerWithNamespace:[[NSUUID UUID] UUIDString] network:networkConfig configurations:@[trackerConfig]];
+    [SPSnowplow createTrackerWithNamespace:[NSUUID UUID].UUIDString network:networkConfig configurations:@[trackerConfig]];
 }
 
 - (void)tearDown {
@@ -66,19 +66,19 @@
     }];
     [self.webViewMessageHandler userContentController:nil didReceiveScriptMessage:message];
     
-    for (int i = 0; i < 10 && [self.networkConnection sendingCount] == 0; i++) {
+    for (int i = 0; i < 10 && (self.networkConnection).sendingCount == 0; i++) {
         [NSThread sleepForTimeInterval:0.5];
     }
     
     XCTAssertEqual(1, [self.networkConnection sendingCount]);
-    XCTAssertEqual(1, [[self.networkConnection.previousRequests objectAtIndex:0] count]);
-    SPRequest *request = [[self.networkConnection.previousRequests objectAtIndex:0] objectAtIndex:0];
-    NSDictionary *payload = [(NSArray *)[[[request payload] getAsDictionary] objectForKey:@"data"] objectAtIndex:0];
-    XCTAssert([[payload objectForKey:@"se_ca"] isEqualToString:@"cat"]);
-    XCTAssert([[payload objectForKey:@"se_ac"] isEqualToString:@"act"]);
-    XCTAssert([[payload objectForKey:@"se_pr"] isEqualToString:@"prop"]);
-    XCTAssert([[payload objectForKey:@"se_la"] isEqualToString:@"lbl"]);
-    XCTAssert([[payload objectForKey:@"se_va"] isEqualToString:@"10"]);
+    XCTAssertEqual(1, [(self.networkConnection.previousRequests)[0] count]);
+    SPRequest *request = (self.networkConnection.previousRequests)[0][0];
+    NSDictionary *payload = ((NSArray *)[request.payload getAsDictionary][@"data"])[0];
+    XCTAssert([payload[@"se_ca"] isEqualToString:@"cat"]);
+    XCTAssert([payload[@"se_ac"] isEqualToString:@"act"]);
+    XCTAssert([payload[@"se_pr"] isEqualToString:@"prop"]);
+    XCTAssert([payload[@"se_la"] isEqualToString:@"lbl"]);
+    XCTAssert([payload[@"se_va"] isEqualToString:@"10"]);
 }
 
 - (void)testTracksEventWithCorrectTracker {
@@ -98,13 +98,13 @@
     [self.webViewMessageHandler userContentController:nil didReceiveScriptMessage:message];
 
     // wait and check for the event
-    for (int i = 0; i < 10 && [networkConnection2 sendingCount] == 0; i++) {
+    for (int i = 0; i < 10 && networkConnection2.sendingCount == 0; i++) {
         [NSThread sleepForTimeInterval:0.5];
     }
 
     XCTAssertEqual(0, [self.networkConnection sendingCount]);
     XCTAssertEqual(1, [networkConnection2 sendingCount]);
-    XCTAssertEqual(1, [[[networkConnection2 previousRequests] objectAtIndex:0] count]);
+    XCTAssertEqual(1, [[networkConnection2 previousRequests][0] count]);
 }
 
 - (void)testTracksEventWithContext {
@@ -127,16 +127,16 @@
     }];
     [self.webViewMessageHandler userContentController:nil didReceiveScriptMessage:message];
 
-    for (int i = 0; i < 10 && [self.networkConnection sendingCount] == 0; i++) {
+    for (int i = 0; i < 10 && (self.networkConnection).sendingCount == 0; i++) {
         [NSThread sleepForTimeInterval:0.5];
     }
 
     XCTAssertEqual(1, [self.networkConnection sendingCount]);
-    XCTAssertEqual(1, [[self.networkConnection.previousRequests objectAtIndex:0] count]);
-    SPRequest *request = [[self.networkConnection.previousRequests objectAtIndex:0] objectAtIndex:0];
-    NSDictionary *payload = [(NSArray *)[[[request payload] getAsDictionary] objectForKey:@"data"] objectAtIndex:0];
+    XCTAssertEqual(1, [(self.networkConnection.previousRequests)[0] count]);
+    SPRequest *request = (self.networkConnection.previousRequests)[0][0];
+    NSDictionary *payload = ((NSArray *)[request.payload getAsDictionary][@"data"])[0];
 
-    NSString *context = [payload objectForKey:@"co"];
+    NSString *context = payload[@"co"];
     XCTAssert([context containsString:@"{\"a\":\"b\"}"]);
 }
 

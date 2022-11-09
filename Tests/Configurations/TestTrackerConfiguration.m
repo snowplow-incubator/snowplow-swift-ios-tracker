@@ -137,8 +137,8 @@
     XCTAssertEqual(expectedForeground, foreground);
     XCTAssertEqual(expectedBackground, background);
     
-    NSMeasurement *foregroundMeasure = [tracker.session foregroundTimeout];
-    NSMeasurement *backgroundMeasure = [tracker.session backgroundTimeout];
+    NSMeasurement *foregroundMeasure = (tracker.session).foregroundTimeout;
+    NSMeasurement *backgroundMeasure = (tracker.session).backgroundTimeout;
     XCTAssertEqualObjects([[NSMeasurement alloc] initWithDoubleValue:expectedForeground unit:NSUnitDuration.seconds], foregroundMeasure);
     XCTAssertEqualObjects([[NSMeasurement alloc] initWithDoubleValue:expectedBackground unit:NSUnitDuration.seconds], backgroundMeasure);
 }
@@ -227,10 +227,10 @@
     NSArray<SPEmitterEvent *> *events = [eventStore emittableEventsWithQueryLimit:10];
     [eventStore removeAllEvents];
     XCTAssertEqual(1, events.count);
-    SPPayload *payload = [[events firstObject] payload];
+    SPPayload *payload = events.firstObject.payload;
     
     // Check v_tracker field
-    NSString *versionTracker = (NSString *)[[payload getAsDictionary] objectForKey:@"tv"];
+    NSString *versionTracker = (NSString *)[payload getAsDictionary][@"tv"];
     NSString *expected = [NSString stringWithFormat:@"%@ testWithSpace1-2-3", kSPVersion];
     XCTAssertEqualObjects(expected, versionTracker);
 }
@@ -266,8 +266,8 @@
     NSArray<SPEmitterEvent *> *events = [eventStore emittableEventsWithQueryLimit:10];
     [eventStore removeAllEvents];
     XCTAssertEqual(1, events.count);
-    SPPayload *payload = [[events firstObject] payload];
-    NSString *contexts = (NSString *)[[payload getAsDictionary] objectForKey:@"co"];
+    SPPayload *payload = events.firstObject.payload;
+    NSString *contexts = (NSString *)[payload getAsDictionary][@"co"];
     XCTAssertTrue([contexts containsString:@"\"basisForProcessing\":\"contract\""]);
     XCTAssertTrue([contexts containsString:@"\"documentId\":\"id1\""]);
 
@@ -286,8 +286,8 @@
     events = [eventStore emittableEventsWithQueryLimit:10];
     [eventStore removeAllEvents];
     XCTAssertEqual(1, events.count);
-    payload = [[events firstObject] payload];
-    contexts = (NSString *)[[payload getAsDictionary] objectForKey:@"co"];
+    payload = events.firstObject.payload;
+    contexts = (NSString *)[payload getAsDictionary][@"co"];
     XCTAssertFalse([contexts containsString:@"\"basisForProcessing\":\"contract\""]);
     XCTAssertFalse([contexts containsString:@"\"documentId\":\"id1\""]);
     
@@ -319,8 +319,8 @@
     NSArray<SPEmitterEvent *> *events = [eventStore emittableEventsWithQueryLimit:10];
     [eventStore removeAllEvents];
     XCTAssertEqual(1, events.count);
-    SPPayload *payload = [[events firstObject] payload];
-    NSString *contexts = (NSString *)[[payload getAsDictionary] objectForKey:@"co"];
+    SPPayload *payload = events.firstObject.payload;
+    NSString *contexts = (NSString *)[payload getAsDictionary][@"co"];
     XCTAssertFalse([contexts containsString:@"\"basisForProcessing\""]);
 
     // Check gdpr can be enabled again
@@ -338,8 +338,8 @@
     events = [eventStore emittableEventsWithQueryLimit:10];
     [eventStore removeAllEvents];
     XCTAssertEqual(1, events.count);
-    payload = [[events firstObject] payload];
-    contexts = (NSString *)[[payload getAsDictionary] objectForKey:@"co"];
+    payload = events.firstObject.payload;
+    contexts = (NSString *)[payload getAsDictionary][@"co"];
     XCTAssertTrue([contexts containsString:@"\"basisForProcessing\":\"contract\""]);
     XCTAssertTrue([contexts containsString:@"\"documentId\":\"id1\""]);
 }
@@ -367,8 +367,8 @@
     NSArray<SPEmitterEvent *> *events = [eventStore emittableEventsWithQueryLimit:10];
     [eventStore removeAllEvents];
     XCTAssertEqual(1, events.count);
-    SPPayload *payload = [[events firstObject] payload];
-    NSString *contexts = (NSString *)[[payload getAsDictionary] objectForKey:@"co"];
+    SPPayload *payload = events.firstObject.payload;
+    NSString *contexts = (NSString *)[payload getAsDictionary][@"co"];
     
     // Check empty userId in session context
     XCTAssertTrue([contexts containsString:@"\"userId\":\"00000000-0000-0000-0000-000000000000\""]);
@@ -396,10 +396,10 @@
     NSArray<SPEmitterEvent *> *events = [eventStore emittableEventsWithQueryLimit:10];
     [eventStore removeAllEvents];
     XCTAssertEqual(1, events.count);
-    SPPayload *payload = [[events firstObject] payload];
+    SPPayload *payload = events.firstObject.payload;
     
     // Check eid field
-    NSString *trackedEventId = (NSString *)[[payload getAsDictionary] objectForKey:@"eid"];
+    NSString *trackedEventId = (NSString *)[payload getAsDictionary][@"eid"];
     XCTAssertTrue([[eventId UUIDString] isEqualToString:trackedEventId]);
 }
 @end

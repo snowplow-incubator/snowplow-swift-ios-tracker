@@ -33,16 +33,16 @@
 - (void)testContainsPlatformInfo {
     SPPlatformContext *context = [[SPPlatformContext alloc] init];
     NSDictionary *platformDict = [[context fetchPlatformDictWithUserAnonymisation:NO] getAsDictionary];
-    XCTAssertNotNil([platformDict objectForKey:kSPPlatformOsType]);
-    XCTAssertNotNil([platformDict objectForKey:kSPPlatformOsVersion]);
+    XCTAssertNotNil(platformDict[kSPPlatformOsType]);
+    XCTAssertNotNil(platformDict[kSPPlatformOsVersion]);
 }
 
 - (void)testContainsMobileInfo {
 #if SNOWPLOW_TARGET_IOS
     SPPlatformContext *context = [[SPPlatformContext alloc] init];
     NSDictionary *platformDict = [[context fetchPlatformDictWithUserAnonymisation:NO] getAsDictionary];
-    XCTAssertNotNil([platformDict objectForKey:kSPMobileAvailableStorage]);
-    XCTAssertNotNil([platformDict objectForKey:kSPMobileTotalStorage]);
+    XCTAssertNotNil(platformDict[kSPMobileAvailableStorage]);
+    XCTAssertNotNil(platformDict[kSPMobileTotalStorage]);
 #endif
 }
 

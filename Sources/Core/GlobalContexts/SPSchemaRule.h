@@ -32,7 +32,7 @@ NS_SWIFT_NAME(SchemaRule)
 + (instancetype) new NS_UNAVAILABLE;
 - (instancetype) init NS_UNAVAILABLE;
 
-- (id)initWithRule:(NSString *)rule NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithRule:(NSString *)rule NS_DESIGNATED_INITIALIZER;
 
 /*!
  Weather the `uri` match the stored rule.

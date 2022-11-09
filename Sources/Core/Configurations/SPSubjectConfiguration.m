@@ -32,7 +32,7 @@
 
 @implementation SPSize
 
-- initWithWidth:(NSInteger)width height:(NSInteger)height {
+- (instancetype) initWithWidth:(NSInteger)width height:(NSInteger)height {
     if (self = [super init]) {
         self.width = width;
         self.height = height;

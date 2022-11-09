@@ -24,12 +24,12 @@
 @implementation NSDictionary (SP_TypeMethods)
 
 - (nullable NSString *)sp_stringForKey:(NSString *)key defaultValue:(nullable NSString *)defaultValue {
-    NSObject *obj = [self objectForKey:key];
+    NSObject *obj = self[key];
     return [obj isKindOfClass:NSString.class] ? (NSString *)obj : defaultValue;
 }
 
 - (nullable NSNumber *)sp_numberForKey:(NSString *)key defaultValue:(nullable NSNumber *)defaultValue {
-    NSObject *obj = [self objectForKey:key];
+    NSObject *obj = self[key];
     return [obj isKindOfClass:NSNumber.class] ? (NSNumber *)obj : defaultValue;
 }
 
@@ -39,12 +39,12 @@
 }
 
 - (nullable NSDictionary *)sp_dictionaryForKey:(NSString *)key defaultValue:(nullable NSDictionary *)defaultValue {
-    NSObject *obj = [self objectForKey:key];
+    NSObject *obj = self[key];
     return [obj isKindOfClass:NSDictionary.class] ? (NSDictionary *)obj : defaultValue;
 }
 
 - (nullable NSArray *)sp_arrayForKey:(NSString *)key itemClass:(nullable Class)itemClass defaultValue:(nullable NSArray *)defaultValue {
-    NSObject *obj = [self objectForKey:key];
+    NSObject *obj = self[key];
     if (![obj isKindOfClass:NSArray.class]) {
         return defaultValue;
     }
@@ -55,7 +55,7 @@
     NSMutableArray *resultArray = [NSMutableArray new];
     if ([itemClass isSubclassOfClass:SPConfiguration.class] && [array.firstObject isKindOfClass:NSDictionary.class]) {
         for (int i = 0; i < array.count; i++) {
-            NSDictionary *dictionary = (NSDictionary *)[array objectAtIndex:i];
+            NSDictionary *dictionary = (NSDictionary *)array[i];
             SPConfiguration *configuration = [[itemClass alloc] initWithDictionary:dictionary];
             if (!configuration) {
                 return defaultValue;
@@ -67,12 +67,12 @@
 }
 
 - (nullable NSObject *)sp_objectForKey:(NSString *)key objectClass:(Class)objectClass defaultValue:(NSObject *)defaultValue {
-    NSObject *obj = [self objectForKey:key];
+    NSObject *obj = self[key];
     return (obj && (!objectClass || [obj isKindOfClass:objectClass])) ? obj : defaultValue;
 }
 
 - (nullable SPConfiguration *)sp_configurationForKey:(NSString *)key configurationClass:(Class)configurationClass defaultValue:(SPConfiguration *)defaultValue {
-    NSObject *obj = [self objectForKey:key];
+    NSObject *obj = self[key];
     if (!obj) {
         return defaultValue;
     }

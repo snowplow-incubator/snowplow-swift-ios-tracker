@@ -36,7 +36,7 @@
 - (void)testEventBuilderConditions {
     // Valid construction
     SPPageView *event = [[SPPageView alloc] initWithPageUrl:@"DemoPageUrl"];
-    [event setContexts:[self getCustomContext]];
+    event.contexts = [self getCustomContext];
     XCTAssertNotNil(event);
     event = nil;    
 }
@@ -48,7 +48,7 @@
     // Set trueTimestamp
     NSDate *testDate = [NSDate date];
     event = [[SPPageView alloc] initWithPageUrl:@"DemoPageUrl"];
-    [event setTrueTimestamp:testDate];
+    event.trueTimestamp = testDate;
     XCTAssertEqual(event.trueTimestamp, testDate);
 }
 
@@ -96,8 +96,8 @@
 - (void)testUnstructuredBuilderEmptyCondition {
     // Valid construction
     NSMutableDictionary * data = [[NSMutableDictionary alloc] init];
-    [data setObject:[NSNumber numberWithInt:23] forKey:@"level"];
-    [data setObject:[NSNumber numberWithInt:56473] forKey:@"score"];
+    data[@"level"] = @23;
+    data[@"score"] = @56473;
     SPSelfDescribingJson * sdj = [[SPSelfDescribingJson alloc] initWithSchema:@"iglu:com.acme_company/demo_ios_event/jsonschema/1-0-0"
                                                                       andData:data];
     SPSelfDescribing *event = [[SPSelfDescribing alloc] initWithEventData:sdj];
@@ -108,7 +108,7 @@
 - (void)testUnstructuredBuilderWrongDataCondition {
     // Invalid dictionary
     NSMutableDictionary * data = [[NSMutableDictionary alloc] init];
-    [data setObject:[NSNumber numberWithInt:12] forKey:[NSNumber numberWithInt:12]];
+    data[@12] = @12;
     SPSelfDescribingJson * sdj = [[SPSelfDescribingJson alloc] initWithSchema:@"iglu:com.acme_company/demo_ios_event/jsonschema/1-0-0"
                                                                       andData:data];
     // Data is wrong
@@ -125,11 +125,11 @@
 - (void)testConsentWithdrawnBuilderConditions {
     // Valid construction
     SPConsentWithdrawn *event = [[SPConsentWithdrawn alloc] init];
-    [event setName:@"name"];
+    event.name = @"name";
     [event setAll:false];
-    [event setVersion:@"3"];
-    [event setDocumentId:@"1000"];
-    [event setDocumentDescription:@"description"];
+    event.version = @"3";
+    event.documentId = @"1000";
+    event.documentDescription = @"description";
     XCTAssertNotNil(event);
 }
 
@@ -145,8 +145,8 @@
 - (void)testConsentDocumentBuilderConditions {
     // Valid construction
     SPConsentDocument *event = [[SPConsentDocument alloc] initWithDocumentId:@"1000" version:@"3"];
-    [event setName:@"name"];
-    [event setDocumentDescription:@"description"];
+    event.name = @"name";
+    event.documentDescription = @"description";
     XCTAssertNotNil(event);
     event = nil;
 }
@@ -246,11 +246,11 @@
                                  };
     
     SPNotificationContent *event = [[SPNotificationContent alloc] initWithTitle:@"title" body:@"body" badge:@5];
-    [event setSubtitle:@"subtitle"];
-    [event setSound:@"sound"];
-    [event setLaunchImageName:@"image"];
-    [event setUserInfo:userInfo];
-    [event setAttachments:attachments];
+    event.subtitle = @"subtitle";
+    event.sound = @"sound";
+    event.launchImageName = @"image";
+    event.userInfo = userInfo;
+    event.attachments = attachments;
     XCTAssertNotNil(event);
     event = nil;
     
@@ -292,11 +292,11 @@
                                  };
 
     SPNotificationContent *content = [[SPNotificationContent alloc] initWithTitle:@"title" body:@"body" badge:@5];
-        [content setSubtitle:@"subtitle"];
-        [content setSound:@"sound"];
-        [content setLaunchImageName:@"image"];
-        [content setUserInfo:userInfo];
-        [content setAttachments:attachments];
+        content.subtitle = @"subtitle";
+        content.sound = @"sound";
+        content.launchImageName = @"image";
+        content.userInfo = userInfo;
+        content.attachments = attachments;
 
     SPPushNotification *event = [[SPPushNotification alloc] initWithDate:@"date" action:@"action" trigger:@"PUSH" category:@"category" thread:@"thread" notification:content];
     XCTAssertNotNil(event);
@@ -351,8 +351,8 @@
 - (void)testErrorBuilderConditions {
     // Valid construction
     SNOWError *event = [[SNOWError alloc] initWithMessage:@"message"];
-    [event setName:@"name"];
-    [event setStackTrace:@"stackTrace"];
+    event.name = @"name";
+    event.stackTrace = @"stackTrace";
     XCTAssertNotNil(event);
 }
 

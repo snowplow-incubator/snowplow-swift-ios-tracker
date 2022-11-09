@@ -52,7 +52,7 @@
 - (void)setUserId:(NSString *)userId {
     self.dirtyConfig.userId = userId;
     self.dirtyConfig.userIdUpdated = YES;
-    [self.subject setUserId:userId];
+    (self.subject).userId = userId;
 }
 
 - (NSString *)userId {
@@ -62,61 +62,61 @@
 - (void)setNetworkUserId:(NSString *)networkUserId {
     self.dirtyConfig.networkUserId = networkUserId;
     self.dirtyConfig.networkUserIdUpdated = YES;
-    [self.subject setNetworkUserId:networkUserId];
+    (self.subject).networkUserId = networkUserId;
 }
 
 - (NSString *)networkUserId {
-    return [self.subject networkUserId];
+    return (self.subject).networkUserId;
 }
 
 - (void)setDomainUserId:(NSString *)domainUserId {
     self.dirtyConfig.domainUserId = domainUserId;
     self.dirtyConfig.domainUserIdUpdated = YES;
-    [self.subject setDomainUserId:domainUserId];
+    (self.subject).domainUserId = domainUserId;
 }
 
 - (NSString *)domainUserId {
-    return [self.subject domainUserId];
+    return (self.subject).domainUserId;
 }
 
 - (void)setUseragent:(NSString *)useragent {
     self.dirtyConfig.useragent = useragent;
     self.dirtyConfig.useragentUpdated = YES;
-    [self.subject setUseragent:useragent];
+    (self.subject).useragent = useragent;
 }
 
 - (NSString *)useragent {
-    return [self.subject useragent];
+    return (self.subject).useragent;
 }
 
 - (void)setIpAddress:(NSString *)ipAddress {
     self.dirtyConfig.ipAddress = ipAddress;
     self.dirtyConfig.ipAddressUpdated = YES;
-    [self.subject setIpAddress:ipAddress];
+    (self.subject).ipAddress = ipAddress;
 }
 
 - (NSString *)ipAddress {
-    return [self.subject ipAddress];
+    return (self.subject).ipAddress;
 }
 
 - (void)setTimezone:(NSString *)timezone {
     self.dirtyConfig.timezone = timezone;
     self.dirtyConfig.timezoneUpdated = YES;
-    [self.subject setTimezone:timezone];
+    (self.subject).timezone = timezone;
 }
 
 - (NSString *)timezone {
-    return [self.subject timezone];
+    return (self.subject).timezone;
 }
 
 - (void)setLanguage:(NSString *)language {
     self.dirtyConfig.language = language;
     self.dirtyConfig.languageUpdated = YES;
-    [self.subject setLanguage:language];
+    (self.subject).language = language;
 }
 
 - (NSString *)language {
-    return [self.subject language];
+    return (self.subject).language;
 }
 
 - (void)setScreenResolution:(SPSize *)screenResolution {
@@ -126,7 +126,7 @@
 }
 
 - (SPSize *)screenResolution {
-    return [self.subject screenResolution];
+    return (self.subject).screenResolution;
 }
 
 - (void)setScreenViewPort:(SPSize *)screenViewPort {
@@ -136,17 +136,17 @@
 }
 
 - (SPSize *)screenViewPort {
-    return [self.subject screenViewPort];
+    return (self.subject).screenViewPort;
 }
 
 - (void)setColorDepth:(NSNumber *)colorDepth {
     self.dirtyConfig.colorDepth = colorDepth;
     self.dirtyConfig.colorDepthUpdated = YES;
-    [self.subject setColorDepth:colorDepth.intValue];
+    (self.subject).colorDepth = colorDepth.intValue;
 }
 
 - (NSNumber *)colorDepth {
-    return @([self.subject colorDepth]);
+    return @((self.subject).colorDepth);
 }
 
 // MARK: - GeoLocalization

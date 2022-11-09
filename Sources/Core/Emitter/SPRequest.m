@@ -41,7 +41,7 @@
 - (instancetype)initWithPayload:(SPPayload *)payload emitterEventId:(long long)emitterEventId oversize:(BOOL)oversize {
     if (self = [super init]) {
         self.payload = payload;
-        self.emitterEventIds = @[[NSNumber numberWithLongLong:emitterEventId]];
+        self.emitterEventIds = @[@(emitterEventId)];
         self.customUserAgent = [self userAgentFromPayload:payload];
         self.oversize = oversize;
     }

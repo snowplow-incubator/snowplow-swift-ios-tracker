@@ -26,11 +26,11 @@
 @implementation SPGlobalContextsControllerImpl
 
 - (void)setContextGenerators:(NSMutableDictionary<NSString *,SPGlobalContext *> *)contextGenerators {
-    [self.tracker setGlobalContextGenerators:contextGenerators];
+    (self.tracker).globalContextGenerators = contextGenerators;
 }
 
 - (NSMutableDictionary<NSString *,SPGlobalContext *> *)contextGenerators {
-    return [self.tracker globalContextGenerators];
+    return (self.tracker).globalContextGenerators;
 }
 
 - (BOOL)addWithTag:(nonnull NSString *)tag contextGenerator:(nonnull SPGlobalContext *)generator {
@@ -42,7 +42,7 @@
 }
 
 - (NSArray<NSString *> *)tags {
-    return [self.tracker globalContextTags];
+    return (self.tracker).globalContextTags;
 }
 
 // MARK: - Private methods

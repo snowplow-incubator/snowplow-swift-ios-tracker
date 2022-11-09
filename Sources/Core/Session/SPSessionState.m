@@ -41,13 +41,13 @@
 + (NSMutableDictionary<NSString *, NSObject *> *)buildSessionDictionaryWithFirstEventId:(NSString *)firstEventId firstEventTimestamp:(NSString *)firstEventTimestamp currentSessionId:(NSString *)currentSessionId previousSessionId:(NSString *)previousSessionId sessionIndex:(NSInteger)sessionIndex userId:(NSString *)userId storage:(NSString *)storage
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary new];
-    [dictionary setObject:previousSessionId ?: [NSNull null] forKey:kSPSessionPreviousId];
-    [dictionary setObject:currentSessionId forKey:kSPSessionId];
-    [dictionary setObject:firstEventId forKey:kSPSessionFirstEventId];
-    [dictionary setObject:firstEventTimestamp ?: [NSNull null] forKey:kSPSessionFirstEventTimestamp];
-    [dictionary setObject:[NSNumber numberWithInteger:sessionIndex] forKey:kSPSessionIndex];
-    [dictionary setObject:storage forKey:kSPSessionStorage];
-    [dictionary setObject:userId forKey:kSPSessionUserId];
+    dictionary[kSPSessionPreviousId] = previousSessionId ?: [NSNull null];
+    dictionary[kSPSessionId] = currentSessionId;
+    dictionary[kSPSessionFirstEventId] = firstEventId;
+    dictionary[kSPSessionFirstEventTimestamp] = firstEventTimestamp ?: [NSNull null];
+    dictionary[kSPSessionIndex] = @(sessionIndex);
+    dictionary[kSPSessionStorage] = storage;
+    dictionary[kSPSessionUserId] = userId;
     return dictionary;
 }
 

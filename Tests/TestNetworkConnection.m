@@ -34,7 +34,7 @@ NSString *const TEST_URL_ENDPOINT = @"acme.test.url.com";
 
 - (void)setUp {
     [super setUp];
-    if ([[LSNocilla sharedInstance] isStarted]) {
+    if ([LSNocilla sharedInstance].started) {
         [[LSNocilla sharedInstance] stop];
     }
     [[LSNocilla sharedInstance] start];
@@ -60,7 +60,7 @@ NSString *const TEST_URL_ENDPOINT = @"acme.test.url.com";
     NSArray<SPRequestResult *> *results = [connection sendRequests:@[request]];
     
     // Check successful result
-    SPRequestResult *result = [results objectAtIndex:0];
+    SPRequestResult *result = results[0];
     XCTAssertTrue(result.isSuccessful);
     XCTAssertEqualObjects(@1, result.storeIds[0]);
 }
@@ -79,9 +79,9 @@ NSString *const TEST_URL_ENDPOINT = @"acme.test.url.com";
     NSArray<SPRequestResult *> *results = [connection sendRequests:@[request]];
     
     // Check unsuccessful result
-    SPRequestResult *result = [results objectAtIndex:0];
+    SPRequestResult *result = results[0];
     XCTAssertFalse(result.isSuccessful);
-    XCTAssertEqualObjects(@1, [result.storeIds objectAtIndex:0]);
+    XCTAssertEqualObjects(@1, (result.storeIds)[0]);
 }
 
 - (void)testPostRequestWithSuccess {
@@ -98,9 +98,9 @@ NSString *const TEST_URL_ENDPOINT = @"acme.test.url.com";
     NSArray<SPRequestResult *> *results = [connection sendRequests:@[request]];
     
     // Check successful result
-    SPRequestResult *result = [results objectAtIndex:0];
+    SPRequestResult *result = results[0];
     XCTAssertTrue(result.isSuccessful);
-    XCTAssertEqualObjects(@1, [result.storeIds objectAtIndex:0]);
+    XCTAssertEqualObjects(@1, (result.storeIds)[0]);
 }
 
 - (void)testPostRequestWithNoSuccess {
@@ -117,9 +117,9 @@ NSString *const TEST_URL_ENDPOINT = @"acme.test.url.com";
     NSArray<SPRequestResult *> *results = [connection sendRequests:@[request]];
     
     // Check unsuccessful result
-    SPRequestResult *result = [results objectAtIndex:0];
+    SPRequestResult *result = results[0];
     XCTAssertFalse(result.isSuccessful);
-    XCTAssertEqualObjects(@1, [result.storeIds objectAtIndex:0]);
+    XCTAssertEqualObjects(@1, (result.storeIds)[0]);
 }
 
 - (void)testFreeEndpoint_GetHttpsUrl {
@@ -173,7 +173,7 @@ NSString *const TEST_URL_ENDPOINT = @"acme.test.url.com";
     NSArray<SPRequestResult *> *results = [connection sendRequests:@[request]];
     
     // Check successful result
-    SPRequestResult *result = [results objectAtIndex:0];
+    SPRequestResult *result = results[0];
     XCTAssertTrue(result.isSuccessful);
     XCTAssertEqualObjects(@1, result.storeIds[0]);
 }
@@ -195,7 +195,7 @@ NSString *const TEST_URL_ENDPOINT = @"acme.test.url.com";
     NSArray<SPRequestResult *> *results = [connection sendRequests:@[request]];
     
     // Check successful result
-    SPRequestResult *result = [results objectAtIndex:0];
+    SPRequestResult *result = results[0];
     XCTAssertTrue(result.isSuccessful);
     XCTAssertEqualObjects(@1, result.storeIds[0]);
 }
@@ -217,7 +217,7 @@ NSString *const TEST_URL_ENDPOINT = @"acme.test.url.com";
     NSArray<SPRequestResult *> *results = [connection sendRequests:@[request]];
     
     // Check successful result
-    SPRequestResult *result = [results objectAtIndex:0];
+    SPRequestResult *result = results[0];
     XCTAssertTrue(result.isSuccessful);
     XCTAssertEqualObjects(@1, result.storeIds[0]);
 }

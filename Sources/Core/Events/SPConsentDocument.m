@@ -54,13 +54,13 @@ SP_BUILDER_METHOD(NSString *, documentDescription)
 
 - (SPSelfDescribingJson *)getPayload {
     NSMutableDictionary *event = [[NSMutableDictionary alloc] init];
-    [event setObject:_documentId forKey:kSPCdId];
-    [event setObject:_version forKey:kSPCdVersion];
-    if ([_name length] != 0) {
-        [event setObject:_name forKey:kSPCdName];
+    event[kSPCdId] = _documentId;
+    event[kSPCdVersion] = _version;
+    if (_name.length != 0) {
+        event[kSPCdName] = _name;
     }
-    if ([_documentDescription length] != 0) {
-        [event setObject:_documentDescription forKey:KSPCdDescription];
+    if (_documentDescription.length != 0) {
+        event[KSPCdDescription] = _documentDescription;
     }
     return [[SPSelfDescribingJson alloc] initWithSchema:kSPConsentDocumentSchema
                                                 andData:event];

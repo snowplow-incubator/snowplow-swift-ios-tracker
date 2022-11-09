@@ -111,7 +111,7 @@
     NSDictionary * data = @{@"hello":@"world"};
     SPSelfDescribingJson * sdj = [[SPSelfDescribingJson alloc] initWithSchema:@"iglu:acme.com/test_event/jsonschema/1-0-0"
                                                                       andData:data];
-    [sdj setSchema:@"iglu:acme.com/test_event_2/jsonschema/1-0-0"];
+    sdj.schema = @"iglu:acme.com/test_event_2/jsonschema/1-0-0";
     XCTAssertEqualObjects(expected, [sdj getAsDictionary]);
 }
 

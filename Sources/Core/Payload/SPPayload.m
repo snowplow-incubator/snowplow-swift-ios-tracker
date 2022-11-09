@@ -30,7 +30,7 @@
     NSMutableDictionary * _payload;
 }
 
-- (id) init {
+- (instancetype) init {
     self = [super init];
     if(self) {
         _payload = [[NSMutableDictionary alloc] init];
@@ -39,7 +39,7 @@
     return self;
 }
 
-- (id)initWithNSDictionary:(NSDictionary<NSString *, NSObject *> *) dictionary {
+- (instancetype)initWithNSDictionary:(NSDictionary<NSString *, NSObject *> *) dictionary {
     self = [super init];
     if (self) {
         _payload = dictionary.mutableCopy ?: [NSMutableDictionary dictionary];
@@ -49,7 +49,7 @@
 }
 
 - (void) addValueToPayload:(NSString *)value forKey:(NSString *)key {
-    if ([value length] == 0) {
+    if (value.length == 0) {
         @synchronized (self) {
             if ([_payload valueForKey:key] != nil) {
                 [_payload removeObjectForKey:key];
@@ -58,14 +58,14 @@
         return;
     }
     @synchronized (self) {
-        [_payload setObject:value forKey:key];
+        _payload[key] = value;
     }
 }
 
 - (void) addNumericValueToPayload:(NSNumber *)value forKey:(NSString *)key {
     @synchronized (self) {
         if (value) {
-            [_payload setObject:value forKey:key];
+            _payload[key] = value;
         }
         else if ([_payload valueForKey:key]) {
             [_payload removeObjectForKey:key];
@@ -157,7 +157,7 @@
 }
 
 - (NSString *)description {
-    return [[self getAsDictionary] description];
+    return [self getAsDictionary].description;
 }
 
 @end

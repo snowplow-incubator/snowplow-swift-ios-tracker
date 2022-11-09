@@ -38,8 +38,8 @@
     if (self = [super init]) {
         _category = category;
         _action = action;
-        [SPUtilities checkArgument:([_category length] != 0) withMessage:@"Category cannot be nil or empty."];
-        [SPUtilities checkArgument:([_action length] != 0) withMessage:@"Action cannot be nil or empty."];
+        [SPUtilities checkArgument:(_category.length != 0) withMessage:@"Category cannot be nil or empty."];
+        [SPUtilities checkArgument:(_action.length != 0) withMessage:@"Action cannot be nil or empty."];
     }
     return self;
 }
@@ -62,7 +62,7 @@ SP_BUILDER_METHOD(NSNumber *, value)
     [payload setValue:_action forKey:kSPStuctAction];
     [payload setValue:_label forKey:kSPStuctLabel];
     [payload setValue:_property forKey:kSPStuctProperty];
-    if (_value) [payload setObject:[NSString stringWithFormat:@"%.17g", [_value doubleValue]] forKey:kSPStuctValue];
+    if (_value) payload[kSPStuctValue] = [NSString stringWithFormat:@"%.17g", _value.doubleValue];
     return payload;
 }
 

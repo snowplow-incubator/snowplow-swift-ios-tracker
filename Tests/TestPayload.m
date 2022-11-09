@@ -46,9 +46,8 @@
 }
 
 - (void)testInitWithNSDictionary {
-    NSDictionary *sample_dict = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 @"Value1", @"Key1",
-                                 @"Value2", @"Key2", nil];
+    NSDictionary *sample_dict = @{@"Key1": @"Value1",
+                                 @"Key2": @"Value2"};
     SPPayload *sample_payload = [[SPPayload alloc] initWithNSDictionary:sample_dict];
 
     XCTAssertEqualObjects(sample_payload.getAsDictionary,
@@ -58,12 +57,10 @@
 }
 
 - (void)testInitWithWrongDictionary {
-    NSDictionary *sample_dict = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 @"Value1", @"Key1",
-                                 @"Value2", @"Key2", nil];
-    NSDictionary *sample_dict2 = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                  @"Value1", @"Key2",
-                                  @"Value2", @"Key1", nil];
+    NSDictionary *sample_dict = @{@"Key1": @"Value1",
+                                 @"Key2": @"Value2"};
+    NSDictionary *sample_dict2 = @{@"Key2": @"Value1",
+                                  @"Key1": @"Value2"};
     SPPayload *sample_payload = [[SPPayload alloc] initWithNSDictionary:sample_dict];
     
     XCTAssertNotEqualObjects(sample_payload.getAsDictionary,
@@ -81,8 +78,7 @@
 }
 
 - (void)testAddValueToPayload {
-    NSDictionary *sample_dict = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 @"Value1", @"Key1", nil];
+    NSDictionary *sample_dict = @{@"Key1": @"Value1"};
     SPPayload *sample_payload = [[SPPayload alloc] init];
     [sample_payload addValueToPayload:@"Value1" forKey:@"Key1"];
     
@@ -93,8 +89,7 @@
 }
 
 - (void)testAddValueToPayload2 {
-    NSDictionary *sample_dict = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 @"Value2", @"Key2", nil];
+    NSDictionary *sample_dict = @{@"Key2": @"Value2"};
     SPPayload *sample_payload = [[SPPayload alloc] init];
     [sample_payload addValueToPayload:@"Value1" forKey:@"Key1"];
     
@@ -105,11 +100,9 @@
 }
 
 - (void)testAddValueToPayload3 {
-    NSDictionary *sample_dict_init = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 @"Value1", @"Key1", nil];
-    NSDictionary *sample_dict_final = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 @"Value1", @"Key1",
-                                 @"Value2", @"Key2", nil];
+    NSDictionary *sample_dict_init = @{@"Key1": @"Value1"};
+    NSDictionary *sample_dict_final = @{@"Key1": @"Value1",
+                                 @"Key2": @"Value2"};
     SPPayload *sample_payload = [[SPPayload alloc] initWithNSDictionary:sample_dict_init];
     [sample_payload addValueToPayload:@"Value2" forKey:@"Key2"];
     
@@ -131,8 +124,7 @@
 }
 
 - (void)testAddNumericValueToPayload {
-    NSDictionary *sample_dict = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 @100, @"Key1", nil];
+    NSDictionary *sample_dict = @{@"Key1": @100};
     SPPayload *sample_payload = [[SPPayload alloc] init];
     [sample_payload addNumericValueToPayload:@100 forKey:@"Key1"];
     
@@ -163,8 +155,7 @@
 }
 
 - (void)testAddDictToPayload {
-    NSDictionary *sample_dic = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                @"Value1", @"Key1", nil];
+    NSDictionary *sample_dic = @{@"Key1": @"Value1"};
     SPPayload *sample_payload = [[SPPayload alloc] init];
     [sample_payload addDictionaryToPayload:sample_dic];
     
@@ -174,13 +165,10 @@
 }
 
 - (void)testAddDictToPayload2 {
-    NSDictionary *sample_dic = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                @"Value1", @"Key1", nil];
-    NSDictionary *sample_dic2 = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                @"Value2", @"Key2", nil];
-    NSDictionary *sample_dict_final = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                       @"Value1", @"Key1",
-                                       @"Value2", @"Key2", nil];
+    NSDictionary *sample_dic = @{@"Key1": @"Value1"};
+    NSDictionary *sample_dic2 = @{@"Key2": @"Value2"};
+    NSDictionary *sample_dict_final = @{@"Key1": @"Value1",
+                                       @"Key2": @"Value2"};
     SPPayload *sample_payload = [[SPPayload alloc] initWithNSDictionary:sample_dic];
     [sample_payload addDictionaryToPayload:sample_dic2];
 
@@ -190,12 +178,9 @@
 }
 
 - (void)testAddDictToPayload3 {
-    NSDictionary *sample_dic = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                @"Value1", @"Key1", nil];
-    NSDictionary *sample_dic2 = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                 [[NSNumber alloc] initWithInt:2], @"Key2", nil];
-    NSDictionary *sample_dict_final = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                       @"Value1", @"Key1", nil];
+    NSDictionary *sample_dic = @{@"Key1": @"Value1"};
+    NSDictionary *sample_dic2 = @{@"Key2": @2};
+    NSDictionary *sample_dict_final = @{@"Key1": @"Value1"};
     
     SPPayload *sample_payload = [[SPPayload alloc] initWithNSDictionary:sample_dic];
     [sample_payload addDictionaryToPayload:sample_dic2];
@@ -208,10 +193,8 @@
 - (void)testJsonToPayload {
     // {"Key1":"Value1"} -> eyJLZXkxIjoiVmFsdWUxIn0=
 
-    NSDictionary *sample_dic = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                @"Value1", @"Key1", nil];
-    NSDictionary *sample_enc = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                @"eyJLZXkxIjoiVmFsdWUxIn0", @"type_enc", nil];
+    NSDictionary *sample_dic = @{@"Key1": @"Value1"};
+    NSDictionary *sample_enc = @{@"type_enc": @"eyJLZXkxIjoiVmFsdWUxIn0"};
     
     // NSDictionary conversion to JSON string
     NSData *somedata = [NSJSONSerialization dataWithJSONObject:sample_dic options:0 error:0];
@@ -228,10 +211,8 @@
 - (void)testJsonToPayload2 {
     // {"Key1":"Value1"} -> eyJLZXkxIjoiVmFsdWUxIn0=
 
-    NSDictionary *sample_dic = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                @"Value1", @"Key1", nil];
-    NSDictionary *sample_enc = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                @"{\"Key1\":\"Value1\"}", @"type_notenc", nil];
+    NSDictionary *sample_dic = @{@"Key1": @"Value1"};
+    NSDictionary *sample_enc = @{@"type_notenc": @"{\"Key1\":\"Value1\"}"};
     
     // NSDictionary conversion to JSON string
     NSData *somedata = [NSJSONSerialization dataWithJSONObject:sample_dic options:0 error:0];
@@ -258,8 +239,7 @@
 - (void)testJsonStringToPayload {
     // {"Key1":"Value1"} -> eyJLZXkxIjoiVmFsdWUxIn0=
 
-    NSDictionary *sample_enc = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                @"{\"Key1\":\"Value1\"}", @"type_notenc", nil];
+    NSDictionary *sample_enc = @{@"type_notenc": @"{\"Key1\":\"Value1\"}"};
     NSString *json_str = @"{\"Key1\":\"Value1\"}";
     
     SPPayload *sample_payload = [[SPPayload alloc] init];
@@ -274,8 +254,7 @@
 - (void)testJsonStringToPayload2 {
     // {"Key1":"Value1"} -> eyJLZXkxIjoiVmFsdWUxIn0=
 
-    NSDictionary *sample_enc = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                @"eyJLZXkxIjoiVmFsdWUxIn0", @"type_enc", nil];
+    NSDictionary *sample_enc = @{@"type_enc": @"eyJLZXkxIjoiVmFsdWUxIn0"};
     NSString *json_str = @"{\"Key1\":\"Value1\"}";
     
     SPPayload *sample_payload = [[SPPayload alloc] init];
@@ -296,7 +275,7 @@
 }
 
 - (void)testgetPayloadAsDictionary2 {
-    NSDictionary *sample_dict = [[NSDictionary alloc] initWithObjectsAndKeys:@"Value1", @"Key1", nil];
+    NSDictionary *sample_dict = @{@"Key1": @"Value1"};
     SPPayload *sample_payload = [[SPPayload alloc] initWithNSDictionary:@{@"Key1": @"Value1"}];
     
     XCTAssertEqualObjects(sample_payload.getAsDictionary,

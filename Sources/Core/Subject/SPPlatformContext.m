@@ -61,7 +61,7 @@
 - (SPPayload *) fetchPlatformDictWithUserAnonymisation:(BOOL)userAnonymisation {
 #if SNOWPLOW_TARGET_IOS
     @synchronized (self) {
-        NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
+        NSTimeInterval now = [NSDate date].timeIntervalSince1970;
         if (now - self.lastUpdatedEphemeralMobileDict >= self.mobileDictUpdateFrequency) {
             [self setEphemeralMobileDict];
         }
@@ -104,7 +104,7 @@
 }
 
 - (void) setEphemeralMobileDict {
-    self.lastUpdatedEphemeralMobileDict = [[NSDate date] timeIntervalSince1970];
+    self.lastUpdatedEphemeralMobileDict = [NSDate date].timeIntervalSince1970;
     
     NSDictionary *currentDict = [self.platformDict getAsDictionary];
     if ([currentDict valueForKey:kSPMobileAppleIdfa] == nil) {
@@ -122,7 +122,7 @@
 }
 
 - (void) setEphemeralNetworkDict {
-    self.lastUpdatedEphemeralNetworkDict = [[NSDate date] timeIntervalSince1970];
+    self.lastUpdatedEphemeralNetworkDict = [NSDate date].timeIntervalSince1970;
     
     [self.platformDict addValueToPayload:[self.deviceInfoMonitor networkTechnology] forKey:kSPMobileNetworkTech];
     [self.platformDict addValueToPayload:[self.deviceInfoMonitor networkType]       forKey:kSPMobileNetworkType];

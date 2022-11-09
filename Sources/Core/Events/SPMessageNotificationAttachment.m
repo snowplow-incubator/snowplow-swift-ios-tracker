@@ -38,9 +38,9 @@ NSString * const kSPMessageNotificationAttachmentParamUrl = @"url";
                                url:(NSString *)url {
     if (self = [super init]) {
         self.dictionary = [[NSMutableDictionary alloc] init];
-        [self.dictionary setObject:identifier forKey:kSPMessageNotificationAttachmentParamIdentifier];
-        [self.dictionary setObject:type forKey:kSPMessageNotificationAttachmentParamType];
-        [self.dictionary setObject:url forKey:kSPMessageNotificationAttachmentParamUrl];
+        (self.dictionary)[kSPMessageNotificationAttachmentParamIdentifier] = identifier;
+        (self.dictionary)[kSPMessageNotificationAttachmentParamType] = type;
+        (self.dictionary)[kSPMessageNotificationAttachmentParamUrl] = url;
     }
     return self;
 }

@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) NSInteger width;
 @property (readonly) NSInteger height;
 
-- initWithWidth:(NSInteger)width height:(NSInteger)height;
+- (instancetype) initWithWidth:(NSInteger)width height:(NSInteger)height;
 
 @end
 

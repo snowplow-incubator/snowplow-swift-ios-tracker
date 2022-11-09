@@ -30,14 +30,14 @@ NS_SWIFT_NAME(Payload)
  *  Initializes a newly allocated SPPayload
  *  @return A SnowplowPayload.
  */
-- (id) init;
+- (instancetype) init;
 
 /**
  *  Initializes a newly allocated SPPayload with an existing object of type NSDictionary.
  *  @param dict An object of NSDictionary.
  *  @return A SnowplowPayload.
  */
-- (id)initWithNSDictionary:(NSDictionary<NSString *, NSObject *> *)dict;
+- (instancetype)initWithNSDictionary:(NSDictionary<NSString *, NSObject *> *)dict;
 
 /**
  *  Adds a simple name-value pair into the SPPayload intance.

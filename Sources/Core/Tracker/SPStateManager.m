@@ -48,7 +48,7 @@
 
 - (void)addOrReplaceStateMachine:(id<SPStateMachineProtocol>)stateMachine identifier:(NSString *)stateMachineIdentifier {
     @synchronized (self) {
-        id<SPStateMachineProtocol> previousStateMachine = [self.identifierToStateMachine objectForKey:stateMachineIdentifier];
+        id<SPStateMachineProtocol> previousStateMachine = (self.identifierToStateMachine)[stateMachineIdentifier];
         if (previousStateMachine) {
             if ([stateMachine isMemberOfClass:[previousStateMachine class]]) {
                 return;
@@ -111,7 +111,7 @@
                    externally)
                  Remove the early state-computation only when these two problems are fixed.
                  */
-                [currentStateFuture state]; // Early state-computation
+                currentStateFuture.state; // Early state-computation
             }
         }
         return self.trackerState.snapshot;

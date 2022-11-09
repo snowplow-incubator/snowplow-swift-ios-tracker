@@ -129,7 +129,7 @@
     NSString * idfv = nil;
 #if SNOWPLOW_TARGET_IOS || SNOWPLOW_TARGET_TV
 #ifndef SNOWPLOW_NO_IDFV
-    idfv = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    idfv = [UIDevice currentDevice].identifierForVendor.UUIDString;
 #endif
 #endif
     return idfv;
@@ -140,21 +140,21 @@
 }
 
 - (NSString *) deviceModel {
-    NSString *simulatorModel = [NSProcessInfo.processInfo.environment objectForKey: @"SIMULATOR_MODEL_IDENTIFIER"];
+    NSString *simulatorModel = (NSProcessInfo.processInfo.environment)[@"SIMULATOR_MODEL_IDENTIFIER"];
     if (simulatorModel) return simulatorModel;
 
     size_t size;
     sysctlbyname("hw.machine", NULL, &size, NULL, 0);
     char *machine = malloc(size);
     sysctlbyname("hw.machine", machine, &size, NULL, 0);
-    NSString *platform = [NSString stringWithUTF8String:machine];
+    NSString *platform = @(machine);
     free(machine);
     return platform;
 }
 
 - (NSString *) osVersion {
 #if SNOWPLOW_TARGET_IOS || SNOWPLOW_TARGET_TV
-    return [[UIDevice currentDevice] systemVersion];
+    return [UIDevice currentDevice].systemVersion;
 #elif SNOWPLOW_TARGET_WATCHOS
     return [[WKInterfaceDevice currentDevice] systemVersion];
 #else
@@ -194,12 +194,12 @@
         if (!carrierKey) {
             return nil;
         }
-        NSDictionary<NSString *,CTCarrier *> *services = [networkInfo serviceSubscriberCellularProviders];
+        NSDictionary<NSString *,CTCarrier *> *services = networkInfo.serviceSubscriberCellularProviders;
         carrier = services[carrierKey];
     } else {
-        carrier = [networkInfo subscriberCellularProvider];
+        carrier = networkInfo.subscriberCellularProvider;
     }
-    return [carrier carrierName];
+    return carrier.carrierName;
 #endif
     return nil;
 }
@@ -213,10 +213,10 @@
         if (!carrierKey) {
             return nil;
         }
-        NSDictionary<NSString *, NSString *> *services = [networkInfo serviceCurrentRadioAccessTechnology];
+        NSDictionary<NSString *, NSString *> *services = networkInfo.serviceCurrentRadioAccessTechnology;
         return services[carrierKey];
     } else {
-        return [networkInfo currentRadioAccessTechnology];
+        return networkInfo.currentRadioAccessTechnology;
     }
 #endif
     return nil;
@@ -227,7 +227,7 @@
     if (@available(iOS 12.1, *)) {
         CTTelephonyNetworkInfo *networkInfo = [CTTelephonyNetworkInfo new];
         // `serviceSubscribersCellularProviders` has a bug in the iOS 12.0 so we use it from iOS 12.1
-        NSDictionary<NSString *,CTCarrier *> *services = [networkInfo serviceSubscriberCellularProviders];
+        NSDictionary<NSString *,CTCarrier *> *services = networkInfo.serviceSubscriberCellularProviders;
         NSArray<NSString *> *carrierKeys = services.allKeys;
         // From iOS 12, iPhones with eSIMs can return multiple carrier providers.
         // We can't prefer anyone of them so we track the first reported.
@@ -254,9 +254,9 @@
 
 - (NSNumber *) batteryLevel {
 #if SNOWPLOW_TARGET_IOS
-    float batteryLevel = [[UIDevice currentDevice] batteryLevel];
+    float batteryLevel = [UIDevice currentDevice].batteryLevel;
     if (batteryLevel != UIDeviceBatteryStateUnknown && batteryLevel >= 0) {
-        return [[NSNumber alloc] initWithInt: (int) (batteryLevel * 100)];
+        return @((int) (batteryLevel * 100));
     }
 #endif
     return nil;
@@ -264,7 +264,7 @@
 
 - (NSString *) batteryState {
 #if SNOWPLOW_TARGET_IOS
-    switch ([[UIDevice currentDevice] batteryState]) {
+    switch ([UIDevice currentDevice].batteryState) {
         case UIDeviceBatteryStateCharging:
             return @"charging";
         case UIDeviceBatteryStateFull:
@@ -281,16 +281,16 @@
 
 - (NSNumber *) isLowPowerModeEnabled {
 #if SNOWPLOW_TARGET_IOS
-    bool isEnabled = [[NSProcessInfo processInfo] isLowPowerModeEnabled];
-    return [[NSNumber alloc] initWithBool:isEnabled];
+    bool isEnabled = [NSProcessInfo processInfo].lowPowerModeEnabled;
+    return @(isEnabled);
 #else
     return nil;
 #endif
 }
 
 - (NSNumber *) physicalMemory {
-    unsigned long long physicalMemory = [[NSProcessInfo processInfo] physicalMemory];
-    return [[NSNumber alloc] initWithUnsignedLongLong:physicalMemory];
+    unsigned long long physicalMemory = [NSProcessInfo processInfo].physicalMemory;
+    return @(physicalMemory);
 }
 
 - (NSNumber *) appAvailableMemory {
@@ -298,7 +298,7 @@
 #ifdef __HAS_OS_PROC_H__
     if (@available(iOS 13.0, *)) {
         unsigned long availableMemory = os_proc_available_memory();
-        return [[NSNumber alloc] initWithUnsignedLong:availableMemory];
+        return @(availableMemory);
     }
 #endif
 #endif
@@ -308,8 +308,8 @@
 - (NSNumber *) availableStorage {
 #if SNOWPLOW_TARGET_IOS
     struct statfs tStats;
-    if (statfs([NSHomeDirectory() UTF8String], &tStats) == 0) {
-        return [[NSNumber alloc] initWithUnsignedLongLong: tStats.f_bavail * tStats.f_bsize];
+    if (statfs(NSHomeDirectory().UTF8String, &tStats) == 0) {
+        return @(tStats.f_bavail * tStats.f_bsize);
     } else {
         SPLogError(@"Failed to read available storage size");
     }
@@ -320,8 +320,8 @@
 - (NSNumber *) totalStorage {
 #if SNOWPLOW_TARGET_IOS
     struct statfs tStats;
-    if (statfs([NSHomeDirectory() UTF8String], &tStats) == 0) {
-        return [[NSNumber alloc] initWithUnsignedLongLong: tStats.f_blocks * tStats.f_bsize];
+    if (statfs(NSHomeDirectory().UTF8String, &tStats) == 0) {
+        return @(tStats.f_blocks * tStats.f_bsize);
     } else {
         SPLogError(@"Failed to read total storage size");
     }

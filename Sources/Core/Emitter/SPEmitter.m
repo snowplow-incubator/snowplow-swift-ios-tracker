@@ -422,7 +422,7 @@ const NSUInteger POST_WRAPPER_BYTES = 88;
 }
 
 - (BOOL)isOversize:(SPPayload *)payload {
-    return [self isOversize:payload previousPayloads:[NSArray array]];
+    return [self isOversize:payload previousPayloads:@[]];
 }
 
 - (BOOL)isOversize:(SPPayload *)payload previousPayloads:(NSArray<SPPayload *> *)previousPayloads {

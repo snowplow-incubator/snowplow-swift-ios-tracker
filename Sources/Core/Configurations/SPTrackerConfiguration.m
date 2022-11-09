@@ -75,7 +75,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.appId = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+        self.appId = [NSBundle mainBundle].infoDictionary[@"CFBundleIdentifier"];
 
         self.devicePlatform = SPDevicePlatformMobile;
         self.base64Encoding = YES;

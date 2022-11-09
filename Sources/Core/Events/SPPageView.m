@@ -36,7 +36,7 @@
 - (instancetype)initWithPageUrl:(NSString *)pageUrl {
     if (self = [super init]) {
         _pageUrl = pageUrl;
-        [SPUtilities checkArgument:([_pageUrl length] != 0) withMessage:@"PageURL cannot be nil or empty."];
+        [SPUtilities checkArgument:(_pageUrl.length != 0) withMessage:@"PageURL cannot be nil or empty."];
     }
     return self;
 }

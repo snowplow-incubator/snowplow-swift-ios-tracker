@@ -36,14 +36,14 @@
     @synchronized (self) {
         self.lastInsertedRow++;
         SPLogVerbose(@"Add %@", payload);
-        [self.db setObject:payload forKey:@(self.lastInsertedRow)];
+        (self.db)[@(self.lastInsertedRow)] = payload;
     }
 }
 
 - (BOOL)removeEventWithId:(long long)storeId {
     @synchronized (self) {
         SPLogVerbose(@"Remove %lld", storeId);
-        BOOL exist = [self.db objectForKey:@(storeId)];
+        BOOL exist = (self.db)[@(storeId)];
         [self.db removeObjectForKey:@(storeId)];
         return exist;
     }
@@ -52,7 +52,7 @@
 - (BOOL)removeEventsWithIds:(nonnull NSArray<NSNumber *> *)storeIds {
     BOOL result = YES;
     for (NSNumber *storeId in storeIds) {
-        result = [self.db objectForKey:storeId];
+        result = (self.db)[storeId];
         [self.db removeObjectForKey:storeId];
     }
     return result;

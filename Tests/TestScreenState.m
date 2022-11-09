@@ -78,8 +78,8 @@
     XCTAssertNotNil([screenState payload]);
     SPPayload * payload = [screenState payload];
     NSDictionary * dictionary = [payload getAsDictionary];
-    XCTAssertEqual([dictionary objectForKey:kSPScreenName], @"some name");
-    XCTAssertEqual([dictionary objectForKey:kSPScreenId], uuid);
+    XCTAssertEqual(dictionary[kSPScreenName], @"some name");
+    XCTAssertEqual(dictionary[kSPScreenId], uuid);
 }
 
 - (void)testScreenStateMachine {

@@ -70,19 +70,19 @@
 }
 
 - (SPGdprProcessingBasis)basisForProcessing {
-    return [self.gdpr basis];
+    return (self.gdpr).basis;
 }
 
 - (NSString *)documentId {
-    return [self.gdpr documentId];
+    return (self.gdpr).documentId;
 }
 
 - (NSString *)documentVersion {
-    return [self.gdpr documentVersion];
+    return (self.gdpr).documentVersion;
 }
 
 - (NSString *)documentDescription {
-    return [self.gdpr documentDescription];
+    return (self.gdpr).documentDescription;
 }
 
 // MARK: - Private methods

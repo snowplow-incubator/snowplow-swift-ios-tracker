@@ -64,7 +64,7 @@
 }
 
 + (id<SPTrackerController>)createTrackerWithNamespace:(NSString *)namespace network:(SPNetworkConfiguration *)networkConfiguration configurations:(NSArray<SPConfiguration *> *)configurations {
-    SPServiceProvider *serviceProvider = [[SPSnowplow sharedInstance].serviceProviderInstances objectForKey:namespace];
+    SPServiceProvider *serviceProvider = ([SPSnowplow sharedInstance].serviceProviderInstances)[namespace];
     if (serviceProvider) {
         [serviceProvider resetWithConfigurations:[configurations arrayByAddingObject:networkConfiguration]];
     } else {
@@ -75,17 +75,17 @@
 }
 
 + (id<SPTrackerController>)defaultTracker {
-    return [[[SPSnowplow sharedInstance] defaultServiceProvider] trackerController];
+    return [[SPSnowplow sharedInstance].defaultServiceProvider trackerController];
 }
 
 + (id<SPTrackerController>)trackerByNamespace:(NSString *)namespace {
-    return [[[SPSnowplow sharedInstance].serviceProviderInstances objectForKey:namespace] trackerController];
+    return [([SPSnowplow sharedInstance].serviceProviderInstances)[namespace] trackerController];
 }
 
 + (BOOL)setTrackerAsDefault:(id<SPTrackerController>)trackerController {
     SPSnowplow *shared = [SPSnowplow sharedInstance];
     @synchronized (shared) {
-        SPServiceProvider *serviceProvider = [shared.serviceProviderInstances objectForKey:trackerController.namespace];
+        SPServiceProvider *serviceProvider = (shared.serviceProviderInstances)[trackerController.namespace];
         if (serviceProvider) {
             shared.defaultServiceProvider = serviceProvider;
             return YES;
@@ -98,7 +98,7 @@
     SPSnowplow *shared = [SPSnowplow sharedInstance];
     @synchronized (shared) {
         NSString *namespace = trackerController.namespace;
-        SPServiceProvider *serviceProvider = [shared.serviceProviderInstances objectForKey:namespace];
+        SPServiceProvider *serviceProvider = (shared.serviceProviderInstances)[namespace];
         if (serviceProvider) {
             [serviceProvider shutdown];
             [shared.serviceProviderInstances removeObjectForKey:namespace];
@@ -115,7 +115,7 @@
     SPSnowplow *shared = [SPSnowplow sharedInstance];
     @synchronized (shared) {
         shared.defaultServiceProvider = nil;
-        NSArray<SPServiceProvider *> *serviceProviders = [shared.serviceProviderInstances allValues];
+        NSArray<SPServiceProvider *> *serviceProviders = (shared.serviceProviderInstances).allValues;
         [shared.serviceProviderInstances removeAllObjects];
         for (SPServiceProvider *sp in serviceProviders) {
             [sp shutdown];
@@ -124,7 +124,7 @@
 }
 
 + (NSArray<NSString *> *)instancedTrackerNamespaces {
-    return [[SPSnowplow sharedInstance].serviceProviderInstances allKeys];
+    return ([SPSnowplow sharedInstance].serviceProviderInstances).allKeys;
 }
 
 // MARK: - Private methods
@@ -132,8 +132,8 @@
 - (BOOL)registerInstance:(SPServiceProvider *)serviceProvider {
     @synchronized (self) {
         NSString *namespace = serviceProvider.namespace;
-        BOOL isOverriding = [self.serviceProviderInstances objectForKey:namespace] != nil;
-        [self.serviceProviderInstances setObject:serviceProvider forKey:namespace];
+        BOOL isOverriding = (self.serviceProviderInstances)[namespace] != nil;
+        (self.serviceProviderInstances)[namespace] = serviceProvider;
         if (!self.defaultServiceProvider) {
             self.defaultServiceProvider = serviceProvider;
         }

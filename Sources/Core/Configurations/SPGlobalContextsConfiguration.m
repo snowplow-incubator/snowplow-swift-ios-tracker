@@ -33,15 +33,15 @@
 }
 
 - (BOOL)addWithTag:(nonnull NSString *)tag contextGenerator:(nonnull SPGlobalContext *)generator {
-    if ([self.contextGenerators objectForKey:tag]) {
+    if ((self.contextGenerators)[tag]) {
         return NO;
     }
-    [self.contextGenerators setObject:generator forKey:tag];
+    (self.contextGenerators)[tag] = generator;
     return YES;
 }
 
 - (nullable SPGlobalContext *)removeWithTag:(nonnull NSString *)tag {
-    SPGlobalContext *toDelete = [self.contextGenerators objectForKey:tag];
+    SPGlobalContext *toDelete = (self.contextGenerators)[tag];
     if (toDelete) {
         [self.contextGenerators removeObjectForKey:tag];
     }

@@ -137,7 +137,7 @@
     url = [url URLByAppendingPathComponent:@"snowplow-cache"];
     NSError *error = nil;
     [fm createDirectoryAtURL:url withIntermediateDirectories:YES attributes:nil error:&error];
-    NSString *fileName = [NSString stringWithFormat:@"remoteConfig-%lu.data", (unsigned long)[remoteConfiguration.endpoint hash]];
+    NSString *fileName = [NSString stringWithFormat:@"remoteConfig-%lu.data", (unsigned long)(remoteConfiguration.endpoint).hash];
     url = [url URLByAppendingPathComponent:fileName isDirectory:NO];
     self.cacheFileUrl = url;
 }

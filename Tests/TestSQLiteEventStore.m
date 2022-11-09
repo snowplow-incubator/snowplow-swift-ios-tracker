@@ -85,7 +85,7 @@
 
 - (void)testSQLiteEventStoreCreateSQLiteFile {
     [[SPSQLiteEventStore alloc] initWithNamespace:@"aNamespace"];
-    NSString *libraryPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *libraryPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
     NSString *snowplowDirPath = [libraryPath stringByAppendingPathComponent:@"snowplow"];
     NSString *dbPath = [snowplowDirPath stringByAppendingPathComponent:@"snowplowEvents-aNamespace.sqlite"];
     XCTAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:dbPath]);
@@ -95,7 +95,7 @@
     [[SPSQLiteEventStore alloc] initWithNamespace:@"aNamespace1"];
     [[SPSQLiteEventStore alloc] initWithNamespace:@"aNamespace2"];
     [[SPSQLiteEventStore alloc] initWithNamespace:@"aNamespace3"];
-    NSString *libraryPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *libraryPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
     NSString *snowplowDirPath = [libraryPath stringByAppendingPathComponent:@"snowplow"];
     [SPSQLiteEventStore removeUnsentEventsExceptForNamespaces:@[@"aNamespace2"]];
     NSString *dbPath = [snowplowDirPath stringByAppendingPathComponent:@"snowplowEvents-aNamespace1.sqlite"];
@@ -108,7 +108,7 @@
 
 - (void)testSQLiteEventStoreInvalidNamespaceConversion {
     [[SPSQLiteEventStore alloc] initWithNamespace:@"namespace*.^?1ò2@"];
-    NSString *libraryPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *libraryPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
     NSString *snowplowDirPath = [libraryPath stringByAppendingPathComponent:@"snowplow"];
     NSString *dbPath = [snowplowDirPath stringByAppendingPathComponent:@"snowplowEvents-namespace-1-2-.sqlite"];
     XCTAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:dbPath]);
@@ -120,7 +120,7 @@
     XCTAssertEqual(1, [eventStore count]);
     
     // Create fake legacy database
-    NSString *libraryPath = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *libraryPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0];
     NSString *snowplowDirPath = [libraryPath stringByAppendingPathComponent:@"snowplow"];
     NSString *newDbPath = [snowplowDirPath stringByAppendingPathComponent:@"snowplowEvents-aNamespace.sqlite"];
     NSString *oldDbPath = [libraryPath stringByAppendingPathComponent:@"snowplowEvents.sqlite"];
@@ -137,7 +137,7 @@
     XCTAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:newDbPath]);
     XCTAssertEqual(1, [eventStore count]);
     for (SPEmitterEvent *event in [eventStore getAllEvents]) {
-        XCTAssertEqualObjects(@"value", [[event.payload getAsDictionary] objectForKey:@"key"]);
+        XCTAssertEqualObjects(@"value", [event.payload getAsDictionary][@"key"]);
     }
 }
 

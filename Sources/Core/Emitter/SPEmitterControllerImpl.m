@@ -45,7 +45,7 @@
 }
 
 - (SPBufferOption)bufferOption {
-    return [self.emitter bufferOption];
+    return (self.emitter).bufferOption;
 }
 
 - (void)setByteLimitGet:(NSInteger)byteLimitGet {
@@ -55,7 +55,7 @@
 }
 
 - (NSInteger)byteLimitGet {
-    return [self.emitter byteLimitGet];
+    return (self.emitter).byteLimitGet;
 }
 
 - (void)setByteLimitPost:(NSInteger)byteLimitPost {
@@ -65,7 +65,7 @@
 }
 
 - (NSInteger)byteLimitPost {
-    return [self.emitter byteLimitPost];
+    return (self.emitter).byteLimitPost;
 }
 
 - (void)setServerAnonymisation:(BOOL)serverAnonymisation {
@@ -75,7 +75,7 @@
 }
 
 - (BOOL)serverAnonymisation {
-    return [self.emitter serverAnonymisation];
+    return (self.emitter).serverAnonymisation;
 }
 
 - (void)setEmitRange:(NSInteger)emitRange {
@@ -85,7 +85,7 @@
 }
 
 - (NSInteger)emitRange {
-    return [self.emitter emitRange];
+    return (self.emitter).emitRange;
 }
 
 - (void)setThreadPoolSize:(NSInteger)emitThreadPoolSize {
@@ -95,7 +95,7 @@
 }
 
 - (NSInteger)threadPoolSize {
-    return [self.emitter emitThreadPoolSize];
+    return (self.emitter).emitThreadPoolSize;
 }
 
 - (void)setRequestCallback:(id<SPRequestCallback>)requestCallback {

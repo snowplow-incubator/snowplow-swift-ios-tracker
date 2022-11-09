@@ -114,11 +114,11 @@
 
 - (int) accessCount:(NSString *) method {
     NSNumber *count = [self.methodAccessCounts valueForKey:method] ?: @0;
-    return [count intValue];
+    return count.intValue;
 }
 
 - (void) increaseMethodAccessCount:(NSString *) method {
-    [self.methodAccessCounts setValue:[NSNumber numberWithInt:[self accessCount:method] + 1] forKey:method];
+    [self.methodAccessCounts setValue:@([self accessCount:method] + 1) forKey:method];
 }
 
 @end

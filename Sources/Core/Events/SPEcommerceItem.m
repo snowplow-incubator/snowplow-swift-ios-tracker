@@ -40,7 +40,7 @@
         _sku = sku;
         _price = price;
         _quantity = quantity;
-        [SPUtilities checkArgument:([_sku length] != 0) withMessage:@"SKU cannot be nil or empty."];
+        [SPUtilities checkArgument:(_sku.length != 0) withMessage:@"SKU cannot be nil or empty."];
     }
     return self;
 }
@@ -65,8 +65,8 @@ SP_BUILDER_METHOD(NSString *, orderId)
     [payload setValue:_name forKey:kSPEcommItemName];
     [payload setValue:_category forKey:kSPEcommItemCategory];
     [payload setValue:_currency forKey:kSPEcommItemCurrency];
-    if (_price) [payload setObject:[NSString stringWithFormat:@"%.02f", [_price doubleValue]] forKey:kSPEcommItemPrice];
-    if (_quantity) [payload setObject:[NSString stringWithFormat:@"%ld", [_quantity longValue]] forKey:kSPEcommItemQuantity];
+    if (_price) payload[kSPEcommItemPrice] = [NSString stringWithFormat:@"%.02f", _price.doubleValue];
+    if (_quantity) payload[kSPEcommItemQuantity] = [NSString stringWithFormat:@"%ld", _quantity.longValue];
     return payload;
 }
 

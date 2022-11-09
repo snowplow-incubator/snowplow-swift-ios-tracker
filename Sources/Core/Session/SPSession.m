@@ -72,7 +72,7 @@
         NSMutableDictionary *storedSessionDict = self.dataPersistence.session.mutableCopy;
         _userId = [self retrieveUserIdWithSessionDict:storedSessionDict];
         if (storedSessionDict && _userId) {
-            [storedSessionDict setObject:_userId forKey:kSPSessionUserId];
+            storedSessionDict[kSPSessionUserId] = _userId;
             _state = [[SPSessionState alloc] initWithStoredState:storedSessionDict];
         }
         if (!_state) {
@@ -139,7 +139,7 @@
         _eventIndex += 1;
         
         context = _state.sessionContext;
-        [context setObject:[NSNumber numberWithInteger:_eventIndex] forKey:kSPSessionEventIndex];
+        context[kSPSessionEventIndex] = @(_eventIndex);
     }
     
     if (userAnonymisation) { // mask the user identifier

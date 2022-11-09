@@ -27,7 +27,7 @@
 
 @interface MockState : NSObject <SPState>
 @property NSInteger value;
-- (instancetype)initWithValue:(NSInteger)value;
+- (instancetype)initWithValue:(NSInteger)value NS_DESIGNATED_INITIALIZER;
 @end
 
 @implementation MockState

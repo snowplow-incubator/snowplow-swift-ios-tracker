@@ -24,19 +24,19 @@
 @implementation SPNetworkConfigurationUpdate
 
 - (NSString *)endpoint {
-    return [self.sourceConfig endpoint];
+    return (self.sourceConfig).endpoint;
 }
 
 - (SPHttpMethod)method {
-    return [self.sourceConfig method];
+    return (self.sourceConfig).method;
 }
 
 - (SPProtocol)protocol {
-    return [self.sourceConfig protocol];
+    return (self.sourceConfig).protocol;
 }
 
 - (id<SPNetworkConnection>)networkConnection {
-    return [self.sourceConfig networkConnection];
+    return (self.sourceConfig).networkConnection;
 }
 
 // SP_DIRTY_GETTER replacement as NetworkConfigurationUpdate doesn't extend NetworkConfiguration like the others updater classes.

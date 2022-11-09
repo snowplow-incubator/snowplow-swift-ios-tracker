@@ -69,7 +69,7 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
     SPTrackerEvent *fakeEvent = [[SPTrackerEvent alloc] initWithEvent:[[SPStructured alloc] initWithCategory:@"fake" action:@"fake"]];
     id<SPState> screenState = [[SPScreenState alloc] initWithName:@"name" type:@"type" screenId:nil transitionType:@"transition" topViewControllerClassName:@"topVCname" viewControllerClassName:@"VCname"];
     NSArray<SPSelfDescribingJson *> *entities = [stateMachine entitiesFromEvent:fakeEvent state:screenState];
-    SPSelfDescribingJson *screenContext = [entities firstObject];
+    SPSelfDescribingJson *screenContext = entities.firstObject;
     XCTAssertNotNil(screenContext);
     XCTAssertTrue([validator validateJson:[screenContext getAsDictionary]]);
 }
@@ -133,7 +133,7 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
     SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event];
     NSDictionary *data = [[tracker payloadWithEvent:trackerEvent] getAsDictionary];
 
-    NSArray * dataArray = [NSArray arrayWithObject:data];
+    NSArray * dataArray = @[data];
     NSDictionary * json = [[[SPSelfDescribingJson alloc] initWithSchema:kSPPayloadDataSchema andData:dataArray] getAsDictionary];
     
     XCTAssertTrue([validator validateJson:json]);
@@ -143,8 +143,8 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
     SPTracker * tracker = [self getTracker:@"acme.fake.url"];
     [tracker setBase64Encoded:false];
     NSMutableDictionary * input = [[NSMutableDictionary alloc] init];
-    [input setObject:[NSNumber numberWithInt:23] forKey:@"level"];
-    [input setObject:[NSNumber numberWithInt:56473] forKey:@"score"];
+    input[@"level"] = @23;
+    input[@"score"] = @56473;
     SPSelfDescribingJson *sdj = [[SPSelfDescribingJson alloc] initWithSchema:@"iglu:com.acme_company/demo_ios_event/jsonschema/1-0-0"
                                                                       andData:input];
     SPSelfDescribing *event = [[SPSelfDescribing alloc] initWithEventData:sdj];
@@ -153,13 +153,13 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
     SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event];
     NSDictionary<NSString *, NSObject *> *data = [[tracker payloadWithEvent:trackerEvent] getAsDictionary];
 
-    NSArray *dataArray = [NSArray arrayWithObject:data];
+    NSArray *dataArray = @[data];
     NSDictionary<NSString *, NSObject *> *json = [[[SPSelfDescribingJson alloc] initWithSchema:kSPPayloadDataSchema andData:dataArray] getAsDictionary];
 
     XCTAssertTrue([validator validateJson:json]);
     
     // Check that the nested unstructured event passes validation
-    NSString * ue_pr = (NSString *)[data objectForKey:@"ue_pr"];
+    NSString * ue_pr = (NSString *)data[@"ue_pr"];
     NSDictionary *unstructDictionary = [NSJSONSerialization JSONObjectWithData:[ue_pr dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
     
     XCTAssertTrue([validator validateJson:unstructDictionary]);
@@ -169,8 +169,8 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
     SPTracker * tracker = [self getTracker:@"acme.fake.url"];
     [tracker setBase64Encoded:false];
     NSMutableDictionary * input = [[NSMutableDictionary alloc] init];
-    [input setObject:[NSNumber numberWithInt:23] forKey:@"level"];
-    [input setObject:[NSNumber numberWithInt:56473] forKey:@"score"];
+    input[@"level"] = @23;
+    input[@"score"] = @56473;
     SPSelfDescribingJson * sdj = [[SPSelfDescribingJson alloc] initWithSchema:@"iglu:com.acme_company/demo_ios_event/jsonschema/1-0-0"
                                                                       andData:input];
     SPSelfDescribing *event = [[SPSelfDescribing alloc] initWithEventData:sdj];
@@ -179,13 +179,13 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
     SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event];
     NSDictionary<NSString *, NSObject *> *data = [[tracker payloadWithEvent:trackerEvent] getAsDictionary];
 
-    NSArray *dataArray = [NSArray arrayWithObject:data];
+    NSArray *dataArray = @[data];
     NSDictionary<NSString *, NSObject *> *json = [[[SPSelfDescribingJson alloc] initWithSchema:kSPPayloadDataSchema andData:dataArray] getAsDictionary];
 
     XCTAssertTrue([validator validateJson:json]);
 
     // Check that the nested unstructured event passes validation
-    NSString *ue_pr = (NSString *)[data objectForKey:@"ue_pr"];
+    NSString *ue_pr = (NSString *)data[@"ue_pr"];
     NSDictionary *unstructDictionary = [NSJSONSerialization JSONObjectWithData:[ue_pr dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
 
     XCTAssertTrue([validator validateJson:unstructDictionary]);
@@ -231,7 +231,7 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
     SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event];
     NSDictionary<NSString *, NSObject *> *data = [[tracker payloadWithEvent:trackerEvent] getAsDictionary];
 
-    NSArray *dataArray = [NSArray arrayWithObject:data];
+    NSArray *dataArray = @[data];
     NSDictionary<NSString *, NSObject *> *json = [[[SPSelfDescribingJson alloc] initWithSchema:kSPPayloadDataSchema andData:dataArray] getAsDictionary];
     
     XCTAssertTrue([validator validateJson:json]);
@@ -261,7 +261,7 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
     SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event];
     NSDictionary<NSString *, NSObject *> *data = [[tracker payloadWithEvent:trackerEvent] getAsDictionary];
 
-    NSArray *dataArray = [NSArray arrayWithObject:data];
+    NSArray *dataArray = @[data];
     NSDictionary<NSString *, NSObject *> *json = [[[SPSelfDescribingJson alloc] initWithSchema:kSPPayloadDataSchema andData:dataArray] getAsDictionary];
     
     XCTAssertTrue([validator validateJson:json]);
@@ -269,7 +269,7 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
     // Check that the item payload passes validation
     data = [[tracker payloadWithEvent:trackerEvent] getAsDictionary];
 
-    dataArray = [NSArray arrayWithObject:data];
+    dataArray = @[data];
     json = [[[SPSelfDescribingJson alloc] initWithSchema:kSPPayloadDataSchema andData:dataArray] getAsDictionary];
     
     XCTAssertTrue([validator validateJson:json]);
@@ -360,12 +360,12 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
     SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event];
     NSDictionary<NSString *, NSObject *> *data = [[tracker payloadWithEvent:trackerEvent] getAsDictionary];
 
-    NSArray *dataArray = [NSArray arrayWithObject:data];
+    NSArray *dataArray = @[data];
     NSDictionary<NSString *, NSObject *> *json = [[[SPSelfDescribingJson alloc] initWithSchema:kSPPayloadDataSchema andData:dataArray] getAsDictionary];
     XCTAssertTrue([validator validateJson:json]);
     
     // Check that the nested context json passes validation
-    NSString *contextsJson = (NSString *)[data objectForKey:@"co"];
+    NSString *contextsJson = (NSString *)data[@"co"];
     NSDictionary *contextDictionary = [NSJSONSerialization JSONObjectWithData:[contextsJson dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
     XCTAssertTrue([validator validateJson:contextDictionary]);
 }

@@ -55,13 +55,13 @@
 
 - (NSUInteger)count {
     @synchronized (self) {
-        return [self.orderedSet count];
+        return (self.orderedSet).count;
     }
 }
 
 - (nonnull NSArray<SPEmitterEvent *> *)emittableEventsWithQueryLimit:(NSUInteger)queryLimit {
     @synchronized (self) {
-        NSUInteger setCount = [self.orderedSet count];
+        NSUInteger setCount = (self.orderedSet).count;
         if (setCount <= 0) {
             return @[];
         }
@@ -85,14 +85,14 @@
 }
 
 - (BOOL)removeEventWithId:(long long)storeId {
-    return [self removeEventsWithIds:@[[NSNumber numberWithLongLong:storeId]]];
+    return [self removeEventsWithIds:@[@(storeId)]];
 }
 
 - (BOOL)removeEventsWithIds:(nonnull NSArray<NSNumber *> *)storeIds {
     @synchronized (self) {
         NSMutableArray<SPEmitterEvent *> *itemsToRemove = [NSMutableArray new];
         for (SPEmitterEvent *item in self.orderedSet) {
-            if ([storeIds containsObject:[NSNumber numberWithLongLong:item.storeId]]) {
+            if ([storeIds containsObject:@(item.storeId)]) {
                 [itemsToRemove addObject:item];
             }
         }

@@ -33,7 +33,7 @@
     SPSubject *subject = [[SPSubject alloc] initWithPlatformContext:YES andGeoContext:NO];
     SPPayload *platformDict = [subject getPlatformDictWithUserAnonymisation:NO];
     XCTAssertNotNil(platformDict);
-    XCTAssertNotNil([[platformDict getAsDictionary] objectForKey:kSPPlatformOsType]);
+    XCTAssertNotNil([platformDict getAsDictionary][kSPPlatformOsType]);
 }
 
 - (void)testDoesntReturnPlatformContextIfDisabled {
@@ -48,7 +48,7 @@
     [subject setGeoLongitude:10.0];
     NSDictionary *geoLocationDict = [subject getGeoLocationDict];
     XCTAssertNotNil(geoLocationDict);
-    XCTAssertNotNil([geoLocationDict objectForKey:kSPGeoLatitude]);
+    XCTAssertNotNil(geoLocationDict[kSPGeoLatitude]);
 }
 
 - (void)testDoesntReturnGeolocationContextIfDisabled {

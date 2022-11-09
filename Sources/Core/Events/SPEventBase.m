@@ -37,7 +37,7 @@ NSString * stringWithSPScreenType(SPScreenType screenType) {
                       @"Modal",
                       @"Combined"
                       ];
-    return (NSString *)[arr objectAtIndex:screenType];
+    return (NSString *)arr[screenType];
 }
 
 // Base Event

@@ -55,16 +55,16 @@
 
 - (void)testSubjectSetterFunctions {
     SPSubject * subject = [[SPSubject alloc] initWithPlatformContext:NO andGeoContext:YES];
-    [subject setUserId:@"aUserId"];
+    subject.userId = @"aUserId";
     [subject setResolutionWithWidth:1920 andHeight:1080];
     [subject setViewPortWithWidth:1080 andHeight:1920];
-    [subject setColorDepth:20];
-    [subject setTimezone:@"UTC"];
-    [subject setLanguage:@"EN"];
-    [subject setIpAddress:@"127.0.0.1"];
-    [subject setUseragent:@"aUseragent"];
-    [subject setNetworkUserId:@"aNuid"];
-    [subject setDomainUserId:@"aDuid"];
+    subject.colorDepth = 20;
+    subject.timezone = @"UTC";
+    subject.language = @"EN";
+    subject.ipAddress = @"127.0.0.1";
+    subject.useragent = @"aUseragent";
+    subject.networkUserId = @"aNuid";
+    subject.domainUserId = @"aDuid";
     
     NSDictionary * values = [[subject getStandardDictWithUserAnonymisation:NO] getAsDictionary];
     
@@ -92,14 +92,14 @@
     
     values = [subject getGeoLocationDict];
     
-    XCTAssertEqualObjects([NSNumber numberWithFloat:5], [values objectForKey:kSPGeoLongitude]);
-    XCTAssertEqualObjects([NSNumber numberWithFloat:89.2], [values objectForKey:kSPGeoLatitude]);
-    XCTAssertEqualObjects([NSNumber numberWithFloat:5.5], [values objectForKey:kSPGeoLatLongAccuracy]);
-    XCTAssertEqualObjects([NSNumber numberWithFloat:6.2], [values objectForKey:kSPGeoSpeed]);
-    XCTAssertEqualObjects([NSNumber numberWithFloat:82.3], [values objectForKey:kSPGeoBearing]);
-    XCTAssertEqualObjects([NSNumber numberWithFloat:62.3], [values objectForKey:kSPGeoAltitude]);
-    XCTAssertEqualObjects([NSNumber numberWithFloat:16.3], [values objectForKey:kSPGeoAltitudeAccuracy]);
-    XCTAssertEqualObjects([NSNumber numberWithInt:5], [values objectForKey:kSPGeoTimestamp]);
+    XCTAssertEqualObjects([NSNumber numberWithFloat:5], values[kSPGeoLongitude]);
+    XCTAssertEqualObjects([NSNumber numberWithFloat:89.2], values[kSPGeoLatitude]);
+    XCTAssertEqualObjects([NSNumber numberWithFloat:5.5], values[kSPGeoLatLongAccuracy]);
+    XCTAssertEqualObjects([NSNumber numberWithFloat:6.2], values[kSPGeoSpeed]);
+    XCTAssertEqualObjects([NSNumber numberWithFloat:82.3], values[kSPGeoBearing]);
+    XCTAssertEqualObjects([NSNumber numberWithFloat:62.3], values[kSPGeoAltitude]);
+    XCTAssertEqualObjects([NSNumber numberWithFloat:16.3], values[kSPGeoAltitudeAccuracy]);
+    XCTAssertEqualObjects(@5, values[kSPGeoTimestamp]);
 }
 
 - (void) testGeoLocationGetWithoutNeededKeys {
@@ -120,8 +120,8 @@
     
     NSDictionary *values = [subject getGeoLocationDict];
     
-    XCTAssertEqualObjects([NSNumber numberWithFloat:12.12], [values objectForKey:kSPGeoLatitude]);
-    XCTAssertEqualObjects([NSNumber numberWithFloat:24.24], [values objectForKey:kSPGeoLongitude]);
+    XCTAssertEqualObjects([NSNumber numberWithFloat:12.12], values[kSPGeoLatitude]);
+    XCTAssertEqualObjects([NSNumber numberWithFloat:24.24], values[kSPGeoLongitude]);
     XCTAssertNil(values[kSPGeoAltitude]);
 }
 

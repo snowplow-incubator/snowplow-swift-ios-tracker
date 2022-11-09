@@ -57,8 +57,8 @@
 }
 
 - (void)trackSelfDescribing:(NSDictionary *)event withContext:(NSArray<NSDictionary *> *)context andTrackers:(NSArray<NSString *> *)trackers {
-    NSString *schema = [event objectForKey:@"schema"];
-    NSDictionary *payload = [event objectForKey:@"data"];
+    NSString *schema = event[@"schema"];
+    NSDictionary *payload = event[@"data"];
     
     if (schema && payload) {
         SPSelfDescribing *selfDescribing = [[SPSelfDescribing alloc] initWithSchema:schema payload:payload];
@@ -67,11 +67,11 @@
 }
 
 - (void)trackStructEvent:(NSDictionary *)event withContext:(NSArray<NSDictionary *> *)context andTrackers:(NSArray<NSString *> *)trackers {
-    NSString *category = [event objectForKey:@"category"];
-    NSString *action = [event objectForKey:@"action"];
-    NSString *label = [event objectForKey:@"label"];
-    NSString *property = [event objectForKey:@"property"];
-    NSNumber *value = [event objectForKey:@"value"];
+    NSString *category = event[@"category"];
+    NSString *action = event[@"action"];
+    NSString *label = event[@"label"];
+    NSString *property = event[@"property"];
+    NSNumber *value = event[@"value"];
     
     if (category && action) {
         SPStructured *structured = [[SPStructured alloc] initWithCategory:category action:action];
@@ -83,9 +83,9 @@
 }
 
 - (void)trackPageView:(NSDictionary *)event withContext:(NSArray<NSDictionary *> *)context andTrackers:(NSArray<NSString *> *)trackers {
-    NSString *url = [event objectForKey:@"url"];
-    NSString *title = [event objectForKey:@"title"];
-    NSString *referrer = [event objectForKey:@"referrer"];
+    NSString *url = event[@"url"];
+    NSString *title = event[@"title"];
+    NSString *referrer = event[@"referrer"];
     
     if (url) {
         SPPageView *pageView = [[SPPageView alloc] initWithPageUrl:url];
@@ -96,13 +96,13 @@
 }
 
 - (void)trackScreenView:(NSDictionary *)event withContext:(NSArray<NSDictionary *> *)context andTrackers:(NSArray<NSString *> *)trackers {
-    NSString *name = [event objectForKey:@"name"];
-    NSString *screenId = [event objectForKey:@"id"];
-    NSString *type = [event objectForKey:@"type"];
-    NSString *previousName = [event objectForKey:@"previousName"];
-    NSString *previousId = [event objectForKey:@"previousId"];
-    NSString *previousType = [event objectForKey:@"previousType"];
-    NSString *transitionType = [event objectForKey:@"transitionType"];
+    NSString *name = event[@"name"];
+    NSString *screenId = event[@"id"];
+    NSString *type = event[@"type"];
+    NSString *previousName = event[@"previousName"];
+    NSString *previousId = event[@"previousId"];
+    NSString *previousType = event[@"previousType"];
+    NSString *transitionType = event[@"transitionType"];
     
     if (name && screenId) {
         NSUUID *screenUuid = [[NSUUID alloc] initWithUUIDString:screenId];
@@ -118,7 +118,7 @@
 
 - (void)track:(SPEvent *)event withContext:(NSArray<NSDictionary *> *)context andTrackers:(NSArray<NSString *> *)trackers {
     if (context) {
-        [event setContexts:[self parseContext:context]];
+        event.contexts = [self parseContext:context];
     }
     if (trackers.count > 0) {
         for (NSString *namespace in trackers) {
@@ -136,8 +136,8 @@
     NSMutableArray<SPSelfDescribingJson *> *contextEntities = [[NSMutableArray alloc] init];
 
     for (NSDictionary *entityJson in context) {
-        NSString *schema = [entityJson objectForKey:@"schema"];
-        NSDictionary *payload = [entityJson objectForKey:@"data"];
+        NSString *schema = entityJson[@"schema"];
+        NSDictionary *payload = entityJson[@"data"];
         
         if (schema && payload) {
             SPSelfDescribingJson *entity = [[SPSelfDescribingJson alloc] initWithSchema:schema andDictionary:payload];

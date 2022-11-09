@@ -79,7 +79,7 @@
     userInfo[@"topViewControllerClassName"] = NSStringFromClass([[self _SP_topViewController] class]);
     // `name` is set to snowplowId class instance variable if it exists (hence no @"id" in userInfo)
     userInfo[@"name"] = [self _SP_getViewControllerName];
-    userInfo[@"type"] = [[NSNumber alloc] initWithInteger:[self _SP_getTopViewControllerType]];
+    userInfo[@"type"] = @([self _SP_getTopViewControllerType]);
 
     // Send notification to tracker
     [[NSNotificationCenter defaultCenter]
@@ -172,7 +172,7 @@
 - (UIViewController *) _SP_topViewController:(UIViewController *)rootViewController {
     if ([rootViewController isKindOfClass:[UINavigationController class]]) {
         UINavigationController *navigationController = (UINavigationController *)rootViewController;
-        return [self _SP_topViewController:[navigationController.viewControllers lastObject]];
+        return [self _SP_topViewController:(navigationController.viewControllers).lastObject];
     }
 
     if ([rootViewController isKindOfClass:[UITabBarController class]]) {

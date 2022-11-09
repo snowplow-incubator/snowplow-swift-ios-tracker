@@ -52,10 +52,10 @@
     NSArray<SPEmitterEvent *> *events = [eventStore emittableEventsWithQueryLimit:10];
     [eventStore removeAllEvents];
     XCTAssertEqual(1, events.count);
-    SPPayload *payload = [[events firstObject] payload];
+    SPPayload *payload = events.firstObject.payload;
     
     // Check v_tracker field
-    NSString *deviceTimestamp = (NSString *)[[payload getAsDictionary] objectForKey:@"dtm"];
+    NSString *deviceTimestamp = (NSString *)[payload getAsDictionary][@"dtm"];
     NSString *expected = [NSString stringWithFormat:@"%lld", (long long)(currentTimestamp.timeIntervalSince1970 * 1000)];
     XCTAssertEqualObjects(expected, deviceTimestamp);
 }
@@ -84,11 +84,11 @@
     NSArray<SPEmitterEvent *> *events = [eventStore emittableEventsWithQueryLimit:10];
     [eventStore removeAllEvents];
     XCTAssertEqual(1, events.count);
-    SPPayload *payload = [[events firstObject] payload];
+    SPPayload *payload = events.firstObject.payload;
     
     // Check url and referrer fields
-    NSString *url = (NSString *)[[payload getAsDictionary] objectForKey:kSPPageUrl];
-    NSString *referrer = (NSString *)[[payload getAsDictionary] objectForKey:kSPPageRefr];
+    NSString *url = (NSString *)[payload getAsDictionary][kSPPageUrl];
+    NSString *referrer = (NSString *)[payload getAsDictionary][kSPPageRefr];
     XCTAssertEqualObjects(url, @"url");
     XCTAssertEqualObjects(referrer, @"referrer");
 }
@@ -186,8 +186,8 @@
 - (void)testUnstructured {
     // Valid construction
     NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
-    [data setObject:@23 forKey:@"level"];
-    [data setObject:@56473 forKey:@"score"];
+    data[@"level"] = @23;
+    data[@"score"] = @56473;
     SPSelfDescribingJson *sdj = [[SPSelfDescribingJson alloc] initWithSchema:@"iglu:com.acme_company/demo_ios_event/jsonschema/1-0-0"
                                                                       andData:data];
     SPSelfDescribing *event = [[SPSelfDescribing alloc] initWithEventData:sdj];
@@ -197,7 +197,7 @@
 - (void)testUnstructuredWithWrongData {
     // Invalid dictionary
     NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
-    [data setObject:@12 forKey:@12];
+    data[@12] = @12;
     SPSelfDescribingJson *sdj = [[SPSelfDescribingJson alloc] initWithSchema:@"iglu:com.acme_company/demo_ios_event/jsonschema/1-0-0"
                                                                       andData:data];
     // Data is wrong

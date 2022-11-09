@@ -36,11 +36,11 @@
 }
 
 - (void)logDiagnosticError:(NSNotification *)notification {
-    NSDictionary *userInfo = [notification userInfo];
-    NSString *tag = [userInfo objectForKey:@"tag"];
-    NSString *message = [userInfo objectForKey:@"message"];
-    NSError *error = [userInfo objectForKey:@"error"];
-    NSException *exception = [userInfo objectForKey:@"exception"];
+    NSDictionary *userInfo = notification.userInfo;
+    NSString *tag = userInfo[@"tag"];
+    NSString *message = userInfo[@"message"];
+    NSError *error = userInfo[@"error"];
+    NSException *exception = userInfo[@"exception"];
     self.callback(tag, message, error, exception);
 }
 

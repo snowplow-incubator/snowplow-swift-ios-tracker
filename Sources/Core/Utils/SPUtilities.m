@@ -51,11 +51,11 @@
 
 + (NSString *) getTimezone {
     NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
-    return [timeZone name];
+    return timeZone.name;
 }
 
 + (NSString *) getLanguage {
-    return [[NSLocale preferredLanguages] objectAtIndex:0];
+    return [NSLocale preferredLanguages][0];
 }
 
 + (SPDevicePlatform) getPlatform {
@@ -68,7 +68,7 @@
 
 + (NSString *) getUUIDString {
     // Generates type 4 UUID
-    return [[NSUUID UUID] UUIDString].lowercaseString;
+    return [NSUUID UUID].UUIDString.lowercaseString;
 }
 
 + (bool ) isUUIDString:(nonnull NSString *)uuidString {
@@ -77,22 +77,22 @@
 
 + (NSNumber *) getTimestamp {
     NSDate *time = [[NSDate alloc] init];
-    return @([time timeIntervalSince1970] * 1000);
+    return @(time.timeIntervalSince1970 * 1000);
 }
 
 + (NSString *) timestampToISOString:(long long)timestamp {
     NSDate *eventDate = [NSDate dateWithTimeIntervalSince1970:timestamp / 1000.0];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"]];
-    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
-    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+    formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+    formatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
     return [formatter stringFromDate:eventDate];
 }
 
 + (NSString *) getResolution {
 #if SNOWPLOW_TARGET_IOS || SNOWPLOW_TARGET_TV
-    CGRect mainScreen = [[UIScreen mainScreen] bounds];
-    CGFloat screenScale = [[UIScreen mainScreen] scale];
+    CGRect mainScreen = [UIScreen mainScreen].bounds;
+    CGFloat screenScale = [UIScreen mainScreen].scale;
 #elif SNOWPLOW_TARGET_WATCHOS
     CGRect mainScreen = [[WKInterfaceDevice currentDevice] screenBounds];
     CGFloat screenScale = [[WKInterfaceDevice currentDevice] screenScale];
@@ -112,7 +112,7 @@
 }
 
 + (NSString *) getAppId {
-    return [[NSBundle mainBundle] bundleIdentifier];
+    return [NSBundle mainBundle].bundleIdentifier;
 }
 
 + (NSString *)urlEncodeString:(NSString *)string {
@@ -127,7 +127,7 @@
 + (NSString *)urlEncodeDictionary:(NSDictionary *)d {
     NSMutableArray *keyValuePairs = [NSMutableArray arrayWithCapacity:d.count];
     [d enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {
-        [keyValuePairs addObject:[NSString stringWithFormat:@"%@=%@", [self urlEncodeString:key], [self urlEncodeString:[value description]]]];
+        [keyValuePairs addObject:[NSString stringWithFormat:@"%@=%@", [self urlEncodeString:key], [self urlEncodeString:value.description]]];
     }];
     return [keyValuePairs componentsJoinedByString:@"&"];
 }
@@ -143,9 +143,9 @@
 
 + (NSDictionary *) removeNullValuesFromDictWithDict:(NSDictionary *)dict {
     NSMutableDictionary *cleanDictionary = [NSMutableDictionary dictionary];
-    for (NSString * key in [dict allKeys]) {
-        if (![[dict objectForKey:key] isKindOfClass:[NSNull class]]) {
-            [cleanDictionary setObject:[dict objectForKey:key] forKey:key];
+    for (NSString * key in dict.allKeys) {
+        if (![dict[key] isKindOfClass:[NSNull class]]) {
+            cleanDictionary[key] = dict[key];
         }
     }
     return cleanDictionary;
@@ -186,7 +186,7 @@
     NSMutableArray * words = [[NSMutableArray alloc] init];
     NSString * scannedWord = [[NSString alloc] init];
 
-    while (![scanner isAtEnd]) {
+    while (!scanner.atEnd) {
         [scanner scanUpToString:@"-" intoString:&scannedWord];
         [words addObject:scannedWord];
         SPLogVerbose(@"scanned word: %@", scannedWord);
@@ -194,9 +194,9 @@
     }
 
     SPLogVerbose(@"%@", words);
-    if ([words count] == 0) {
+    if (words.count == 0) {
         return @"";
-    } else if ([words count] == 1) {
+    } else if (words.count == 1) {
         return [[NSString alloc] initWithString:[words[0] lowercaseString]];
     } else {
         NSMutableString * camelcaseKey = [[NSMutableString alloc] initWithString:[words[0] lowercaseString]];
@@ -204,14 +204,14 @@
         range.length = words.count-1;
         range.location = 1;
         for (NSString * word in [words subarrayWithRange:range]) {
-            [camelcaseKey appendString:[word capitalizedString]];
+            [camelcaseKey appendString:word.capitalizedString];
         }
         return camelcaseKey;
     }
 }
 
 + (NSString *) validateString:(NSString *)aString {
-    if (!aString | ([aString length] == 0)) {
+    if (!aString | (aString.length == 0)) {
         return nil;
     }
     return aString;
@@ -227,7 +227,7 @@
     SPPayload * payload = [[SPPayload alloc] init];
     [payload addValueToPayload:build forKey:kSPApplicationBuild];
     [payload addValueToPayload:version forKey:kSPApplicationVersion];
-    if (payload != nil && [[payload getAsDictionary] count] > 0) {
+    if (payload != nil && [payload getAsDictionary].count > 0) {
         return [[SPSelfDescribingJson alloc] initWithSchema:kSPApplicationContextSchema andPayload:payload];
     } else {
         return nil;
