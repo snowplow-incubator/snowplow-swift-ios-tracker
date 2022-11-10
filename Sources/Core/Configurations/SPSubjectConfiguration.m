@@ -41,14 +41,14 @@
 }
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder {
-    [coder encodeInteger:self.width forKey:SP_STR_PROP(width)];
-    [coder encodeInteger:self.height forKey:SP_STR_PROP(height)];
+    [coder encodeInteger:self.width forKey:@"width"];
+    [coder encodeInteger:self.height forKey:@"height"];
 }
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
     if (self = [super init]) {
-        self.width = [coder decodeIntegerForKey:SP_STR_PROP(width)];
-        self.height = [coder decodeIntegerForKey:SP_STR_PROP(height)];
+        self.width = [coder decodeIntegerForKey:@"width"];
+        self.height = [coder decodeIntegerForKey:@"height"];
     }
     return self;
 }
@@ -80,13 +80,13 @@
 
 - (instancetype)initWithDictionary:(NSDictionary<NSString *,NSObject *> *)dictionary {
     if (self = [self init]) {
-        self.userId = [dictionary sp_stringForKey:SP_STR_PROP(userId) defaultValue:self.userId];
-        self.networkUserId = [dictionary sp_stringForKey:SP_STR_PROP(networkUserId) defaultValue:self.networkUserId];
-        self.domainUserId = [dictionary sp_stringForKey:SP_STR_PROP(domainUserId) defaultValue:self.domainUserId];
-        self.useragent = [dictionary sp_stringForKey:SP_STR_PROP(useragent) defaultValue:self.useragent];
-        self.ipAddress = [dictionary sp_stringForKey:SP_STR_PROP(ipAddress) defaultValue:self.ipAddress];
-        self.timezone = [dictionary sp_stringForKey:SP_STR_PROP(timezone) defaultValue:self.timezone];
-        self.language = [dictionary sp_stringForKey:SP_STR_PROP(language) defaultValue:self.language];
+        self.userId = [dictionary sp_stringForKey:@"userId" defaultValue:self.userId];
+        self.networkUserId = [dictionary sp_stringForKey:@"networkUserId" defaultValue:self.networkUserId];
+        self.domainUserId = [dictionary sp_stringForKey:@"domainUserId" defaultValue:self.domainUserId];
+        self.useragent = [dictionary sp_stringForKey:@"useragent" defaultValue:self.useragent];
+        self.ipAddress = [dictionary sp_stringForKey:@"ipAddress" defaultValue:self.ipAddress];
+        self.timezone = [dictionary sp_stringForKey:@"timezone" defaultValue:self.timezone];
+        self.language = [dictionary sp_stringForKey:@"language" defaultValue:self.language];
     }
     return self;
 }
@@ -149,48 +149,48 @@
 }
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder {
-    [coder encodeObject:self.userId forKey:SP_STR_PROP(userId)];
-    [coder encodeObject:self.networkUserId forKey:SP_STR_PROP(networkUserId)];
-    [coder encodeObject:self.domainUserId forKey:SP_STR_PROP(domainUserId)];
-    [coder encodeObject:self.useragent forKey:SP_STR_PROP(useragent)];
-    [coder encodeObject:self.ipAddress forKey:SP_STR_PROP(ipAddress)];
-    [coder encodeObject:self.timezone forKey:SP_STR_PROP(timezone)];
-    [coder encodeObject:self.language forKey:SP_STR_PROP(language)];
-    [coder encodeObject:self.screenResolution forKey:SP_STR_PROP(screenResolution)];
-    [coder encodeObject:self.screenViewPort forKey:SP_STR_PROP(screenViewPort)];
-    [coder encodeObject:self.colorDepth forKey:SP_STR_PROP(colorDepth)];
+    [coder encodeObject:self.userId forKey:@"userId"];
+    [coder encodeObject:self.networkUserId forKey:@"networkUserId"];
+    [coder encodeObject:self.domainUserId forKey:@"domainUserId"];
+    [coder encodeObject:self.useragent forKey:@"useragent"];
+    [coder encodeObject:self.ipAddress forKey:@"ipAddress"];
+    [coder encodeObject:self.timezone forKey:@"timezone"];
+    [coder encodeObject:self.language forKey:@"language"];
+    [coder encodeObject:self.screenResolution forKey:@"screenResolution"];
+    [coder encodeObject:self.screenViewPort forKey:@"screenViewPort"];
+    [coder encodeObject:self.colorDepth forKey:@"colorDepth"];
     // geolocation
-    [coder encodeObject:self.geoLatitude forKey:SP_STR_PROP(geoLatitude)];
-    [coder encodeObject:self.geoLongitude forKey:SP_STR_PROP(geoLongitude)];
-    [coder encodeObject:self.geoLatitudeLongitudeAccuracy forKey:SP_STR_PROP(geoLatitudeLongitudeAccuracy)];
-    [coder encodeObject:self.geoAltitude forKey:SP_STR_PROP(geoAltitude)];
-    [coder encodeObject:self.geoAltitudeAccuracy forKey:SP_STR_PROP(geoAltitudeAccuracy)];
-    [coder encodeObject:self.geoSpeed forKey:SP_STR_PROP(geoSpeed)];
-    [coder encodeObject:self.geoBearing forKey:SP_STR_PROP(geoBearing)];
-    [coder encodeObject:self.geoTimestamp forKey:SP_STR_PROP(geoTimestamp)];
+    [coder encodeObject:self.geoLatitude forKey:@"geoLatitude"];
+    [coder encodeObject:self.geoLongitude forKey:@"geoLongitude"];
+    [coder encodeObject:self.geoLatitudeLongitudeAccuracy forKey:@"geoLatitudeLongitudeAccuracy"];
+    [coder encodeObject:self.geoAltitude forKey:@"geoAltitude"];
+    [coder encodeObject:self.geoAltitudeAccuracy forKey:@"geoAltitudeAccuracy"];
+    [coder encodeObject:self.geoSpeed forKey:@"geoSpeed"];
+    [coder encodeObject:self.geoBearing forKey:@"geoBearing"];
+    [coder encodeObject:self.geoTimestamp forKey:@"geoTimestamp"];
 }
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
     if (self = [super init]) {
-        self.userId = [coder decodeObjectForKey:SP_STR_PROP(userId)];
-        self.networkUserId = [coder decodeObjectForKey:SP_STR_PROP(networkUserId)];
-        self.domainUserId = [coder decodeObjectForKey:SP_STR_PROP(domainUserId)];
-        self.useragent = [coder decodeObjectForKey:SP_STR_PROP(useragent)];
-        self.ipAddress = [coder decodeObjectForKey:SP_STR_PROP(ipAddress)];
-        self.timezone = [coder decodeObjectForKey:SP_STR_PROP(timezone)];
-        self.language = [coder decodeObjectForKey:SP_STR_PROP(language)];
-        self.screenResolution = [coder decodeObjectForKey:SP_STR_PROP(screenResolution)];
-        self.screenViewPort = [coder decodeObjectForKey:SP_STR_PROP(screenViewPort)];
-        self.colorDepth = [coder decodeObjectForKey:SP_STR_PROP(colorDepth)];
+        self.userId = [coder decodeObjectForKey:@"userId"];
+        self.networkUserId = [coder decodeObjectForKey:@"networkUserId"];
+        self.domainUserId = [coder decodeObjectForKey:@"domainUserId"];
+        self.useragent = [coder decodeObjectForKey:@"useragent"];
+        self.ipAddress = [coder decodeObjectForKey:@"ipAddress"];
+        self.timezone = [coder decodeObjectForKey:@"timezone"];
+        self.language = [coder decodeObjectForKey:@"language"];
+        self.screenResolution = [coder decodeObjectForKey:@"screenResolution"];
+        self.screenViewPort = [coder decodeObjectForKey:@"screenViewPort"];
+        self.colorDepth = [coder decodeObjectForKey:@"colorDepth"];
         // geolocation
-        self.geoLatitude = [coder decodeObjectForKey:SP_STR_PROP(geoLatitude)];
-        self.geoLongitude = [coder decodeObjectForKey:SP_STR_PROP(geoLongitude)];
-        self.geoLatitudeLongitudeAccuracy = [coder decodeObjectForKey:SP_STR_PROP(geoLatitudeLongitudeAccuracy)];
-        self.geoAltitude = [coder decodeObjectForKey:SP_STR_PROP(geoAltitude)];
-        self.geoAltitudeAccuracy = [coder decodeObjectForKey:SP_STR_PROP(geoAltitudeAccuracy)];
-        self.geoSpeed = [coder decodeObjectForKey:SP_STR_PROP(geoSpeed)];
-        self.geoBearing = [coder decodeObjectForKey:SP_STR_PROP(geoBearing)];
-        self.geoTimestamp = [coder decodeObjectForKey:SP_STR_PROP(geoTimestamp)];
+        self.geoLatitude = [coder decodeObjectForKey:@"geoLatitude"];
+        self.geoLongitude = [coder decodeObjectForKey:@"geoLongitude"];
+        self.geoLatitudeLongitudeAccuracy = [coder decodeObjectForKey:@"geoLatitudeLongitudeAccuracy"];
+        self.geoAltitude = [coder decodeObjectForKey:@"geoAltitude"];
+        self.geoAltitudeAccuracy = [coder decodeObjectForKey:@"geoAltitudeAccuracy"];
+        self.geoSpeed = [coder decodeObjectForKey:@"geoSpeed"];
+        self.geoBearing = [coder decodeObjectForKey:@"geoBearing"];
+        self.geoTimestamp = [coder decodeObjectForKey:@"geoTimestamp"];
     }
     return self;
 }

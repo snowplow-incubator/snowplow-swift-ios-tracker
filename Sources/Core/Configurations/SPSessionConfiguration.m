@@ -33,8 +33,8 @@
 }
 
 - (instancetype)initWithDictionary:(NSDictionary<NSString *,NSObject *> *)dictionary {
-    NSInteger foregroundTimeout = [dictionary sp_numberForKey:SP_STR_PROP(foregroundTimeout) defaultValue:@1800].integerValue;
-    NSInteger backgroundTimeout = [dictionary sp_numberForKey:SP_STR_PROP(backgroundTimeout) defaultValue:@1800].integerValue;
+    NSInteger foregroundTimeout = [dictionary sp_numberForKey:@"foregroundTimeout" defaultValue:@1800].integerValue;
+    NSInteger backgroundTimeout = [dictionary sp_numberForKey:@"backgroundTimeout" defaultValue:@1800].integerValue;
     return [self initWithForegroundTimeoutInSeconds:foregroundTimeout backgroundTimeoutInSeconds:backgroundTimeout];
 }
 
@@ -101,14 +101,14 @@ API_AVAILABLE(ios(10), macosx(10.12), tvos(10.0), watchos(3.0))
 }
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder {
-    [coder encodeInteger:self.backgroundTimeoutInSeconds forKey:SP_STR_PROP(backgroundTimeoutInSeconds)];
-    [coder encodeInteger:self.foregroundTimeoutInSeconds forKey:SP_STR_PROP(foregroundTimeoutInSeconds)];
+    [coder encodeInteger:self.backgroundTimeoutInSeconds forKey:@"backgroundTimeoutInSeconds"];
+    [coder encodeInteger:self.foregroundTimeoutInSeconds forKey:@"foregroundTimeoutInSeconds"];
 }
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
     if (self = [super init]) {
-        self.backgroundTimeoutInSeconds = [coder decodeIntegerForKey:SP_STR_PROP(backgroundTimeoutInSeconds)];
-        self.foregroundTimeoutInSeconds = [coder decodeIntegerForKey:SP_STR_PROP(foregroundTimeoutInSeconds)];
+        self.backgroundTimeoutInSeconds = [coder decodeIntegerForKey:@"backgroundTimeoutInSeconds"];
+        self.foregroundTimeoutInSeconds = [coder decodeIntegerForKey:@"foregroundTimeoutInSeconds"];
     }
     return self;
 }

@@ -82,24 +82,24 @@
 }
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder {
-    [coder encodeInteger:self.bufferOption forKey:SP_STR_PROP(bufferOption)];
-    [coder encodeInteger:self.emitRange forKey:SP_STR_PROP(emitRange)];
-    [coder encodeInteger:self.threadPoolSize forKey:SP_STR_PROP(threadPoolSize)];
-    [coder encodeInteger:self.byteLimitGet forKey:SP_STR_PROP(byteLimitGet)];
-    [coder encodeInteger:self.byteLimitPost forKey:SP_STR_PROP(byteLimitPost)];
-    [coder encodeObject:self.customRetryForStatusCodes forKey:SP_STR_PROP(customRetryForStatusCodes)];
-    [coder encodeBool:self.serverAnonymisation forKey:SP_STR_PROP(serverAnonymisation)];
+    [coder encodeInteger:self.bufferOption forKey:@"bufferOption"];
+    [coder encodeInteger:self.emitRange forKey:@"emitRange"];
+    [coder encodeInteger:self.threadPoolSize forKey:@"threadPoolSize"];
+    [coder encodeInteger:self.byteLimitGet forKey:@"byteLimitGet"];
+    [coder encodeInteger:self.byteLimitPost forKey:@"byteLimitPost"];
+    [coder encodeObject:self.customRetryForStatusCodes forKey:@"customRetryForStatusCodes"];
+    [coder encodeBool:self.serverAnonymisation forKey:@"serverAnonymisation"];
 }
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
     if (self = [super init]) {
-        self.bufferOption = [coder decodeIntegerForKey:SP_STR_PROP(bufferOption)];
-        self.emitRange = [coder decodeIntegerForKey:SP_STR_PROP(emitRange)];
-        self.threadPoolSize = [coder decodeIntegerForKey:SP_STR_PROP(threadPoolSize)];
-        self.byteLimitGet = [coder decodeIntegerForKey:SP_STR_PROP(byteLimitGet)];
-        self.byteLimitPost = [coder decodeIntegerForKey:SP_STR_PROP(byteLimitPost)];
-        self.customRetryForStatusCodes = [coder decodeObjectForKey:SP_STR_PROP(customRetryForStatusCodes)];
-        self.serverAnonymisation = [coder decodeBoolForKey:SP_STR_PROP(serverAnonymisation)];
+        self.bufferOption = [coder decodeIntegerForKey:@"bufferOption"];
+        self.emitRange = [coder decodeIntegerForKey:@"emitRange"];
+        self.threadPoolSize = [coder decodeIntegerForKey:@"threadPoolSize"];
+        self.byteLimitGet = [coder decodeIntegerForKey:@"byteLimitGet"];
+        self.byteLimitPost = [coder decodeIntegerForKey:@"byteLimitPost"];
+        self.customRetryForStatusCodes = [coder decodeObjectForKey:@"customRetryForStatusCodes"];
+        self.serverAnonymisation = [coder decodeBoolForKey:@"serverAnonymisation"];
     }
     return self;
 }

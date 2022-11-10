@@ -56,14 +56,14 @@
 }
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder {
-    [coder encodeObject:self.endpoint forKey:SP_STR_PROP(endpoint)];
-    [coder encodeInteger:self.method forKey:SP_STR_PROP(method)];
+    [coder encodeObject:self.endpoint forKey:@"endpoint"];
+    [coder encodeInteger:self.method forKey:@"method"];
 }
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
     if (self = [super init]) {
-        self.endpoint = [coder decodeObjectForKey:SP_STR_PROP(endpoint)];
-        self.method = [coder decodeIntegerForKey:SP_STR_PROP(method)];
+        self.endpoint = [coder decodeObjectForKey:@"endpoint"];
+        self.method = [coder decodeIntegerForKey:@"method"];
     }
     return self;
 }

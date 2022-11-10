@@ -64,18 +64,18 @@
 }
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder {
-    [coder encodeInteger:self.basisForProcessing forKey:SP_STR_PROP(basisForProcessing)];
-    [coder encodeObject:self.documentId forKey:SP_STR_PROP(documentId)];
-    [coder encodeObject:self.documentVersion forKey:SP_STR_PROP(documentVersion)];
-    [coder encodeObject:self.documentDescription forKey:SP_STR_PROP(documentDescription)];
+    [coder encodeInteger:self.basisForProcessing forKey:@"basisForProcessing"];
+    [coder encodeObject:self.documentId forKey:@"documentId"];
+    [coder encodeObject:self.documentVersion forKey:@"documentVersion"];
+    [coder encodeObject:self.documentDescription forKey:@"documentDescription"];
 }
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
     if (self = [super init]) {
-        self.basisForProcessing = [coder decodeIntegerForKey:SP_STR_PROP(basisForProcessing)];
-        self.documentId = [coder decodeObjectForKey:SP_STR_PROP(documentId)];
-        self.documentVersion = [coder decodeObjectForKey:SP_STR_PROP(documentVersion)];
-        self.documentDescription = [coder decodeObjectForKey:SP_STR_PROP(documentDescription)];
+        self.basisForProcessing = [coder decodeIntegerForKey:@"basisForProcessing"];
+        self.documentId = [coder decodeObjectForKey:@"documentId"];
+        self.documentVersion = [coder decodeObjectForKey:@"documentVersion"];
+        self.documentDescription = [coder decodeObjectForKey:@"documentDescription"];
     }
     return self;
 }

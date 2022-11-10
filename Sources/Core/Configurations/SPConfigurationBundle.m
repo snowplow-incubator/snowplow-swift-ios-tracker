@@ -22,6 +22,7 @@
 #import "SPConfigurationBundle.h"
 #import "NSDictionary+SP_TypeMethods.h"
 #import "SPLogger.h"
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 @interface SPConfigurationBundle ()
 @property (nonatomic, nonnull) NSString *namespace;
@@ -60,15 +61,15 @@
 
 - (instancetype)initWithDictionary:(NSDictionary<NSString *,NSObject *> *)dictionary {
     if (self = [super init]) {
-        self.namespace = [dictionary sp_stringForKey:SP_STR_PROP(namespace) defaultValue:nil];
+        self.namespace = [dictionary sp_stringForKey:@"namespace" defaultValue:nil];
         if (!self.namespace) {
             SPLogDebug(@"Error assigning: namespace");
             return nil;
         }
-        self.networkConfiguration = (SPNetworkConfiguration *)[dictionary sp_configurationForKey:SP_STR_PROP(networkConfiguration) configurationClass:SPNetworkConfiguration.class defaultValue:nil];
-        self.trackerConfiguration = (SPTrackerConfiguration *)[dictionary sp_configurationForKey:SP_STR_PROP(trackerConfiguration) configurationClass:SPTrackerConfiguration.class defaultValue:nil];
-        self.subjectConfiguration = (SPSubjectConfiguration *)[dictionary sp_configurationForKey:SP_STR_PROP(subjectConfiguration) configurationClass:SPSubjectConfiguration.class defaultValue:nil];
-        self.sessionConfiguration = (SPSessionConfiguration *)[dictionary sp_configurationForKey:SP_STR_PROP(sessionConfiguration) configurationClass:SPSessionConfiguration.class defaultValue:nil];
+        self.networkConfiguration = (SPNetworkConfiguration *)[dictionary sp_configurationForKey:@"networkConfiguration" configurationClass:SPNetworkConfiguration.class defaultValue:nil];
+        self.trackerConfiguration = (SPTrackerConfiguration *)[dictionary sp_configurationForKey:@"trackerConfiguration" configurationClass:SPTrackerConfiguration.class defaultValue:nil];
+        self.subjectConfiguration = (SPSubjectConfiguration *)[dictionary sp_configurationForKey:@"subjectConfiguration" configurationClass:SPSubjectConfiguration.class defaultValue:nil];
+        self.sessionConfiguration = (SPSessionConfiguration *)[dictionary sp_configurationForKey:@"sessionConfiguration" configurationClass:SPSessionConfiguration.class defaultValue:nil];
     }
     return self;
 }
@@ -93,20 +94,20 @@
 }
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder {
-    [coder encodeObject:self.namespace forKey:SP_STR_PROP(namespace)];
-    [coder encodeObject:self.networkConfiguration forKey:SP_STR_PROP(networkConfiguration)];
-    [coder encodeObject:self.trackerConfiguration forKey:SP_STR_PROP(trackerConfiguration)];
-    [coder encodeObject:self.subjectConfiguration forKey:SP_STR_PROP(subjectConfiguration)];
-    [coder encodeObject:self.sessionConfiguration forKey:SP_STR_PROP(sessionConfiguration)];
+    [coder encodeObject:self.namespace forKey:@"namespace"];
+    [coder encodeObject:self.networkConfiguration forKey:@"networkConfiguration"];
+    [coder encodeObject:self.trackerConfiguration forKey:@"trackerConfiguration"];
+    [coder encodeObject:self.subjectConfiguration forKey:@"subjectConfiguration"];
+    [coder encodeObject:self.sessionConfiguration forKey:@"sessionConfiguration"];
 }
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
     if (self = [super init]) {
-        self.namespace = [coder decodeObjectForKey:SP_STR_PROP(namespace)];
-        self.networkConfiguration = [coder decodeObjectForKey:SP_STR_PROP(networkConfiguration)];
-        self.trackerConfiguration = [coder decodeObjectForKey:SP_STR_PROP(trackerConfiguration)];
-        self.subjectConfiguration = [coder decodeObjectForKey:SP_STR_PROP(subjectConfiguration)];
-        self.sessionConfiguration = [coder decodeObjectForKey:SP_STR_PROP(sessionConfiguration)];
+        self.namespace = [coder decodeObjectForKey:@"namespace"];
+        self.networkConfiguration = [coder decodeObjectForKey:@"networkConfiguration"];
+        self.trackerConfiguration = [coder decodeObjectForKey:@"trackerConfiguration"];
+        self.subjectConfiguration = [coder decodeObjectForKey:@"subjectConfiguration"];
+        self.sessionConfiguration = [coder decodeObjectForKey:@"sessionConfiguration"];
     }
     return self;
 }

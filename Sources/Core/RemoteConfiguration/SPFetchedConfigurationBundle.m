@@ -32,13 +32,13 @@
             SPLogDebug(@"Error assigning: schema");
             return nil;
         }
-        NSNumber *number = [dictionary sp_numberForKey:SP_STR_PROP(configurationVersion) defaultValue:nil];
+        NSNumber *number = [dictionary sp_numberForKey:@"configurationVersion" defaultValue:nil];
         if (!number) {
             SPLogDebug(@"Error assigning: configurationVersion");
             return nil;
         }
         self.configurationVersion = number.integerValue;
-        self.configurationBundle = [dictionary sp_arrayForKey:SP_STR_PROP(configurationBundle) itemClass:SPConfigurationBundle.class defaultValue:nil];
+        self.configurationBundle = [dictionary sp_arrayForKey:@"configurationBundle" itemClass:SPConfigurationBundle.class defaultValue:nil];
         if (!self.configurationBundle) {
             SPLogDebug(@"Error assigning: configurationBundle");
             return nil;
@@ -64,16 +64,16 @@
 }
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder {
-    [coder encodeObject:self.schema forKey:SP_STR_PROP(schema)];
-    [coder encodeInteger:self.configurationVersion forKey:SP_STR_PROP(configurationVersion)];
-    [coder encodeObject:self.configurationBundle forKey:SP_STR_PROP(configurationBundle)];
+    [coder encodeObject:self.schema forKey:@"schema"];
+    [coder encodeInteger:self.configurationVersion forKey:@"configurationVersion"];
+    [coder encodeObject:self.configurationBundle forKey:@"configurationBundle"];
 }
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
     if (self = [super init]) {
-        self.schema = [coder decodeObjectForKey:SP_STR_PROP(schema)];
-        self.configurationVersion = [coder decodeIntegerForKey:SP_STR_PROP(configurationVersion)];
-        self.configurationBundle = [coder decodeObjectForKey:SP_STR_PROP(configurationBundle)];
+        self.schema = [coder decodeObjectForKey:@"schema"];
+        self.configurationVersion = [coder decodeIntegerForKey:@"configurationVersion"];
+        self.configurationBundle = [coder decodeObjectForKey:@"configurationBundle"];
     }
     return self;
 }
