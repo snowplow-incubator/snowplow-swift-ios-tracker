@@ -50,8 +50,8 @@
 
 // --- Builder Methods
 
-SP_BUILDER_METHOD(NSString *, name)
-SP_BUILDER_METHOD(NSString *, stackTrace)
+- (instancetype)name: (NSString *)value { self.name = value; return self; }
+- (instancetype)stackTrace: (NSString *)value { self.stackTrace = value; return self; }
 
 // --- Public Methods
 

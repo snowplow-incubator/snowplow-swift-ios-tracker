@@ -37,7 +37,7 @@ NS_SWIFT_NAME(Timing)
 
 - (instancetype)initWithCategory:(NSString *)category variable:(NSString *)variable timing:(NSNumber *)timing NS_SWIFT_NAME(init(category:variable:timing:));
 
-SP_BUILDER_DECLARE_NULLABLE(NSString *, label)
+- (instancetype)label:(nullable NSString *)value NS_SWIFT_NAME(label(_:));
 
 @end
 

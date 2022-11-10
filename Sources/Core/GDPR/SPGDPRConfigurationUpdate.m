@@ -23,10 +23,10 @@
 
 @implementation SPGDPRConfigurationUpdate
 
-SP_DIRTY_GETTER(SPGdprProcessingBasis, basisForProcessing)
-SP_DIRTY_GETTER(NSString *, documentId)
-SP_DIRTY_GETTER(NSString *, documentVersion)
-SP_DIRTY_GETTER(NSString *, documentDescription)
+- (SPGdprProcessingBasis)basisForProcessing { return (!self.sourceConfig || self.basisForProcessingUpdated) ? super.basisForProcessing : self.sourceConfig.basisForProcessing; }
+- (NSString *)documentId { return (!self.sourceConfig || self.documentIdUpdated) ? super.documentId : self.sourceConfig.documentId; }
+- (NSString *)documentVersion { return (!self.sourceConfig || self.documentVersionUpdated) ? super.documentVersion : self.sourceConfig.documentVersion; }
+- (NSString *)documentDescription { return (!self.sourceConfig || self.documentDescriptionUpdated) ? super.documentDescription : self.sourceConfig.documentDescription; }
 
 // Private methods
 

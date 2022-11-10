@@ -82,7 +82,7 @@ API_AVAILABLE(ios(10), macosx(10.12), tvos(10.0), watchos(3.0))
 
 // MARK: - Builders
 
-SP_BUILDER_METHOD(OnSessionStateUpdate, onSessionStateUpdate)
+- (instancetype)onSessionStateUpdate:(OnSessionStateUpdate)value { self.onSessionStateUpdate = value; return self; }
 
 // MARK: - NSCopying
 

@@ -47,8 +47,8 @@
 
 // --- Builder Methods
 
-SP_BUILDER_METHOD(NSString *, name)
-SP_BUILDER_METHOD(NSString *, documentDescription)
+- (instancetype)name:(NSString *)value { self.name = value; return self; }
+- (instancetype)documentDescription:(NSString *)value { self.documentDescription = value; return self; }
 
 // --- Public Methods
 

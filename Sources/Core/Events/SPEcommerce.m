@@ -48,13 +48,13 @@
 
 // --- Builder Methods
 
-SP_BUILDER_METHOD(NSString *, affiliation)
-SP_BUILDER_METHOD(NSNumber *, taxValue)
-SP_BUILDER_METHOD(NSNumber *, shipping)
-SP_BUILDER_METHOD(NSString *, city)
-SP_BUILDER_METHOD(NSString *, state)
-SP_BUILDER_METHOD(NSString *, country)
-SP_BUILDER_METHOD(NSString *, currency)
+- (instancetype)affiliation:(NSString *)value { self.affiliation = value; return self; }
+- (instancetype)taxValue:(NSNumber *)value { self.taxValue = value; return self; }
+- (instancetype)shipping:(NSNumber *)value { self.shipping = value; return self; }
+- (instancetype)city:(NSString *)value { self.city = value; return self; }
+- (instancetype)state:(NSString *)value { self.state = value; return self; }
+- (instancetype)country:(NSString *)value { self.country = value; return self; }
+- (instancetype)currency:(NSString *)value { self.currency = value; return self; }
 
 // --- Public Methods
 

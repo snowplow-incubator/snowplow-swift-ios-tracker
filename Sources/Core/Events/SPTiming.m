@@ -49,7 +49,7 @@
 
 // --- Builder Methods
 
-SP_BUILDER_METHOD(NSString *, label)
+- (instancetype)label:(NSString *)value { self.label = value; return self; }
 
 // --- Public Methods
 

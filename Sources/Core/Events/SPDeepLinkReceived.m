@@ -47,7 +47,7 @@ NSString * const kSPDeepLinkReceivedParamUrl = @"url";
 
 // --- Builder Methods
 
-SP_BUILDER_METHOD(NSString *, referrer)
+- (instancetype)referrer:(NSString *)value { self.referrer = value; return self; }
 
 // --- Tracker Methods
 

@@ -37,8 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (SPProtocol)protocol;
 - (nullable id<SPNetworkConnection>)networkConnection;
 
-SP_DIRTYFLAG(customPostPath)
-SP_DIRTYFLAG(requestHeaders)
+@property BOOL customPostPathUpdated;
+@property BOOL requestHeadersUpdated;
 
 @end
 

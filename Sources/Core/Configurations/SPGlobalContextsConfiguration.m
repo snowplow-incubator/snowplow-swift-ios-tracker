@@ -50,7 +50,7 @@
 
 // MARK: - Builder
 
-SP_BUILDER_METHOD(SP_ESCAPE(NSMutableDictionary<NSString *, SPGlobalContext *> *), contextGenerators)
+- (instancetype)contextGenerators:(NSMutableDictionary<NSString *, SPGlobalContext *> *)value { self.contextGenerators = value; return self; }
 
 // MARK: - NSCopying
 

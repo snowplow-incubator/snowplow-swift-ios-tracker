@@ -37,7 +37,7 @@ extern NSString * const kSPDeepLinkParamUrl;
 
 - (instancetype)initWithUrl:(NSString *)url;
 
-SP_BUILDER_DECLARE_NULLABLE(NSString *, referrer)
+- (instancetype)referrer:(nullable NSString *)value NS_SWIFT_NAME(referrer(_:));
 
 @end
 

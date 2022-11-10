@@ -57,19 +57,19 @@ NS_SWIFT_NAME(ScreenView)
 - (instancetype)initWithName:(NSString *)name screenId:(nullable NSUUID *)screenId NS_SWIFT_NAME(init(name:screenId:));
 
 /// Type of screen.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, type)
+- (instancetype)type:(nullable NSString *)value NS_SWIFT_NAME(type(_:));
 /// Name of the previous screen.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, previousName)
+- (instancetype)previousName:(nullable NSString *)value NS_SWIFT_NAME(previousName(_:));
 /// Identifier of the previous screen.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, previousId)
+- (instancetype)previousId:(nullable NSString *)value NS_SWIFT_NAME(previousId(_:));
 /// Type of the previous screen.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, previousType)
+- (instancetype)previousType:(nullable NSString *)value NS_SWIFT_NAME(previousType(_:));
 /// Type of transition between previous and current screen,
-SP_BUILDER_DECLARE_NULLABLE(NSString *, transitionType)
+- (instancetype)transitionType:(nullable NSString *)value NS_SWIFT_NAME(transitionType(_:));
 /// Name of the ViewController subclass.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, viewControllerClassName)
+- (instancetype)viewControllerClassName:(nullable NSString *)value NS_SWIFT_NAME(viewControllerClassName(_:));
 /// Name of the top ViewController subclass.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, topViewControllerClassName)
+- (instancetype)topViewControllerClassName:(nullable NSString *)value NS_SWIFT_NAME(topViewControllerClassName(_:));
 
 @end
 

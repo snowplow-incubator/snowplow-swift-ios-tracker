@@ -23,8 +23,8 @@
 
 @implementation SPSessionConfigurationUpdate
 
-SP_DIRTY_GETTER(NSInteger, foregroundTimeoutInSeconds);
-SP_DIRTY_GETTER(NSInteger, backgroundTimeoutInSeconds);
-SP_DIRTY_GETTER(OnSessionStateUpdate, onSessionStateUpdate)
+- (NSInteger)foregroundTimeoutInSeconds { return (!self.sourceConfig || self.foregroundTimeoutInSecondsUpdated) ? super.foregroundTimeoutInSeconds : self.sourceConfig.foregroundTimeoutInSeconds; }
+- (NSInteger)backgroundTimeoutInSeconds { return (!self.sourceConfig || self.backgroundTimeoutInSecondsUpdated) ? super.backgroundTimeoutInSeconds : self.sourceConfig.backgroundTimeoutInSeconds; }
+- (OnSessionStateUpdate)onSessionStateUpdate { return (!self.sourceConfig || self.onSessionStateUpdateUpdated) ? super.onSessionStateUpdate : self.sourceConfig.onSessionStateUpdate; }
 
 @end

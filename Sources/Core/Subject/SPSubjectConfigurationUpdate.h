@@ -27,16 +27,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, nullable) SPSubjectConfiguration *sourceConfig;
 
-SP_DIRTYFLAG(userId)
-SP_DIRTYFLAG(networkUserId)
-SP_DIRTYFLAG(domainUserId)
-SP_DIRTYFLAG(useragent)
-SP_DIRTYFLAG(ipAddress)
-SP_DIRTYFLAG(timezone)
-SP_DIRTYFLAG(language)
-SP_DIRTYFLAG(screenResolution)
-SP_DIRTYFLAG(screenViewPort)
-SP_DIRTYFLAG(colorDepth)
+@property BOOL userIdUpdated;
+@property BOOL networkUserIdUpdated;
+@property BOOL domainUserIdUpdated;
+@property BOOL useragentUpdated;
+@property BOOL ipAddressUpdated;
+@property BOOL timezoneUpdated;
+@property BOOL languageUpdated;
+@property BOOL screenResolutionUpdated;
+@property BOOL screenViewPortUpdated;
+@property BOOL colorDepthUpdated;
 
 @end
 

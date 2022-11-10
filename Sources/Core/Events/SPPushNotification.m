@@ -135,11 +135,11 @@
 
 // --- Builder Methods
 
-SP_BUILDER_METHOD(NSString *, subtitle)
-SP_BUILDER_METHOD(NSString *, sound)
-SP_BUILDER_METHOD(NSString *, launchImageName)
-SP_BUILDER_METHOD(NSDictionary *, userInfo)
-SP_BUILDER_METHOD(NSArray *, attachments)
+- (instancetype)subtitle:(NSString *)value { self.subtitle = value; return self; }
+- (instancetype)sound:(NSString *)value { self.sound = value; return self; }
+- (instancetype)launchImageName:(NSString *)value { self.launchImageName = value; return self; }
+- (instancetype)userInfo:(NSDictionary *)value { self.userInfo = value; return self; }
+- (instancetype)attachments:(NSArray *)value { self.attachments = value; return self; }
 
 // --- Public Methods
 

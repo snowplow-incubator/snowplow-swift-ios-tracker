@@ -79,8 +79,8 @@ NS_SWIFT_NAME(Event)
 /// The payload of the event.
 @property (nonatomic, readonly) NSDictionary<NSString *, NSObject *> *payload;
 
-SP_BUILDER_DECLARE_NULLABLE(NSDate *, trueTimestamp)
-SP_BUILDER_DECLARE(NSMutableArray<SPSelfDescribingJson *> *, contexts)
+- (instancetype)trueTimestamp:(nullable NSDate *)value NS_SWIFT_NAME(trueTimestamp(_:));
+- (instancetype)contexts:(NSMutableArray<SPSelfDescribingJson *> *)value NS_SWIFT_NAME(contexts(_:));
 
 /**
  * Hook method called just before the event processing in order to execute special operations.

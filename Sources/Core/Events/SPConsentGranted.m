@@ -51,9 +51,9 @@
 
 // --- Builder Methods
 
-SP_BUILDER_METHOD(NSString *, name)
-SP_BUILDER_METHOD(NSString *, documentDescription)
-SP_BUILDER_METHOD(NSArray<SPSelfDescribingJson *> *, documents)
+- (instancetype)name:(NSString *)value { self.name = value; return self; }
+- (instancetype)documentDescription:(NSString *)value { self.documentDescription = value; return self; }
+- (instancetype)documents:(NSArray<SPSelfDescribingJson *> *)value { self.documents = value; return self; }
 
 // --- Public Methods
 

@@ -37,9 +37,9 @@ NS_SWIFT_NAME(Structured)
 
 - (instancetype)initWithCategory:(NSString *)category action:(NSString *)action NS_SWIFT_NAME(init(category:action:));
 
-SP_BUILDER_DECLARE_NULLABLE(NSString *, label)
-SP_BUILDER_DECLARE_NULLABLE(NSString *, property)
-SP_BUILDER_DECLARE_NULLABLE(NSNumber *, value)
+- (instancetype)label:(nullable NSString *)value NS_SWIFT_NAME(label(_:));
+- (instancetype)property:(nullable NSString *)value NS_SWIFT_NAME(property(_:));
+- (instancetype)value:(nullable NSNumber *)value NS_SWIFT_NAME(value(_:));
 
 @end
 

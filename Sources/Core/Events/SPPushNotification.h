@@ -69,11 +69,11 @@ NS_SWIFT_NAME(NotificationContent)
 
 - (instancetype)initWithTitle:(NSString *)title body:(NSString *)body badge:(NSNumber *)badge NS_SWIFT_NAME(init(title:body:badge:));
 
-SP_BUILDER_DECLARE_NULLABLE(NSString *, subtitle)
-SP_BUILDER_DECLARE_NULLABLE(NSString *, sound)
-SP_BUILDER_DECLARE_NULLABLE(NSString *, launchImageName)
-SP_BUILDER_DECLARE_NULLABLE(NSDictionary *, userInfo)
-SP_BUILDER_DECLARE_NULLABLE(NSArray *, attachments)
+- (instancetype)subtitle:(nullable NSString *)value NS_SWIFT_NAME(subtitle(_:));
+- (instancetype)sound:(nullable NSString *)value NS_SWIFT_NAME(sound(_:));
+- (instancetype)launchImageName:(nullable NSString *)value NS_SWIFT_NAME(launchImageName(_:));
+- (instancetype)userInfo:(nullable NSDictionary *)value NS_SWIFT_NAME(userInfo(_:));
+- (instancetype)attachments:(nullable NSArray *)value NS_SWIFT_NAME(attachments(_:));
 
 @end
 

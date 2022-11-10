@@ -35,8 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithMessage:(NSString *)message NS_SWIFT_NAME(init(message:));
 
-SP_BUILDER_DECLARE_NULLABLE(NSString *, name)
-SP_BUILDER_DECLARE_NULLABLE(NSString *, stackTrace)
+- (instancetype)name:(nullable NSString *)value NS_SWIFT_NAME(name(_:));
+- (instancetype)stackTrace:(nullable NSString *)value NS_SWIFT_NAME(stackTrace(_:));
 
 @end
 

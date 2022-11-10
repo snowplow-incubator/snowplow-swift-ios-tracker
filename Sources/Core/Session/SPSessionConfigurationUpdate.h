@@ -29,9 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) BOOL isPaused;
 
-SP_DIRTYFLAG(foregroundTimeoutInSeconds)
-SP_DIRTYFLAG(backgroundTimeoutInSeconds)
-SP_DIRTYFLAG(onSessionStateUpdate)
+@property BOOL foregroundTimeoutInSecondsUpdated;
+@property BOOL backgroundTimeoutInSecondsUpdated;
+@property BOOL onSessionStateUpdateUpdated;
 
 @end
 

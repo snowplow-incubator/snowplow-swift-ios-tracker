@@ -37,7 +37,7 @@ extern NSString * const kSPLifecycleEntityParamIsVisible;
 
 - (instancetype)initWithIsVisible:(BOOL)isVisible;
 
-SP_BUILDER_DECLARE_NULLABLE(NSNumber *, index)
+- (instancetype)index:(nullable NSNumber *)value NS_SWIFT_NAME(index(_:));
 
 @end
 

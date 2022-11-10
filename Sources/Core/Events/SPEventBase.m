@@ -51,8 +51,8 @@ NSString * stringWithSPScreenType(SPScreenType screenType) {
     return self;
 }
 
-SP_BUILDER_METHOD(NSDate *, trueTimestamp)
-SP_BUILDER_METHOD(NSMutableArray<SPSelfDescribingJson *> *, contexts)
+- (instancetype)trueTimestamp:(NSDate *)value { self.trueTimestamp = value; return self; }
+- (instancetype)contexts:(NSMutableArray<SPSelfDescribingJson *> *)value { self.contexts = value; return self; }
 
 // --- Public Methods
 

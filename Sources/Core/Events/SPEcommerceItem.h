@@ -53,13 +53,13 @@ NS_SWIFT_NAME(EcommerceItem)
 - (instancetype)initWithSku:(NSString *)sku price:(NSNumber *)price quantity:(NSNumber *)quantity NS_SWIFT_NAME(init(sku:price:quantity:));
 
 /// Name of the item.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, name)
+- (instancetype)name:(nullable NSString *)value NS_SWIFT_NAME(name(_:));
 /// Category of the item.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, category)
+- (instancetype)category:(nullable NSString *)value NS_SWIFT_NAME(category(_:));
 /// Currency used for the price of the item.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, currency)
+- (instancetype)currency:(nullable NSString *)value NS_SWIFT_NAME(currency(_:));
 /// OrderID of the order that contains this item.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, orderId)
+- (instancetype)orderId:(nullable NSString *)value NS_SWIFT_NAME(orderId(_:));
 
 @end
 

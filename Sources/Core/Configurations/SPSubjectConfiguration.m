@@ -93,26 +93,27 @@
 
 // MARK: - Builder
 
-SP_BUILDER_METHOD(NSString *, userId)
-SP_BUILDER_METHOD(NSString *, networkUserId)
-SP_BUILDER_METHOD(NSString *, domainUserId)
-SP_BUILDER_METHOD(NSString *, useragent)
-SP_BUILDER_METHOD(NSString *, ipAddress)
-SP_BUILDER_METHOD(NSString *, timezone)
-SP_BUILDER_METHOD(NSString *, language)
-SP_BUILDER_METHOD(SPSize *, screenResolution)
-SP_BUILDER_METHOD(SPSize *, screenViewPort)
-SP_BUILDER_METHOD(NSNumber *, colorDepth)
+- (instancetype)userId:(NSString *)value { self.userId = value; return self; }
+- (instancetype)networkUserId:(NSString *)value { self.networkUserId = value; return self; }
+- (instancetype)domainUserId:(NSString *)value { self.domainUserId = value; return self; }
+- (instancetype)useragent:(NSString *)value { self.useragent = value; return self; }
+- (instancetype)ipAddress:(NSString *)value { self.ipAddress = value; return self; }
+- (instancetype)timezone:(NSString *)value { self.timezone = value; return self; }
+- (instancetype)language:(NSString *)value { self.language = value; return self; }
+- (instancetype)screenResolution:(SPSize *)value { self.screenResolution = value; return self; }
+- (instancetype)screenViewPort:(SPSize *)value { self.screenViewPort = value; return self; }
+- (instancetype)colorDepth:(NSNumber *)value { self.colorDepth = value; return self; }
 
 // geolocation
-SP_BUILDER_METHOD(NSNumber *, geoLatitude)
-SP_BUILDER_METHOD(NSNumber *, geoLongitude)
-SP_BUILDER_METHOD(NSNumber *, geoLatitudeLongitudeAccuracy)
-SP_BUILDER_METHOD(NSNumber *, geoAltitude)
-SP_BUILDER_METHOD(NSNumber *, geoAltitudeAccuracy)
-SP_BUILDER_METHOD(NSNumber *, geoBearing)
-SP_BUILDER_METHOD(NSNumber *, geoSpeed)
-SP_BUILDER_METHOD(NSNumber *, geoTimestamp)
+- (instancetype)geoLatitude:(NSNumber *)value { self.geoLatitude = value; return self; }
+- (instancetype)geoLongitude:(NSNumber *)value { self.geoLongitude = value; return self; }
+- (instancetype)geoLatitudeLongitudeAccuracy:(NSNumber *)value { self.geoLatitudeLongitudeAccuracy = value; return self; }
+- (instancetype)geoAltitude:(NSNumber *)value { self.geoAltitude = value; return self; }
+- (instancetype)geoAltitudeAccuracy:(NSNumber *)value { self.geoAltitudeAccuracy = value; return self; }
+- (instancetype)geoBearing:(NSNumber *)value { self.geoBearing = value; return self; }
+- (instancetype)geoSpeed:(NSNumber *)value { self.geoSpeed = value; return self; }
+- (instancetype)geoTimestamp:(NSNumber *)value { self.geoTimestamp = value; return self; }
+
 
 // MARK: - NSCopying
 

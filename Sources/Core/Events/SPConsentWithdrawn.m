@@ -35,12 +35,12 @@
 
 // --- Builder Methods
 
-SP_BUILDER_METHOD(BOOL, all)
-SP_BUILDER_METHOD(NSString *, documentId)
-SP_BUILDER_METHOD(NSString *, version)
-SP_BUILDER_METHOD(NSString *, name)
-SP_BUILDER_METHOD(NSString *, documentDescription)
-SP_BUILDER_METHOD(NSArray<SPSelfDescribingJson *> *, documents)
+- (instancetype)all:(BOOL)value { self.all = value; return self; }
+- (instancetype)documentId:(NSString *)value { self.documentId = value; return self; }
+- (instancetype)version:(NSString *)value { self.version = value; return self; }
+- (instancetype)name:(NSString *)value { self.name = value; return self; }
+- (instancetype)documentDescription:(NSString *)value { self.documentDescription = value; return self; }
+- (instancetype)documents:(NSArray<SPSelfDescribingJson *> *)value { self.documents = value; return self; }
 
 // --- Public Methods
 

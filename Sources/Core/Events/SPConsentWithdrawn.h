@@ -45,17 +45,17 @@ NS_SWIFT_NAME(ConsentWithdrawn)
 - (NSArray<SPSelfDescribingJson *> *)getDocuments;
 
 /// Consent to all.
-SP_BUILDER_DECLARE(BOOL, all)
+- (instancetype)all:(BOOL)value NS_SWIFT_NAME(all(_:));
 /// Identifier of the first document.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, documentId)
+- (instancetype)documentId:(nullable NSString *)value NS_SWIFT_NAME(documentId(_:));
 /// Version of the first document.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, version)
+- (instancetype)version:(nullable NSString *)value NS_SWIFT_NAME(version(_:));
 /// Name of the first document.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, name)
+- (instancetype)name:(nullable NSString *)value NS_SWIFT_NAME(name(_:));
 /// Description of the first document.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, documentDescription)
+- (instancetype)documentDescription:(nullable NSString *)value NS_SWIFT_NAME(documentDescription(_:));
 /// Other documents.
-SP_BUILDER_DECLARE_NULLABLE(NSArray<SPSelfDescribingJson *> *, documents)
+- (instancetype)documents:(nullable NSArray<SPSelfDescribingJson *> *)value NS_SWIFT_NAME(documents(_:));
 
 @end
 

@@ -63,22 +63,22 @@ NSString * const kSPMessageNotificationParamTrigger = @"trigger";
 
 // --- Builder Methods
 
-SP_BUILDER_METHOD(NSString *, action)
-SP_BUILDER_METHOD(NSArray<SPMessageNotificationAttachment *> *, attachments)
-SP_BUILDER_METHOD(NSArray<NSString *> *, bodyLocArgs)
-SP_BUILDER_METHOD(NSString *, bodyLocKey)
-SP_BUILDER_METHOD(NSString *, category)
-SP_BUILDER_METHOD(NSNumber *, contentAvailable)
-SP_BUILDER_METHOD(NSString *, group)
-SP_BUILDER_METHOD(NSString *, icon)
-SP_BUILDER_METHOD(NSNumber *, notificationCount)
-SP_BUILDER_METHOD(NSString *, notificationTimestamp)
-SP_BUILDER_METHOD(NSString *, sound)
-SP_BUILDER_METHOD(NSString *, subtitle)
-SP_BUILDER_METHOD(NSString *, tag)
-SP_BUILDER_METHOD(NSString *, threadIdentifier)
-SP_BUILDER_METHOD(NSArray<NSString *> *, titleLocArgs)
-SP_BUILDER_METHOD(NSString *, titleLocKey)
+- (instancetype)action:(NSString *)value { self.action = value; return self; }
+- (instancetype)attachments:(NSArray<SPMessageNotificationAttachment *> *)value { self.attachments = value; return self; }
+- (instancetype)bodyLocArgs:(NSArray<NSString *> *)value { self.bodyLocArgs = value; return self; }
+- (instancetype)bodyLocKey:(NSString *)value { self.bodyLocKey = value; return self; }
+- (instancetype)category:(NSString *)value { self.category = value; return self; }
+- (instancetype)contentAvailable:(NSNumber *)value { self.contentAvailable = value; return self; }
+- (instancetype)group:(NSString *)value { self.group = value; return self; }
+- (instancetype)icon:(NSString *)value { self.icon = value; return self; }
+- (instancetype)notificationCount:(NSNumber *)value { self.notificationCount = value; return self; }
+- (instancetype)notificationTimestamp:(NSString *)value { self.notificationTimestamp = value; return self; }
+- (instancetype)sound:(NSString *)value { self.sound = value; return self; }
+- (instancetype)subtitle:(NSString *)value { self.subtitle = value; return self; }
+- (instancetype)tag:(NSString *)value { self.tag = value; return self; }
+- (instancetype)threadIdentifier:(NSString *)value { self.threadIdentifier = value; return self; }
+- (instancetype)titleLocArgs:(NSArray<NSString *> *)value { self.titleLocArgs = value; return self; }
+- (instancetype)titleLocKey:(NSString *)value { self.titleLocKey = value; return self; }
 
 // --- Tracker Methods
 

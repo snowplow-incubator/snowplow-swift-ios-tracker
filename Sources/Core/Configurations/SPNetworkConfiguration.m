@@ -83,8 +83,8 @@
 
 // MARK: - Builder
 
-SP_BUILDER_METHOD(NSString *, customPostPath)
-SP_BUILDER_METHOD(NSDictionary *, requestHeaders)
+- (instancetype)customPostPath: (NSString *)value { self.customPostPath = value; return self; }
+- (instancetype)requestHeaders: (NSDictionary *)value { self.requestHeaders = value; return self; }
 
 // MARK: - NSCopying
 

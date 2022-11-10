@@ -48,16 +48,16 @@
 
 // MARK: - Builder
 
-SP_BUILDER_METHOD(SPBufferOption, bufferOption)
-SP_BUILDER_METHOD(NSInteger, emitRange)
-SP_BUILDER_METHOD(NSInteger, threadPoolSize)
-SP_BUILDER_METHOD(NSInteger, byteLimitGet)
-SP_BUILDER_METHOD(NSInteger, byteLimitPost)
-SP_BUILDER_METHOD(id<SPRequestCallback>, requestCallback)
-SP_BUILDER_METHOD(NSDictionary *, customRetryForStatusCodes)
-SP_BUILDER_METHOD(BOOL, serverAnonymisation)
+- (instancetype)bufferOption:(SPBufferOption)value { self.bufferOption = value; return self; }
+- (instancetype)emitRange:(NSInteger)value { self.emitRange = value; return self; }
+- (instancetype)threadPoolSize:(NSInteger)value { self.threadPoolSize = value; return self; }
+- (instancetype)byteLimitGet:(NSInteger)value { self.byteLimitGet = value; return self; }
+- (instancetype)byteLimitPost:(NSInteger)value { self.byteLimitPost = value; return self; }
+- (instancetype)requestCallback:(id<SPRequestCallback>)value { self.requestCallback = value; return self; }
+- (instancetype)customRetryForStatusCodes:(NSDictionary *)value { self.customRetryForStatusCodes = value; return self; }
+- (instancetype)serverAnonymisation:(BOOL)value { self.serverAnonymisation = value; return self; }
 
-SP_BUILDER_METHOD(id<SPEventStore>, eventStore)
+- (instancetype)eventStore:(id<SPEventStore>)value { self.eventStore = value; return self; }
 
 // MARK: - NSCopying
 

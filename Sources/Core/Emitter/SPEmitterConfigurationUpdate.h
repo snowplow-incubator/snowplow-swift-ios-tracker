@@ -29,13 +29,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) BOOL isPaused;
 
-SP_DIRTYFLAG(bufferOption)
-SP_DIRTYFLAG(byteLimitGet)
-SP_DIRTYFLAG(byteLimitPost)
-SP_DIRTYFLAG(emitRange)
-SP_DIRTYFLAG(threadPoolSize)
-SP_DIRTYFLAG(customRetryForStatusCodes)
-SP_DIRTYFLAG(serverAnonymisation)
+@property BOOL bufferOptionUpdated;
+@property BOOL byteLimitGetUpdated;
+@property BOOL byteLimitPostUpdated;
+@property BOOL emitRangeUpdated;
+@property BOOL threadPoolSizeUpdated;
+@property BOOL customRetryForStatusCodesUpdated;
+@property BOOL serverAnonymisationUpdated;
 
 @end
 

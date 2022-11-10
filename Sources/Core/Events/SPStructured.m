@@ -46,9 +46,9 @@
 
 // --- Builder Methods
 
-SP_BUILDER_METHOD(NSString *, label)
-SP_BUILDER_METHOD(NSString *, property)
-SP_BUILDER_METHOD(NSNumber *, value)
+- (instancetype)label:(NSString *)value { self.label = value; return self; }
+- (instancetype)property:(NSString *)value { self.property = value; return self; }
+- (instancetype)value:(NSNumber *)value { self.value = value; return self; }
 
 // --- Public Methods
 

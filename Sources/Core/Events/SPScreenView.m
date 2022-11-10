@@ -49,13 +49,13 @@
 
 // --- Builder Methods
 
-SP_BUILDER_METHOD(NSString *, type)
-SP_BUILDER_METHOD(NSString *, previousName)
-SP_BUILDER_METHOD(NSString *, previousId)
-SP_BUILDER_METHOD(NSString *, previousType)
-SP_BUILDER_METHOD(NSString *, transitionType)
-SP_BUILDER_METHOD(NSString *, viewControllerClassName)
-SP_BUILDER_METHOD(NSString *, topViewControllerClassName)
+- (instancetype)type:(NSString *)value { self.type = value; return self; }
+- (instancetype)previousName:(NSString *)value { self.previousName = value; return self; }
+- (instancetype)previousId:(NSString *)value { self.previousId = value; return self; }
+- (instancetype)previousType:(NSString *)value { self.previousType = value; return self; }
+- (instancetype)transitionType:(NSString *)value { self.transitionType = value; return self; }
+- (instancetype)viewControllerClassName:(NSString *)value { self.viewControllerClassName = value; return self; }
+- (instancetype)topViewControllerClassName:(NSString *)value { self.topViewControllerClassName = value; return self; }
 
 // --- Public Methods
 

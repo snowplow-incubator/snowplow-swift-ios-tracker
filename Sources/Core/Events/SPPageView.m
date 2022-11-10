@@ -43,8 +43,8 @@
 
 // --- Builder Methods
 
-SP_BUILDER_METHOD(NSString *, pageTitle)
-SP_BUILDER_METHOD(NSString *, referrer)
+- (instancetype)pageTitle:(NSString *)value { self.pageTitle = value; return self; }
+- (instancetype)referrer:(NSString *)value { self.referrer = value; return self; }
 
 // --- Public Methods
 

@@ -92,8 +92,8 @@ NS_SWIFT_NAME(NetworkConfiguration)
  */
 - (instancetype)initWithNetworkConnection:(id<SPNetworkConnection>)networkConnection;
 
-SP_BUILDER_DECLARE_NULLABLE(NSString *, customPostPath)
-SP_BUILDER_DECLARE_NULLABLE(NSDictionary *, requestHeaders)
+- (instancetype)customPostPath:(nullable NSString *)value NS_SWIFT_NAME(customPostPath(_:));
+- (instancetype)requestHeaders:(nullable NSDictionary *)value NS_SWIFT_NAME(requestHeaders(_:));
 
 @end
 

@@ -26,12 +26,12 @@
 - (id<SPEventStore>)eventStore { return self.sourceConfig.eventStore; }
 - (id<SPRequestCallback>)requestCallback { return self.sourceConfig.requestCallback; }
 
-SP_DIRTY_GETTER(SPBufferOption, bufferOption)
-SP_DIRTY_GETTER(NSInteger, emitRange)
-SP_DIRTY_GETTER(NSInteger, threadPoolSize)
-SP_DIRTY_GETTER(NSInteger, byteLimitGet)
-SP_DIRTY_GETTER(NSInteger, byteLimitPost)
-SP_DIRTY_GETTER(NSDictionary *, customRetryForStatusCodes)
-SP_DIRTY_GETTER(BOOL, serverAnonymisation)
+- (SPBufferOption)bufferOption { return (!self.sourceConfig || self.bufferOptionUpdated) ? super.bufferOption : self.sourceConfig.bufferOption; }
+- (NSInteger)emitRange { return (!self.sourceConfig || self.emitRangeUpdated) ? super.emitRange : self.sourceConfig.emitRange; }
+- (NSInteger)threadPoolSize { return (!self.sourceConfig || self.threadPoolSizeUpdated) ? super.threadPoolSize : self.sourceConfig.threadPoolSize; }
+- (NSInteger)byteLimitGet { return (!self.sourceConfig || self.byteLimitGetUpdated) ? super.byteLimitGet : self.sourceConfig.byteLimitGet; }
+- (NSInteger)byteLimitPost { return (!self.sourceConfig || self.byteLimitPostUpdated) ? super.byteLimitPost : self.sourceConfig.byteLimitPost; }
+- (NSDictionary *)customRetryForStatusCodes { return (!self.sourceConfig || self.customRetryForStatusCodesUpdated) ? super.customRetryForStatusCodes : self.sourceConfig.customRetryForStatusCodes; }
+- (BOOL)serverAnonymisation { return (!self.sourceConfig || self.serverAnonymisationUpdated) ? super.serverAnonymisation : self.sourceConfig.serverAnonymisation; }
 
 @end

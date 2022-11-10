@@ -52,7 +52,7 @@ NS_SWIFT_NAME(GlobalContextsConfigurationProtocol)
 NS_SWIFT_NAME(GlobalContextsConfiguration)
 @interface SPGlobalContextsConfiguration : SPConfiguration <SPGlobalContextsConfigurationProtocol>
 
-SP_BUILDER_DECLARE(SP_ESCAPE(NSMutableDictionary<NSString *, SPGlobalContext *> *), contextGenerators)
+- (instancetype)contextGenerators:(NSMutableDictionary<NSString *, SPGlobalContext *> *)value NS_SWIFT_NAME(contextGenerators(_:));
 
 @end
 

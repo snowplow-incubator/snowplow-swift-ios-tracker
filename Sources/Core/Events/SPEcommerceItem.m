@@ -47,10 +47,10 @@
 
 // --- Builder Methods
 
-SP_BUILDER_METHOD(NSString *, name)
-SP_BUILDER_METHOD(NSString *, category)
-SP_BUILDER_METHOD(NSString *, currency)
-SP_BUILDER_METHOD(NSString *, orderId)
+- (instancetype)name:(NSString *)value { self.name = value; return self; }
+- (instancetype)category:(NSString *)value { self.category = value; return self; }
+- (instancetype)currency:(NSString *)value { self.currency = value; return self; }
+- (instancetype)orderId:(NSString *)value { self.orderId = value; return self; }
 
 // --- Public Methods
 

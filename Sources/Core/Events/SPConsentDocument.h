@@ -49,9 +49,9 @@ NS_SWIFT_NAME(ConsentDocument)
 - (SPSelfDescribingJson *)getPayload;
 
 /// Name of the document.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, name)
+- (instancetype)name:(nullable NSString *)value NS_SWIFT_NAME(name(_:));
 /// Description of the document.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, documentDescription)
+- (instancetype)documentDescription:(nullable NSString *)value NS_SWIFT_NAME(documentDescription(_:));
 
 @end
 

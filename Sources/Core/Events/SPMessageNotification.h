@@ -112,37 +112,37 @@ extern NSString * const kSPMessageNotificationParamTrigger;
                       trigger:(SPMessageNotificationTrigger)trigger;
 
 /// The action associated with the notification.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, action)
+- (instancetype)action:(nullable NSString *)value NS_SWIFT_NAME(action(_:));
 /// Attachments added to the notification (they can be part of the data object).
-SP_BUILDER_DECLARE_NULLABLE(NSArray<SPMessageNotificationAttachment *> *, attachments)
+- (instancetype)attachments:(nullable NSArray<SPMessageNotificationAttachment *> *)value NS_SWIFT_NAME(attachments(_:));
 /// Variable string values to be used in place of the format specifiers in bodyLocArgs to use to localize the body text to the user's current localization.
-SP_BUILDER_DECLARE_NULLABLE(NSArray<NSString *> *, bodyLocArgs)
+- (instancetype)bodyLocArgs:(nullable NSArray<NSString *> *)value NS_SWIFT_NAME(bodyLocArgs(_:));
 /// The key to the body string in the app's string resources to use to localize the body text to the user's current localization.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, bodyLocKey)
+- (instancetype)bodyLocKey:(nullable NSString *)value NS_SWIFT_NAME(bodyLocKey(_:));
 /// The category associated to the notification.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, category)
+- (instancetype)category:(nullable NSString *)value NS_SWIFT_NAME(category(_:));
 /// The application is notified of the delivery of the notification if it's in the foreground or background, the app will be woken up (iOS only).
-SP_BUILDER_DECLARE_NULLABLE(NSNumber *, contentAvailable)
+- (instancetype)contentAvailable:(nullable NSNumber *)value NS_SWIFT_NAME(contentAvailable(_:));
 /// The group which this notification is part of.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, group)
+- (instancetype)group:(nullable NSString *)value NS_SWIFT_NAME(group(_:));
 /// The icon associated to the notification (Android only).
-SP_BUILDER_DECLARE_NULLABLE(NSString *, icon)
+- (instancetype)icon:(nullable NSString *)value NS_SWIFT_NAME(icon(_:));
 /// The number of items this notification represents. It's the badge number on iOS.
-SP_BUILDER_DECLARE_NULLABLE(NSNumber *, notificationCount)
+- (instancetype)notificationCount:(nullable NSNumber *)value NS_SWIFT_NAME(notificationCount(_:));
 /// The time when the event of the notification occurred.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, notificationTimestamp)
+- (instancetype)notificationTimestamp:(nullable NSString *)value NS_SWIFT_NAME(notificationTimestamp(_:));
 /// The sound played when the device receives the notification.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, sound)
+- (instancetype)sound:(nullable NSString *)value NS_SWIFT_NAME(sound(_:));
 /// The notification's subtitle. (iOS only)
-SP_BUILDER_DECLARE_NULLABLE(NSString *, subtitle)
+- (instancetype)subtitle:(nullable NSString *)value NS_SWIFT_NAME(subtitle(_:));
 /// An identifier similar to 'group' but usable for different purposes (Android only).
-SP_BUILDER_DECLARE_NULLABLE(NSString *, tag)
+- (instancetype)tag:(nullable NSString *)value NS_SWIFT_NAME(tag(_:));
 /// An identifier similar to 'group' but usable for different purposes (iOS only).
-SP_BUILDER_DECLARE_NULLABLE(NSString *, threadIdentifier)
+- (instancetype)threadIdentifier:(nullable NSString *)value NS_SWIFT_NAME(threadIdentifier(_:));
 /// Variable string values to be used in place of the format specifiers in titleLocArgs to use to localize the title text to the user's current localization.
-SP_BUILDER_DECLARE_NULLABLE(NSArray<NSString *> *, titleLocArgs)
+- (instancetype)titleLocArgs:(nullable NSArray<NSString *> *)value NS_SWIFT_NAME(titleLocArgs(_:));
 /// The key to the title string in the app's string resources to use to localize the title text to the user's current localization.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, titleLocKey)
+- (instancetype)titleLocKey:(nullable NSString *)value NS_SWIFT_NAME(titleLocKey(_:));
 
 // Convenient methods
 

@@ -55,11 +55,12 @@ NS_SWIFT_NAME(ConsentGranted)
 - (NSArray<SPSelfDescribingJson *> *)getDocuments;
 
 /// Name of the first document.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, name)
+- (instancetype)name:(nullable NSString *)value NS_SWIFT_NAME(name(_:));
 /// Description of the first document.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, documentDescription)
+- (instancetype)documentDescription:(nullable NSString *)value NS_SWIFT_NAME(documentDescription(_:));
 /// Other attached documents.
-SP_BUILDER_DECLARE_NULLABLE(NSArray<SPSelfDescribingJson *> *, documents)
+- (instancetype)documents:(nullable NSArray<SPSelfDescribingJson *> *)value NS_SWIFT_NAME(documents(_:));
+
 
 @end
 

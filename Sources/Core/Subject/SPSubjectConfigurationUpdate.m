@@ -23,15 +23,15 @@
 
 @implementation SPSubjectConfigurationUpdate
 
-SP_DIRTY_GETTER(NSString *, userId)
-SP_DIRTY_GETTER(NSString *, networkUserId)
-SP_DIRTY_GETTER(NSString *, domainUserId)
-SP_DIRTY_GETTER(NSString *, useragent)
-SP_DIRTY_GETTER(NSString *, ipAddress)
-SP_DIRTY_GETTER(NSString *, timezone)
-SP_DIRTY_GETTER(NSString *, language)
-SP_DIRTY_GETTER(SPSize *, screenResolution)
-SP_DIRTY_GETTER(SPSize *, screenViewPort)
-SP_DIRTY_GETTER(NSNumber *, colorDepth)
+- (NSString *)userId { return (!self.sourceConfig || self.userIdUpdated) ? super.userId : self.sourceConfig.userId; }
+- (NSString *)networkUserId { return (!self.sourceConfig || self.networkUserIdUpdated) ? super.networkUserId : self.sourceConfig.networkUserId; }
+- (NSString *)domainUserId { return (!self.sourceConfig || self.domainUserIdUpdated) ? super.domainUserId : self.sourceConfig.domainUserId; }
+- (NSString *)useragent { return (!self.sourceConfig || self.useragentUpdated) ? super.useragent : self.sourceConfig.useragent; }
+- (NSString *)ipAddress { return (!self.sourceConfig || self.ipAddressUpdated) ? super.ipAddress : self.sourceConfig.ipAddress; }
+- (NSString *)timezone { return (!self.sourceConfig || self.timezoneUpdated) ? super.timezone : self.sourceConfig.timezone; }
+- (NSString *)language { return (!self.sourceConfig || self.languageUpdated) ? super.language : self.sourceConfig.language; }
+- (SPSize *)screenResolution { return (!self.sourceConfig || self.screenResolutionUpdated) ? super.screenResolution : self.sourceConfig.screenResolution; }
+- (SPSize *)screenViewPort { return (!self.sourceConfig || self.screenViewPortUpdated) ? super.screenViewPort : self.sourceConfig.screenViewPort; }
+- (NSNumber *)colorDepth { return (!self.sourceConfig || self.colorDepthUpdated) ? super.colorDepth : self.sourceConfig.colorDepth; }
 
 @end

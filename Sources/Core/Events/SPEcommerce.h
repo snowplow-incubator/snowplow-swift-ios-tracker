@@ -63,19 +63,19 @@ NS_SWIFT_NAME(Ecommerce)
 - (NSArray<SPEcommerceItem *> *)getItems;
 
 /// Identifies an affiliation.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, affiliation)
+- (instancetype)affiliation:(nullable NSString *)value NS_SWIFT_NAME(affiliation(_:));
 /// Taxes applied to the purchase.
-SP_BUILDER_DECLARE_NULLABLE(NSNumber *, taxValue)
+- (instancetype)taxValue:(nullable NSNumber *)value NS_SWIFT_NAME(taxValue(_:));
 /// Shipping number.
-SP_BUILDER_DECLARE_NULLABLE(NSNumber *, shipping)
+- (instancetype)shipping:(nullable NSNumber *)value NS_SWIFT_NAME(shipping(_:));
 /// City for shipping.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, city)
+- (instancetype)city:(nullable NSString *)value NS_SWIFT_NAME(city(_:));
 /// State for shipping.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, state)
+- (instancetype)state:(nullable NSString *)value NS_SWIFT_NAME(state(_:));
 /// Country for shipping.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, country)
+- (instancetype)country:(nullable NSString *)value NS_SWIFT_NAME(country(_:));
 /// Currency used for totalValue and taxValue.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, currency)
+- (instancetype)currency:(nullable NSString *)value NS_SWIFT_NAME(currency(_:));
 
 @end
 

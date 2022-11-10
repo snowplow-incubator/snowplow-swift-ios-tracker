@@ -43,7 +43,7 @@ extern NSString * const kSPDeepLinkReceivedParamUrl;
 - (instancetype)initWithUrl:(NSString *)url;
 
 /// Referrer URL, source of this deep-link.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, referrer)
+- (instancetype)referrer:(nullable NSString *)value NS_SWIFT_NAME(referrer(_:));
 
 @end
 

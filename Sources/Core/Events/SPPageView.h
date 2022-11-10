@@ -44,9 +44,9 @@ NS_SWIFT_NAME(PageView)
 - (instancetype)initWithPageUrl:(NSString *)pageUrl NS_SWIFT_NAME(init(pageUrl:));
 
 /// Page title.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, pageTitle)
+- (instancetype)pageTitle:(nullable NSString *)value NS_SWIFT_NAME(pageTitle(_:));
 /// Page referrer url.
-SP_BUILDER_DECLARE_NULLABLE(NSString *, referrer)
+- (instancetype)referrer:(nullable NSString *)value NS_SWIFT_NAME(referrer(_:));
 
 @end
 
