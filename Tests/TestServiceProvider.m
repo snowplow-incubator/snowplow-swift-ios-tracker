@@ -21,8 +21,6 @@
 
 #import <XCTest/XCTest.h>
 #import "SPSnowplow.h"
-#import "SPNetworkConfiguration.h"
-#import "SPTrackerConfiguration.h"
 #import "SPSession.h"
 #import "SPMockEventStore.h"
 #import "SPDataPersistence.h"

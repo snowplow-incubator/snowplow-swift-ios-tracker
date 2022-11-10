@@ -50,7 +50,6 @@
 #import "SPLogger.h"
 
 #import "SPSubjectConfiguration.h"
-#import "SPSessionConfiguration.h"
 
 #import "SPServiceProvider.h"
 #import "SPTrackerControllerImpl.h"
@@ -60,6 +59,8 @@
 #import "SPScreenStateMachine.h"
 #import "SPDeepLinkStateMachine.h"
 #import "SPLifecycleStateMachine.h"
+
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 /** A class extension that makes the screen view states mutable internally. */
 @interface SPTracker ()

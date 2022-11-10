@@ -21,11 +21,11 @@
 
 #import <Foundation/Foundation.h>
 #import "SPTrackerController.h"
-#import "SPNetworkConfiguration.h"
-#import "SPTrackerConfiguration.h"
 #import "SPRemoteConfiguration.h"
 #import "SPConfigurationBundle.h"
 #import "SPConfigurationState.h"
+
+@class NetworkConfiguration;
 
 #if SNOWPLOW_TARGET_IOS || SNOWPLOW_TARGET_OSX
 @import WebKit;

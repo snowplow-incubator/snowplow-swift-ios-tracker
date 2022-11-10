@@ -20,8 +20,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SPTrackerConfiguration.h"
-#import "SPNetworkConfiguration.h"
 
 #import "SPSubjectController.h"
 #import "SPSessionController.h"
@@ -33,6 +31,8 @@
 #import "SPEventBase.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@protocol SPTrackerConfigurationProtocol;
 
 NS_SWIFT_NAME(TrackerController)
 @protocol SPTrackerController <SPTrackerConfigurationProtocol>

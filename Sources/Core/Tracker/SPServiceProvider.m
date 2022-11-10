@@ -40,7 +40,6 @@
 #import "SPTrackerConfigurationUpdate.h"
 #import "SPEmitterConfigurationUpdate.h"
 #import "SPSubjectConfigurationUpdate.h"
-#import "SPSessionConfigurationUpdate.h"
 #import "SPGDPRConfigurationUpdate.h"
 
 @interface SPServiceProvider ()

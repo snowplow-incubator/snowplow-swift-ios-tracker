@@ -22,7 +22,6 @@
 #import "SPSessionControllerImpl.h"
 #import "SPSession.h"
 #import "SPLogger.h"
-#import "SPSessionConfigurationUpdate.h"
 
 @implementation SPSessionControllerImpl
 

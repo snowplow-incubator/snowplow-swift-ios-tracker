@@ -20,7 +20,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SPNetworkConfiguration.h"
+#import "SPNetworkConnection.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

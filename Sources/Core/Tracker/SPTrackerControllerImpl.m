@@ -35,7 +35,7 @@
 #import "SPSubject.h"
 #import "SPLogger.h"
 
-#import "SPTrackerConfigurationUpdate.h"
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 @implementation SPTrackerControllerImpl
 

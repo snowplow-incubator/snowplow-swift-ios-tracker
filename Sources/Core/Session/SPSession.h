@@ -22,6 +22,7 @@
 #import <Foundation/Foundation.h>
 #import "SPTracker.h"
 #import "SPSessionState.h"
+#import "OnSessionStateUpdate.h"
 
 NS_SWIFT_NAME(Session)
 @interface SPSession : NSObject

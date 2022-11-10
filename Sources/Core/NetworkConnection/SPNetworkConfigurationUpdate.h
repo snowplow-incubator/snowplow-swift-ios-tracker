@@ -21,7 +21,6 @@
 
 #import <Foundation/Foundation.h>
 #import "SPTrackerConstants.h"
-#import "SPNetworkConfiguration.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

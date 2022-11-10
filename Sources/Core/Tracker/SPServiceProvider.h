@@ -21,9 +21,11 @@
 
 #import <Foundation/Foundation.h>
 #import "SPServiceProviderProtocol.h"
-#import "SPNetworkConfiguration.h"
+#import "SPConfiguration.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class SPNetworkConfiguration;
 
 @interface SPServiceProvider : NSObject <SPServiceProviderProtocol>
 

@@ -8,10 +8,7 @@
 // Configurations
 #import "SPConfiguration.h"
 #import "SPRemoteConfiguration.h"
-#import "SPTrackerConfiguration.h"
-#import "SPNetworkConfiguration.h"
 #import "SPSubjectConfiguration.h"
-#import "SPSessionConfiguration.h"
 #import "SPEmitterConfiguration.h"
 #import "SPGDPRConfiguration.h"
 #import "SPGlobalContextsConfiguration.h"
@@ -72,3 +69,6 @@
 #import "SPTrackerStateSnapshot.h"
 #import "SPState.h"
 #import "SPSessionState.h"
+
+// Private
+#import "OnSessionStateUpdate.h"

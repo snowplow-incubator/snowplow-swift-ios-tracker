@@ -20,12 +20,13 @@
 //
 
 #import "SPConfiguration.h"
-#import "SPNetworkConfiguration.h"
-#import "SPTrackerConfiguration.h"
 #import "SPSubjectConfiguration.h"
-#import "SPSessionConfiguration.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class SPTrackerConfiguration;
+@class SPSessionConfiguration;
+@class SPNetworkConfiguration;
 
 /**
  * This class represents the default configuration applied in place of the remote configuration.

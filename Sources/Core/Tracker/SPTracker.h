@@ -26,7 +26,6 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "SPNetworkConfiguration.h"
 #import "SPGDPRConfiguration.h"
 
 #import "SPTrackerController.h"
