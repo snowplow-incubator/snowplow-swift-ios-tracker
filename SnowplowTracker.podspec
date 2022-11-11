@@ -82,7 +82,8 @@ Pod::Spec.new do |s|
     'Sources/Core/**/SPTrackerStateSnapshot.h',
     'Sources/Core/**/SPState.h',
     'Sources/Core/**/SPSessionState.h',
-    'Sources/Core/**/SPConfigurationState.h'
+    'Sources/Core/**/SPConfigurationState.h',
+    'Sources/Core/**/OnSessionStateUpdate.h'
   ]
 
   s.osx.exclude_files = 'Sources/**/ScreenViewTracking/UIViewController+SPScreenView_SWIZZLE.*'

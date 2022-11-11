@@ -21,13 +21,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, SPLogLevel) {
-    SPLogLevelOff = 0,
-    SPLogLevelError,
-    SPLogLevelDebug,
-    SPLogLevelVerbose,
-} NS_SWIFT_NAME(LogLevel);
-
 /*!
  @brief Logger delegate to implement in oder to receive logs from the tracker.
 */

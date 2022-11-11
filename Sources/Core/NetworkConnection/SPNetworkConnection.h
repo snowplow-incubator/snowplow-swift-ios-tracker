@@ -25,25 +25,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/*!
- @brief An enum for HTTP method types.
- */
-typedef NS_ENUM(NSInteger, SPHttpMethod) {
-    /*! GET request. */
-    SPHttpMethodGet,
-    /*! POST request. */
-    SPHttpMethodPost
-} NS_SWIFT_NAME(HttpMethodOptions);
-
-/*!
- @brief An enum for HTTP security.
- */
-typedef NS_ENUM(NSInteger, SPProtocol) {
-    /*! Use HTTP. */
-    SPProtocolHttp,
-    /*! Use HTTP over TLS. */
-    SPProtocolHttps
-} NS_SWIFT_NAME(ProtocolOptions);
+typedef NS_ENUM(NSInteger, SPHttpMethod);
 
 /**
  * Interface for the component that

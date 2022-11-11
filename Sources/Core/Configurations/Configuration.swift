@@ -1,5 +1,4 @@
-//
-//  SPSubjectConfigurationUpdate.h
+//  SPConfiguration.swift
 //  Snowplow
 //
 //  Copyright (c) 2013-2022 Snowplow Analytics Ltd. All rights reserved.
@@ -19,25 +18,26 @@
 //  License: Apache License Version 2.0
 //
 
-#import "SPSubjectConfiguration.h"
+import Foundation
 
-NS_ASSUME_NONNULL_BEGIN
+@objc(SPConfiguration)
+public class Configuration: NSObject, NSCopying, NSSecureCoding {
+    @objc public class var supportsSecureCoding: Bool {
+        return true
+    }
 
-@interface SPSubjectConfigurationUpdate : SPSubjectConfiguration
+    @objc public convenience init?(dictionary: [String : NSObject]) {
+        self.init()
+    }
 
-@property (nonatomic, nullable) SPSubjectConfiguration *sourceConfig;
+    @objc public func copy(with zone: NSZone? = nil) -> Any {
+        return Configuration()
+    }
 
-@property BOOL userIdUpdated;
-@property BOOL networkUserIdUpdated;
-@property BOOL domainUserIdUpdated;
-@property BOOL useragentUpdated;
-@property BOOL ipAddressUpdated;
-@property BOOL timezoneUpdated;
-@property BOOL languageUpdated;
-@property BOOL screenResolutionUpdated;
-@property BOOL screenViewPortUpdated;
-@property BOOL colorDepthUpdated;
+    @objc public func encode(with coder: NSCoder) {
+    }
 
-@end
-
-NS_ASSUME_NONNULL_END
+    @objc required convenience public init?(coder: NSCoder) {
+        self.init()
+    }
+}

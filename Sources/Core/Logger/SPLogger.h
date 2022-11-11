@@ -29,6 +29,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, SPLogLevel);
+
 NS_SWIFT_NAME(Logger)
 @interface SPLogger : NSObject
 

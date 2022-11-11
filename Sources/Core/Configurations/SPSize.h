@@ -1,5 +1,5 @@
 //
-//  SPConfiguration.h
+//  SPSubjectConfiguration.h
 //  Snowplow
 //
 //  Copyright (c) 2013-2022 Snowplow Analytics Ltd. All rights reserved.
@@ -20,18 +20,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SPTrackerConstants.h"
-
-#ifndef SP_STR_PROP
-    #define SP_STR_PROP(prop) NSStringFromSelector(@selector(prop))
-#endif
 
 NS_ASSUME_NONNULL_BEGIN
 
-NS_SWIFT_NAME(Configuration)
-@interface SPConfiguration : NSObject <NSCopying, NSSecureCoding>
+@interface SPSize : NSObject <NSCoding>
 
-- (instancetype)initWithDictionary:(NSDictionary<NSString *, NSObject *> *)dictionary;
+@property (readonly) NSInteger width;
+@property (readonly) NSInteger height;
+
+- (instancetype) initWithWidth:(NSInteger)width height:(NSInteger)height;
 
 @end
 

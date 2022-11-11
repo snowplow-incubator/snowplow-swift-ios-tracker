@@ -6,13 +6,8 @@
 #import "SPDevicePlatform.h"
 
 // Configurations
-#import "SPConfiguration.h"
-#import "SPRemoteConfiguration.h"
-#import "SPSubjectConfiguration.h"
-#import "SPEmitterConfiguration.h"
-#import "SPGDPRConfiguration.h"
-#import "SPGlobalContextsConfiguration.h"
-#import "SPConfigurationBundle.h"
+#import "OnSessionStateUpdate.h"
+#import "SPSize.h"
 
 // Controllers
 #import "SPTrackerController.h"
@@ -69,6 +64,3 @@
 #import "SPTrackerStateSnapshot.h"
 #import "SPState.h"
 #import "SPSessionState.h"
-
-// Private
-#import "OnSessionStateUpdate.h"

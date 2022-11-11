@@ -1,5 +1,3 @@
-//  Converted to Swift 5.7 by Swiftify v5.7.28606 - https://swiftify.com/
-//
 //  SPNetworkConfiguration.swift
 //  Snowplow
 //
@@ -22,10 +20,28 @@
 
 import Foundation
 
+/// An enum for HTTP method types.
+@objc(SPHttpMethod)
+public enum HttpMethodOptions : Int {
+    /// GET request.
+    case get
+    /// POST request.
+    case post
+}
+
+/// An enum for HTTP security.
+@objc(SPProtocolOptions)
+public enum ProtocolOptions : Int {
+    /// Use HTTP.
+    case http
+    /// Use HTTP over TLS.
+    case https
+}
+
 /// Represents the network communication configuration
 /// allowing the tracker to be able to send events to the Snowplow collector.
-
-class NetworkConfiguration: Configuration {
+@objc(SPNetworkConfiguration)
+public class NetworkConfiguration: Configuration {
     /// URL (without schema/protocol) used to send events to the collector.
     private(set) var endpoint: String?
     /// Method used to send events to the collector.
@@ -33,17 +49,18 @@ class NetworkConfiguration: Configuration {
     /// Protocol used to send events to the collector.
     private(set) var `protocol`: ProtocolOptions?
     /// See `NetworkConfiguration(NetworkConnection)`
-    var networkConnection: NetworkConnection?
+    @objc public var networkConnection: NetworkConnection?
     /// A custom path which will be added to the endpoint URL to specify the
     /// complete URL of the collector when paired with the POST method.
-    var customPostPath: String?
+    @objc public var customPostPath: String?
     ///  Custom headers for http requests.
-    var requestHeaders: [String : String]?
+    @objc public var requestHeaders: [String : String]?
 
     // TODO: add -> @property () NSInteger timeout;
 
     /// Allow endpoint and method only.
-    convenience init?(dictionary: [String : AnyObject]) {
+    @objc
+    public convenience init?(dictionary: [String : NSObject]) {
         if let endpoint = dictionary["endpoint"] as? String,
            let method = dictionary["method"] as? String {
             let httpMethod = (method == "get") ? HttpMethodOptions.get : HttpMethodOptions.post
@@ -58,7 +75,8 @@ class NetworkConfiguration: Configuration {
     ///                 In case the URL doesn't include the schema/protocol, the HTTPS protocol is
     ///                 automatically selected.
     ///   - method: The method used to send the requests (GET or POST).
-    init(endpoint: String, method: HttpMethodOptions) {
+    @objc
+    public init(endpoint: String, method: HttpMethodOptions) {
         super.init()
         let url = URL(string: endpoint)
         if url?.scheme == "https" {
@@ -109,7 +127,7 @@ class NetworkConfiguration: Configuration {
 
     // MARK: - NSCopying
 
-    override func copy(with zone: NSZone? = nil) -> Any {
+    public override func copy(with zone: NSZone? = nil) -> Any {
         var copy: NetworkConfiguration?
         if let networkConnection {
             copy = NetworkConfiguration(networkConnection: networkConnection)
@@ -122,11 +140,7 @@ class NetworkConfiguration: Configuration {
 
     // MARK: - NSSecureCoding
 
-    class override var supportsSecureCoding: Bool {
-        return true
-    }
-
-    override func encode(with coder: NSCoder) {
+    public override func encode(with coder: NSCoder) {
         coder.encode(endpoint, forKey: "endpoint")
         coder.encode(self.protocol?.rawValue, forKey: "protocol")
         coder.encode(method?.rawValue, forKey: "method")

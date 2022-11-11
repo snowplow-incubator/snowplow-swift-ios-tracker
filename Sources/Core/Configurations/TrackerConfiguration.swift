@@ -1,5 +1,3 @@
-//  Converted to Swift 5.7 by Swiftify v5.7.28606 - https://swiftify.com/
-//
 //  SPTrackerConfiguration.swift
 //  Snowplow
 //
@@ -21,6 +19,26 @@
 //
 
 import Foundation
+
+@objc(SPDevicePlatform)
+public enum DevicePlatform : Int {
+    case web = 0
+    case mobile
+    case desktop
+    case serverSideApp
+    case general
+    case connectedTV
+    case gameConsole
+    case internetOfThings
+}
+
+@objc(SPLogLevel)
+public enum LogLevel : Int {
+    case off = 0
+    case error
+    case debug
+    case verbose
+}
 
 @objc(SPTrackerConfigurationProtocol)
 public protocol TrackerConfigurationProtocol: AnyObject {
@@ -105,15 +123,20 @@ public class TrackerConfiguration: Configuration, TrackerConfigurationProtocol {
     /// Decorate the v_tracker field in the tracker protocol.
     /// @note Do not use. Internal use only.
     @objc public var trackerVersionSuffix: String?
-    
+
+    public override init() {
+        super.init()
+    }
+
     @objc
-    convenience override init(dictionary: [String : NSObject]) {
+    public convenience init?(dictionary: [String : NSObject]) {
         self.init()
         if let appId = dictionary["appId"] as? String {
             self.appId = appId
         }
         if let devicePlatform = dictionary["devicePlatform"] as? String {
-            self.devicePlatform = SPStringToDevicePlatform(devicePlatform)
+            let platforms = ["web", "mob", "pc", "srv", "app", "tv", "cnsl", "iot"]
+            self.devicePlatform = DevicePlatform(rawValue: platforms.firstIndex(of: devicePlatform) ?? DevicePlatform.mobile.rawValue) ?? .mobile
         }
         // TODO: Uniform "base64encoding" string on both Android and iOS trackers
         if let base64Encoding = dictionary["base64encoding"] as? Bool {
@@ -160,5 +183,85 @@ public class TrackerConfiguration: Configuration, TrackerConfigurationProtocol {
         if let userAnonymisation = dictionary["userAnonymisation"] as? Bool {
             self.userAnonymisation = userAnonymisation
         }
+    }
+
+    // MARK: - NSCopying
+
+    override public func copy(with zone: NSZone? = nil) -> Any {
+        let copy = TrackerConfiguration()
+        copy.appId = appId
+        copy.devicePlatform = devicePlatform
+        copy.base64Encoding = base64Encoding
+        copy.logLevel = logLevel
+        copy.loggerDelegate = loggerDelegate
+        copy.sessionContext = sessionContext
+        copy.applicationContext = applicationContext
+        copy.platformContext = platformContext
+        copy.geoLocationContext = geoLocationContext
+        copy.deepLinkContext = deepLinkContext
+        copy.screenContext = screenContext
+        copy.screenViewAutotracking = screenViewAutotracking
+        copy.lifecycleAutotracking = lifecycleAutotracking
+        copy.installAutotracking = installAutotracking
+        copy.exceptionAutotracking = exceptionAutotracking
+        copy.diagnosticAutotracking = diagnosticAutotracking
+        copy.trackerVersionSuffix = trackerVersionSuffix
+        copy.userAnonymisation = userAnonymisation
+        return copy
+    }
+
+    // MARK: - NSSecureCoding
+
+    public override func encode(with coder: NSCoder) {
+        coder.encode(appId, forKey: "appId")
+        coder.encode(devicePlatform, forKey: "devicePlatform")
+        coder.encode(base64Encoding, forKey: "base64Encoding")
+        coder.encode(logLevel, forKey: "logLevel")
+        coder.encode(loggerDelegate, forKey: "loggerDelegate")
+        coder.encode(sessionContext, forKey: "sessionContext")
+        coder.encode(applicationContext, forKey: "applicationContext")
+        coder.encode(platformContext, forKey: "platformContext")
+        coder.encode(geoLocationContext, forKey: "geoLocationContext")
+        coder.encode(deepLinkContext, forKey: "deepLinkContext")
+        coder.encode(screenContext, forKey: "screenContext")
+        coder.encode(screenViewAutotracking, forKey: "screenViewAutotracking")
+        coder.encode(lifecycleAutotracking, forKey: "lifecycleAutotracking")
+        coder.encode(installAutotracking, forKey: "installAutotracking")
+        coder.encode(exceptionAutotracking, forKey: "exceptionAutotracking")
+        coder.encode(diagnosticAutotracking, forKey: "diagnosticAutotracking")
+        coder.encode(trackerVersionSuffix, forKey: "trackerVersionSuffix")
+        coder.encode(userAnonymisation, forKey: "userAnonymisation")
+    }
+
+    required init?(coder: NSCoder) {
+        super.init()
+        if let appId = coder.decodeObject(forKey: "appId") as? String {
+            self.appId = appId
+        }
+        if let devicePlatform = DevicePlatform(rawValue: coder.decodeInteger(forKey: "devicePlatform")) {
+            self.devicePlatform = devicePlatform
+        }
+        base64Encoding = coder.decodeBool(forKey: "base64Encoding")
+        if let logLevel = LogLevel(rawValue: coder.decodeInteger(forKey: "logLevel")) {
+            self.logLevel = logLevel
+        }
+        if let loggerDelegate = coder.decodeObject(forKey: "loggerDelegate") as? LoggerDelegate {
+            self.loggerDelegate = loggerDelegate
+        }
+        sessionContext = coder.decodeBool(forKey: "sessionContext")
+        applicationContext = coder.decodeBool(forKey: "applicationContext")
+        platformContext = coder.decodeBool(forKey: "platformContext")
+        geoLocationContext = coder.decodeBool(forKey: "geoLocationContext")
+        deepLinkContext = coder.decodeBool(forKey: "deepLinkContext")
+        screenContext = coder.decodeBool(forKey: "screenContext")
+        screenViewAutotracking = coder.decodeBool(forKey: "screenViewAutotracking")
+        lifecycleAutotracking = coder.decodeBool(forKey: "lifecycleAutotracking")
+        installAutotracking = coder.decodeBool(forKey: "installAutotracking")
+        exceptionAutotracking = coder.decodeBool(forKey: "exceptionAutotracking")
+        diagnosticAutotracking = coder.decodeBool(forKey: "diagnosticAutotracking")
+        if let trackerVersionSuffix = coder.decodeObject(forKey: "trackerVersionSuffix") as? String {
+            self.trackerVersionSuffix = trackerVersionSuffix
+        }
+        userAnonymisation = coder.decodeBool(forKey: "userAnonymisation")
     }
 }

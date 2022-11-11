@@ -148,7 +148,7 @@
  @return App version string.
  */
 + (NSString *) getAppVersion;
- 
+
  /*!
  Returns the app build.
  @return App build string.

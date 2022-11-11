@@ -6,9 +6,10 @@
 //  Copyright © 2022 Snowplow Analytics. All rights reserved.
 //
 
-#ifndef OnSessionStateUpdate_h
-#define OnSessionStateUpdate_h
+#import "SPSessionState.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^OnSessionStateUpdate)(SPSessionState * _Nonnull sessionState);
 
-#endif /* OnSessionStateUpdate_h */
+NS_ASSUME_NONNULL_END

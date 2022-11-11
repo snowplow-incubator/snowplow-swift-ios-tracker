@@ -47,6 +47,8 @@
 
 #endif
 
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
+
 @implementation SPUtilities
 
 + (NSString *) getTimezone {
@@ -117,7 +119,7 @@
 
 + (NSString *)urlEncodeString:(NSString *)string {
     if (!string) {
-        return @"";   
+        return @"";
     }
     NSMutableCharacterSet *allowedCharSet = [NSCharacterSet URLQueryAllowedCharacterSet].mutableCopy;
     [allowedCharSet removeCharactersInString:@"!*'\"();:@&=+$,/?%#[]% "];
@@ -168,7 +170,7 @@
             }
         }
     }
-    
+
     return [[NSDictionary alloc] initWithDictionary:newDictionary copyItems:YES];
 }
 

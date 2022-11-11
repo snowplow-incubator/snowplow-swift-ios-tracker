@@ -60,7 +60,7 @@
         self.sessionIndex = sessionIndex;
         self.userId = userId;
         self.storage = storage;
-        
+
         self.sessionDictionary = [SPSessionState buildSessionDictionaryWithFirstEventId:firstEventId
                                                                     firstEventTimestamp:firstEventTimestamp
                                                                        currentSessionId:currentSessionId
@@ -76,14 +76,14 @@
     if (self = [super init]) {
         self.sessionId = [storedState sp_stringForKey:kSPSessionId defaultValue:nil];
         if (!self.sessionId) return nil;
-        
+
         NSNumber *sessionIndexNumber = [storedState sp_numberForKey:kSPSessionIndex defaultValue:nil];
         if (!sessionIndexNumber) return nil;
         self.sessionIndex = sessionIndexNumber.integerValue;
-        
+
         self.userId = [storedState sp_stringForKey:kSPSessionUserId defaultValue:nil];
         if (!self.userId) return nil;
-        
+
         self.previousSessionId = [storedState sp_stringForKey:kSPSessionPreviousId defaultValue:nil];
 
         // The FirstEventId should be stored in legacy persisted sessions even
@@ -92,9 +92,9 @@
         self.firstEventId = [storedState sp_stringForKey:kSPSessionFirstEventId
                                                        defaultValue:@"00000000-0000-0000-0000-000000000000"];
         self.firstEventTimestamp = [storedState sp_stringForKey:kSPSessionFirstEventTimestamp defaultValue:nil];
-                
+
         self.storage = [storedState sp_stringForKey:kSPSessionStorage defaultValue:@"LOCAL_STORAGE"];
-        
+
         self.sessionDictionary = [SPSessionState buildSessionDictionaryWithFirstEventId:self.firstEventId
                                                                     firstEventTimestamp:self.firstEventTimestamp
                                                                        currentSessionId:self.sessionId

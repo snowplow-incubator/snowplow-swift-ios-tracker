@@ -28,7 +28,6 @@
 #import "SPLogger.h"
 #import "SPServiceProvider.h"
 #import "SPEmitterControllerImpl.h"
-#import "SPEmitterConfigurationUpdate.h"
 #import "SPTrackerController.h"
 #import "SPMockLoggerDelegate.h"
 

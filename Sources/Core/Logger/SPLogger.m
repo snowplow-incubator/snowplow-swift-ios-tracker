@@ -21,6 +21,8 @@
 
 #import "SPLogger.h"
 
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
+
 @interface SPLogger ()
 @property (nonatomic, weak) id<SPLoggerDelegate> delegate;
 @property (nonatomic) SPLogLevel logLevel;
@@ -127,7 +129,7 @@
     } else if ([errorOrException isKindOfClass:NSException.class]) {
         exception = (NSException *)errorOrException;
     }
-    
+
     // Construct userInfo
     NSMutableDictionary<NSString *, NSObject *> *userInfo = [NSMutableDictionary new];
     userInfo[@"tag"] = tag;

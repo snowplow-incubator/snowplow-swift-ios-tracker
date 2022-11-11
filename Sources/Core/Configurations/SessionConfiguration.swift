@@ -1,5 +1,3 @@
-//  Converted to Swift 5.7 by Swiftify v5.7.28606 - https://swiftify.com/
-//
 //  SPSessionConfiguration.swift
 //  Snowplow
 //
@@ -41,7 +39,7 @@ public protocol SessionConfigurationProtocol: AnyObject {
     /// background.
     @objc var backgroundTimeout: Measurement<UnitDuration> { get set }
     /// The callback called everytime the session is updated.
-    @objc var onSessionStateUpdate: OnSessionStateUpdate? { get set }
+    @objc var onSessionStateUpdate: ((_ sessionState: SPSessionState) -> Void)? { get set }
 }
 
 /// This class represents the configuration from of the applications session.
@@ -58,13 +56,14 @@ public protocol SessionConfigurationProtocol: AnyObject {
 public class SessionConfiguration: Configuration, SessionConfigurationProtocol {
     @objc public var backgroundTimeoutInSeconds: Int
     @objc public var foregroundTimeoutInSeconds: Int
-    @objc public var onSessionStateUpdate: OnSessionStateUpdate?
-    
+    @objc public var onSessionStateUpdate: ((_ sessionState: SPSessionState) -> Void)?
+
     convenience override init() {
         self.init(foregroundTimeoutInSeconds: 1800, backgroundTimeoutInSeconds: 1800)
     }
 
-    convenience override init(dictionary: [String : NSObject]) {
+    convenience init?(dictionary: [String : AnyObject]) {
+        self.init()
         let foregroundTimeout = dictionary["foregroundTimeout"] as? Int ?? 1800
         let backgroundTimeout = dictionary["backgroundTimeout"] as? Int ?? 1800
         self.init(foregroundTimeoutInSeconds: foregroundTimeout, backgroundTimeoutInSeconds: backgroundTimeout)
@@ -116,7 +115,7 @@ public class SessionConfiguration: Configuration, SessionConfigurationProtocol {
 
     // MARK: - Builders
 
-    func onSessionStateUpdate(_ value: OnSessionStateUpdate?) -> Self {
+    func onSessionStateUpdate(_ value: ((_ sessionState: SPSessionState) -> Void)?) -> Self {
         onSessionStateUpdate = value
         return self
     }

@@ -1,5 +1,5 @@
 //
-//  SPConfiguration.m
+//  SPSubjectConfiguration.h
 //  Snowplow
 //
 //  Copyright (c) 2013-2022 Snowplow Analytics Ltd. All rights reserved.
@@ -19,27 +19,37 @@
 //  License: Apache License Version 2.0
 //
 
-#import "SPConfiguration.h"
+#import "SPSize.h"
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
-@implementation SPConfiguration
+@interface SPSize ()
 
-+ (BOOL)supportsSecureCoding {
-    return YES;
-}
+@property (readwrite) NSInteger width;
+@property (readwrite) NSInteger height;
 
-- (instancetype)initWithDictionary:(NSDictionary<NSString *,NSObject *> *)dictionary {
-    return [[SPConfiguration alloc] init];
-}
+@end
 
-- (nonnull instancetype)copyWithZone:(nullable NSZone *)zone {
-    return [[SPConfiguration allocWithZone:zone] init];
+@implementation SPSize
+
+- (instancetype) initWithWidth:(NSInteger)width height:(NSInteger)height {
+    if (self = [super init]) {
+        self.width = width;
+        self.height = height;
+    }
+    return self;
 }
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder {
+    [coder encodeInteger:self.width forKey:@"width"];
+    [coder encodeInteger:self.height forKey:@"height"];
 }
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
-    return [[SPConfiguration alloc] init];
+    if (self = [super init]) {
+        self.width = [coder decodeIntegerForKey:@"width"];
+        self.height = [coder decodeIntegerForKey:@"height"];
+    }
+    return self;
 }
 
 @end

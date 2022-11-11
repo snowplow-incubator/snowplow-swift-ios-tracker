@@ -1,5 +1,3 @@
-//  Converted to Swift 5.7 by Swiftify v5.7.28606 - https://swiftify.com/
-//
 //  SPSessionConfigurationUpdate.swift
 //  Snowplow
 //
@@ -28,15 +26,33 @@ public class SessionConfigurationUpdate: SessionConfiguration {
     var backgroundTimeoutInSecondsUpdated = false
     var onSessionStateUpdateUpdated = false
 
-    func foregroundTimeoutInSeconds() -> Int {
-        return ((sourceConfig == nil || foregroundTimeoutInSecondsUpdated) ? super.foregroundTimeoutInSeconds : sourceConfig?.foregroundTimeoutInSeconds) ?? 0
+    @objc public override var foregroundTimeoutInSeconds: Int {
+        get {
+            return ((sourceConfig == nil || foregroundTimeoutInSecondsUpdated) ? super.foregroundTimeoutInSeconds : sourceConfig?.foregroundTimeoutInSeconds) ?? 1800
+        }
+        set {
+            super.foregroundTimeoutInSeconds = newValue
+            foregroundTimeoutInSecondsUpdated = true
+        }
     }
 
-    func backgroundTimeoutInSeconds() -> Int {
-        return ((sourceConfig == nil || backgroundTimeoutInSecondsUpdated) ? super.backgroundTimeoutInSeconds : sourceConfig?.backgroundTimeoutInSeconds) ?? 0
+    @objc public override var backgroundTimeoutInSeconds: Int {
+        get {
+            return ((sourceConfig == nil || backgroundTimeoutInSecondsUpdated) ? super.backgroundTimeoutInSeconds : sourceConfig?.backgroundTimeoutInSeconds) ?? 1800
+        }
+        set {
+            super.backgroundTimeoutInSeconds = newValue
+            backgroundTimeoutInSecondsUpdated = true
+        }
     }
 
-    func onSessionStateUpdate() -> OnSessionStateUpdate {
-        return ((sourceConfig == nil || onSessionStateUpdateUpdated) ? super.onSessionStateUpdate : sourceConfig?.onSessionStateUpdate)!
+    @objc public override var onSessionStateUpdate: ((_ sessionState: SPSessionState) -> Void)? {
+        get {
+            return ((sourceConfig == nil || onSessionStateUpdateUpdated) ? super.onSessionStateUpdate : sourceConfig?.onSessionStateUpdate)
+        }
+        set {
+            super.onSessionStateUpdate = newValue
+            onSessionStateUpdateUpdated = true
+        }
     }
 }

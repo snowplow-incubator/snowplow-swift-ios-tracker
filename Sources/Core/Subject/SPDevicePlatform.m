@@ -21,6 +21,8 @@
 
 #import "SPDevicePlatform.h"
 
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
+
 NSString *SPDevicePlatformToString(SPDevicePlatform devicePlatform) {
     switch (devicePlatform) {
         case SPDevicePlatformWeb: return @"web";

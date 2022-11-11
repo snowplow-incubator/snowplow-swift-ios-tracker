@@ -21,16 +21,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_CLOSED_ENUM(NSUInteger, SPDevicePlatform) {
-    SPDevicePlatformWeb = 0,
-    SPDevicePlatformMobile,
-    SPDevicePlatformDesktop,
-    SPDevicePlatformServerSideApp,
-    SPDevicePlatformGeneral,
-    SPDevicePlatformConnectedTV,
-    SPDevicePlatformGameConsole,
-    SPDevicePlatformInternetOfThings,
-} NS_SWIFT_NAME(DevicePlatform);
+typedef NS_ENUM(NSInteger, SPDevicePlatform);
 
 NSString *SPDevicePlatformToString(SPDevicePlatform devicePlatform);
 SPDevicePlatform SPStringToDevicePlatform(NSString *devicePlatformString);
