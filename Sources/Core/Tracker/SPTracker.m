@@ -50,7 +50,6 @@
 #import "SPLogger.h"
 
 #import "SPServiceProvider.h"
-#import "SPTrackerControllerImpl.h"
 #import "SPEmitterEventProcessing.h"
 
 #import "SPStateManager.h"
@@ -311,6 +310,10 @@ void uncaughtExceptionHandler(NSException *exception) {
     _devicePlatform = devicePlatform;
 }
 
+- (void) setDevicePlatformRawValue:(NSInteger)devicePlatform {
+    [self setDevicePlatform:(SPDevicePlatform)devicePlatform];
+}
+
 - (void)setLogLevel:(SPLogLevel)logLevel {
     [SPLogger setLogLevel:logLevel];
 }
@@ -487,6 +490,10 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (BOOL) getLifecycleEvents {
     return _lifecycleEvents;
+}
+
+- (int) getDevicePlatformRawValue {
+    return (int)_devicePlatform;
 }
 
 - (NSArray<NSString *> *)globalContextTags {

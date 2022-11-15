@@ -21,26 +21,13 @@
 
 #import "SPServiceProvider.h"
 #import "SPDefaultNetworkConnection.h"
-#import "SPGdprContext.h"
 
 #import "SPEmitter.h"
 #import "SPSubject.h"
 #import "SPTracker.h"
 #import "SPSession.h"
 
-#import "SPTrackerControllerImpl.h"
-#import "SPEmitterControllerImpl.h"
-#import "SPNetworkControllerImpl.h"
-#import "SPSubjectControllerImpl.h"
-#import "SPSessionControllerImpl.h"
-#import "SPGlobalContextsControllerImpl.h"
-#import "SPGDPRControllerImpl.h"
-
-#import "SPNetworkConfigurationUpdate.h"
-#import "SPTrackerConfigurationUpdate.h"
-#import "SPEmitterConfigurationUpdate.h"
-#import "SPSubjectConfigurationUpdate.h"
-#import "SPGDPRConfigurationUpdate.h"
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 @interface SPServiceProvider ()
 

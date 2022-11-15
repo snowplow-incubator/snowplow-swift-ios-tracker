@@ -1,5 +1,5 @@
 //
-//  SPEmitterController.h
+//  SPNetworkController.swift
 //  Snowplow
 //
 //  Copyright (c) 2013-2022 Snowplow Analytics Ltd. All rights reserved.
@@ -19,39 +19,17 @@
 //  License: Apache License Version 2.0
 //
 
-#import <Foundation/Foundation.h>
-#import "SPEmitterConfiguration.h"
+import Foundation
 
-NS_ASSUME_NONNULL_BEGIN
-
-NS_SWIFT_NAME(EmitterController)
-@protocol SPEmitterController <SPEmitterConfigurationProtocol>
-
-/**
- * Number of events recorded in the EventStore.
- */
-@property (nonatomic, readonly) NSInteger dbCount;
-
-/**
- * Whether the emitter is currently sending events.
- */
-@property (nonatomic, readonly) BOOL isSending;
-
-- (void)flush;
-
-/**
- * Pause emitting events.
- * Emitting events will be suspended until resumed again.
- * Suitable for low bandwidth situations.
- */
-- (void)pause;
-
-/**
- * Resume emitting events if previously paused.
- * The emitter will resume emitting events again.
- */
-- (void)resume;
-
-@end
-
-NS_ASSUME_NONNULL_END
+@objc(SPNetworkController)
+public protocol NetworkController: AnyObject {
+    /// URL used to send events to the collector.
+    var endpoint: String? { get set }
+    /// Method used to send events to the collector.
+    var method: HttpMethodOptions { get set }
+    /// A custom path which will be added to the endpoint URL to specify the
+    /// complete URL of the collector when paired with the POST method.
+    var customPostPath: String? { get set }
+    /// Custom headers for http requests.
+    var requestHeaders: [String : String]? { get set }
+}

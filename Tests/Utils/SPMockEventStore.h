@@ -20,7 +20,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SPEventStore.h"
 #import "SPPayload.h"
 
 NS_ASSUME_NONNULL_BEGIN

@@ -77,6 +77,14 @@
     [[SPLogger shared] log:SPLogLevelVerbose tag:tag message:message];
 }
 
++ (NSInteger)logLevelRawValue {
+    return (NSInteger)[SPLogger logLevel];
+}
+
++ (void)setLogLevelRawValue:(NSInteger)logLevel {
+    SPLogger.logLevel = (SPLogLevel)logLevel;
+}
+
 #pragma mark - Private methods
 
 + (SPLogger *)shared {

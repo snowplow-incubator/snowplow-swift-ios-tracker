@@ -51,7 +51,7 @@ public protocol EmitterConfigurationProtocol: AnyObject {
     var requestCallback: RequestCallback? { get set }
     ///  Custom retry rules for HTTP status codes returned from the Collector.
     ///  The dictionary is a mapping of integers (status codes) to booleans (true for retry and false for not retry).
-    var customRetryForStatusCodes: [Int : Bool]? { get set }
+    var customRetryForStatusCodes: [NSNumber : NSNumber]? { get set }
     /// Whether to anonymise server-side user identifiers including the `network_userid` and `user_ipaddress`
     var serverAnonymisation: Bool { get set }
 }
@@ -81,7 +81,7 @@ class EmitterConfiguration: Configuration, EmitterConfigurationProtocol {
 
     /// Custom retry rules for HTTP status codes returned from the Collector.
     /// The dictionary is a mapping of integers (status codes) to booleans (true for retry and false for not retry).
-    @objc public var customRetryForStatusCodes: [Int : Bool]?
+    @objc public var customRetryForStatusCodes: [NSNumber : NSNumber]?
 
     /// Whether to anonymise server-side user identifiers including the `network_userid` and `user_ipaddress`
     @objc public var serverAnonymisation: Bool = false
@@ -139,7 +139,7 @@ class EmitterConfiguration: Configuration, EmitterConfigurationProtocol {
         threadPoolSize = coder.decodeInteger(forKey: "threadPoolSize")
         byteLimitGet = coder.decodeInteger(forKey: "byteLimitGet")
         byteLimitPost = coder.decodeInteger(forKey: "byteLimitPost")
-        customRetryForStatusCodes = coder.decodeObject(forKey: "customRetryForStatusCodes") as? [Int : Bool]
+        customRetryForStatusCodes = coder.decodeObject(forKey: "customRetryForStatusCodes") as? [NSNumber : NSNumber]
         serverAnonymisation = coder.decodeBool(forKey: "serverAnonymisation")
     }
 }

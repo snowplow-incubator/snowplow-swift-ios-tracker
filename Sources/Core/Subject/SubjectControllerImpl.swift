@@ -27,116 +27,119 @@ public class SubjectControllerImpl: Controller, SubjectController {
 
     public var userId: String? {
         get {
-            return subject.userId
+            return subject?.userId
         }
         set {
             dirtyConfig.userId = newValue
             dirtyConfig.userIdUpdated = true
-            subject.userId = newValue
+            subject?.userId = newValue
         }
     }
 
     public var networkUserId: String? {
         get {
-            return subject.networkUserId
+            return subject?.networkUserId
         }
         set {
             dirtyConfig.networkUserId = newValue
             dirtyConfig.networkUserIdUpdated = true
-            subject.networkUserId = newValue
+            subject?.networkUserId = newValue
         }
     }
 
     public var domainUserId: String? {
         get {
-            return subject.domainUserId
+            return subject?.domainUserId
         }
         set {
             dirtyConfig.domainUserId = newValue
             dirtyConfig.domainUserIdUpdated = true
-            subject.domainUserId = newValue
+            subject?.domainUserId = newValue
         }
     }
 
     public var useragent: String? {
         get {
-            return subject.useragent
+            return subject?.useragent
         }
         set {
             dirtyConfig.useragent = newValue
             dirtyConfig.useragentUpdated = true
-            subject.useragent = newValue
+            subject?.useragent = newValue
         }
     }
 
     public var ipAddress: String? {
         get {
-            return subject.ipAddress
+            return subject?.ipAddress
         }
         set {
             dirtyConfig.ipAddress = newValue
             dirtyConfig.ipAddressUpdated = true
-            subject.ipAddress = newValue
+            subject?.ipAddress = newValue
         }
     }
 
     public var timezone: String? {
         get {
-            return subject.timezone
+            return subject?.timezone
         }
         set {
             dirtyConfig.timezone = newValue
             dirtyConfig.timezoneUpdated = true
-            subject.timezone = newValue
+            subject?.timezone = newValue
         }
     }
 
     public var language: String? {
         get {
-            return subject.language
+            return subject?.language
         }
         set {
             dirtyConfig.language = newValue
             dirtyConfig.languageUpdated = true
-            subject.language = newValue
+            subject?.language = newValue
         }
     }
 
     public var screenResolution: SPSize? {
         get {
-            return subject.screenResolution
+            return subject?.screenResolution
         }
         set {
             dirtyConfig.screenResolution = newValue
             dirtyConfig.screenResolutionUpdated = true
             if let size = newValue {
-                subject.setResolutionWithWidth(size.width, andHeight: size.height)
+                subject?.setResolutionWithWidth(size.width, andHeight: size.height)
             }
         }
     }
 
     public var screenViewPort: SPSize? {
         get {
-            return subject.screenViewPort
+            return subject?.screenViewPort
         }
         set {
             dirtyConfig.screenViewPort = newValue
             dirtyConfig.screenViewPortUpdated = true
             if let size = newValue {
-                subject.setViewPortWithWidth(size.width, andHeight: size.height)
+                subject?.setViewPortWithWidth(size.width, andHeight: size.height)
             }
         }
     }
 
     public var colorDepth: NSNumber? {
         get {
-            return NSNumber(value: subject.colorDepth)
+            if let subject = subject {
+                return NSNumber(value: subject.colorDepth)
+            }
+            return nil
         }
         set {
             dirtyConfig.colorDepth = newValue
             dirtyConfig.colorDepthUpdated = true
             if let depth = newValue?.intValue {
-                subject.colorDepth = depth
+                subject?.colorDepth = depth
             }
         }
     }
@@ -145,93 +148,93 @@ public class SubjectControllerImpl: Controller, SubjectController {
 
     public var geoLatitude: NSNumber? {
         get {
-            return subject.geoLatitude()
+            return subject?.geoLatitude()
         }
         set {
             if let latitude = newValue?.floatValue {
-                subject.setGeoLatitude(latitude)
+                subject?.setGeoLatitude(latitude)
             }
         }
     }
 
     public var geoLongitude: NSNumber? {
         get {
-            return subject.geoLongitude()
+            return subject?.geoLongitude()
         }
         set {
             if let longitude = newValue?.floatValue {
-                subject.setGeoLongitude(longitude)
+                subject?.setGeoLongitude(longitude)
             }
         }
     }
 
     public var geoLatitudeLongitudeAccuracy: NSNumber? {
         get {
-            return subject.geoLatitudeLongitudeAccuracy()
+            return subject?.geoLatitudeLongitudeAccuracy()
         }
         set {
             if let accuracy = newValue?.floatValue {
-                subject.setGeoLatitudeLongitudeAccuracy(accuracy)
+                subject?.setGeoLatitudeLongitudeAccuracy(accuracy)
             }
         }
     }
 
     public var geoAltitude: NSNumber? {
         get {
-            return subject.geoAltitude()
+            return subject?.geoAltitude()
         }
         set {
             if let altitude = newValue?.floatValue {
-                subject.setGeoAltitude(altitude)
+                subject?.setGeoAltitude(altitude)
             }
         }
     }
 
     public var geoAltitudeAccuracy: NSNumber? {
         get {
-            return subject.geoAltitudeAccuracy()
+            return subject?.geoAltitudeAccuracy()
         }
         set {
             if let accuracy = newValue?.floatValue {
-                subject.setGeoAltitudeAccuracy(accuracy)
+                subject?.setGeoAltitudeAccuracy(accuracy)
             }
         }
     }
 
     public var geoSpeed: NSNumber? {
         get {
-            return subject.geoSpeed()
+            return subject?.geoSpeed()
         }
         set {
             if let geoSpeed = newValue?.floatValue {
-                subject.setGeoSpeed(geoSpeed)
+                subject?.setGeoSpeed(geoSpeed)
             }
         }
     }
 
     public var geoBearing: NSNumber? {
         get {
-            return subject.geoBearing()
+            return subject?.geoBearing()
         }
         set {
             if let geoBearing = newValue?.floatValue {
-                subject.setGeoBearing(geoBearing)
+                subject?.setGeoBearing(geoBearing)
             }
         }
     }
 
     public var geoTimestamp: NSNumber? {
         get {
-            return subject.geoTimestamp()
+            return subject?.geoTimestamp()
         }
         set {
-            subject.setGeoTimestamp(newValue)
+            subject?.setGeoTimestamp(newValue)
         }
     }
 
     // MARK: - Private methods
 
-    private var subject: Subject {
+    private var subject: Subject? {
         get {
             return serviceProvider.tracker().subject
         }

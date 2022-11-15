@@ -10,11 +10,6 @@
 #import "SPSize.h"
 
 // Controllers
-#import "SPTrackerController.h"
-#import "SPSessionController.h"
-#import "SPNetworkController.h"
-#import "SPEmitterController.h"
-#import "SPGlobalContextsController.h"
 
 // NetworkConnection
 #import "SPNetworkConnection.h"
@@ -67,3 +62,6 @@
 #import "SPServiceProviderProtocol.h"
 #import "SPTracker.h"
 #import "SPSubject.h"
+#import "SPSession.h"
+#import "SPLogger.h"
+#import "SPEmitter.h"

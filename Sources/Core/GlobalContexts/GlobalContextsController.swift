@@ -1,5 +1,5 @@
 //
-//  SPNetworkController.h
+//  SPGlobalContextsController.swift
 //  Snowplow
 //
 //  Copyright (c) 2013-2022 Snowplow Analytics Ltd. All rights reserved.
@@ -19,34 +19,9 @@
 //  License: Apache License Version 2.0
 //
 
-#import <Foundation/Foundation.h>
-#import "SPNetworkConnection.h"
+import Foundation
 
-NS_ASSUME_NONNULL_BEGIN
-
-NS_SWIFT_NAME(NetworkController)
-@protocol SPNetworkController
-
-/**
- * URL used to send events to the collector.
- */
-@property (nonatomic, nullable) NSString *endpoint;
-/**
- * Method used to send events to the collector.
- */
-@property (nonatomic) SPHttpMethod method;
-
-/**
- * A custom path which will be added to the endpoint URL to specify the
- * complete URL of the collector when paired with the POST method.
- */
-@property (nonatomic, nullable) NSString *customPostPath;
-
-/**
- * Custom headers for http requests.
- */
-@property (nonatomic, nullable) NSDictionary<NSString *, NSString *> *requestHeaders;
-
-@end
-
-NS_ASSUME_NONNULL_END
+@objc(SPGlobalContextsController)
+public protocol GlobalContextsController: GlobalContextsConfigurationProtocol {
+    var tags: [String] { get }
+}

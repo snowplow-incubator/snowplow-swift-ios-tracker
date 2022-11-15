@@ -24,7 +24,6 @@
 #import "SPSQLiteEventStore.h"
 #import "SPMemoryEventStore.h"
 #import "SPDefaultNetworkConnection.h"
-#import "SPEventStore.h"
 #import "SPUtilities.h"
 #import "SPPayload.h"
 #import "SPSelfDescribingJson.h"
@@ -461,6 +460,22 @@ const NSUInteger POST_WRAPPER_BYTES = 88;
 
 - (void) dealloc {
     [self pauseTimer];
+}
+
+- (void)setBufferOptionRawValue:(NSInteger)bufferOption {
+    _bufferOption = (SPBufferOption)bufferOption;
+}
+
+- (NSInteger)getBufferOptionRawValue {
+    return (NSInteger)_bufferOption;
+}
+
+- (void)setHttpMethodRawValue:(NSInteger)method {
+    _httpMethod = (SPHttpMethod)method;
+}
+
+- (NSInteger)getHttpMethodRawValue {
+    return (NSInteger)_httpMethod;
 }
 
 @end

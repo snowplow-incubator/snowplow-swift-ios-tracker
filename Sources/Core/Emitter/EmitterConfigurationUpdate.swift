@@ -102,7 +102,7 @@ class EmitterConfigurationUpdate: EmitterConfiguration {
         }
     }
 
-    @objc public override var customRetryForStatusCodes: [Int : Bool]? {
+    @objc public override var customRetryForStatusCodes: [NSNumber : NSNumber]? {
         get {
             return ((sourceConfig == nil || customRetryForStatusCodesUpdated) ? super.customRetryForStatusCodes : sourceConfig?.customRetryForStatusCodes)
         }

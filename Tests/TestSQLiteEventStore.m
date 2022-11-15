@@ -20,7 +20,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SPSQLiteEventStore.h"
 #import "SPPayload.h"
 
 @interface TestSQLiteEventStore : XCTestCase

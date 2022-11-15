@@ -1,5 +1,5 @@
 //
-//  SPEmitterControllerImpl.h
+//  SPEmitterController.swift
 //  Snowplow
 //
 //  Copyright (c) 2013-2022 Snowplow Analytics Ltd. All rights reserved.
@@ -19,15 +19,20 @@
 //  License: Apache License Version 2.0
 //
 
-#import <Foundation/Foundation.h>
-#import "SPEmitterController.h"
-#import "SPController.h"
+import Foundation
 
-NS_ASSUME_NONNULL_BEGIN
-
-NS_SWIFT_NAME(EmitterControllerImpl)
-@interface SPEmitterControllerImpl : SPController <SPEmitterController>
-
-@end
-
-NS_ASSUME_NONNULL_END
+@objc(SPEmitterController)
+public protocol EmitterController: EmitterConfigurationProtocol {
+    /// Number of events recorded in the EventStore.
+    var dbCount: Int { get }
+    /// Whether the emitter is currently sending events.
+    var isSending: Bool { get }
+    func flush()
+    /// Pause emitting events.
+    /// Emitting events will be suspended until resumed again.
+    /// Suitable for low bandwidth situations.
+    func pause()
+    /// Resume emitting events if previously paused.
+    /// The emitter will resume emitting events again.
+    func resume()
+}

@@ -20,7 +20,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SPMemoryEventStore.h"
 #import "SPPayload.h"
 
 @interface TestMemoryEventStore : XCTestCase

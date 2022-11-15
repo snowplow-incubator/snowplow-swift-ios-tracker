@@ -21,8 +21,8 @@
 
 #import <Foundation/Foundation.h>
 #import "SPNetworkConnection.h"
-#import "SPEventStore.h"
 #import "SPEmitterEventProcessing.h"
+#import "SPEventStore.h"
 
 @protocol SPRequestCallback;
 @class SPPayload;
@@ -217,5 +217,13 @@ NS_SWIFT_NAME(Emitter)
  @brief Returns whether the emitter is currently sending.
  */
 - (BOOL) getSendingStatus;
+
+- (NSInteger)getBufferOptionRawValue;
+
+- (void)setBufferOptionRawValue:(NSInteger)bufferOption;
+
+- (NSInteger)getHttpMethodRawValue;
+
+- (void)setHttpMethodRawValue:(NSInteger)method;
 
 @end

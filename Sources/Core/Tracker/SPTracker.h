@@ -27,8 +27,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "SPTrackerController.h"
-#import "SPSessionController.h"
 
 #import "SPEmitterEventProcessing.h"
 
@@ -115,6 +113,12 @@ NS_SWIFT_NAME(TrackerBuilder)
  @param devicePlatform The SPDevicePlatform enum indicating the current platform.
  */
 - (void) setDevicePlatform:(SPDevicePlatform)devicePlatform;
+
+/*!
+ @brief Tracker builder method to set the device platform the tracker is running on
+ @param devicePlatform The SPDevicePlatform enum indicating the current platform.
+ */
+- (void) setDevicePlatformRawValue:(NSInteger)devicePlatform;
 
 /*!
  @brief Tracker builder method to set the log level desired for logging.
@@ -230,9 +234,9 @@ NS_SWIFT_NAME(Tracker)
 /*! @brief The emitter used to send events. */
 @property (readonly, nonatomic, strong) SPEmitter * emitter;
 /*! @brief The subject used to represent the current user and persist user information. */
-@property (readonly, nonatomic, strong) SPSubject * subject;
+@property (readonly, nonatomic, strong, nullable) SPSubject * subject;
 /*! @brief The object used for sessionization, i.e. it characterizes user activity. */
-@property (readonly, nonatomic, strong) SPSession *session;
+@property (readonly, nonatomic, strong, nullable) SPSession *session;
 /*! @brief A unique identifier for an application. */
 @property (readonly, nonatomic, strong) NSString * appId;
 /*! @brief The identifier for the current tracker. */
@@ -303,6 +307,8 @@ NS_SWIFT_NAME(Tracker)
  @return Whether background and foreground events are sent.
  */
 - (BOOL) getLifecycleEvents;
+
+- (NSInteger) getDevicePlatformRawValue;
 
 /*!
  Add new generator for global contexts associated with a string tag.

@@ -42,6 +42,9 @@ NS_SWIFT_NAME(Logger)
 + (void)debug:(NSString *)tag message:(NSString *)message;
 + (void)verbose:(NSString *)tag message:(NSString *)message;
 
++ (NSInteger)logLevelRawValue;
++ (void)setLogLevelRawValue:(NSInteger)logLevel;
+
 @end
 
 NS_ASSUME_NONNULL_END
