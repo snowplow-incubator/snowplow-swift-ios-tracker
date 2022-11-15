@@ -96,7 +96,7 @@ static NSString * const _queryDeleteAll   = @"DELETE FROM 'events'";
         // Create snowplow subdirectory if it doesn't exist
         NSString *snowplowDirPath = [libraryPath stringByAppendingPathComponent:@"snowplow"];
         [[NSFileManager defaultManager] createDirectoryAtPath:snowplowDirPath withIntermediateDirectories:YES attributes:nil error:nil];
-        
+
         // Create path for the database
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[^a-zA-Z0-9_]+" options:0 error:nil];
         NSString *sqliteSuffix = [regex stringByReplacingMatchesInString:namespace options:0 range:NSMakeRange(0, namespace.length) withTemplate:@"-"];

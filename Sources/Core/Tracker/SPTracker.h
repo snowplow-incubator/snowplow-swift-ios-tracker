@@ -26,7 +26,6 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "SPGDPRConfiguration.h"
 
 #import "SPTrackerController.h"
 #import "SPSessionController.h"
@@ -36,8 +35,6 @@
 #import "SPDevicePlatform.h"
 #import "SPEventBase.h"
 #import "SPLoggerDelegate.h"
-#import "SPGdprContext.h"
-
 
 void uncaughtExceptionHandler(NSException * _Nullable exception);
 
@@ -61,8 +58,12 @@ void uncaughtExceptionHandler(NSException * _Nullable exception);
 @class SNOWError;
 
 @class SPGlobalContext;
+@class SPGdprContext;
 
 NS_ASSUME_NONNULL_BEGIN
+
+typedef NS_ENUM(NSInteger, SPLogLevel);
+typedef NS_ENUM(NSInteger, SPGdprProcessingBasis);
 
 /*!
  @brief The builder for SPTracker.
@@ -206,7 +207,7 @@ NS_SWIFT_NAME(TrackerBuilder)
  @param documentVersion Version of the document.
  @param documentDescription Description of the document.
  */
-- (void)setGdprContextWithBasis:(SPGdprProcessingBasis)basisForProcessing
+- (void)setGdprContextWithBasis:(int)basisForProcessing
                      documentId:(nullable NSString *)documentId
                 documentVersion:(nullable NSString *)documentVersion
             documentDescription:(nullable NSString *)documentDescription;
@@ -223,6 +224,7 @@ NS_SWIFT_NAME(TrackerBuilder)
 /*!
  This class is used for tracking events, and delegates them to other classes responsible for sending, storage, etc.
  */
+NS_SWIFT_NAME(Tracker)
 @interface SPTracker : NSObject <SPTrackerBuilder>
 
 /*! @brief The emitter used to send events. */
@@ -326,7 +328,7 @@ NS_SWIFT_NAME(TrackerBuilder)
  @param documentVersion Version of the document.
  @param documentDescription Description of the document.
  */
-- (void)enableGdprContextWithBasis:(SPGdprProcessingBasis)basisForProcessing
+- (void)enableGdprContextWithBasis:(int)basisForProcessing
                         documentId:(nullable NSString *)documentId
                    documentVersion:(nullable NSString *)documentVersion
                documentDescription:(nullable NSString *)documentDescription;

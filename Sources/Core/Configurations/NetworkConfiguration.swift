@@ -30,7 +30,7 @@ public enum HttpMethodOptions : Int {
 }
 
 /// An enum for HTTP security.
-@objc(SPProtocolOptions)
+@objc(SPProtocol)
 public enum ProtocolOptions : Int {
     /// Use HTTP.
     case http

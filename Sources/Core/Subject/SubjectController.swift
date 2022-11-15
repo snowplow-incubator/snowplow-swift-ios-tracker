@@ -1,5 +1,5 @@
 //
-//  SPSubjectControllerImpl.h
+//  SPSubjectController.swift
 //  Snowplow
 //
 //  Copyright (c) 2013-2022 Snowplow Analytics Ltd. All rights reserved.
@@ -19,14 +19,8 @@
 //  License: Apache License Version 2.0
 //
 
-#import <Foundation/Foundation.h>
-#import "SPSubjectController.h"
-#import "SPController.h"
+import Foundation
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface SPSubjectControllerImpl : SPController <SPSubjectController>
-
-@end
-
-NS_ASSUME_NONNULL_END
+@objc(SPSubjectController)
+public protocol SubjectController: SubjectConfigurationProtocol {
+}

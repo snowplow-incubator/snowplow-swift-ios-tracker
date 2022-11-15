@@ -20,9 +20,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SPSubjectConfiguration.h"
+#import "SPSize.h"
 
 @class SPPayload;
+@class SPSubjectConfiguration;
 
 /*!
  @class SPSubject

@@ -22,11 +22,13 @@
 #import <Foundation/Foundation.h>
 #import "SPNetworkConnection.h"
 #import "SPEventStore.h"
-#import "SPEmitterConfiguration.h"
 #import "SPEmitterEventProcessing.h"
 
 @protocol SPRequestCallback;
 @class SPPayload;
+
+typedef NS_ENUM(NSInteger, SPProtocol);
+typedef NS_ENUM(NSInteger, SPBufferOption);
 
 /*!
  @brief The builder for SPEmitter.
@@ -122,7 +124,7 @@ NS_SWIFT_NAME(EmitterBuilder)
 
 /**
  @brief Set a custom retry rules for HTTP status codes received in emit responses from the Collector.
- 
+
  @param customRetryForStatusCodes Mapping of integers (status codes) to booleans (true for retry and false for not retry)
  */
 - (void) setCustomRetryForStatusCodes:(NSDictionary<NSNumber *, NSNumber *> *)customRetryForStatusCodes;

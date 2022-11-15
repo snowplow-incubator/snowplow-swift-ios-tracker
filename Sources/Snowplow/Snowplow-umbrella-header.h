@@ -12,10 +12,8 @@
 // Controllers
 #import "SPTrackerController.h"
 #import "SPSessionController.h"
-#import "SPSubjectController.h"
 #import "SPNetworkController.h"
 #import "SPEmitterController.h"
-#import "SPGDPRController.h"
 #import "SPGlobalContextsController.h"
 
 // NetworkConnection
@@ -64,3 +62,8 @@
 #import "SPTrackerStateSnapshot.h"
 #import "SPState.h"
 #import "SPSessionState.h"
+
+// Private
+#import "SPServiceProviderProtocol.h"
+#import "SPTracker.h"
+#import "SPSubject.h"

@@ -20,9 +20,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SPConfiguration.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class SPConfiguration;
 
 @interface NSDictionary (SP_TypeMethods)
 

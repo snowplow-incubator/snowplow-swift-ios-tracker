@@ -55,7 +55,7 @@
  As stated in the header file, this only works if you have the AdSupport library in your project.
  If you have it and you want to use IDFA, add the compiler flag <code>SNOWPLOW_IDFA_ENABLED</code> to your build settings.
  If you haven't AdSupport framework in your project or SNOWPLOW_IDFA_ENABLED it's not set, it just compiles returning a nil advertisingIdentifier.
- 
+
  Note that `advertisingIdentifier` returns a sequence of 0s when used in the simulator.
  Use a real device if you want a proper IDFA.
  */
@@ -76,7 +76,7 @@
     }
 
     id identifierManager = ((id (*)(id, SEL))[identifierManagerClass methodForSelector:sharedManagerSelector])(identifierManagerClass, sharedManagerSelector);
-    
+
     if (@available(iOS 14.0, *)) {
         errorMsg = @"ATTrackingManager not found. Please, add the AppTrackingTransparency.framework if you want to use it.";
         Class trackingManagerClass = NSClassFromString(@"ATTrackingManager");
@@ -84,16 +84,16 @@
             SPLogError(errorMsg);
             return nil;
         }
-        
+
         SEL trackingStatusSelector = NSSelectorFromString(@"trackingAuthorizationStatus");
         if (![trackingManagerClass respondsToSelector:trackingStatusSelector]) {
             SPLogError(errorMsg);
             return nil;
         }
-        
+
         //notDetermined = 0, restricted = 1, denied = 2, authorized = 3
         NSInteger authorizationStatus = ((NSInteger (*)(id, SEL))[trackingManagerClass methodForSelector:trackingStatusSelector])(trackingManagerClass, trackingStatusSelector);
-        
+
         if (authorizationStatus != 3)  {
             SPLogDebug(@"The user didn't let tracking of IDFA. Authorization status is: %d", authorizationStatus);
             return nil;
@@ -104,14 +104,14 @@
             SPLogError(errorMsg);
             return nil;
         }
-        
+
         BOOL isAdvertisingTrackingEnabled = ((BOOL (*)(id, SEL))[identifierManager methodForSelector:isAdvertisingTrackingEnabledSelector])(identifierManager, isAdvertisingTrackingEnabledSelector);
         if (!isAdvertisingTrackingEnabled) {
             SPLogError(@"The user didn't let tracking of IDFA.");
             return nil;
         }
     }
-    
+
     SEL advertisingIdentifierSelector = NSSelectorFromString(@"advertisingIdentifier");
     if (![identifierManager respondsToSelector:advertisingIdentifierSelector]) {
         SPLogError(@"ASIdentifierManager doesn't respond to selector `advertisingIdentifier`.");

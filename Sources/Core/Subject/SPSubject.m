@@ -26,6 +26,8 @@
 #import "SPLogger.h"
 #import "SPPlatformContext.h"
 
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
+
 
 @implementation SPSubject {
     SPPayload *           _standardDict;

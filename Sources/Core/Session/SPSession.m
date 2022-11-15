@@ -78,7 +78,7 @@
         if (!_state) {
             SPLogTrack(nil, @"No previous session info available");
         }
-        
+
         // Start session check
         self.lastSessionCheck = [SPUtilities getTimestamp];
         [self startChecker];
@@ -135,13 +135,13 @@
             }
             self.lastSessionCheck = [SPUtilities getTimestamp];
         }
-        
+
         _eventIndex += 1;
-        
+
         context = _state.sessionContext;
         context[kSPSessionEventIndex] = @(_eventIndex);
     }
-    
+
     if (userAnonymisation) { // mask the user identifier
         NSMutableDictionary *copy = [[NSMutableDictionary alloc] initWithDictionary:context];
         [copy setValue:kSPSessionAnonymousUserId forKey:kSPSessionUserId];

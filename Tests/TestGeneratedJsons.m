@@ -27,7 +27,6 @@
 #import "SPTracker.h"
 #import "SPSession.h"
 #import "SPSubject.h"
-#import "SPGdprContext.h"
 #import "SPPayload.h"
 #import "SPEvent.h"
 #import "SPSelfDescribingJson.h"

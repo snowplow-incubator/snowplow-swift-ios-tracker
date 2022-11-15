@@ -23,6 +23,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class SPPayload;
+
 NS_SWIFT_NAME(EmitterEventProcessing)
 @protocol SPEmitterEventProcessing
 

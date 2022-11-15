@@ -49,8 +49,6 @@
 #import "SPTrackerError.h"
 #import "SPLogger.h"
 
-#import "SPSubjectConfiguration.h"
-
 #import "SPServiceProvider.h"
 #import "SPTrackerControllerImpl.h"
 #import "SPEmitterEventProcessing.h"
@@ -86,18 +84,18 @@ void uncaughtExceptionHandler(NSException *exception) {
         if (message == nil || message.length == 0) {
             return;
         }
-        
+
         // Construct userInfo
         NSMutableDictionary<NSString *, NSObject *> *userInfo = [NSMutableDictionary new];
         userInfo[@"message"] = message;
         userInfo[@"stacktrace"] = stacktrace;
-        
+
         // Send notification to tracker
         [[NSNotificationCenter defaultCenter]
          postNotificationName:@"SPCrashReporting"
          object:nil
          userInfo:userInfo];
-        
+
         [NSThread sleepForTimeInterval:2.0f];
     });
 }
@@ -223,21 +221,21 @@ void uncaughtExceptionHandler(NSException *exception) {
                                              selector:@selector(receiveScreenViewNotification:)
                                                  name:@"SPScreenViewDidAppear"
                                                object:nil];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveDiagnosticNotification:)
                                                  name:@"SPTrackerDiagnostic"
                                                object:nil];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveCrashReportingNotification:)
                                                  name:@"SPCrashReporting"
                                                object:nil];
-    
+
     if (_exceptionEvents) {
         NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     }
-    
+
     _builderFinished = YES;
 }
 
@@ -433,23 +431,23 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 #pragma mark - GDPR methods
 
-- (void)setGdprContextWithBasis:(SPGdprProcessingBasis)basisForProcessing
+- (void)setGdprContextWithBasis:(int)basisForProcessing
                      documentId:(NSString *)documentId
                 documentVersion:(NSString *)documentVersion
             documentDescription:(NSString *)documentDescription
 {
-    self.gdpr = [[SPGdprContext alloc] initWithBasis:basisForProcessing
+    self.gdpr = [[SPGdprContext alloc] initWithBasis:(SPGdprProcessingBasis)basisForProcessing
                                           documentId:documentId
                                      documentVersion:documentVersion
                                  documentDescription:documentDescription];
 }
 
-- (void)enableGdprContextWithBasis:(SPGdprProcessingBasis)basisForProcessing
+- (void)enableGdprContextWithBasis:(int)basisForProcessing
                         documentId:(NSString *)documentId
                    documentVersion:(NSString *)documentVersion
                documentDescription:(NSString *)documentDescription
 {
-    self.gdpr = [[SPGdprContext alloc] initWithBasis:basisForProcessing
+    self.gdpr = [[SPGdprContext alloc] initWithBasis:(SPGdprProcessingBasis)basisForProcessing
                                           documentId:documentId
                                      documentVersion:documentVersion
                                  documentDescription:documentDescription];
@@ -529,8 +527,8 @@ void uncaughtExceptionHandler(NSException *exception) {
     NSDictionary *userInfo = notification.userInfo;
     NSString *message = userInfo[@"message"];
     NSString *stacktrace = userInfo[@"stacktrace"];
-    
-    
+
+
     if (_exceptionEvents) {
         SNOWError *event = [[[SNOWError alloc] initWithMessage:message] stackTrace:stacktrace];
         [self track:event];
@@ -683,7 +681,7 @@ void uncaughtExceptionHandler(NSException *exception) {
             [contexts addObject:contextJson];
         }
     }
-    
+
     if (isService) {
         return;
     }
@@ -697,7 +695,7 @@ void uncaughtExceptionHandler(NSException *exception) {
             SPLogTrack(nil, @"Unable to get session context for eventId: %@", eventId);
         }
     }
-    
+
     // Add GDPR context
     if (self.gdpr) {
         SPSelfDescribingJson *gdprContext = self.gdpr.context;

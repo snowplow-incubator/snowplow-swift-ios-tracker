@@ -24,6 +24,8 @@
 #import "SPUtilities.h"
 #import "SPLogger.h"
 
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
+
 @implementation SPDefaultNetworkConnection {
     SPHttpMethod _httpMethod;
     SPProtocol _protocol;
@@ -77,7 +79,7 @@
         _protocol = SPProtocolHttps;
         endpoint = [NSString stringWithFormat:@"https://%@", _urlString];
     }
-    
+
     // Configure
     NSString *urlPrefix = _protocol == SPProtocolHttp ? @"http://" : @"https://";
     NSString *urlSuffix = _httpMethod == SPHttpMethodGet ? kSPEndpointGet : kSPEndpointPost;
@@ -89,7 +91,7 @@
     endpoint = [endpoint stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"/"]];
 
     _urlEndpoint = [[NSURL URLWithString:endpoint] URLByAppendingPathComponent:urlSuffix];
-    
+
     // Log
     if (_urlEndpoint.scheme && _urlEndpoint.host) {
         SPLogDebug(@"Emitter URL created successfully '%@'", _urlEndpoint);
@@ -100,7 +102,7 @@
     [userDefaults setObject:endpoint forKey:kSPErrorTrackerUrl];
     [userDefaults setObject:urlSuffix forKey:kSPErrorTrackerProtocol];
     [userDefaults setObject:urlPrefix forKey:kSPErrorTrackerMethod];
-    
+
     _builderFinished = YES;
 }
 
@@ -159,7 +161,7 @@
 
 - (NSArray<SPRequestResult *> *)sendRequests:(NSArray<SPRequest *> *)requests {
     NSMutableArray<SPRequestResult *> *results = [NSMutableArray new];
-    
+
     for (SPRequest *request in requests) {
         NSMutableURLRequest *urlRequest = _httpMethod == SPHttpMethodGet
         ? [self buildGetRequest:request]
@@ -170,17 +172,17 @@
             __block NSHTTPURLResponse *httpResponse = nil;
             __block NSError *connectionError = nil;
             dispatch_semaphore_t sem;
-            
+
             sem = dispatch_semaphore_create(0);
-            
+
             [[[NSURLSession sharedSession] dataTaskWithRequest:urlRequest
                                              completionHandler:^(NSData *data, NSURLResponse *urlResponse, NSError *error) {
-                
+
                 connectionError = error;
                 httpResponse = (NSHTTPURLResponse*)urlResponse;
                 dispatch_semaphore_signal(sem);
             }] resume];
-            
+
             dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
             SPRequestResult *result = [[SPRequestResult alloc] initWithStatusCode:httpResponse.statusCode oversize:request.oversize storeIds:request.emitterEventIds];

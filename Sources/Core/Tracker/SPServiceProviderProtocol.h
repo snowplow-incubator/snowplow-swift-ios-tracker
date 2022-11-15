@@ -41,6 +41,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+NS_SWIFT_NAME(ServiceProviderProtocol)
 @protocol SPServiceProviderProtocol
 
 @property (nonatomic, nonnull, readonly) NSString *namespace;

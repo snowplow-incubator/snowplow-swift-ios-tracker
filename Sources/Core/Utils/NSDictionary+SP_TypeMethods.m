@@ -20,6 +20,7 @@
 //
 
 #import "NSDictionary+SP_TypeMethods.h"
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 @implementation NSDictionary (SP_TypeMethods)
 

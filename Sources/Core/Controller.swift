@@ -1,5 +1,4 @@
-//
-//  SPSubjectController.h
+//  SPController.swift
 //  Snowplow
 //
 //  Copyright (c) 2013-2022 Snowplow Analytics Ltd. All rights reserved.
@@ -19,14 +18,14 @@
 //  License: Apache License Version 2.0
 //
 
-#import <Foundation/Foundation.h>
-#import "SPSubjectConfiguration.h"
+import Foundation
 
-NS_ASSUME_NONNULL_BEGIN
+@objc(SPController)
+public class Controller: NSObject {
+    private(set) var serviceProvider: ServiceProviderProtocol
 
-NS_SWIFT_NAME(SubjectController)
-@protocol SPSubjectController <SPSubjectConfigurationProtocol>
-
-@end
-
-NS_ASSUME_NONNULL_END
+    init(serviceProvider: ServiceProviderProtocol) {
+        self.serviceProvider = serviceProvider
+        super.init()
+    }
+}

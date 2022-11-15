@@ -37,7 +37,7 @@ static void PrintReachabilityFlags(SCNetworkReachabilityFlags flags, const char*
           '-',
 #endif
           (flags & kSCNetworkReachabilityFlagsReachable)            ? 'R' : '-',
-          
+
           (flags & kSCNetworkReachabilityFlagsTransientConnection)  ? 't' : '-',
           (flags & kSCNetworkReachabilityFlagsConnectionRequired)   ? 'c' : '-',
           (flags & kSCNetworkReachabilityFlagsConnectionOnTraffic)  ? 'C' : '-',
@@ -63,16 +63,16 @@ static void PrintReachabilityFlags(SCNetworkReachabilityFlags flags, const char*
     bzero(&zeroAddress, sizeof(zeroAddress));
     zeroAddress.sin_len = sizeof(zeroAddress);
     zeroAddress.sin_family = AF_INET;
-    
+
     SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithAddress(kCFAllocatorDefault, (const struct sockaddr *) &zeroAddress);
     if (reachability == NULL) return NULL;
-    
+
     SNOWReachability* returnValue = [[self alloc] init];
     if (returnValue == NULL) {
         CFRelease(reachability);
         return NULL;
     }
-    
+
     returnValue->_reachabilityRef = reachability;
     return returnValue;
 }
@@ -95,7 +95,7 @@ static void PrintReachabilityFlags(SCNetworkReachabilityFlags flags, const char*
     BOOL isOnDemand = (flags & kSCNetworkReachabilityFlagsConnectionOnDemand ) != 0;
     BOOL isOnTraffic = (flags & kSCNetworkReachabilityFlagsConnectionOnTraffic) != 0;
     BOOL isInterventionRequired = (flags & kSCNetworkReachabilityFlagsInterventionRequired) != 0;
-    
+
     if (!isReachable) {
         return SNOWNetworkStatusOffline;
     }

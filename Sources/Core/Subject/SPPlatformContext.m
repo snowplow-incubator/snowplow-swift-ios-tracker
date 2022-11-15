@@ -88,7 +88,7 @@
     [self.platformDict addValueToPayload:[self.deviceInfoMonitor osVersion]    forKey:kSPPlatformOsVersion];
     [self.platformDict addValueToPayload:[self.deviceInfoMonitor deviceVendor] forKey:kSPPlatformDeviceManu];
     [self.platformDict addValueToPayload:[self.deviceInfoMonitor deviceModel]  forKey:kSPPlatformDeviceModel];
-    
+
 #if SNOWPLOW_TARGET_IOS
     [self setMobileDict];
 #endif
@@ -98,14 +98,14 @@
     [self.platformDict addValueToPayload:[self.deviceInfoMonitor carrierName]           forKey:kSPMobileCarrier];
     [self.platformDict addNumericValueToPayload:[self.deviceInfoMonitor totalStorage]   forKey:kSPMobileTotalStorage];
     [self.platformDict addNumericValueToPayload:[self.deviceInfoMonitor physicalMemory] forKey:kSPMobilePhysicalMemory];
-    
+
     [self setEphemeralMobileDict];
     [self setEphemeralNetworkDict];
 }
 
 - (void) setEphemeralMobileDict {
     self.lastUpdatedEphemeralMobileDict = [NSDate date].timeIntervalSince1970;
-    
+
     NSDictionary *currentDict = [self.platformDict getAsDictionary];
     if ([currentDict valueForKey:kSPMobileAppleIdfa] == nil) {
         [self.platformDict addValueToPayload:[self.deviceInfoMonitor appleIdfa] forKey:kSPMobileAppleIdfa];
@@ -113,7 +113,7 @@
     if ([currentDict valueForKey:kSPMobileAppleIdfv] == nil) {
         [self.platformDict addValueToPayload:[self.deviceInfoMonitor appleIdfv] forKey:kSPMobileAppleIdfv];
     }
-    
+
     [self.platformDict addNumericValueToPayload:[self.deviceInfoMonitor batteryLevel]          forKey:kSPMobileBatteryLevel];
     [self.platformDict addValueToPayload:[self.deviceInfoMonitor batteryState]                 forKey:kSPMobileBatteryState];
     [self.platformDict addNumericValueToPayload:[self.deviceInfoMonitor isLowPowerModeEnabled] forKey:kSPMobileLowPowerMode];
@@ -123,7 +123,7 @@
 
 - (void) setEphemeralNetworkDict {
     self.lastUpdatedEphemeralNetworkDict = [NSDate date].timeIntervalSince1970;
-    
+
     [self.platformDict addValueToPayload:[self.deviceInfoMonitor networkTechnology] forKey:kSPMobileNetworkTech];
     [self.platformDict addValueToPayload:[self.deviceInfoMonitor networkType]       forKey:kSPMobileNetworkType];
 }

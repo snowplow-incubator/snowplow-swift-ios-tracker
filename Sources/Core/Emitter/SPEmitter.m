@@ -34,6 +34,8 @@
 #import "SPRequest.h"
 #import "SPLogger.h"
 
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
+
 @implementation SPEmitter {
     id<SPEventStore> _eventStore;
     id<SPNetworkConnection> _networkConnection;
@@ -235,15 +237,15 @@ const NSUInteger POST_WRAPPER_BYTES = 88;
 
 - (void)resumeTimer {
     __weak __typeof__(self) weakSelf = self;
-    
+
     if (_timer != nil) {
         [self pauseTimer];
     }
-    
+
     dispatch_async(dispatch_get_main_queue(), ^{
         __typeof__(self) strongSelf = weakSelf;
         if (strongSelf == nil) return;
-        
+
         strongSelf->_timer = [NSTimer scheduledTimerWithTimeInterval:kSPDefaultBufferTimeout
                                                               target:[[SPWeakTimerTarget alloc] initWithTarget:strongSelf andSelector:@selector(flush)]
                                                             selector:@selector(timerFired:)
@@ -268,11 +270,11 @@ const NSUInteger POST_WRAPPER_BYTES = 88;
 
 - (void)addPayloadToBuffer:(SPPayload *)eventPayload {
     __weak __typeof__(self) weakSelf = self;
-    
+
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         __typeof__(self) strongSelf = weakSelf;
         if (strongSelf == nil) return;
-        
+
         [strongSelf->_eventStore addEvent:eventPayload];
         [strongSelf flush];
     });
@@ -313,18 +315,18 @@ const NSUInteger POST_WRAPPER_BYTES = 88;
         _isSending = NO;
         return;
     }
-    
+
     NSArray<SPEmitterEvent *> *events = [_eventStore emittableEventsWithQueryLimit:_emitRange];
     NSArray<SPRequest *> *requests = [self buildRequestsFromEvents:events];
     NSArray<SPRequestResult *> *sendResults = [_networkConnection sendRequests:requests];
-    
+
     SPLogVerbose(@"Processing emitter results.");
-    
+
     NSInteger successCount = 0;
     NSInteger failedWillRetryCount = 0;
     NSInteger failedWontRetryCount = 0;
     NSMutableArray<NSNumber *> *removableEvents = [NSMutableArray new];
-    
+
     for (SPRequestResult *result in sendResults) {
         NSArray<NSNumber *> *resultIndexArray = result.storeIds;
         if (result.isSuccessful) {
@@ -339,12 +341,12 @@ const NSUInteger POST_WRAPPER_BYTES = 88;
         }
     }
     NSInteger allFailureCount = failedWillRetryCount + failedWontRetryCount;
-    
+
     [_eventStore removeEventsWithIds:removableEvents];
-    
+
     SPLogDebug(@"Success Count: %@", [@(successCount) stringValue]);
     SPLogDebug(@"Failure Count: %@", [@(allFailureCount) stringValue]);
-    
+
     if (_callback != nil) {
         if (allFailureCount == 0) {
             [_callback onSuccessWithCount:successCount];
@@ -352,7 +354,7 @@ const NSUInteger POST_WRAPPER_BYTES = 88;
             [_callback onFailureWithCount:allFailureCount successCount:successCount];
         }
     }
-    
+
     if (failedWillRetryCount > 0 && successCount == 0) {
         SPLogDebug(@"Ending emitter run as all requests failed.", nil);
         [NSThread sleepForTimeInterval:5];
@@ -367,7 +369,7 @@ const NSUInteger POST_WRAPPER_BYTES = 88;
     NSMutableArray<SPRequest *> *requests = [NSMutableArray new];
     NSNumber *sendingTime = [SPUtilities getTimestamp];
     SPHttpMethod httpMethod = _networkConnection.httpMethod;
-    
+
     if (httpMethod == SPHttpMethodGet) {
         for (SPEmitterEvent *event in events) {
             SPPayload *payload = event.payload;
@@ -380,10 +382,10 @@ const NSUInteger POST_WRAPPER_BYTES = 88;
         for (int i = 0; i < events.count; i += _bufferOption) {
             NSMutableArray<SPPayload *> *eventArray = [NSMutableArray new];
             NSMutableArray<NSNumber *> *indexArray = [NSMutableArray new];
-            
+
             for (int j = i; j < (i + _bufferOption) && j < events.count; j++) {
                 SPEmitterEvent *event = events[j];
-                
+
                 SPPayload *payload = event.payload;
                 NSNumber *emitterEventId = @(event.storeId);
                 [self addSendingTimeToPayload:payload timestamp:sendingTime];
@@ -399,18 +401,18 @@ const NSUInteger POST_WRAPPER_BYTES = 88;
                     // Clear collection and build a new POST
                     eventArray = [NSMutableArray new];
                     indexArray = [NSMutableArray new];
-                    
+
                     // Build and store the request
                     [eventArray addObject:payload];
                     [indexArray addObject:emitterEventId];
-                    
+
                 } else {
                     // Add event to collections
                     [eventArray addObject:payload];
                     [indexArray addObject:emitterEventId];
                 }
             }
-            
+
             // Check if all payloads have been processed
             if (eventArray.count) {
                 SPRequest *request = [[SPRequest alloc] initWithPayloads:eventArray emitterEventIds:indexArray];
