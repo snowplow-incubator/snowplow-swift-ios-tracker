@@ -310,6 +310,9 @@ public class TrackerControllerImpl: Controller, TrackerController {
     // MARK: - Private methods
 
     private var tracker: Tracker {
+        if !serviceProvider.isTrackerInitialized() {
+//            SPLogError(@"Recreating tracker instance after it was removed. This will not be supported in future versions.");
+        }
         return serviceProvider.tracker()
     }
 

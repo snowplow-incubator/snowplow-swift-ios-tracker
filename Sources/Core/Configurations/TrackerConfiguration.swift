@@ -74,7 +74,8 @@ public protocol TrackerConfigurationProtocol: AnyObject {
     @objc var exceptionAutotracking: Bool { get set }
     /// Whether enable diagnostic reporting.
     @objc var diagnosticAutotracking: Bool { get set }
-    /// Whether to anonymise client-side user identifiers in session and platform context entities.
+    /// Whether to anonymise client-side user identifiers in session (userId, previousSessionId), subject (userId, networkUserId, domainUserId, ipAddress) and platform context entities (IDFA)
+    /// Setting this property on a running tracker instance starts a new session (if sessions are tracked).
     @objc var userAnonymisation: Bool { get set }
     /// Decorate the v_tracker field in the tracker protocol.
     /// @note Do not use. Internal use only.
@@ -118,7 +119,8 @@ public class TrackerConfiguration: Configuration, TrackerConfigurationProtocol {
     @objc public var exceptionAutotracking = true
     /// Whether enable diagnostic reporting.
     @objc public var diagnosticAutotracking: Bool = false
-    /// Whether to anonymise client-side user identifiers in session and platform context entities.
+    /// Whether to anonymise client-side user identifiers in session (userId, previousSessionId), subject (userId, networkUserId, domainUserId, ipAddress) and platform context entities (IDFA)
+    /// Setting this property on a running tracker instance starts a new session (if sessions are tracked).
     @objc public var userAnonymisation: Bool = false
     /// Decorate the v_tracker field in the tracker protocol.
     /// @note Do not use. Internal use only.

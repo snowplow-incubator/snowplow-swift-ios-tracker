@@ -42,7 +42,6 @@
 #import "SPBackground.h"
 #import "SPPushNotification.h"
 #import "SPDeepLinkReceived.h"
-#import "SPDeepLinkEntity.h"
 #import "SPTrackerEvent.h"
 #import "SPTrackerError.h"
 #import "SPLogger.h"
@@ -647,10 +646,10 @@ void uncaughtExceptionHandler(NSException *exception) {
         referrer = (NSString *)[event.payload objectForKey:kSPDeepLinkReceivedParamReferrer];
     } else if ([event.schema isEqualToString:kSPScreenViewSchema]) {
         for (SPSelfDescribingJson *entity in contexts) {
-            if ([[entity schema] isEqualToString:kSPDeepLinkSchema]) {
+            if ([[entity schema] isEqualToString:[SPDeepLinkEntity schema]]) {
                 NSDictionary *data = (NSDictionary *)[entity data];
-                url = (NSString *)[data valueForKey:kSPDeepLinkReceivedParamUrl];
-                referrer = (NSString *)[data valueForKey:kSPDeepLinkParamReferrer];
+                url = (NSString *)[data valueForKey:[SPDeepLinkEntity paramUrl]];
+                referrer = (NSString *)[data valueForKey:[SPDeepLinkEntity paramReferrer]];
                 break;
             }
         }

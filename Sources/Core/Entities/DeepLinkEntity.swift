@@ -19,17 +19,17 @@
 //
 
 /// Entity that indicates a deep-link has been received and processed.
-let kSPDeepLinkSchema = "iglu:com.snowplowanalytics.mobile/deep_link/jsonschema/1-0-0"
-let kSPDeepLinkParamReferrer = "referrer"
-let kSPDeepLinkParamUrl = "url"
 
 @objc(SPDeepLinkEntity)
 public class DeepLinkEntity: SelfDescribingJson {
+    @objc public static let schema = "iglu:com.snowplowanalytics.mobile/deep_link/jsonschema/1-0-0"
+    @objc public static let paramReferrer = "referrer"
+    @objc public static let paramUrl = "url"
 
     @objc public init(url: String) {
         var parameters: [String : NSObject] = [:]
-        parameters[kSPDeepLinkSchema] = url as NSObject
-        super.init(schema: kSPDeepLinkSchema, andData: parameters as NSObject)
+        parameters[DeepLinkEntity.paramUrl] = url as NSObject
+        super.init(schema: DeepLinkEntity.schema, andData: parameters as NSObject)
         
         // Set here further checks about the arguments.
         // e.g.: [SPUtilities checkArgument:([_name length] != 0) withMessage:@"Name cannot be empty."];
@@ -40,7 +40,7 @@ public class DeepLinkEntity: SelfDescribingJson {
     @objc public func referrer(_ referrer: String?) -> Self {
         if var data,
            var parameters = data as? [String : NSObject] {
-            parameters[kSPDeepLinkParamReferrer] = referrer as? NSObject
+            parameters[DeepLinkEntity.paramReferrer] = referrer as? NSObject
         }
         return self
     }

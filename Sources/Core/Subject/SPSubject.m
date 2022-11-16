@@ -113,7 +113,7 @@
         [copy removeObjectForKey:kSPDomainUid];
         [copy removeObjectForKey:kSPNetworkUid];
         [copy removeObjectForKey:kSPIpAddress];
-        return [[SPPayload alloc] initWithNSDictionary:copy];
+        return [[SPPayload alloc] initWithDictionary:copy];
     }
     return _standardDict;
 }
