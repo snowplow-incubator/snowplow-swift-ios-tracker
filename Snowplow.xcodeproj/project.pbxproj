@@ -128,6 +128,46 @@
 		6B8587552923E7D0006E4A5F /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85874F2923E7CF006E4A5F /* NetworkController.swift */; };
 		6B8587562923E7D0006E4A5F /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85874F2923E7CF006E4A5F /* NetworkController.swift */; };
 		6B8587572923E7D0006E4A5F /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85874F2923E7CF006E4A5F /* NetworkController.swift */; };
+		6B8587592924CDB0006E4A5F /* Snowplow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8587582924CDB0006E4A5F /* Snowplow.swift */; };
+		6B85875A2924CDB0006E4A5F /* Snowplow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8587582924CDB0006E4A5F /* Snowplow.swift */; };
+		6B85875B2924CDB0006E4A5F /* Snowplow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8587582924CDB0006E4A5F /* Snowplow.swift */; };
+		6B85875C2924CDB0006E4A5F /* Snowplow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8587582924CDB0006E4A5F /* Snowplow.swift */; };
+		6B85875E2924DA67006E4A5F /* FetchedConfigurationBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85875D2924DA67006E4A5F /* FetchedConfigurationBundle.swift */; };
+		6B85875F2924DA67006E4A5F /* FetchedConfigurationBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85875D2924DA67006E4A5F /* FetchedConfigurationBundle.swift */; };
+		6B8587602924DA67006E4A5F /* FetchedConfigurationBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85875D2924DA67006E4A5F /* FetchedConfigurationBundle.swift */; };
+		6B8587612924DA67006E4A5F /* FetchedConfigurationBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85875D2924DA67006E4A5F /* FetchedConfigurationBundle.swift */; };
+		6B8587632924F76F006E4A5F /* ConfigurationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8587622924F76F006E4A5F /* ConfigurationProvider.swift */; };
+		6B8587642924F76F006E4A5F /* ConfigurationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8587622924F76F006E4A5F /* ConfigurationProvider.swift */; };
+		6B8587652924F76F006E4A5F /* ConfigurationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8587622924F76F006E4A5F /* ConfigurationProvider.swift */; };
+		6B8587662924F76F006E4A5F /* ConfigurationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8587622924F76F006E4A5F /* ConfigurationProvider.swift */; };
+		6B858769292509AD006E4A5F /* ConfigurationCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B858767292509AC006E4A5F /* ConfigurationCache.swift */; };
+		6B85876A292509AD006E4A5F /* ConfigurationCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B858767292509AC006E4A5F /* ConfigurationCache.swift */; };
+		6B85876B292509AD006E4A5F /* ConfigurationCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B858767292509AC006E4A5F /* ConfigurationCache.swift */; };
+		6B85876C292509AD006E4A5F /* ConfigurationCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B858767292509AC006E4A5F /* ConfigurationCache.swift */; };
+		6B85876D292509AD006E4A5F /* ConfigurationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B858768292509AC006E4A5F /* ConfigurationFetcher.swift */; };
+		6B85876E292509AD006E4A5F /* ConfigurationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B858768292509AC006E4A5F /* ConfigurationFetcher.swift */; };
+		6B85876F292509AD006E4A5F /* ConfigurationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B858768292509AC006E4A5F /* ConfigurationFetcher.swift */; };
+		6B858770292509AD006E4A5F /* ConfigurationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B858768292509AC006E4A5F /* ConfigurationFetcher.swift */; };
+		6B85877229251779006E4A5F /* ConfigurationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85877129251779006E4A5F /* ConfigurationState.swift */; };
+		6B85877329251779006E4A5F /* ConfigurationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85877129251779006E4A5F /* ConfigurationState.swift */; };
+		6B85877429251779006E4A5F /* ConfigurationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85877129251779006E4A5F /* ConfigurationState.swift */; };
+		6B85877529251779006E4A5F /* ConfigurationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85877129251779006E4A5F /* ConfigurationState.swift */; };
+		6B85877829251CBD006E4A5F /* DefaultNetworkConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85877629251CBD006E4A5F /* DefaultNetworkConnection.swift */; };
+		6B85877929251CBD006E4A5F /* DefaultNetworkConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85877629251CBD006E4A5F /* DefaultNetworkConnection.swift */; };
+		6B85877A29251CBD006E4A5F /* DefaultNetworkConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85877629251CBD006E4A5F /* DefaultNetworkConnection.swift */; };
+		6B85877B29251CBD006E4A5F /* DefaultNetworkConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85877629251CBD006E4A5F /* DefaultNetworkConnection.swift */; };
+		6B85877C29251CBD006E4A5F /* NetworkConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85877729251CBD006E4A5F /* NetworkConnection.swift */; };
+		6B85877D29251CBD006E4A5F /* NetworkConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85877729251CBD006E4A5F /* NetworkConnection.swift */; };
+		6B85877E29251CBD006E4A5F /* NetworkConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85877729251CBD006E4A5F /* NetworkConnection.swift */; };
+		6B85877F29251CBD006E4A5F /* NetworkConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85877729251CBD006E4A5F /* NetworkConnection.swift */; };
+		6B85878229251DF4006E4A5F /* SelfDescribingJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85878029251DF4006E4A5F /* SelfDescribingJson.swift */; };
+		6B85878329251DF4006E4A5F /* SelfDescribingJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85878029251DF4006E4A5F /* SelfDescribingJson.swift */; };
+		6B85878429251DF4006E4A5F /* SelfDescribingJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85878029251DF4006E4A5F /* SelfDescribingJson.swift */; };
+		6B85878529251DF4006E4A5F /* SelfDescribingJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85878029251DF4006E4A5F /* SelfDescribingJson.swift */; };
+		6B85878629251DF4006E4A5F /* Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85878129251DF4006E4A5F /* Payload.swift */; };
+		6B85878729251DF4006E4A5F /* Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85878129251DF4006E4A5F /* Payload.swift */; };
+		6B85878829251DF4006E4A5F /* Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85878129251DF4006E4A5F /* Payload.swift */; };
+		6B85878929251DF4006E4A5F /* Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85878129251DF4006E4A5F /* Payload.swift */; };
 		6B871F6127C3913300BCF742 /* TestEmitterConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B871F6027C3913300BCF742 /* TestEmitterConfiguration.m */; };
 		6B871F6427C3928900BCF742 /* SPMockNetworkConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B871F6327C3928900BCF742 /* SPMockNetworkConnection.m */; };
 		6B871F6627C3976B00BCF742 /* SPMockNetworkConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B871F6227C3928900BCF742 /* SPMockNetworkConnection.h */; };
@@ -139,6 +179,14 @@
 		6B8F5606291BDAF900CD3F1B /* TrackerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8F5604291BDAF900CD3F1B /* TrackerConfiguration.swift */; };
 		6B8F5607291BDAF900CD3F1B /* TrackerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8F5604291BDAF900CD3F1B /* TrackerConfiguration.swift */; };
 		6B8F5608291BDAF900CD3F1B /* TrackerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8F5604291BDAF900CD3F1B /* TrackerConfiguration.swift */; };
+		6B9DA53F29253951006D721A /* LifecycleEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA53D29253951006D721A /* LifecycleEntity.swift */; };
+		6B9DA54029253952006D721A /* LifecycleEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA53D29253951006D721A /* LifecycleEntity.swift */; };
+		6B9DA54129253952006D721A /* LifecycleEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA53D29253951006D721A /* LifecycleEntity.swift */; };
+		6B9DA54229253952006D721A /* LifecycleEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA53D29253951006D721A /* LifecycleEntity.swift */; };
+		6B9DA54329253952006D721A /* DeepLinkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA53E29253951006D721A /* DeepLinkEntity.swift */; };
+		6B9DA54429253952006D721A /* DeepLinkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA53E29253951006D721A /* DeepLinkEntity.swift */; };
+		6B9DA54529253952006D721A /* DeepLinkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA53E29253951006D721A /* DeepLinkEntity.swift */; };
+		6B9DA54629253952006D721A /* DeepLinkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA53E29253951006D721A /* DeepLinkEntity.swift */; };
 		6BABC50E270B40450043BB5C /* TestSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF15D1227035A480048F376 /* TestSubject.m */; };
 		6BABE8BD291BFCAD00F6798A /* TrackerConfigurationUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABE8BC291BFCAD00F6798A /* TrackerConfigurationUpdate.swift */; };
 		6BABE8BE291BFCAD00F6798A /* TrackerConfigurationUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABE8BC291BFCAD00F6798A /* TrackerConfigurationUpdate.swift */; };
@@ -204,10 +252,6 @@
 		6BABED54291E91E000F6798A /* RemoteConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABED52291E91E000F6798A /* RemoteConfiguration.swift */; };
 		6BABED55291E91E000F6798A /* RemoteConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABED52291E91E000F6798A /* RemoteConfiguration.swift */; };
 		6BABED56291E91E000F6798A /* RemoteConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABED52291E91E000F6798A /* RemoteConfiguration.swift */; };
-		6BACDF922897C2580013276E /* ConfigurationState.swift in Headers */ = {isa = PBXBuildFile; fileRef = 6BACDF912897C2580013276E /* ConfigurationState.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BACDF932897C2580013276E /* ConfigurationState.swift in Headers */ = {isa = PBXBuildFile; fileRef = 6BACDF912897C2580013276E /* ConfigurationState.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BACDF942897C2580013276E /* ConfigurationState.swift in Headers */ = {isa = PBXBuildFile; fileRef = 6BACDF912897C2580013276E /* ConfigurationState.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BACDF952897C2630013276E /* ConfigurationState.swift in Headers */ = {isa = PBXBuildFile; fileRef = 6BACDF912897C2580013276E /* ConfigurationState.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		6BD6A6A928871262002D6D40 /* TestWebViewMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD6A6A828871262002D6D40 /* TestWebViewMessageHandler.m */; };
 		6BD6A6AC288719C7002D6D40 /* SPMockWKScriptMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD6A6AA288719C7002D6D40 /* SPMockWKScriptMessage.h */; };
 		6BD6A6AD288719C7002D6D40 /* SPMockWKScriptMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD6A6AB288719C7002D6D40 /* SPMockWKScriptMessage.m */; };
@@ -246,8 +290,6 @@
 		752DAC1B21CC42BC0065F874 /* SPEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0C27EA191B43D600018557 /* SPEmitter.m */; };
 		752DAC1D21CC42BC0065F874 /* SPSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = 04062D751B8390870019B8D1 /* SPSubject.m */; };
 		752DAC1F21CC42BC0065F874 /* SPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 043EC5DF1B8F049200294081 /* SPSession.m */; };
-		752DAC2121CC42BC0065F874 /* SPPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0C27F4191C67CD00018557 /* SPPayload.m */; };
-		752DAC2321CC42BC0065F874 /* SPSelfDescribingJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 0485CA151BAC65A300214BC5 /* SPSelfDescribingJson.m */; };
 		752DAC2721CC42BC0065F874 /* SPUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFCC3751922984A00FAE8FE /* SPUtilities.m */; };
 		752DAC2921CC42BC0065F874 /* SPRequestResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 0413DD761B78D643000D2112 /* SPRequestResult.m */; };
 		752DAC2B21CC42BC0065F874 /* SPWeakTimerTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 044CA88C1B94792B000EA3B1 /* SPWeakTimerTarget.m */; };
@@ -256,9 +298,7 @@
 		752DAC3421CC43C70065F874 /* SPEmitter.h in Headers */ = {isa = PBXBuildFile; fileRef = AB0C27E9191B43D600018557 /* SPEmitter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		752DAC3521CC43C70065F874 /* SPSubject.h in Headers */ = {isa = PBXBuildFile; fileRef = 04062D741B8390710019B8D1 /* SPSubject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		752DAC3621CC43C70065F874 /* SPSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 043EC5DD1B8F048500294081 /* SPSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		752DAC3721CC43C70065F874 /* SPPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = AB0C27F3191C67CD00018557 /* SPPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		752DAC3821CC43C70065F874 /* SPSelfDescribingJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 0485CA141BAC658500214BC5 /* SPSelfDescribingJson.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		752DAC3A21CC43C70065F874 /* SPUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = ABFCC3741922984A00FAE8FE /* SPUtilities.h */; };
+		752DAC3A21CC43C70065F874 /* SPUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = ABFCC3741922984A00FAE8FE /* SPUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		752DAC3B21CC43C70065F874 /* SPRequestResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 0413DD751B78D635000D2112 /* SPRequestResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		752DAC3C21CC43C70065F874 /* SPWeakTimerTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = 044CA88B1B94791E000EA3B1 /* SPWeakTimerTarget.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		752DAC3E21CC43C70065F874 /* SPRequestCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = 049B2BDA1B7A203200BD82FC /* SPRequestCallback.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -301,9 +341,7 @@
 		75CAC42D21F2A0CC00271FB3 /* SPEmitter.h in Headers */ = {isa = PBXBuildFile; fileRef = AB0C27E9191B43D600018557 /* SPEmitter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75CAC42E21F2A0CC00271FB3 /* SPSubject.h in Headers */ = {isa = PBXBuildFile; fileRef = 04062D741B8390710019B8D1 /* SPSubject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75CAC42F21F2A0CC00271FB3 /* SPSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 043EC5DD1B8F048500294081 /* SPSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		75CAC43021F2A0CC00271FB3 /* SPPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = AB0C27F3191C67CD00018557 /* SPPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		75CAC43121F2A0CC00271FB3 /* SPSelfDescribingJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 0485CA141BAC658500214BC5 /* SPSelfDescribingJson.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		75CAC43321F2A0CC00271FB3 /* SPUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = ABFCC3741922984A00FAE8FE /* SPUtilities.h */; };
+		75CAC43321F2A0CC00271FB3 /* SPUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = ABFCC3741922984A00FAE8FE /* SPUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75CAC43421F2A0CC00271FB3 /* SPRequestResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 0413DD751B78D635000D2112 /* SPRequestResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75CAC43521F2A0CC00271FB3 /* SPWeakTimerTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = 044CA88B1B94791E000EA3B1 /* SPWeakTimerTarget.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		75CAC43721F2A0CC00271FB3 /* SPRequestCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = 049B2BDA1B7A203200BD82FC /* SPRequestCallback.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -313,8 +351,6 @@
 		75CAC43C21F2A17500271FB3 /* SPEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0C27EA191B43D600018557 /* SPEmitter.m */; };
 		75CAC43D21F2A17500271FB3 /* SPSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = 04062D751B8390870019B8D1 /* SPSubject.m */; };
 		75CAC43E21F2A17500271FB3 /* SPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 043EC5DF1B8F049200294081 /* SPSession.m */; };
-		75CAC43F21F2A17500271FB3 /* SPPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0C27F4191C67CD00018557 /* SPPayload.m */; };
-		75CAC44021F2A17500271FB3 /* SPSelfDescribingJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 0485CA151BAC65A300214BC5 /* SPSelfDescribingJson.m */; };
 		75CAC44221F2A17500271FB3 /* SPUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFCC3751922984A00FAE8FE /* SPUtilities.m */; };
 		75CAC44321F2A17500271FB3 /* SPRequestResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 0413DD761B78D643000D2112 /* SPRequestResult.m */; };
 		75CAC44421F2A17500271FB3 /* SPWeakTimerTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 044CA88C1B94792B000EA3B1 /* SPWeakTimerTarget.m */; };
@@ -324,8 +360,6 @@
 		75CAC44A21F2A19500271FB3 /* SPEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0C27EA191B43D600018557 /* SPEmitter.m */; };
 		75CAC44B21F2A19500271FB3 /* SPSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = 04062D751B8390870019B8D1 /* SPSubject.m */; };
 		75CAC44C21F2A19500271FB3 /* SPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 043EC5DF1B8F049200294081 /* SPSession.m */; };
-		75CAC44D21F2A19500271FB3 /* SPPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0C27F4191C67CD00018557 /* SPPayload.m */; };
-		75CAC44E21F2A19500271FB3 /* SPSelfDescribingJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 0485CA151BAC65A300214BC5 /* SPSelfDescribingJson.m */; };
 		75CAC45021F2A19500271FB3 /* SPUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFCC3751922984A00FAE8FE /* SPUtilities.m */; };
 		75CAC45121F2A19500271FB3 /* SPRequestResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 0413DD761B78D643000D2112 /* SPRequestResult.m */; };
 		75CAC45221F2A19500271FB3 /* SPWeakTimerTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 044CA88C1B94792B000EA3B1 /* SPWeakTimerTarget.m */; };
@@ -336,9 +370,7 @@
 		75CAC45B21F2A21B00271FB3 /* SPEmitter.h in Headers */ = {isa = PBXBuildFile; fileRef = AB0C27E9191B43D600018557 /* SPEmitter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75CAC45C21F2A21B00271FB3 /* SPSubject.h in Headers */ = {isa = PBXBuildFile; fileRef = 04062D741B8390710019B8D1 /* SPSubject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75CAC45D21F2A21B00271FB3 /* SPSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 043EC5DD1B8F048500294081 /* SPSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		75CAC45E21F2A21B00271FB3 /* SPPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = AB0C27F3191C67CD00018557 /* SPPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		75CAC45F21F2A21B00271FB3 /* SPSelfDescribingJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 0485CA141BAC658500214BC5 /* SPSelfDescribingJson.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		75CAC46121F2A21B00271FB3 /* SPUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = ABFCC3741922984A00FAE8FE /* SPUtilities.h */; };
+		75CAC46121F2A21B00271FB3 /* SPUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = ABFCC3741922984A00FAE8FE /* SPUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75CAC46221F2A21B00271FB3 /* SPRequestResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 0413DD751B78D635000D2112 /* SPRequestResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75CAC46321F2A21B00271FB3 /* SPWeakTimerTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = 044CA88B1B94791E000EA3B1 /* SPWeakTimerTarget.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		75CAC46521F2A21B00271FB3 /* SPRequestCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = 049B2BDA1B7A203200BD82FC /* SPRequestCallback.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -351,8 +383,6 @@
 		75F9C5D821FA357100A5B8FC /* SPEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0C27EA191B43D600018557 /* SPEmitter.m */; };
 		75F9C5D921FA357100A5B8FC /* SPSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = 04062D751B8390870019B8D1 /* SPSubject.m */; };
 		75F9C5DA21FA357100A5B8FC /* SPSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 043EC5DF1B8F049200294081 /* SPSession.m */; };
-		75F9C5DB21FA357100A5B8FC /* SPPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0C27F4191C67CD00018557 /* SPPayload.m */; };
-		75F9C5DC21FA357100A5B8FC /* SPSelfDescribingJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 0485CA151BAC65A300214BC5 /* SPSelfDescribingJson.m */; };
 		75F9C5DE21FA357100A5B8FC /* SPUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFCC3751922984A00FAE8FE /* SPUtilities.m */; };
 		75F9C5DF21FA357100A5B8FC /* SPRequestResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 0413DD761B78D643000D2112 /* SPRequestResult.m */; };
 		75F9C5E021FA357100A5B8FC /* SPWeakTimerTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 044CA88C1B94792B000EA3B1 /* SPWeakTimerTarget.m */; };
@@ -362,9 +392,7 @@
 		75F9C5E821FA35BC00A5B8FC /* SPEmitter.h in Headers */ = {isa = PBXBuildFile; fileRef = AB0C27E9191B43D600018557 /* SPEmitter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75F9C5E921FA35BC00A5B8FC /* SPSubject.h in Headers */ = {isa = PBXBuildFile; fileRef = 04062D741B8390710019B8D1 /* SPSubject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75F9C5EA21FA35BC00A5B8FC /* SPSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 043EC5DD1B8F048500294081 /* SPSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		75F9C5EB21FA35BC00A5B8FC /* SPPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = AB0C27F3191C67CD00018557 /* SPPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		75F9C5EC21FA35BC00A5B8FC /* SPSelfDescribingJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 0485CA141BAC658500214BC5 /* SPSelfDescribingJson.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		75F9C5EE21FA35BC00A5B8FC /* SPUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = ABFCC3741922984A00FAE8FE /* SPUtilities.h */; };
+		75F9C5EE21FA35BC00A5B8FC /* SPUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = ABFCC3741922984A00FAE8FE /* SPUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75F9C5EF21FA35BC00A5B8FC /* SPRequestResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 0413DD751B78D635000D2112 /* SPRequestResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		75F9C5F021FA35BC00A5B8FC /* SPWeakTimerTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = 044CA88B1B94791E000EA3B1 /* SPWeakTimerTarget.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		75F9C5F221FA35BC00A5B8FC /* SPRequestCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = 049B2BDA1B7A203200BD82FC /* SPRequestCallback.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -534,14 +562,6 @@
 		ED0EFE3326E240B1002CAA21 /* SPDeepLinkReceived.h in Headers */ = {isa = PBXBuildFile; fileRef = ED0EFE2C26E240B0002CAA21 /* SPDeepLinkReceived.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED0EFE3426E240B1002CAA21 /* SPDeepLinkReceived.h in Headers */ = {isa = PBXBuildFile; fileRef = ED0EFE2C26E240B0002CAA21 /* SPDeepLinkReceived.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED26E6BA23842AB00096AF7C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED26E6B923842AAF0096AF7C /* AdSupport.framework */; };
-		ED277BE22625F5C5002C7B6D /* SPFetchedConfigurationBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = ED277BE02625F5C5002C7B6D /* SPFetchedConfigurationBundle.h */; };
-		ED277BE32625F5C5002C7B6D /* SPFetchedConfigurationBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = ED277BE02625F5C5002C7B6D /* SPFetchedConfigurationBundle.h */; };
-		ED277BE42625F5C5002C7B6D /* SPFetchedConfigurationBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = ED277BE02625F5C5002C7B6D /* SPFetchedConfigurationBundle.h */; };
-		ED277BE52625F5C5002C7B6D /* SPFetchedConfigurationBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = ED277BE02625F5C5002C7B6D /* SPFetchedConfigurationBundle.h */; };
-		ED277BE62625F5C5002C7B6D /* SPFetchedConfigurationBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = ED277BE12625F5C5002C7B6D /* SPFetchedConfigurationBundle.m */; };
-		ED277BE72625F5C5002C7B6D /* SPFetchedConfigurationBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = ED277BE12625F5C5002C7B6D /* SPFetchedConfigurationBundle.m */; };
-		ED277BE82625F5C5002C7B6D /* SPFetchedConfigurationBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = ED277BE12625F5C5002C7B6D /* SPFetchedConfigurationBundle.m */; };
-		ED277BE92625F5C5002C7B6D /* SPFetchedConfigurationBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = ED277BE12625F5C5002C7B6D /* SPFetchedConfigurationBundle.m */; };
 		ED34672A26415C1D0018BA61 /* SPJSONSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = ED34672826415C1D0018BA61 /* SPJSONSerialization.h */; };
 		ED34672B26415C1D0018BA61 /* SPJSONSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = ED34672826415C1D0018BA61 /* SPJSONSerialization.h */; };
 		ED34672C26415C1D0018BA61 /* SPJSONSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = ED34672826415C1D0018BA61 /* SPJSONSerialization.h */; };
@@ -550,14 +570,6 @@
 		ED34672F26415C1D0018BA61 /* SPJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = ED34672926415C1D0018BA61 /* SPJSONSerialization.m */; };
 		ED34673026415C1D0018BA61 /* SPJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = ED34672926415C1D0018BA61 /* SPJSONSerialization.m */; };
 		ED34673126415C1D0018BA61 /* SPJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = ED34672926415C1D0018BA61 /* SPJSONSerialization.m */; };
-		ED38D91F26EBCD59002AEC8E /* SPLifecycleEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = ED38D91D26EBCD58002AEC8E /* SPLifecycleEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ED38D92026EBCD59002AEC8E /* SPLifecycleEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = ED38D91D26EBCD58002AEC8E /* SPLifecycleEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ED38D92126EBCD59002AEC8E /* SPLifecycleEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = ED38D91D26EBCD58002AEC8E /* SPLifecycleEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ED38D92226EBCD59002AEC8E /* SPLifecycleEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = ED38D91D26EBCD58002AEC8E /* SPLifecycleEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ED38D92326EBCD59002AEC8E /* SPLifecycleEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = ED38D91E26EBCD59002AEC8E /* SPLifecycleEntity.m */; };
-		ED38D92426EBCD59002AEC8E /* SPLifecycleEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = ED38D91E26EBCD59002AEC8E /* SPLifecycleEntity.m */; };
-		ED38D92526EBCD59002AEC8E /* SPLifecycleEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = ED38D91E26EBCD59002AEC8E /* SPLifecycleEntity.m */; };
-		ED38D92626EBCD59002AEC8E /* SPLifecycleEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = ED38D91E26EBCD59002AEC8E /* SPLifecycleEntity.m */; };
 		ED38D92B26EBCEBE002AEC8E /* SPLifecycleState.h in Headers */ = {isa = PBXBuildFile; fileRef = ED38D92726EBCEBE002AEC8E /* SPLifecycleState.h */; };
 		ED38D92C26EBCEBE002AEC8E /* SPLifecycleState.h in Headers */ = {isa = PBXBuildFile; fileRef = ED38D92726EBCEBE002AEC8E /* SPLifecycleState.h */; };
 		ED38D92D26EBCEBE002AEC8E /* SPLifecycleState.h in Headers */ = {isa = PBXBuildFile; fileRef = ED38D92726EBCEBE002AEC8E /* SPLifecycleState.h */; };
@@ -611,29 +623,6 @@
 		ED7CE17F26DFC12C0035C323 /* SPState.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7CE17C26DFC12C0035C323 /* SPState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED7CE18026DFC12C0035C323 /* SPState.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7CE17C26DFC12C0035C323 /* SPState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED7F080626190B5F005D377E /* TestRemoteConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7F080526190B5F005D377E /* TestRemoteConfiguration.m */; };
-		ED7F081526190E00005D377E /* SPConfigurationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7F081326190E00005D377E /* SPConfigurationProvider.h */; };
-		ED7F081626190E00005D377E /* SPConfigurationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7F081326190E00005D377E /* SPConfigurationProvider.h */; };
-		ED7F081726190E00005D377E /* SPConfigurationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7F081326190E00005D377E /* SPConfigurationProvider.h */; };
-		ED7F081826190E00005D377E /* SPConfigurationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7F081426190E00005D377E /* SPConfigurationProvider.m */; };
-		ED7F081926190E00005D377E /* SPConfigurationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7F081426190E00005D377E /* SPConfigurationProvider.m */; };
-		ED7F081A26190E00005D377E /* SPConfigurationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7F081426190E00005D377E /* SPConfigurationProvider.m */; };
-		ED7F082126191108005D377E /* SPConfigurationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7F081326190E00005D377E /* SPConfigurationProvider.h */; };
-		ED7F0840261924BF005D377E /* SPConfigurationFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7F083E261924BF005D377E /* SPConfigurationFetcher.h */; };
-		ED7F0841261924BF005D377E /* SPConfigurationFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7F083E261924BF005D377E /* SPConfigurationFetcher.h */; };
-		ED7F0842261924BF005D377E /* SPConfigurationFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7F083E261924BF005D377E /* SPConfigurationFetcher.h */; };
-		ED7F0843261924BF005D377E /* SPConfigurationFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = ED7F083E261924BF005D377E /* SPConfigurationFetcher.h */; };
-		ED7F0844261924BF005D377E /* SPConfigurationFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7F083F261924BF005D377E /* SPConfigurationFetcher.m */; };
-		ED7F0845261924BF005D377E /* SPConfigurationFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7F083F261924BF005D377E /* SPConfigurationFetcher.m */; };
-		ED7F0846261924BF005D377E /* SPConfigurationFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7F083F261924BF005D377E /* SPConfigurationFetcher.m */; };
-		ED7F0847261924BF005D377E /* SPConfigurationFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7F083F261924BF005D377E /* SPConfigurationFetcher.m */; };
-		ED8122AA25E9578500AE7FE8 /* SPSnowplow.h in Headers */ = {isa = PBXBuildFile; fileRef = ED8122A825E9578500AE7FE8 /* SPSnowplow.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ED8122AB25E9578600AE7FE8 /* SPSnowplow.h in Headers */ = {isa = PBXBuildFile; fileRef = ED8122A825E9578500AE7FE8 /* SPSnowplow.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ED8122AC25E9578600AE7FE8 /* SPSnowplow.h in Headers */ = {isa = PBXBuildFile; fileRef = ED8122A825E9578500AE7FE8 /* SPSnowplow.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ED8122AD25E9578600AE7FE8 /* SPSnowplow.h in Headers */ = {isa = PBXBuildFile; fileRef = ED8122A825E9578500AE7FE8 /* SPSnowplow.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ED8122AE25E9578600AE7FE8 /* SPSnowplow.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8122A925E9578500AE7FE8 /* SPSnowplow.m */; };
-		ED8122AF25E9578600AE7FE8 /* SPSnowplow.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8122A925E9578500AE7FE8 /* SPSnowplow.m */; };
-		ED8122B025E9578600AE7FE8 /* SPSnowplow.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8122A925E9578500AE7FE8 /* SPSnowplow.m */; };
-		ED8122B125E9578600AE7FE8 /* SPSnowplow.m in Sources */ = {isa = PBXBuildFile; fileRef = ED8122A925E9578500AE7FE8 /* SPSnowplow.m */; };
 		ED852B2F23A0E90E00F2DF6B /* SNOWReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = ED852B2E23A0E90E00F2DF6B /* SNOWReachability.m */; };
 		ED852B3023A0E90E00F2DF6B /* SNOWReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = ED852B2E23A0E90E00F2DF6B /* SNOWReachability.m */; };
 		ED852B3123A0E90E00F2DF6B /* SNOWReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = ED852B2E23A0E90E00F2DF6B /* SNOWReachability.m */; };
@@ -646,10 +635,10 @@
 		ED8866C025711EC000DB53BB /* SPLoggerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = ED8866BD25711EC000DB53BB /* SPLoggerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED8866C125711EC000DB53BB /* SPLoggerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = ED8866BD25711EC000DB53BB /* SPLoggerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED88B6B3258253F20048FAD1 /* TestEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = ED88B6B2258253F20048FAD1 /* TestEvents.m */; };
-		ED88B6DB2583DFC80048FAD1 /* SPServiceProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = ED88B6D92583DFC70048FAD1 /* SPServiceProvider.h */; };
-		ED88B6DC2583DFC80048FAD1 /* SPServiceProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = ED88B6D92583DFC70048FAD1 /* SPServiceProvider.h */; };
-		ED88B6DD2583DFC90048FAD1 /* SPServiceProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = ED88B6D92583DFC70048FAD1 /* SPServiceProvider.h */; };
-		ED88B6DE2583DFC90048FAD1 /* SPServiceProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = ED88B6D92583DFC70048FAD1 /* SPServiceProvider.h */; };
+		ED88B6DB2583DFC80048FAD1 /* SPServiceProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = ED88B6D92583DFC70048FAD1 /* SPServiceProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED88B6DC2583DFC80048FAD1 /* SPServiceProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = ED88B6D92583DFC70048FAD1 /* SPServiceProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED88B6DD2583DFC90048FAD1 /* SPServiceProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = ED88B6D92583DFC70048FAD1 /* SPServiceProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED88B6DE2583DFC90048FAD1 /* SPServiceProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = ED88B6D92583DFC70048FAD1 /* SPServiceProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED88B6DF2583DFC90048FAD1 /* SPServiceProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = ED88B6DA2583DFC70048FAD1 /* SPServiceProvider.m */; };
 		ED88B6E02583DFC90048FAD1 /* SPServiceProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = ED88B6DA2583DFC70048FAD1 /* SPServiceProvider.m */; };
 		ED88B6E12583DFC90048FAD1 /* SPServiceProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = ED88B6DA2583DFC70048FAD1 /* SPServiceProvider.m */; };
@@ -687,23 +676,7 @@
 		ED98971B2627006F00145157 /* NSDictionary+SP_TypeMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = ED9897152627006F00145157 /* NSDictionary+SP_TypeMethods.m */; };
 		ED98971C2627006F00145157 /* NSDictionary+SP_TypeMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = ED9897152627006F00145157 /* NSDictionary+SP_TypeMethods.m */; };
 		ED98971D2627006F00145157 /* NSDictionary+SP_TypeMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = ED9897152627006F00145157 /* NSDictionary+SP_TypeMethods.m */; };
-		ED98972626287F7A00145157 /* SPConfigurationCache.h in Headers */ = {isa = PBXBuildFile; fileRef = ED98972426287F7900145157 /* SPConfigurationCache.h */; };
-		ED98972726287F7A00145157 /* SPConfigurationCache.h in Headers */ = {isa = PBXBuildFile; fileRef = ED98972426287F7900145157 /* SPConfigurationCache.h */; };
-		ED98972826287F7A00145157 /* SPConfigurationCache.h in Headers */ = {isa = PBXBuildFile; fileRef = ED98972426287F7900145157 /* SPConfigurationCache.h */; };
-		ED98972926287F7A00145157 /* SPConfigurationCache.h in Headers */ = {isa = PBXBuildFile; fileRef = ED98972426287F7900145157 /* SPConfigurationCache.h */; };
-		ED98972A26287F7A00145157 /* SPConfigurationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = ED98972526287F7900145157 /* SPConfigurationCache.m */; };
-		ED98972B26287F7A00145157 /* SPConfigurationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = ED98972526287F7900145157 /* SPConfigurationCache.m */; };
-		ED98972C26287F7A00145157 /* SPConfigurationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = ED98972526287F7900145157 /* SPConfigurationCache.m */; };
-		ED98972D26287F7A00145157 /* SPConfigurationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = ED98972526287F7900145157 /* SPConfigurationCache.m */; };
 		EDA06FB62664CD2F007FA773 /* SPMockEventStore.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA06FB52664CD2F007FA773 /* SPMockEventStore.m */; };
-		EDAB65CE26CBD5150067755F /* SPDeepLinkEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EDAB65CC26CBD5150067755F /* SPDeepLinkEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EDAB65CF26CBD5150067755F /* SPDeepLinkEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EDAB65CC26CBD5150067755F /* SPDeepLinkEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EDAB65D026CBD5150067755F /* SPDeepLinkEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EDAB65CC26CBD5150067755F /* SPDeepLinkEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EDAB65D126CBD5150067755F /* SPDeepLinkEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = EDAB65CC26CBD5150067755F /* SPDeepLinkEntity.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EDAB65D226CBD5150067755F /* SPDeepLinkEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAB65CD26CBD5150067755F /* SPDeepLinkEntity.m */; };
-		EDAB65D326CBD5150067755F /* SPDeepLinkEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAB65CD26CBD5150067755F /* SPDeepLinkEntity.m */; };
-		EDAB65D426CBD5150067755F /* SPDeepLinkEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAB65CD26CBD5150067755F /* SPDeepLinkEntity.m */; };
-		EDAB65D526CBD5150067755F /* SPDeepLinkEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAB65CD26CBD5150067755F /* SPDeepLinkEntity.m */; };
 		EDAB663426D699D90067755F /* SPStateFuture.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAB662F26D699D80067755F /* SPStateFuture.m */; };
 		EDAB663526D699D90067755F /* SPStateFuture.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAB662F26D699D80067755F /* SPStateFuture.m */; };
 		EDAB663626D699D90067755F /* SPStateFuture.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAB662F26D699D80067755F /* SPStateFuture.m */; };
@@ -869,8 +842,6 @@
 		043EC5E61B8F224900294081 /* SPTrackerConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPTrackerConstants.m; sourceTree = "<group>"; };
 		044CA88B1B94791E000EA3B1 /* SPWeakTimerTarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPWeakTimerTarget.h; sourceTree = "<group>"; };
 		044CA88C1B94792B000EA3B1 /* SPWeakTimerTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPWeakTimerTarget.m; sourceTree = "<group>"; };
-		0485CA141BAC658500214BC5 /* SPSelfDescribingJson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPSelfDescribingJson.h; sourceTree = "<group>"; };
-		0485CA151BAC65A300214BC5 /* SPSelfDescribingJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPSelfDescribingJson.m; sourceTree = "<group>"; };
 		049B2BDA1B7A203200BD82FC /* SPRequestCallback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPRequestCallback.h; sourceTree = "<group>"; };
 		6B07CDAB287721C600E510D6 /* SPWebViewMessageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPWebViewMessageHandler.h; sourceTree = "<group>"; };
 		6B07CDAC287721C600E510D6 /* SPWebViewMessageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPWebViewMessageHandler.m; sourceTree = "<group>"; };
@@ -902,12 +873,24 @@
 		6B8587452923E5A2006E4A5F /* GlobalContextsControllerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalContextsControllerImpl.swift; sourceTree = "<group>"; };
 		6B85874E2923E7CF006E4A5F /* NetworkControllerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkControllerImpl.swift; sourceTree = "<group>"; };
 		6B85874F2923E7CF006E4A5F /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+		6B8587582924CDB0006E4A5F /* Snowplow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snowplow.swift; sourceTree = "<group>"; };
+		6B85875D2924DA67006E4A5F /* FetchedConfigurationBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedConfigurationBundle.swift; sourceTree = "<group>"; };
+		6B8587622924F76F006E4A5F /* ConfigurationProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationProvider.swift; sourceTree = "<group>"; };
+		6B858767292509AC006E4A5F /* ConfigurationCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationCache.swift; sourceTree = "<group>"; };
+		6B858768292509AC006E4A5F /* ConfigurationFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationFetcher.swift; sourceTree = "<group>"; };
+		6B85877129251779006E4A5F /* ConfigurationState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationState.swift; sourceTree = "<group>"; };
+		6B85877629251CBD006E4A5F /* DefaultNetworkConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultNetworkConnection.swift; sourceTree = "<group>"; };
+		6B85877729251CBD006E4A5F /* NetworkConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConnection.swift; sourceTree = "<group>"; };
+		6B85878029251DF4006E4A5F /* SelfDescribingJson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfDescribingJson.swift; sourceTree = "<group>"; };
+		6B85878129251DF4006E4A5F /* Payload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Payload.swift; sourceTree = "<group>"; };
 		6B871F6027C3913300BCF742 /* TestEmitterConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestEmitterConfiguration.m; sourceTree = "<group>"; };
 		6B871F6227C3928900BCF742 /* SPMockNetworkConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPMockNetworkConnection.h; sourceTree = "<group>"; };
 		6B871F6327C3928900BCF742 /* SPMockNetworkConnection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPMockNetworkConnection.m; sourceTree = "<group>"; };
 		6BA1492F29005EF700407200 /* SPMockLoggerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPMockLoggerDelegate.h; sourceTree = "<group>"; };
 		6BA1493029005EF700407200 /* SPMockLoggerDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPMockLoggerDelegate.m; sourceTree = "<group>"; };
 		6B8F5604291BDAF900CD3F1B /* TrackerConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackerConfiguration.swift; sourceTree = "<group>"; };
+		6B9DA53D29253951006D721A /* LifecycleEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifecycleEntity.swift; sourceTree = "<group>"; };
+		6B9DA53E29253951006D721A /* DeepLinkEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepLinkEntity.swift; sourceTree = "<group>"; };
 		6BABE8BC291BFCAD00F6798A /* TrackerConfigurationUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerConfigurationUpdate.swift; sourceTree = "<group>"; };
 		6BABEB6B291CE94900F6798A /* NetworkConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConfiguration.swift; sourceTree = "<group>"; };
 		6BABEB70291CF1B900F6798A /* SessionConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionConfiguration.swift; sourceTree = "<group>"; };
@@ -924,7 +907,6 @@
 		6BABED48291E884900F6798A /* ConfigurationBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationBundle.swift; sourceTree = "<group>"; };
 		6BABED4D291E8B6E00F6798A /* GlobalContextsConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalContextsConfiguration.swift; sourceTree = "<group>"; };
 		6BABED52291E91E000F6798A /* RemoteConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteConfiguration.swift; sourceTree = "<group>"; };
-		6BACDF912897C2580013276E /* ConfigurationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationState.swift; sourceTree = "<group>"; };
 		6BD6A6A828871262002D6D40 /* TestWebViewMessageHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestWebViewMessageHandler.m; sourceTree = "<group>"; };
 		6BD6A6AA288719C7002D6D40 /* SPMockWKScriptMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPMockWKScriptMessage.h; sourceTree = "<group>"; };
 		6BD6A6AB288719C7002D6D40 /* SPMockWKScriptMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPMockWKScriptMessage.m; sourceTree = "<group>"; };
@@ -980,8 +962,6 @@
 		AB0C27C5191B408200018557 /* SPTrackerConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPTrackerConstants.h; sourceTree = "<group>"; };
 		AB0C27E9191B43D600018557 /* SPEmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPEmitter.h; sourceTree = "<group>"; };
 		AB0C27EA191B43D600018557 /* SPEmitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPEmitter.m; sourceTree = "<group>"; };
-		AB0C27F3191C67CD00018557 /* SPPayload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPPayload.h; sourceTree = "<group>"; };
-		AB0C27F4191C67CD00018557 /* SPPayload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPPayload.m; sourceTree = "<group>"; };
 		AB9E8210192DD336006744C9 /* SPTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPTracker.h; sourceTree = "<group>"; };
 		AB9E8211192DD336006744C9 /* SPTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPTracker.m; sourceTree = "<group>"; };
 		AB9E8213192DEC38006744C9 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -1032,12 +1012,8 @@
 		ED0EFE2B26E240B0002CAA21 /* SPDeepLinkReceived.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDeepLinkReceived.m; sourceTree = "<group>"; };
 		ED0EFE2C26E240B0002CAA21 /* SPDeepLinkReceived.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDeepLinkReceived.h; sourceTree = "<group>"; };
 		ED26E6B923842AAF0096AF7C /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AdSupport.framework; sourceTree = DEVELOPER_DIR; };
-		ED277BE02625F5C5002C7B6D /* SPFetchedConfigurationBundle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPFetchedConfigurationBundle.h; sourceTree = "<group>"; };
-		ED277BE12625F5C5002C7B6D /* SPFetchedConfigurationBundle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPFetchedConfigurationBundle.m; sourceTree = "<group>"; };
 		ED34672826415C1D0018BA61 /* SPJSONSerialization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPJSONSerialization.h; sourceTree = "<group>"; };
 		ED34672926415C1D0018BA61 /* SPJSONSerialization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPJSONSerialization.m; sourceTree = "<group>"; };
-		ED38D91D26EBCD58002AEC8E /* SPLifecycleEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLifecycleEntity.h; sourceTree = "<group>"; };
-		ED38D91E26EBCD59002AEC8E /* SPLifecycleEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLifecycleEntity.m; sourceTree = "<group>"; };
 		ED38D92726EBCEBE002AEC8E /* SPLifecycleState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLifecycleState.h; sourceTree = "<group>"; };
 		ED38D92826EBCEBE002AEC8E /* SPLifecycleStateMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLifecycleStateMachine.m; sourceTree = "<group>"; };
 		ED38D92926EBCEBE002AEC8E /* SPLifecycleStateMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLifecycleStateMachine.h; sourceTree = "<group>"; };
@@ -1052,12 +1028,6 @@
 		ED7CE17726DFBFA30035C323 /* SPTrackerStateSnapshot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPTrackerStateSnapshot.h; sourceTree = "<group>"; };
 		ED7CE17C26DFC12C0035C323 /* SPState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPState.h; sourceTree = "<group>"; };
 		ED7F080526190B5F005D377E /* TestRemoteConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestRemoteConfiguration.m; sourceTree = "<group>"; };
-		ED7F081326190E00005D377E /* SPConfigurationProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPConfigurationProvider.h; sourceTree = "<group>"; };
-		ED7F081426190E00005D377E /* SPConfigurationProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPConfigurationProvider.m; sourceTree = "<group>"; };
-		ED7F083E261924BF005D377E /* SPConfigurationFetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPConfigurationFetcher.h; sourceTree = "<group>"; };
-		ED7F083F261924BF005D377E /* SPConfigurationFetcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPConfigurationFetcher.m; sourceTree = "<group>"; };
-		ED8122A825E9578500AE7FE8 /* SPSnowplow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPSnowplow.h; sourceTree = "<group>"; };
-		ED8122A925E9578500AE7FE8 /* SPSnowplow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPSnowplow.m; sourceTree = "<group>"; };
 		ED852B2E23A0E90E00F2DF6B /* SNOWReachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SNOWReachability.m; sourceTree = "<group>"; };
 		ED852B3223A0EEC600F2DF6B /* SNOWReachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SNOWReachability.h; sourceTree = "<group>"; };
 		ED87A43C2577E440000C54EB /* TestTrackerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestTrackerController.m; sourceTree = "<group>"; };
@@ -1075,12 +1045,8 @@
 		ED91CB7023AA8AD50078E75F /* SPDevicePlatform.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPDevicePlatform.m; sourceTree = "<group>"; };
 		ED9897142627006F00145157 /* NSDictionary+SP_TypeMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SP_TypeMethods.h"; sourceTree = "<group>"; };
 		ED9897152627006F00145157 /* NSDictionary+SP_TypeMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+SP_TypeMethods.m"; sourceTree = "<group>"; };
-		ED98972426287F7900145157 /* SPConfigurationCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPConfigurationCache.h; sourceTree = "<group>"; };
-		ED98972526287F7900145157 /* SPConfigurationCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPConfigurationCache.m; sourceTree = "<group>"; };
 		EDA06FB42664CD2F007FA773 /* SPMockEventStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPMockEventStore.h; sourceTree = "<group>"; };
 		EDA06FB52664CD2F007FA773 /* SPMockEventStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPMockEventStore.m; sourceTree = "<group>"; };
-		EDAB65CC26CBD5150067755F /* SPDeepLinkEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPDeepLinkEntity.h; sourceTree = "<group>"; };
-		EDAB65CD26CBD5150067755F /* SPDeepLinkEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPDeepLinkEntity.m; sourceTree = "<group>"; };
 		EDAB662F26D699D80067755F /* SPStateFuture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPStateFuture.m; sourceTree = "<group>"; };
 		EDAB663026D699D90067755F /* SPStateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPStateManager.h; sourceTree = "<group>"; };
 		EDAB663126D699D90067755F /* SPStateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPStateManager.m; sourceTree = "<group>"; };
@@ -1193,6 +1159,7 @@
 		6BEBA0F029195B1700B5737F /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				6B8587582924CDB0006E4A5F /* Snowplow.swift */,
 				6B0CCFBD292275580054954B /* Controller.swift */,
 				ED7F080426190AF2005D377E /* RemoteConfiguration */,
 				ED8BF8B0256FFEA4001DFDD9 /* Configurations */,
@@ -1212,8 +1179,6 @@
 				EDC9B346255ACF5100F4136D /* Events */,
 				AB0C27C5191B408200018557 /* SPTrackerConstants.h */,
 				043EC5E61B8F224900294081 /* SPTrackerConstants.m */,
-				ED8122A825E9578500AE7FE8 /* SPSnowplow.h */,
-				ED8122A925E9578500AE7FE8 /* SPSnowplow.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1335,15 +1300,11 @@
 		ED7F080426190AF2005D377E /* RemoteConfiguration */ = {
 			isa = PBXGroup;
 			children = (
-				ED7F081326190E00005D377E /* SPConfigurationProvider.h */,
-				ED7F081426190E00005D377E /* SPConfigurationProvider.m */,
-				ED7F083E261924BF005D377E /* SPConfigurationFetcher.h */,
-				ED7F083F261924BF005D377E /* SPConfigurationFetcher.m */,
-				ED277BE02625F5C5002C7B6D /* SPFetchedConfigurationBundle.h */,
-				ED277BE12625F5C5002C7B6D /* SPFetchedConfigurationBundle.m */,
-				ED98972426287F7900145157 /* SPConfigurationCache.h */,
-				ED98972526287F7900145157 /* SPConfigurationCache.m */,
-				6BACDF912897C2580013276E /* ConfigurationState.swift */,
+				6B85877129251779006E4A5F /* ConfigurationState.swift */,
+				6B858767292509AC006E4A5F /* ConfigurationCache.swift */,
+				6B858768292509AC006E4A5F /* ConfigurationFetcher.swift */,
+				6B8587622924F76F006E4A5F /* ConfigurationProvider.swift */,
+				6B85875D2924DA67006E4A5F /* FetchedConfigurationBundle.swift */,
 			);
 			path = RemoteConfiguration;
 			sourceTree = "<group>";
@@ -1430,10 +1391,8 @@
 		EDAB65D626CD2F970067755F /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				ED38D91D26EBCD58002AEC8E /* SPLifecycleEntity.h */,
-				ED38D91E26EBCD59002AEC8E /* SPLifecycleEntity.m */,
-				EDAB65CC26CBD5150067755F /* SPDeepLinkEntity.h */,
-				EDAB65CD26CBD5150067755F /* SPDeepLinkEntity.m */,
+				6B9DA53E29253951006D721A /* DeepLinkEntity.swift */,
+				6B9DA53D29253951006D721A /* LifecycleEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1532,10 +1491,8 @@
 		EDC9B350255AEDF000F4136D /* Payload */ = {
 			isa = PBXGroup;
 			children = (
-				AB0C27F3191C67CD00018557 /* SPPayload.h */,
-				AB0C27F4191C67CD00018557 /* SPPayload.m */,
-				0485CA141BAC658500214BC5 /* SPSelfDescribingJson.h */,
-				0485CA151BAC65A300214BC5 /* SPSelfDescribingJson.m */,
+				6B85878129251DF4006E4A5F /* Payload.swift */,
+				6B85878029251DF4006E4A5F /* SelfDescribingJson.swift */,
 			);
 			path = Payload;
 			sourceTree = "<group>";
@@ -1581,6 +1538,8 @@
 		EDC9B352255B027E00F4136D /* NetworkConnection */ = {
 			isa = PBXGroup;
 			children = (
+				6B85877629251CBD006E4A5F /* DefaultNetworkConnection.swift */,
+				6B85877729251CBD006E4A5F /* NetworkConnection.swift */,
 				6B85874F2923E7CF006E4A5F /* NetworkController.swift */,
 				6B85874E2923E7CF006E4A5F /* NetworkControllerImpl.swift */,
 				6B8587352923DCA2006E4A5F /* NetworkConfigurationUpdate.swift */,
@@ -1682,7 +1641,6 @@
 				CE4F9CBE244B066500968CFC /* SPForeground.h in Headers */,
 				EDAB664026D699D90067755F /* SPStateFuture.h in Headers */,
 				ED6B0329271094D700EFA12B /* SPMessageNotificationAttachment.h in Headers */,
-				ED38D91F26EBCD59002AEC8E /* SPLifecycleEntity.h in Headers */,
 				ED88B7342587777B0048FAD1 /* SPEmitterEventProcessing.h in Headers */,
 				CE4F9D02244B066500968CFC /* SPEcommerceItem.h in Headers */,
 				EDD8541624EEC25100661F6B /* SPEmitterEvent.h in Headers */,
@@ -1699,20 +1657,17 @@
 				EDAB665626D6AA940067755F /* SPDeepLinkStateMachine.h in Headers */,
 				ED852B3323A0EEC600F2DF6B /* SNOWReachability.h in Headers */,
 				CE4F9CB2244B066500968CFC /* SNOWError.h in Headers */,
-				ED8122AA25E9578500AE7FE8 /* SPSnowplow.h in Headers */,
 				EDAB665226D69D740067755F /* SPScreenStateMachine.h in Headers */,
 				752DAC3421CC43C70065F874 /* SPEmitter.h in Headers */,
 				752DAC3521CC43C70065F874 /* SPSubject.h in Headers */,
 				ED0EFE3126E240B0002CAA21 /* SPDeepLinkReceived.h in Headers */,
 				EDDD7007264E8ECE00259404 /* SPServiceProviderProtocol.h in Headers */,
 				6BEBA0F3291960A000B5737F /* SPPlatformContext.h in Headers */,
-				ED277BE22625F5C5002C7B6D /* SPFetchedConfigurationBundle.h in Headers */,
 				6BF08DA6270DEED6009C7E2B /* SPDeviceInfoMonitor.h in Headers */,
 				CE4F9CE2244B066500968CFC /* SPConsentGranted.h in Headers */,
 				CE4F9CFA244B066500968CFC /* SPEventBase.h in Headers */,
 				EDAB663826D699D90067755F /* SPStateManager.h in Headers */,
 				ED9897162627006F00145157 /* NSDictionary+SP_TypeMethods.h in Headers */,
-				752DAC3721CC43C70065F874 /* SPPayload.h in Headers */,
 				6B85871F2923C4F3006E4A5F /* SPEventStore.h in Headers */,
 				752DAC3A21CC43C70065F874 /* SPUtilities.h in Headers */,
 				CE4F9CE6244B066500968CFC /* SPPushNotification.h in Headers */,
@@ -1728,26 +1683,21 @@
 				ED38D93326EBCEBE002AEC8E /* SPLifecycleStateMachine.h in Headers */,
 				752DAC3E21CC43C70065F874 /* SPRequestCallback.h in Headers */,
 				CE4F9D06244B066500968CFC /* SPSchemaRuleset.h in Headers */,
-				752DAC3821CC43C70065F874 /* SPSelfDescribingJson.h in Headers */,
 				EDD8543424EFFFB300661F6B /* SPRequest.h in Headers */,
 				754774CD222756470043B814 /* UIViewController+SPScreenView_SWIZZLE.h in Headers */,
 				75264A30224E5DBC000E0E9B /* SPInstallTracker.h in Headers */,
 				ED88B6DB2583DFC80048FAD1 /* SPServiceProvider.h in Headers */,
-				6BACDF922897C2580013276E /* ConfigurationState.swift in Headers */,
 				ED38D92B26EBCEBE002AEC8E /* SPLifecycleState.h in Headers */,
 				ED7CE17D26DFC12C0035C323 /* SPState.h in Headers */,
 				CE4F9CCA244B066500968CFC /* SPGlobalContext.h in Headers */,
 				6B8587232923C4F3006E4A5F /* SPMemoryEventStore.h in Headers */,
 				CE4F9CD6244B066500968CFC /* SPScreenView.h in Headers */,
-				ED7F081526190E00005D377E /* SPConfigurationProvider.h in Headers */,
 				752DAC4221CC60F20065F874 /* Snowplow-umbrella-header.h in Headers */,
 				ED7CE16F26DFB55C0035C323 /* SPTrackerState.h in Headers */,
 				CE4F9C9A244B066500968CFC /* SPEvent.h in Headers */,
-				ED7F0840261924BF005D377E /* SPConfigurationFetcher.h in Headers */,
 				EDB2FD1926C130B80031B872 /* SPDataPersistence.h in Headers */,
 				752DAC3621CC43C70065F874 /* SPSession.h in Headers */,
 				752DAC3B21CC43C70065F874 /* SPRequestResult.h in Headers */,
-				EDAB65CE26CBD5150067755F /* SPDeepLinkEntity.h in Headers */,
 				6BF08DB0270DF2E8009C7E2B /* SPMockDeviceInfoMonitor.h in Headers */,
 				752DAC3C21CC43C70065F874 /* SPWeakTimerTarget.h in Headers */,
 				EDAB664426D699D90067755F /* SPStateMachineProtocol.h in Headers */,
@@ -1757,7 +1707,6 @@
 				CE4F9C9E244B066500968CFC /* SPSchemaRule.h in Headers */,
 				CE4F9D1A244B066500968CFC /* SPEcommerce.h in Headers */,
 				6B871F6627C3976B00BCF742 /* SPMockNetworkConnection.h in Headers */,
-				ED98972626287F7A00145157 /* SPConfigurationCache.h in Headers */,
 				ED9081B52703747C00EE9421 /* SPMessageNotification.h in Headers */,
 				CE4F9CAE244B066500968CFC /* SPConsentWithdrawn.h in Headers */,
 				6BD6A6AC288719C7002D6D40 /* SPMockWKScriptMessage.h in Headers */,
@@ -1783,15 +1732,12 @@
 				75CAC45B21F2A21B00271FB3 /* SPEmitter.h in Headers */,
 				CE4F9D1B244B066500968CFC /* SPEcommerce.h in Headers */,
 				ED38D92C26EBCEBE002AEC8E /* SPLifecycleState.h in Headers */,
-				ED7F0841261924BF005D377E /* SPConfigurationFetcher.h in Headers */,
 				6BEBA0F4291960A000B5737F /* SPPlatformContext.h in Headers */,
 				ED6B032A271094D700EFA12B /* SPMessageNotificationAttachment.h in Headers */,
 				75CAC45C21F2A21B00271FB3 /* SPSubject.h in Headers */,
 				CE4F9CB7244B066500968CFC /* SPSelfDescribing.h in Headers */,
 				6BF08DA7270DEED6009C7E2B /* SPDeviceInfoMonitor.h in Headers */,
 				EDAB664526D699D90067755F /* SPStateMachineProtocol.h in Headers */,
-				75CAC45E21F2A21B00271FB3 /* SPPayload.h in Headers */,
-				75CAC45F21F2A21B00271FB3 /* SPSelfDescribingJson.h in Headers */,
 				EDAB665726D6AA940067755F /* SPDeepLinkStateMachine.h in Headers */,
 				EDFEEAC823A7CB2A001E6D03 /* SPInstallTracker.h in Headers */,
 				6BABED2D291E502C00F6798A /* SPSize.h in Headers */,
@@ -1818,7 +1764,6 @@
 				75CAC46521F2A21B00271FB3 /* SPRequestCallback.h in Headers */,
 				ED7CE17E26DFC12C0035C323 /* SPState.h in Headers */,
 				CE4F9CAB244B066500968CFC /* SPTrackerEvent.h in Headers */,
-				ED7F081626190E00005D377E /* SPConfigurationProvider.h in Headers */,
 				EDAB663926D699D90067755F /* SPStateManager.h in Headers */,
 				ED0EFE3226E240B0002CAA21 /* SPDeepLinkReceived.h in Headers */,
 				CE4F9D07244B066500968CFC /* SPSchemaRuleset.h in Headers */,
@@ -1827,15 +1772,12 @@
 				ED88B7352587777B0048FAD1 /* SPEmitterEventProcessing.h in Headers */,
 				CE4F9CB3244B066500968CFC /* SNOWError.h in Headers */,
 				6BF08DB1270DF2E8009C7E2B /* SPMockDeviceInfoMonitor.h in Headers */,
-				ED98972726287F7A00145157 /* SPConfigurationCache.h in Headers */,
-				ED38D92026EBCD59002AEC8E /* SPLifecycleEntity.h in Headers */,
 				CE4F9D0F244B066500968CFC /* SPConsentDocument.h in Headers */,
 				EDD8543524EFFFB300661F6B /* SPRequest.h in Headers */,
 				EDD8541724EEC25100661F6B /* SPEmitterEvent.h in Headers */,
 				CE4F9C9F244B066500968CFC /* SPSchemaRule.h in Headers */,
 				CE4F9CBF244B066500968CFC /* SPForeground.h in Headers */,
 				CE4F9CF3244B066500968CFC /* SPStructured.h in Headers */,
-				6BACDF932897C2580013276E /* ConfigurationState.swift in Headers */,
 				ED9897172627006F00145157 /* NSDictionary+SP_TypeMethods.h in Headers */,
 				EDD8542124EFEFB900661F6B /* SPDefaultNetworkConnection.h in Headers */,
 				ED34672B26415C1D0018BA61 /* SPJSONSerialization.h in Headers */,
@@ -1843,10 +1785,7 @@
 				ED7CE16626DE39510035C323 /* SPScreenStateMachine.h in Headers */,
 				ED7CE17026DFB55C0035C323 /* SPTrackerState.h in Headers */,
 				6BABEB78291D08DD00F6798A /* OnSessionStateUpdate.h in Headers */,
-				ED277BE32625F5C5002C7B6D /* SPFetchedConfigurationBundle.h in Headers */,
 				75CAC46221F2A21B00271FB3 /* SPRequestResult.h in Headers */,
-				ED8122AB25E9578600AE7FE8 /* SPSnowplow.h in Headers */,
-				EDAB65CF26CBD5150067755F /* SPDeepLinkEntity.h in Headers */,
 				75CAC46321F2A21B00271FB3 /* SPWeakTimerTarget.h in Headers */,
 				6B85871C2923C4F3006E4A5F /* SPSQLiteEventStore.h in Headers */,
 				ED49DF3D2757E4F500610843 /* SPSessionState.h in Headers */,
@@ -1866,14 +1805,11 @@
 				75CAC42C21F2A0CC00271FB3 /* SPTracker.h in Headers */,
 				EDAB664626D699D90067755F /* SPStateMachineProtocol.h in Headers */,
 				ED9081B72703747C00EE9421 /* SPMessageNotification.h in Headers */,
-				ED38D92126EBCD59002AEC8E /* SPLifecycleEntity.h in Headers */,
 				75CAC42D21F2A0CC00271FB3 /* SPEmitter.h in Headers */,
 				CE4F9CFC244B066500968CFC /* SPEventBase.h in Headers */,
 				75CAC42E21F2A0CC00271FB3 /* SPSubject.h in Headers */,
-				75CAC43021F2A0CC00271FB3 /* SPPayload.h in Headers */,
 				CE4F9D1C244B066500968CFC /* SPEcommerce.h in Headers */,
 				6B8587212923C4F3006E4A5F /* SPEventStore.h in Headers */,
-				75CAC43121F2A0CC00271FB3 /* SPSelfDescribingJson.h in Headers */,
 				CE4F9CB8244B066500968CFC /* SPSelfDescribing.h in Headers */,
 				ED7CE17126DFB55C0035C323 /* SPTrackerState.h in Headers */,
 				75CAC43321F2A0CC00271FB3 /* SPUtilities.h in Headers */,
@@ -1902,14 +1838,11 @@
 				CE4F9CB0244B066500968CFC /* SPConsentWithdrawn.h in Headers */,
 				6BABED2E291E502C00F6798A /* SPSize.h in Headers */,
 				CE4F9D14244B066500968CFC /* SPBackground.h in Headers */,
-				6BACDF942897C2580013276E /* ConfigurationState.swift in Headers */,
-				ED98972826287F7A00145157 /* SPConfigurationCache.h in Headers */,
 				75CAC42F21F2A0CC00271FB3 /* SPSession.h in Headers */,
 				CE4F9CAC244B066500968CFC /* SPTrackerEvent.h in Headers */,
 				ED9897182627006F00145157 /* NSDictionary+SP_TypeMethods.h in Headers */,
 				ED852B3423A0EEC600F2DF6B /* SNOWReachability.h in Headers */,
 				EDAB666226D6ACCB0067755F /* SPDeepLinkState.h in Headers */,
-				ED7F081726190E00005D377E /* SPConfigurationProvider.h in Headers */,
 				CE4F9D08244B066500968CFC /* SPSchemaRuleset.h in Headers */,
 				EDB2FD1B26C130B80031B872 /* SPDataPersistence.h in Headers */,
 				EDAB663A26D699D90067755F /* SPStateManager.h in Headers */,
@@ -1917,13 +1850,10 @@
 				ED7CE17A26DFBFA30035C323 /* SPTrackerStateSnapshot.h in Headers */,
 				ED88B7362587777B0048FAD1 /* SPEmitterEventProcessing.h in Headers */,
 				6B85871D2923C4F3006E4A5F /* SPSQLiteEventStore.h in Headers */,
-				ED7F0842261924BF005D377E /* SPConfigurationFetcher.h in Headers */,
 				CE4F9CB4244B066500968CFC /* SNOWError.h in Headers */,
-				ED277BE42625F5C5002C7B6D /* SPFetchedConfigurationBundle.h in Headers */,
 				ED0EFE3326E240B1002CAA21 /* SPDeepLinkReceived.h in Headers */,
 				CE4F9D10244B066500968CFC /* SPConsentDocument.h in Headers */,
 				EDD8543624EFFFB300661F6B /* SPRequest.h in Headers */,
-				EDAB65D026CBD5150067755F /* SPDeepLinkEntity.h in Headers */,
 				EDD8541824EEC25100661F6B /* SPEmitterEvent.h in Headers */,
 				CE4F9CA0244B066500968CFC /* SPSchemaRule.h in Headers */,
 				6BF08DB2270DF2E8009C7E2B /* SPMockDeviceInfoMonitor.h in Headers */,
@@ -1936,7 +1866,6 @@
 				EDDD7009264E8ECE00259404 /* SPServiceProviderProtocol.h in Headers */,
 				ED8A3EED2371709100E51827 /* SPInstallTracker.h in Headers */,
 				6B07CDAF287721C600E510D6 /* SPWebViewMessageHandler.h in Headers */,
-				ED8122AC25E9578600AE7FE8 /* SPSnowplow.h in Headers */,
 				6BABEB79291D08DD00F6798A /* OnSessionStateUpdate.h in Headers */,
 				75CAC43521F2A0CC00271FB3 /* SPWeakTimerTarget.h in Headers */,
 			);
@@ -1950,7 +1879,6 @@
 				CE4F9CC1244B066500968CFC /* SPForeground.h in Headers */,
 				EDAB664326D699D90067755F /* SPStateFuture.h in Headers */,
 				ED6B032C271094D700EFA12B /* SPMessageNotificationAttachment.h in Headers */,
-				ED38D92226EBCD59002AEC8E /* SPLifecycleEntity.h in Headers */,
 				ED88B7372587777B0048FAD1 /* SPEmitterEventProcessing.h in Headers */,
 				CE4F9D05244B066500968CFC /* SPEcommerceItem.h in Headers */,
 				EDD8541924EEC25100661F6B /* SPEmitterEvent.h in Headers */,
@@ -1967,24 +1895,20 @@
 				EDAB665926D6AA940067755F /* SPDeepLinkStateMachine.h in Headers */,
 				ED852B3523A0EEC600F2DF6B /* SNOWReachability.h in Headers */,
 				CE4F9CB5244B066500968CFC /* SNOWError.h in Headers */,
-				ED8122AD25E9578600AE7FE8 /* SPSnowplow.h in Headers */,
 				EDAB665326D69D740067755F /* SPScreenStateMachine.h in Headers */,
 				6BABEB7A291D08DD00F6798A /* OnSessionStateUpdate.h in Headers */,
 				75F9C5E721FA35BC00A5B8FC /* SPTracker.h in Headers */,
 				75F9C5E821FA35BC00A5B8FC /* SPEmitter.h in Headers */,
 				ED0EFE3426E240B1002CAA21 /* SPDeepLinkReceived.h in Headers */,
 				EDDD700A264E8ECE00259404 /* SPServiceProviderProtocol.h in Headers */,
-				ED277BE52625F5C5002C7B6D /* SPFetchedConfigurationBundle.h in Headers */,
 				6BF08DA9270DEED6009C7E2B /* SPDeviceInfoMonitor.h in Headers */,
 				CE4F9CE5244B066500968CFC /* SPConsentGranted.h in Headers */,
 				CE4F9CFD244B066500968CFC /* SPEventBase.h in Headers */,
 				EDAB663B26D699D90067755F /* SPStateManager.h in Headers */,
 				ED9897192627006F00145157 /* NSDictionary+SP_TypeMethods.h in Headers */,
 				75F9C5E921FA35BC00A5B8FC /* SPSubject.h in Headers */,
-				75F9C5EB21FA35BC00A5B8FC /* SPPayload.h in Headers */,
 				CE4F9CE9244B066500968CFC /* SPPushNotification.h in Headers */,
 				EDD8542324EFEFB900661F6B /* SPDefaultNetworkConnection.h in Headers */,
-				75F9C5EC21FA35BC00A5B8FC /* SPSelfDescribingJson.h in Headers */,
 				CE4F9D11244B066500968CFC /* SPConsentDocument.h in Headers */,
 				ED7CE17B26DFBFA30035C323 /* SPTrackerStateSnapshot.h in Headers */,
 				CE4F9CAD244B066500968CFC /* SPTrackerEvent.h in Headers */,
@@ -2000,21 +1924,17 @@
 				EDD8543724EFFFB300661F6B /* SPRequest.h in Headers */,
 				75F9C5F221FA35BC00A5B8FC /* SPRequestCallback.h in Headers */,
 				ED88B6DE2583DFC90048FAD1 /* SPServiceProvider.h in Headers */,
-				6BACDF952897C2630013276E /* ConfigurationState.swift in Headers */,
 				ED38D92E26EBCEBE002AEC8E /* SPLifecycleState.h in Headers */,
 				CE4F9CCD244B066500968CFC /* SPGlobalContext.h in Headers */,
 				ED7CE18026DFC12C0035C323 /* SPState.h in Headers */,
 				CE4F9CD9244B066500968CFC /* SPScreenView.h in Headers */,
 				7534D20622569BFF00904EE5 /* SPInstallTracker.h in Headers */,
-				ED7F082126191108005D377E /* SPConfigurationProvider.h in Headers */,
 				7534D20522569BFF00904EE5 /* UIViewController+SPScreenView_SWIZZLE.h in Headers */,
 				ED7CE17226DFB55C0035C323 /* SPTrackerState.h in Headers */,
 				CE4F9C9D244B066500968CFC /* SPEvent.h in Headers */,
-				ED7F0843261924BF005D377E /* SPConfigurationFetcher.h in Headers */,
 				EDB2FD1C26C130B80031B872 /* SPDataPersistence.h in Headers */,
 				6BABED2F291E502C00F6798A /* SPSize.h in Headers */,
 				75F9C5F021FA35BC00A5B8FC /* SPWeakTimerTarget.h in Headers */,
-				EDAB65D126CBD5150067755F /* SPDeepLinkEntity.h in Headers */,
 				6BF08DB3270DF2E8009C7E2B /* SPMockDeviceInfoMonitor.h in Headers */,
 				75F9C5EA21FA35BC00A5B8FC /* SPSession.h in Headers */,
 				EDAB664726D699D90067755F /* SPStateMachineProtocol.h in Headers */,
@@ -2025,7 +1945,6 @@
 				75F9C5EF21FA35BC00A5B8FC /* SPRequestResult.h in Headers */,
 				CE4F9D1D244B066500968CFC /* SPEcommerce.h in Headers */,
 				6B871F6927C3976D00BCF742 /* SPMockNetworkConnection.h in Headers */,
-				ED98972926287F7A00145157 /* SPConfigurationCache.h in Headers */,
 				ED9081B82703747C00EE9421 /* SPMessageNotification.h in Headers */,
 				CE4F9CB1244B066500968CFC /* SPConsentWithdrawn.h in Headers */,
 				EDAB666326D6ACCB0067755F /* SPDeepLinkState.h in Headers */,
@@ -2343,20 +2262,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED98972A26287F7A00145157 /* SPConfigurationCache.m in Sources */,
 				CE4F9CC6244B066500968CFC /* SPSchemaRuleset.m in Sources */,
 				6B07CDB1287721C600E510D6 /* SPWebViewMessageHandler.m in Sources */,
+				6B85876D292509AD006E4A5F /* ConfigurationFetcher.swift in Sources */,
 				754774D0222756470043B814 /* UIViewController+SPScreenView_SWIZZLE.m in Sources */,
 				6B85873C2923E025006E4A5F /* EmitterController.swift in Sources */,
 				CE4F9CDA244B066500968CFC /* SPPageView.m in Sources */,
 				6B8F5605291BDAF900CD3F1B /* TrackerConfiguration.swift in Sources */,
 				6B8587462923E5A2006E4A5F /* GlobalContextsController.swift in Sources */,
+				6B85877229251779006E4A5F /* ConfigurationState.swift in Sources */,
 				ED34672E26415C1D0018BA61 /* SPJSONSerialization.m in Sources */,
 				EDAB666426D6ACCB0067755F /* SPDeepLinkState.m in Sources */,
 				6BABED49291E884900F6798A /* ConfigurationBundle.swift in Sources */,
 				6BABED35291E596100F6798A /* EmitterConfiguration.swift in Sources */,
 				6BEBA0F7291960A000B5737F /* SPPlatformContext.m in Sources */,
 				6B85870129239A9D006E4A5F /* SQLiteEventStore.swift in Sources */,
+				6B85875E2924DA67006E4A5F /* FetchedConfigurationBundle.swift in Sources */,
 				ED88B6DF2583DFC90048FAD1 /* SPServiceProvider.m in Sources */,
 				6B0CCFCE29236B0B0054954B /* GDPRContext.swift in Sources */,
 				ED6B032D271094D700EFA12B /* SPMessageNotificationAttachment.m in Sources */,
@@ -2364,20 +2285,21 @@
 				EDB2FD1D26C130B80031B872 /* SPDataPersistence.m in Sources */,
 				EDAB665026D69D740067755F /* SPScreenStateMachine.m in Sources */,
 				6BABED4E291E8B6F00F6798A /* GlobalContextsConfiguration.swift in Sources */,
-				ED7F081826190E00005D377E /* SPConfigurationProvider.m in Sources */,
+				6B8587592924CDB0006E4A5F /* Snowplow.swift in Sources */,
 				CE4F9C96244B066500968CFC /* SPEcommerceItem.m in Sources */,
 				6BABED26291E4FEF00F6798A /* SubjectConfiguration.swift in Sources */,
 				6B85874A2923E5A2006E4A5F /* GlobalContextsControllerImpl.swift in Sources */,
 				6B0CCFD429236D4A0054954B /* SubjectControllerImpl.swift in Sources */,
 				6B8587542923E7D0006E4A5F /* NetworkController.swift in Sources */,
+				6B8587632924F76F006E4A5F /* ConfigurationProvider.swift in Sources */,
 				6BF08DB4270DF2E8009C7E2B /* SPMockDeviceInfoMonitor.m in Sources */,
 				752DAC1721CC42BC0065F874 /* SPTrackerConstants.m in Sources */,
 				6BABED44291E85F200F6798A /* SubjectConfigurationUpdate.swift in Sources */,
-				ED277BE62625F5C5002C7B6D /* SPFetchedConfigurationBundle.m in Sources */,
 				CE4F9C92244B066500968CFC /* SPForeground.m in Sources */,
 				6B85870E2923C18D006E4A5F /* EventStore.swift in Sources */,
 				ED49DF402757E4F500610843 /* SPSessionState.m in Sources */,
 				6B85872D2923C5F0006E4A5F /* TrackerController.swift in Sources */,
+				6B858769292509AD006E4A5F /* ConfigurationCache.swift in Sources */,
 				ED91CB7123AA8AD50078E75F /* SPDevicePlatform.m in Sources */,
 				CE4F9CBA244B066500968CFC /* SPSelfDescribing.m in Sources */,
 				CE4F9D16244B066500968CFC /* SPGlobalContext.m in Sources */,
@@ -2387,20 +2309,18 @@
 				EDAB665A26D6AA940067755F /* SPDeepLinkStateMachine.m in Sources */,
 				752DAC1921CC42BC0065F874 /* SPTracker.m in Sources */,
 				6BABED3F291E833E00F6798A /* EmitterConfigurationUpdate.swift in Sources */,
-				EDAB65D226CBD5150067755F /* SPDeepLinkEntity.m in Sources */,
-				ED38D92326EBCD59002AEC8E /* SPLifecycleEntity.m in Sources */,
 				EDD8543824EFFFB300661F6B /* SPRequest.m in Sources */,
 				CE4F9CC2244B066500968CFC /* SPConsentGranted.m in Sources */,
 				ED38D92F26EBCEBE002AEC8E /* SPLifecycleStateMachine.m in Sources */,
-				ED7F0844261924BF005D377E /* SPConfigurationFetcher.m in Sources */,
 				6BABEB6C291CE94900F6798A /* NetworkConfiguration.swift in Sources */,
 				6B8587362923DCA2006E4A5F /* NetworkConfigurationUpdate.swift in Sources */,
 				752DAC1B21CC42BC0065F874 /* SPEmitter.m in Sources */,
 				ED7CE17326DFB55C0035C323 /* SPTrackerState.m in Sources */,
 				75264A32224E5DD2000E0E9B /* SPInstallTracker.m in Sources */,
 				ED9081B12703747C00EE9421 /* SPMessageNotification.m in Sources */,
-				ED8122AE25E9578600AE7FE8 /* SPSnowplow.m in Sources */,
+				6B9DA53F29253951006D721A /* LifecycleEntity.swift in Sources */,
 				CE4F9C86244B066500968CFC /* SPTiming.m in Sources */,
+				6B85878229251DF4006E4A5F /* SelfDescribingJson.swift in Sources */,
 				EDD8541A24EEC25100661F6B /* SPEmitterEvent.m in Sources */,
 				6BABED3A291E60F000F6798A /* GDPRConfiguration.swift in Sources */,
 				ED98971A2627006F00145157 /* NSDictionary+SP_TypeMethods.m in Sources */,
@@ -2417,23 +2337,25 @@
 				CE4F9D1E244B066500968CFC /* SPEcommerce.m in Sources */,
 				6B85870929239A9D006E4A5F /* MemoryEventStore.swift in Sources */,
 				6BABE8BD291BFCAD00F6798A /* TrackerConfigurationUpdate.swift in Sources */,
-				752DAC2121CC42BC0065F874 /* SPPayload.m in Sources */,
 				CE4F9CCE244B066500968CFC /* SNOWError.m in Sources */,
 				6BABEB71291CF1B900F6798A /* SessionConfiguration.swift in Sources */,
-				752DAC2321CC42BC0065F874 /* SPSelfDescribingJson.m in Sources */,
 				CE4F9CEE244B066500968CFC /* SPSchemaRule.m in Sources */,
+				6B85877829251CBD006E4A5F /* DefaultNetworkConnection.swift in Sources */,
 				CE4F9C8E244B066500968CFC /* SPConsentWithdrawn.m in Sources */,
 				CE4F9CD2244B066500968CFC /* SPTrackerEvent.m in Sources */,
 				6B8586F6292388C9006E4A5F /* SessionController.swift in Sources */,
 				752DAC2721CC42BC0065F874 /* SPUtilities.m in Sources */,
+				6B85877C29251CBD006E4A5F /* NetworkConnection.swift in Sources */,
 				EDD8542424EFEFB900661F6B /* SPDefaultNetworkConnection.m in Sources */,
 				CE4F9CEA244B066500968CFC /* SPPushNotification.m in Sources */,
 				6B0CCFD829236D4A0054954B /* SubjectController.swift in Sources */,
 				6B8587312923C5F0006E4A5F /* TrackerControllerImpl.swift in Sources */,
 				ED852B2F23A0E90E00F2DF6B /* SNOWReachability.m in Sources */,
+				6B9DA54329253952006D721A /* DeepLinkEntity.swift in Sources */,
 				6B0CCFBE292275580054954B /* Controller.swift in Sources */,
 				752DAC2921CC42BC0065F874 /* SPRequestResult.m in Sources */,
 				752DAC2B21CC42BC0065F874 /* SPWeakTimerTarget.m in Sources */,
+				6B85878629251DF4006E4A5F /* Payload.swift in Sources */,
 				ED38D93726EBCEBE002AEC8E /* SPLifecycleState.m in Sources */,
 				6B0CCFB9292262650054954B /* GDPRController.swift in Sources */,
 				6BABED21291E3DB200F6798A /* Configuration.swift in Sources */,
@@ -2499,7 +2421,6 @@
 				EDAB663D26D699D90067755F /* SPStateManager.m in Sources */,
 				6B85874B2923E5A2006E4A5F /* GlobalContextsControllerImpl.swift in Sources */,
 				6B0CCFCF29236B0B0054954B /* GDPRContext.swift in Sources */,
-				EDAB65D326CBD5150067755F /* SPDeepLinkEntity.m in Sources */,
 				ED0EFE2E26E240B0002CAA21 /* SPDeepLinkReceived.m in Sources */,
 				6B0CCFCA292284390054954B /* GDPRConfigurationUpdate.swift in Sources */,
 				75CAC43A21F2A17500271FB3 /* SPTrackerConstants.m in Sources */,
@@ -2508,11 +2429,14 @@
 				6BABED45291E85F200F6798A /* SubjectConfigurationUpdate.swift in Sources */,
 				6B85872E2923C5F0006E4A5F /* TrackerController.swift in Sources */,
 				754774BD2225FBA60043B814 /* SPScreenState.m in Sources */,
+				6B85877329251779006E4A5F /* ConfigurationState.swift in Sources */,
 				75CAC43B21F2A17500271FB3 /* SPTracker.m in Sources */,
 				6BABED3B291E60F000F6798A /* GDPRConfiguration.swift in Sources */,
 				75CAC43C21F2A17500271FB3 /* SPEmitter.m in Sources */,
+				6B85875A2924CDB0006E4A5F /* Snowplow.swift in Sources */,
 				CE4F9CBB244B066500968CFC /* SPSelfDescribing.m in Sources */,
 				ED6B032E271094D700EFA12B /* SPMessageNotificationAttachment.m in Sources */,
+				6B85878329251DF4006E4A5F /* SelfDescribingJson.swift in Sources */,
 				EDD8542524EFEFB900661F6B /* SPDefaultNetworkConnection.m in Sources */,
 				6B8587552923E7D0006E4A5F /* NetworkController.swift in Sources */,
 				75CAC43D21F2A17500271FB3 /* SPSubject.m in Sources */,
@@ -2522,24 +2446,23 @@
 				CE4F9D17244B066500968CFC /* SPGlobalContext.m in Sources */,
 				ED9081B22703747C00EE9421 /* SPMessageNotification.m in Sources */,
 				ED7CE16A26DE43A00035C323 /* SPScreenStateMachine.m in Sources */,
-				ED7F0845261924BF005D377E /* SPConfigurationFetcher.m in Sources */,
 				6B8587372923DCA2006E4A5F /* NetworkConfigurationUpdate.swift in Sources */,
 				6BABE8BE291BFCAD00F6798A /* TrackerConfigurationUpdate.swift in Sources */,
 				ED38D93026EBCEBE002AEC8E /* SPLifecycleStateMachine.m in Sources */,
 				CE4F9CC3244B066500968CFC /* SPConsentGranted.m in Sources */,
 				CE4F9CF7244B066500968CFC /* SPEventBase.m in Sources */,
+				6B85877929251CBD006E4A5F /* DefaultNetworkConnection.swift in Sources */,
 				EDAB665B26D6AA940067755F /* SPDeepLinkStateMachine.m in Sources */,
 				6B0CCFD529236D4A0054954B /* SubjectControllerImpl.swift in Sources */,
 				6BABED22291E3DB200F6798A /* Configuration.swift in Sources */,
-				ED98972B26287F7A00145157 /* SPConfigurationCache.m in Sources */,
 				EDEE835024BDB326000B8530 /* SPTrackerError.m in Sources */,
 				CE4F9C93244B066500968CFC /* SPForeground.m in Sources */,
 				CE4F9CFF244B066500968CFC /* SPBackground.m in Sources */,
-				ED8122AF25E9578600AE7FE8 /* SPSnowplow.m in Sources */,
 				6B8587472923E5A2006E4A5F /* GlobalContextsController.swift in Sources */,
 				6B85870F2923C18D006E4A5F /* EventStore.swift in Sources */,
 				EDEE835F24BE0944000B8530 /* SPLogger.m in Sources */,
 				6BABED27291E4FEF00F6798A /* SubjectConfiguration.swift in Sources */,
+				6B9DA54429253952006D721A /* DeepLinkEntity.swift in Sources */,
 				CE4F9CEF244B066500968CFC /* SPSchemaRule.m in Sources */,
 				75CAC43E21F2A17500271FB3 /* SPSession.m in Sources */,
 				6BABEB72291CF1B900F6798A /* SessionConfiguration.swift in Sources */,
@@ -2547,13 +2470,11 @@
 				ED7CE17426DFB55C0035C323 /* SPTrackerState.m in Sources */,
 				6BABED31291E502C00F6798A /* SPSize.m in Sources */,
 				6B8587412923E025006E4A5F /* EmitterControllerImpl.swift in Sources */,
-				ED277BE72625F5C5002C7B6D /* SPFetchedConfigurationBundle.m in Sources */,
-				ED7F081926190E00005D377E /* SPConfigurationProvider.m in Sources */,
+				6B85877D29251CBD006E4A5F /* NetworkConnection.swift in Sources */,
 				6BEBA0F8291960A000B5737F /* SPPlatformContext.m in Sources */,
 				CE4F9CEB244B066500968CFC /* SPPushNotification.m in Sources */,
 				EDAB666526D6ACCB0067755F /* SPDeepLinkState.m in Sources */,
 				6B0CCFBF292275580054954B /* Controller.swift in Sources */,
-				75CAC43F21F2A17500271FB3 /* SPPayload.m in Sources */,
 				CE4F9CC7244B066500968CFC /* SPSchemaRuleset.m in Sources */,
 				CE4F9C8B244B066500968CFC /* SPConsentDocument.m in Sources */,
 				6B8587182923C4F3006E4A5F /* SPMemoryEventStore.m in Sources */,
@@ -2562,15 +2483,16 @@
 				EDD8541B24EEC25100661F6B /* SPEmitterEvent.m in Sources */,
 				ED38D93826EBCEBE002AEC8E /* SPLifecycleState.m in Sources */,
 				ED34672F26415C1D0018BA61 /* SPJSONSerialization.m in Sources */,
-				75CAC44021F2A17500271FB3 /* SPSelfDescribingJson.m in Sources */,
 				6B8586F7292388C9006E4A5F /* SessionController.swift in Sources */,
 				CE4F9CCF244B066500968CFC /* SNOWError.m in Sources */,
+				6B9DA54029253952006D721A /* LifecycleEntity.swift in Sources */,
 				CE4F9C87244B066500968CFC /* SPTiming.m in Sources */,
 				6B07CDB2287721C600E510D6 /* SPWebViewMessageHandler.m in Sources */,
 				6BABED36291E596100F6798A /* EmitterConfiguration.swift in Sources */,
 				6B8586FB292388C9006E4A5F /* SessionControllerImpl.swift in Sources */,
 				ED49DF412757E4F500610843 /* SPSessionState.m in Sources */,
 				6B8587512923E7D0006E4A5F /* NetworkControllerImpl.swift in Sources */,
+				6B85878729251DF4006E4A5F /* Payload.swift in Sources */,
 				CE4F9D1F244B066500968CFC /* SPEcommerce.m in Sources */,
 				6BABED54291E91E000F6798A /* RemoteConfiguration.swift in Sources */,
 				6B85870229239A9D006E4A5F /* SQLiteEventStore.swift in Sources */,
@@ -2581,13 +2503,14 @@
 				6BABED4F291E8B6F00F6798A /* GlobalContextsConfiguration.swift in Sources */,
 				EDAB663526D699D90067755F /* SPStateFuture.m in Sources */,
 				75CAC44321F2A17500271FB3 /* SPRequestResult.m in Sources */,
+				6B85875F2924DA67006E4A5F /* FetchedConfigurationBundle.swift in Sources */,
 				6BABED4A291E884900F6798A /* ConfigurationBundle.swift in Sources */,
+				6B85876A292509AD006E4A5F /* ConfigurationCache.swift in Sources */,
 				6B85870A29239A9D006E4A5F /* MemoryEventStore.swift in Sources */,
 				EDFEEAC923A7CB3C001E6D03 /* SPInstallTracker.m in Sources */,
 				75CAC44421F2A17500271FB3 /* SPWeakTimerTarget.m in Sources */,
 				ED98971B2627006F00145157 /* NSDictionary+SP_TypeMethods.m in Sources */,
 				CE4F9CD3244B066500968CFC /* SPTrackerEvent.m in Sources */,
-				ED38D92426EBCD59002AEC8E /* SPLifecycleEntity.m in Sources */,
 				6B85873D2923E025006E4A5F /* EmitterController.swift in Sources */,
 				ED91CB7223AA8AD50078E75F /* SPDevicePlatform.m in Sources */,
 				6B8587322923C5F0006E4A5F /* TrackerControllerImpl.swift in Sources */,
@@ -2596,7 +2519,9 @@
 				6BF08DAB270DEED6009C7E2B /* SPDeviceInfoMonitor.m in Sources */,
 				6B0CCFBA292262650054954B /* GDPRController.swift in Sources */,
 				6B0CCFB6292262650054954B /* GDPRControllerImpl.swift in Sources */,
+				6B8587642924F76F006E4A5F /* ConfigurationProvider.swift in Sources */,
 				6B8587282923C4F3006E4A5F /* SPSQLiteEventStore.m in Sources */,
+				6B85876E292509AD006E4A5F /* ConfigurationFetcher.swift in Sources */,
 				6BABEB6D291CE94900F6798A /* NetworkConfiguration.swift in Sources */,
 				75CAC44721F2A17500271FB3 /* Snowplow-umbrella-header.h in Sources */,
 			);
@@ -2609,7 +2534,6 @@
 				EDAB663E26D699D90067755F /* SPStateManager.m in Sources */,
 				6B85874C2923E5A2006E4A5F /* GlobalContextsControllerImpl.swift in Sources */,
 				6B0CCFD029236B0B0054954B /* GDPRContext.swift in Sources */,
-				EDAB65D426CBD5150067755F /* SPDeepLinkEntity.m in Sources */,
 				ED0EFE2F26E240B0002CAA21 /* SPDeepLinkReceived.m in Sources */,
 				6B0CCFCB292284390054954B /* GDPRConfigurationUpdate.swift in Sources */,
 				75CAC44821F2A19500271FB3 /* SPTrackerConstants.m in Sources */,
@@ -2618,11 +2542,14 @@
 				6BABED46291E85F200F6798A /* SubjectConfigurationUpdate.swift in Sources */,
 				6B85872F2923C5F0006E4A5F /* TrackerController.swift in Sources */,
 				754774BE2225FBA60043B814 /* SPScreenState.m in Sources */,
+				6B85877429251779006E4A5F /* ConfigurationState.swift in Sources */,
 				75CAC44921F2A19500271FB3 /* SPTracker.m in Sources */,
 				6BABED3C291E60F000F6798A /* GDPRConfiguration.swift in Sources */,
 				ED8A3EEC2371708C00E51827 /* SPInstallTracker.m in Sources */,
+				6B85875B2924CDB0006E4A5F /* Snowplow.swift in Sources */,
 				CE4F9CBC244B066500968CFC /* SPSelfDescribing.m in Sources */,
 				ED6B032F271094D700EFA12B /* SPMessageNotificationAttachment.m in Sources */,
+				6B85878429251DF4006E4A5F /* SelfDescribingJson.swift in Sources */,
 				EDD8542624EFEFB900661F6B /* SPDefaultNetworkConnection.m in Sources */,
 				6B8587562923E7D0006E4A5F /* NetworkController.swift in Sources */,
 				75CAC44A21F2A19500271FB3 /* SPEmitter.m in Sources */,
@@ -2632,24 +2559,23 @@
 				CE4F9D18244B066500968CFC /* SPGlobalContext.m in Sources */,
 				ED9081B32703747C00EE9421 /* SPMessageNotification.m in Sources */,
 				ED7CE16B26DE43A00035C323 /* SPScreenStateMachine.m in Sources */,
-				ED7F0846261924BF005D377E /* SPConfigurationFetcher.m in Sources */,
 				6B8587382923DCA2006E4A5F /* NetworkConfigurationUpdate.swift in Sources */,
 				6BABE8BF291BFCAD00F6798A /* TrackerConfigurationUpdate.swift in Sources */,
 				ED38D93126EBCEBE002AEC8E /* SPLifecycleStateMachine.m in Sources */,
 				CE4F9CC4244B066500968CFC /* SPConsentGranted.m in Sources */,
 				CE4F9CF8244B066500968CFC /* SPEventBase.m in Sources */,
+				6B85877A29251CBD006E4A5F /* DefaultNetworkConnection.swift in Sources */,
 				EDAB665C26D6AA940067755F /* SPDeepLinkStateMachine.m in Sources */,
 				6B0CCFD629236D4A0054954B /* SubjectControllerImpl.swift in Sources */,
 				6BABED23291E3DB200F6798A /* Configuration.swift in Sources */,
-				ED98972C26287F7A00145157 /* SPConfigurationCache.m in Sources */,
 				EDEE835124BDB326000B8530 /* SPTrackerError.m in Sources */,
 				CE4F9C94244B066500968CFC /* SPForeground.m in Sources */,
 				CE4F9D00244B066500968CFC /* SPBackground.m in Sources */,
-				ED8122B025E9578600AE7FE8 /* SPSnowplow.m in Sources */,
 				6B8587482923E5A2006E4A5F /* GlobalContextsController.swift in Sources */,
 				6B8587102923C18D006E4A5F /* EventStore.swift in Sources */,
 				EDEE836024BE0944000B8530 /* SPLogger.m in Sources */,
 				6BABED28291E4FEF00F6798A /* SubjectConfiguration.swift in Sources */,
+				6B9DA54529253952006D721A /* DeepLinkEntity.swift in Sources */,
 				CE4F9CF0244B066500968CFC /* SPSchemaRule.m in Sources */,
 				ED91CB7323AA8AD50078E75F /* SPDevicePlatform.m in Sources */,
 				6BABEB73291CF1B900F6798A /* SessionConfiguration.swift in Sources */,
@@ -2657,8 +2583,7 @@
 				ED7CE17526DFB55C0035C323 /* SPTrackerState.m in Sources */,
 				6BABED32291E502C00F6798A /* SPSize.m in Sources */,
 				6B8587422923E025006E4A5F /* EmitterControllerImpl.swift in Sources */,
-				ED277BE82625F5C5002C7B6D /* SPFetchedConfigurationBundle.m in Sources */,
-				ED7F081A26190E00005D377E /* SPConfigurationProvider.m in Sources */,
+				6B85877E29251CBD006E4A5F /* NetworkConnection.swift in Sources */,
 				6BEBA0F9291960A000B5737F /* SPPlatformContext.m in Sources */,
 				CE4F9CEC244B066500968CFC /* SPPushNotification.m in Sources */,
 				EDAB666626D6ACCB0067755F /* SPDeepLinkState.m in Sources */,
@@ -2675,29 +2600,30 @@
 				75CAC44C21F2A19500271FB3 /* SPSession.m in Sources */,
 				6B8586F8292388C9006E4A5F /* SessionController.swift in Sources */,
 				CE4F9CD0244B066500968CFC /* SNOWError.m in Sources */,
+				6B9DA54129253952006D721A /* LifecycleEntity.swift in Sources */,
 				CE4F9C88244B066500968CFC /* SPTiming.m in Sources */,
 				6B07CDB3287721C600E510D6 /* SPWebViewMessageHandler.m in Sources */,
 				6BABED37291E596100F6798A /* EmitterConfiguration.swift in Sources */,
 				6B8586FC292388C9006E4A5F /* SessionControllerImpl.swift in Sources */,
 				ED49DF422757E4F500610843 /* SPSessionState.m in Sources */,
 				6B8587522923E7D0006E4A5F /* NetworkControllerImpl.swift in Sources */,
+				6B85878829251DF4006E4A5F /* Payload.swift in Sources */,
 				CE4F9D20244B066500968CFC /* SPEcommerce.m in Sources */,
 				6BABED55291E91E000F6798A /* RemoteConfiguration.swift in Sources */,
-				75CAC44D21F2A19500271FB3 /* SPPayload.m in Sources */,
 				6B85870329239A9D006E4A5F /* SQLiteEventStore.swift in Sources */,
 				CE4F9D0C244B066500968CFC /* SPScreenView.m in Sources */,
-				75CAC44E21F2A19500271FB3 /* SPSelfDescribingJson.m in Sources */,
 				ED88B6E12583DFC90048FAD1 /* SPServiceProvider.m in Sources */,
 				CE4F9CDC244B066500968CFC /* SPPageView.m in Sources */,
 				6BABED50291E8B6F00F6798A /* GlobalContextsConfiguration.swift in Sources */,
 				EDAB663626D699D90067755F /* SPStateFuture.m in Sources */,
+				6B8587602924DA67006E4A5F /* FetchedConfigurationBundle.swift in Sources */,
 				6BABED4B291E884900F6798A /* ConfigurationBundle.swift in Sources */,
+				6B85876B292509AD006E4A5F /* ConfigurationCache.swift in Sources */,
 				6B85870B29239A9D006E4A5F /* MemoryEventStore.swift in Sources */,
 				75CAC45021F2A19500271FB3 /* SPUtilities.m in Sources */,
 				75CAC45121F2A19500271FB3 /* SPRequestResult.m in Sources */,
 				ED98971C2627006F00145157 /* NSDictionary+SP_TypeMethods.m in Sources */,
 				CE4F9CD4244B066500968CFC /* SPTrackerEvent.m in Sources */,
-				ED38D92526EBCD59002AEC8E /* SPLifecycleEntity.m in Sources */,
 				6B85873E2923E025006E4A5F /* EmitterController.swift in Sources */,
 				ED852B3023A0E90E00F2DF6B /* SNOWReachability.m in Sources */,
 				6B8587332923C5F0006E4A5F /* TrackerControllerImpl.swift in Sources */,
@@ -2706,7 +2632,9 @@
 				6BF08DAC270DEED6009C7E2B /* SPDeviceInfoMonitor.m in Sources */,
 				6B0CCFBB292262650054954B /* GDPRController.swift in Sources */,
 				6B0CCFB7292262650054954B /* GDPRControllerImpl.swift in Sources */,
+				6B8587652924F76F006E4A5F /* ConfigurationProvider.swift in Sources */,
 				6B8587292923C4F3006E4A5F /* SPSQLiteEventStore.m in Sources */,
+				6B85876F292509AD006E4A5F /* ConfigurationFetcher.swift in Sources */,
 				6BABEB6E291CE94900F6798A /* NetworkConfiguration.swift in Sources */,
 				75CAC45221F2A19500271FB3 /* SPWeakTimerTarget.m in Sources */,
 			);
@@ -2727,7 +2655,6 @@
 				CE4F9CC9244B066500968CFC /* SPSchemaRuleset.m in Sources */,
 				EDAB663F26D699D90067755F /* SPStateManager.m in Sources */,
 				6B0CCFD129236B0B0054954B /* GDPRContext.swift in Sources */,
-				EDAB65D526CBD5150067755F /* SPDeepLinkEntity.m in Sources */,
 				7534D20122569BED00904EE5 /* SPScreenState.m in Sources */,
 				6B0CCFCC292284390054954B /* GDPRConfigurationUpdate.swift in Sources */,
 				ED0EFE3026E240B0002CAA21 /* SPDeepLinkReceived.m in Sources */,
@@ -2737,12 +2664,17 @@
 				6BABED47291E85F200F6798A /* SubjectConfigurationUpdate.swift in Sources */,
 				ED88B6E22583DFC90048FAD1 /* SPServiceProvider.m in Sources */,
 				6BABED3D291E60F000F6798A /* GDPRConfiguration.swift in Sources */,
+				6B9DA54229253952006D721A /* LifecycleEntity.swift in Sources */,
+				6B85877B29251CBD006E4A5F /* DefaultNetworkConnection.swift in Sources */,
 				CE4F9C99244B066500968CFC /* SPEcommerceItem.m in Sources */,
+				6B9DA54629253952006D721A /* DeepLinkEntity.swift in Sources */,
+				6B85875C2924CDB0006E4A5F /* Snowplow.swift in Sources */,
 				7534D20222569BED00904EE5 /* UIViewController+SPScreenView_SWIZZLE.m in Sources */,
 				7534D20322569BED00904EE5 /* SPInstallTracker.m in Sources */,
 				6B8587572923E7D0006E4A5F /* NetworkController.swift in Sources */,
 				ED6B0330271094D700EFA12B /* SPMessageNotificationAttachment.m in Sources */,
 				CE4F9C95244B066500968CFC /* SPForeground.m in Sources */,
+				6B85877F29251CBD006E4A5F /* NetworkConnection.swift in Sources */,
 				6B8F5608291BDAF900CD3F1B /* TrackerConfiguration.swift in Sources */,
 				ED91CB7423AA8AD50078E75F /* SPDevicePlatform.m in Sources */,
 				CE4F9CBD244B066500968CFC /* SPSelfDescribing.m in Sources */,
@@ -2754,33 +2686,32 @@
 				EDAB666726D6ACCB0067755F /* SPDeepLinkState.m in Sources */,
 				EDAB665126D69D740067755F /* SPScreenStateMachine.m in Sources */,
 				6BABE8C0291BFCAD00F6798A /* TrackerConfigurationUpdate.swift in Sources */,
+				6B858770292509AD006E4A5F /* ConfigurationFetcher.swift in Sources */,
 				ED38D93226EBCEBE002AEC8E /* SPLifecycleStateMachine.m in Sources */,
 				6B0CCFD729236D4A0054954B /* SubjectControllerImpl.swift in Sources */,
 				EDEE836124BE0944000B8530 /* SPLogger.m in Sources */,
-				ED7F0847261924BF005D377E /* SPConfigurationFetcher.m in Sources */,
 				6BABED24291E3DB200F6798A /* Configuration.swift in Sources */,
 				CE4F9CE1244B066500968CFC /* SPStructured.m in Sources */,
 				EDD8543B24EFFFB300661F6B /* SPRequest.m in Sources */,
-				ED98972D26287F7A00145157 /* SPConfigurationCache.m in Sources */,
 				6BABED29291E4FEF00F6798A /* SubjectConfiguration.swift in Sources */,
 				6B8587492923E5A2006E4A5F /* GlobalContextsController.swift in Sources */,
 				CE4F9CC5244B066500968CFC /* SPConsentGranted.m in Sources */,
 				6B8587112923C18D006E4A5F /* EventStore.swift in Sources */,
 				75F9C5D621FA357100A5B8FC /* SPTrackerConstants.m in Sources */,
 				75F9C5D721FA357100A5B8FC /* SPTracker.m in Sources */,
+				6B85876C292509AD006E4A5F /* ConfigurationCache.swift in Sources */,
 				6BABEB74291CF1B900F6798A /* SessionConfiguration.swift in Sources */,
 				6BABED42291E833E00F6798A /* EmitterConfigurationUpdate.swift in Sources */,
 				6BABED33291E502C00F6798A /* SPSize.m in Sources */,
-				ED8122B125E9578600AE7FE8 /* SPSnowplow.m in Sources */,
 				ED7CE17626DFB55C0035C323 /* SPTrackerState.m in Sources */,
 				CE4F9C89244B066500968CFC /* SPTiming.m in Sources */,
 				6B8587432923E025006E4A5F /* EmitterControllerImpl.swift in Sources */,
 				6BEBA0FA291960A000B5737F /* SPPlatformContext.m in Sources */,
 				EDD8541D24EEC25100661F6B /* SPEmitterEvent.m in Sources */,
-				ED277BE92625F5C5002C7B6D /* SPFetchedConfigurationBundle.m in Sources */,
 				6B0CCFC1292275580054954B /* Controller.swift in Sources */,
 				CE4F9CF9244B066500968CFC /* SPEventBase.m in Sources */,
 				CE4F9D0D244B066500968CFC /* SPScreenView.m in Sources */,
+				6B85877529251779006E4A5F /* ConfigurationState.swift in Sources */,
 				75F9C5D821FA357100A5B8FC /* SPEmitter.m in Sources */,
 				EDB2FD2026C130B80031B872 /* SPDataPersistence.m in Sources */,
 				6B0CCFDB29236D4A0054954B /* SubjectController.swift in Sources */,
@@ -2792,7 +2723,6 @@
 				CE4F9CD1244B066500968CFC /* SNOWError.m in Sources */,
 				6B8586F9292388C9006E4A5F /* SessionController.swift in Sources */,
 				6BABED38291E596100F6798A /* EmitterConfiguration.swift in Sources */,
-				75F9C5DB21FA357100A5B8FC /* SPPayload.m in Sources */,
 				6B07CDB4287721C600E510D6 /* SPWebViewMessageHandler.m in Sources */,
 				ED49DF432757E4F500610843 /* SPSessionState.m in Sources */,
 				6B8586FD292388C9006E4A5F /* SessionControllerImpl.swift in Sources */,
@@ -2801,28 +2731,30 @@
 				6BABED56291E91E000F6798A /* RemoteConfiguration.swift in Sources */,
 				CE4F9C91244B066500968CFC /* SPConsentWithdrawn.m in Sources */,
 				CE4F9CD5244B066500968CFC /* SPTrackerEvent.m in Sources */,
-				75F9C5DC21FA357100A5B8FC /* SPSelfDescribingJson.m in Sources */,
 				6B85870429239A9D006E4A5F /* SQLiteEventStore.swift in Sources */,
 				EDD8542724EFEFB900661F6B /* SPDefaultNetworkConnection.m in Sources */,
 				6BABED51291E8B6F00F6798A /* GlobalContextsConfiguration.swift in Sources */,
 				CE4F9CED244B066500968CFC /* SPPushNotification.m in Sources */,
 				ED852B3123A0E90E00F2DF6B /* SNOWReachability.m in Sources */,
 				EDAB663726D699D90067755F /* SPStateFuture.m in Sources */,
+				6B8587612924DA67006E4A5F /* FetchedConfigurationBundle.swift in Sources */,
 				6BABED4C291E884900F6798A /* ConfigurationBundle.swift in Sources */,
 				75F9C5DE21FA357100A5B8FC /* SPUtilities.m in Sources */,
+				6B85878929251DF4006E4A5F /* Payload.swift in Sources */,
 				6B85870C29239A9D006E4A5F /* MemoryEventStore.swift in Sources */,
 				75F9C5DF21FA357100A5B8FC /* SPRequestResult.m in Sources */,
 				CE4F9C8D244B066500968CFC /* SPConsentDocument.m in Sources */,
 				ED98971D2627006F00145157 /* NSDictionary+SP_TypeMethods.m in Sources */,
 				CE4F9D01244B066500968CFC /* SPBackground.m in Sources */,
 				6B85873F2923E025006E4A5F /* EmitterController.swift in Sources */,
-				ED38D92626EBCD59002AEC8E /* SPLifecycleEntity.m in Sources */,
 				6B8587342923C5F0006E4A5F /* TrackerControllerImpl.swift in Sources */,
+				6B85878529251DF4006E4A5F /* SelfDescribingJson.swift in Sources */,
 				EDEE835224BDB326000B8530 /* SPTrackerError.m in Sources */,
 				6BABEB7F291D1C7C00F6798A /* SessionConfigurationUpdate.swift in Sources */,
 				6BF08DAD270DEED6009C7E2B /* SPDeviceInfoMonitor.m in Sources */,
 				6B0CCFBC292262650054954B /* GDPRController.swift in Sources */,
 				6B0CCFB8292262650054954B /* GDPRControllerImpl.swift in Sources */,
+				6B8587662924F76F006E4A5F /* ConfigurationProvider.swift in Sources */,
 				6B85872A2923C4F3006E4A5F /* SPSQLiteEventStore.m in Sources */,
 				6BABEB6F291CE94900F6798A /* NetworkConfiguration.swift in Sources */,
 				75F9C5E021FA357100A5B8FC /* SPWeakTimerTarget.m in Sources */,

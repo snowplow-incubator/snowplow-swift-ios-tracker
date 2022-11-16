@@ -21,8 +21,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SPPayload.h"
-#import "SPSelfDescribingJson.h"
 
 @interface TestSelfDescribingJson : XCTestCase
 

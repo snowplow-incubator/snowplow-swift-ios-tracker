@@ -24,8 +24,6 @@
 #import "SPTracker.h"
 #import "SPEmitter.h"
 #import "SPSubject.h"
-#import "SPPayload.h"
-#import "SPSelfDescribingJson.h"
 #import "SPRequestCallback.h"
 #import "SPEvent.h"
 #import "SPServiceProvider.h"

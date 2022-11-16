@@ -22,7 +22,8 @@
 #import "SPDeepLinkStateMachine.h"
 #import "SPDeepLinkReceived.h"
 #import "SPDeepLinkState.h"
-#import "SPDeepLinkEntity.h"
+
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 @implementation SPDeepLinkStateMachine
 

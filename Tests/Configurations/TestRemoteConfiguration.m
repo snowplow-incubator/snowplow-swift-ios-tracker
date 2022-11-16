@@ -22,10 +22,8 @@
 #import <XCTest/XCTest.h>
 #import <Nocilla/Nocilla.h>
 
-#import "SPFetchedConfigurationBundle.h"
 #import "SPConfigurationFetcher.h"
 #import "SPConfigurationCache.h"
-#import "SPConfigurationProvider.h"
 
 @interface TestRemoteConfiguration : XCTestCase
 @end

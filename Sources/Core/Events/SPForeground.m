@@ -23,7 +23,6 @@
 
 #import "SPTrackerConstants.h"
 #import "SPUtilities.h"
-#import "SPSelfDescribingJson.h"
 
 @interface SPForeground ()
 

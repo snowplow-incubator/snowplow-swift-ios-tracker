@@ -22,8 +22,6 @@
 #import "SPTrackerConstants.h"
 #import "SPDevicePlatform.h"
 #import "SPUtilities.h"
-#import "SPPayload.h"
-#import "SPSelfDescribingJson.h"
 #import "SPScreenState.h"
 #import "SPLogger.h"
 #import "SPDeviceInfoMonitor.h"

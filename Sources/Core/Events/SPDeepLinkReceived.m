@@ -21,8 +21,6 @@
 #import "SPDeepLinkReceived.h"
 
 #import "SPUtilities.h"
-#import "SPPayload.h"
-#import "SPSelfDescribingJson.h"
 
 @interface SPDeepLinkReceived ()
 

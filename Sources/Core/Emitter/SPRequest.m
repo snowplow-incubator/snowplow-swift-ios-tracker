@@ -21,7 +21,8 @@
 
 #import "SPRequest.h"
 #import "SPTrackerConstants.h"
-#import "SPSelfDescribingJson.h"
+
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 @interface SPRequest ()
 
@@ -57,7 +58,7 @@
             tempUserAgent = [self userAgentFromPayload:payload];
         }
         SPSelfDescribingJson *payloadBundle = [[SPSelfDescribingJson alloc] initWithSchema:kSPPayloadDataSchema andData:payloadData];
-        self.payload = [[SPPayload alloc] initWithNSDictionary:[payloadBundle getAsDictionary]];
+        self.payload = [[SPPayload alloc] initWithDictionary:[payloadBundle getAsDictionary]];
         self.emitterEventIds = emitterEventIds;
         self.customUserAgent = tempUserAgent;
         self.oversize = NO;

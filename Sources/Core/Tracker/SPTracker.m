@@ -23,8 +23,6 @@
 #import "SPTracker.h"
 #import "SPEmitter.h"
 #import "SPSubject.h"
-#import "SPPayload.h"
-#import "SPSelfDescribingJson.h"
 #import "SPUtilities.h"
 #import "SPSession.h"
 #import "SPInstallTracker.h"

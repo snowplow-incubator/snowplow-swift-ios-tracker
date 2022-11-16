@@ -20,7 +20,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SPPayload.h"
+
+@class SPPayload;
 
 NS_ASSUME_NONNULL_BEGIN
 

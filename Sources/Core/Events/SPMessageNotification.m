@@ -21,8 +21,6 @@
 #import "SPMessageNotification.h"
 
 #import "SPUtilities.h"
-#import "SPPayload.h"
-#import "SPSelfDescribingJson.h"
 #import "NSDictionary+SP_TypeMethods.h"
 
 #define SPMessageNotificationTriggerString(enum) [@[@"push", @"location", @"calendar", @"timeInterval", @"other"] objectAtIndex:enum]

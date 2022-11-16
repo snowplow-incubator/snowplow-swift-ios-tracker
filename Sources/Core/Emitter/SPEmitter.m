@@ -25,8 +25,6 @@
 #import "SPMemoryEventStore.h"
 #import "SPDefaultNetworkConnection.h"
 #import "SPUtilities.h"
-#import "SPPayload.h"
-#import "SPSelfDescribingJson.h"
 #import "SPRequestResult.h"
 #import "SPWeakTimerTarget.h"
 #import "SPRequestCallback.h"

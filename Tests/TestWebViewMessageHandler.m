@@ -21,7 +21,6 @@
 
 #import <XCTest/XCTest.h>
 
-#import "SPSnowplow.h"
 #import "SPWebViewMessageHandler.h"
 #import "Utils/SPMockNetworkConnection.h"
 #import "Utils/SPMockWKScriptMessage.h"

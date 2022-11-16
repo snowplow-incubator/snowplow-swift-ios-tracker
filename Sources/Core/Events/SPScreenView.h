@@ -20,7 +20,6 @@
 //
 
 #import "SPEventBase.h"
-#import "SPSelfDescribingJson.h"
 
 @class SPScreenState;
 

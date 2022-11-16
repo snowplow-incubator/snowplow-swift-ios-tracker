@@ -21,8 +21,8 @@
 
 @objc(SPTrackerConfigurationUpdate)
 public class TrackerConfigurationUpdate: TrackerConfiguration {
-    @objc var sourceConfig: TrackerConfiguration?
-    @objc var isPaused = false
+    @objc public var sourceConfig: TrackerConfiguration?
+    @objc public var isPaused = false
     @objc var appIdUpdated = false
     @objc var devicePlatformUpdated = false
     @objc var base64EncodingUpdated = false

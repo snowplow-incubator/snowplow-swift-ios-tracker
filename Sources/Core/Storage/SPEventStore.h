@@ -21,7 +21,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "SPPayload.h"
 #import "SPEmitterEvent.h"
 
 NS_ASSUME_NONNULL_BEGIN

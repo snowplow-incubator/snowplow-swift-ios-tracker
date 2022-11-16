@@ -20,7 +20,6 @@
 //
 
 #import "SPServiceProvider.h"
-#import "SPDefaultNetworkConnection.h"
 
 #import "SPEmitter.h"
 #import "SPSubject.h"
@@ -321,7 +320,7 @@
         }
         SPGDPRConfigurationUpdate *gdprConfig = self.gdprConfigurationUpdate;
         if (gdprConfig.sourceConfig) {
-            [builder setGdprContextWithBasis:gdprConfig.basisForProcessing documentId:gdprConfig.documentId documentVersion:gdprConfig.documentVersion documentDescription:gdprConfig.documentDescription];
+            [builder setGdprContextWithBasis:(int)gdprConfig.basisForProcessing documentId:gdprConfig.documentId documentVersion:gdprConfig.documentVersion documentDescription:gdprConfig.documentDescription];
         }
     }];
     if (self.trackerConfigurationUpdate.isPaused) {

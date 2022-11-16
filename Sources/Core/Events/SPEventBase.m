@@ -22,7 +22,6 @@
 #import "SPTrackerConstants.h"
 #import "SPEventBase.h"
 #import "SPUtilities.h"
-#import "SPPayload.h"
 #import "SPScreenState.h"
 #import "SPTracker.h"
 

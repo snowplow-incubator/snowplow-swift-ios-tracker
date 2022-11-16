@@ -23,8 +23,6 @@
 
 #import "SPTrackerConstants.h"
 #import "SPUtilities.h"
-#import "SPPayload.h"
-#import "SPSelfDescribingJson.h"
 
 
 @interface SNOWError ()

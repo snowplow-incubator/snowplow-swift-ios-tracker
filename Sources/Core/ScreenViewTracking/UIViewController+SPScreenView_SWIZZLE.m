@@ -25,7 +25,6 @@
 
 #import "SPTracker.h"
 #import "SPEventBase.h"
-#import "SPSelfDescribingJson.h"
 #import "SPUtilities.h"
 #import "UIKit/UIKit.h"
 #import "UIViewController+SPScreenView_SWIZZLE.h"

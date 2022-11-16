@@ -23,7 +23,8 @@
 #import "SPScreenState.h"
 #import "SPTrackerConstants.h"
 #import "SPUtilities.h"
-#import "SPPayload.h"
+
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 @implementation SPScreenState
 

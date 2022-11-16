@@ -22,7 +22,6 @@
 #import <XCTest/XCTest.h>
 #import "SPTracker.h"
 #import "SPEmitter.h"
-#import "SPPayload.h"
 #import "SPSubject.h"
 #import "SPTrackerConstants.h"
 #import "SPEvent.h"

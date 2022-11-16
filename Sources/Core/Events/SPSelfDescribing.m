@@ -23,8 +23,8 @@
 
 #import "SPTrackerConstants.h"
 #import "SPUtilities.h"
-#import "SPPayload.h"
-#import "SPSelfDescribingJson.h"
+
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 @implementation SPSelfDescribing {
     SPSelfDescribingJson * _eventData;

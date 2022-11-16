@@ -20,10 +20,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SPSelfDescribingJson.h"
 #import "SPTrackerConstants.h"
 #import "SPTrackerStateSnapshot.h"
 
+@class SPSelfDescribingJson;
 @class SPPayload;
 @class SPTracker;
 

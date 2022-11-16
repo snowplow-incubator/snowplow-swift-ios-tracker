@@ -20,7 +20,7 @@
 
 @objc(SPSubjectConfigurationUpdate)
 public class SubjectConfigurationUpdate: SubjectConfiguration {
-    var sourceConfig: SubjectConfiguration?
+    @objc public var sourceConfig: SubjectConfiguration?
     var userIdUpdated = false
     var networkUserIdUpdated = false
     var domainUserIdUpdated = false

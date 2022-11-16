@@ -23,7 +23,6 @@
 
 #import "SPTrackerConstants.h"
 #import "SPUtilities.h"
-#import "SPPayload.h"
 #import "SPTracker.h"
 
 @interface SPEcommerce ()

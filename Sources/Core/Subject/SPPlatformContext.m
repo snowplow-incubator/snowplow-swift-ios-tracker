@@ -20,9 +20,10 @@
 //
 
 #import "SPPlatformContext.h"
-#import "SPPayload.h"
 #import "SPTrackerConstants.h"
 #import "SPDeviceInfoMonitor.h"
+
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 @interface SPPlatformContext ()
 
@@ -71,7 +72,7 @@
     }
 #endif
     if (userAnonymisation) { // mask user identifiers
-        SPPayload *copy = [[SPPayload alloc] initWithNSDictionary:[self.platformDict getAsDictionary]];
+        SPPayload *copy = [[SPPayload alloc] initWithDictionary:[self.platformDict getAsDictionary]];
         [copy addValueToPayload:nil forKey:kSPMobileAppleIdfa];
         [copy addValueToPayload:nil forKey:kSPMobileAppleIdfv];
         return copy;

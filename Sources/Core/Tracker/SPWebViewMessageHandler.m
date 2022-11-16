@@ -20,11 +20,12 @@
 //
 
 #import "SPWebViewMessageHandler.h"
-#import "SPSnowplow.h"
 #import "SPSelfDescribing.h"
 #import "SPStructured.h"
 #import "SPPageView.h"
 #import "SPScreenView.h"
+
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 #if SNOWPLOW_TARGET_IOS || SNOWPLOW_TARGET_OSX
 
@@ -59,7 +60,7 @@
 - (void)trackSelfDescribing:(NSDictionary *)event withContext:(NSArray<NSDictionary *> *)context andTrackers:(NSArray<NSString *> *)trackers {
     NSString *schema = event[@"schema"];
     NSDictionary *payload = event[@"data"];
-    
+
     if (schema && payload) {
         SPSelfDescribing *selfDescribing = [[SPSelfDescribing alloc] initWithSchema:schema payload:payload];
         [self track:selfDescribing withContext:context andTrackers:trackers];
@@ -72,7 +73,7 @@
     NSString *label = event[@"label"];
     NSString *property = event[@"property"];
     NSNumber *value = event[@"value"];
-    
+
     if (category && action) {
         SPStructured *structured = [[SPStructured alloc] initWithCategory:category action:action];
         if (label) { structured.label = label; }
@@ -86,7 +87,7 @@
     NSString *url = event[@"url"];
     NSString *title = event[@"title"];
     NSString *referrer = event[@"referrer"];
-    
+
     if (url) {
         SPPageView *pageView = [[SPPageView alloc] initWithPageUrl:url];
         if (title) { pageView.pageTitle = title; }
@@ -103,7 +104,7 @@
     NSString *previousId = event[@"previousId"];
     NSString *previousType = event[@"previousType"];
     NSString *transitionType = event[@"transitionType"];
-    
+
     if (name && screenId) {
         NSUUID *screenUuid = [[NSUUID alloc] initWithUUIDString:screenId];
         SPScreenView *screenView = [[SPScreenView alloc] initWithName:name screenId:screenUuid];
@@ -122,7 +123,7 @@
     }
     if (trackers.count > 0) {
         for (NSString *namespace in trackers) {
-            id<SPTrackerController> tracker = [SPSnowplow trackerByNamespace:namespace];
+            id<SPTrackerController> tracker = [SPSnowplow trackerWithNamespace:namespace];
             if (tracker) {
                 [tracker track:event];
             }
@@ -138,13 +139,13 @@
     for (NSDictionary *entityJson in context) {
         NSString *schema = entityJson[@"schema"];
         NSDictionary *payload = entityJson[@"data"];
-        
+
         if (schema && payload) {
             SPSelfDescribingJson *entity = [[SPSelfDescribingJson alloc] initWithSchema:schema andDictionary:payload];
             [contextEntities addObject:entity];
         }
     }
-    
+
     return contextEntities;
 }
 

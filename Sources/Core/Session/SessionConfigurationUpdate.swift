@@ -21,8 +21,8 @@
 
 @objc(SPSessionConfigurationUpdate)
 public class SessionConfigurationUpdate: SessionConfiguration {
-    var sourceConfig: SessionConfiguration?
-    var isPaused = false
+    @objc public var sourceConfig: SessionConfiguration?
+    @objc public var isPaused = false
     var foregroundTimeoutInSecondsUpdated = false
     var backgroundTimeoutInSecondsUpdated = false
     var onSessionStateUpdateUpdated = false

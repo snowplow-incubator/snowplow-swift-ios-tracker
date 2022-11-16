@@ -1,8 +1,5 @@
-#import "SPSnowplow.h"
 #import "SPTrackerConstants.h"
 #import "SPLoggerDelegate.h"
-#import "SPPayload.h"
-#import "SPSelfDescribingJson.h"
 #import "SPDevicePlatform.h"
 
 // Configurations
@@ -47,8 +44,6 @@
 #import "SPMessageNotificationAttachment.h"
 
 // Entities
-#import "SPDeepLinkEntity.h"
-#import "SPLifecycleEntity.h"
 
 // Global Contexts and State Management
 #import "SPGlobalContext.h"
@@ -65,3 +60,5 @@
 #import "SPSession.h"
 #import "SPLogger.h"
 #import "SPEmitter.h"
+#import "SPServiceProvider.h"
+#import "SPUtilities.h"

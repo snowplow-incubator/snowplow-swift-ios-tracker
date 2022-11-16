@@ -21,7 +21,6 @@
 
 #import "SPTrackerConstants.h"
 #import "SPSubject.h"
-#import "SPPayload.h"
 #import "SPUtilities.h"
 #import "SPLogger.h"
 #import "SPPlatformContext.h"

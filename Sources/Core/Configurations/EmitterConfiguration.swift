@@ -59,7 +59,8 @@ public protocol EmitterConfigurationProtocol: AnyObject {
 /// It allows the tracker configuration from the emission perspective.
 /// The EmitterConfiguration can be used to setup details about how the tracker should treat the events
 /// to emit to the collector.
-class EmitterConfiguration: Configuration, EmitterConfigurationProtocol {
+@objc(SPEmitterConfiguration)
+public class EmitterConfiguration: Configuration, EmitterConfigurationProtocol {
     /// Sets whether the buffer should send events instantly or after the buffer
     /// has reached it's limit. By default, this is set to BufferOption Default.
     @objc public var bufferOption: BufferOption = .single

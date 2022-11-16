@@ -6,7 +6,6 @@
 #import <XCTest/XCTest.h>
 #import "SPEvent.h"
 #import "SPTrackerError.h"
-#import "SPSelfDescribingJson.h"
 #import "SPSelfDescribing.h"
 #import "SPMockEventStore.h"
 

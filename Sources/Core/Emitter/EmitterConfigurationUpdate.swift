@@ -19,9 +19,9 @@
 //
 
 @objc(SPEmitterConfigurationUpdate)
-class EmitterConfigurationUpdate: EmitterConfiguration {
-    var sourceConfig: EmitterConfiguration?
-    var isPaused = false
+public class EmitterConfigurationUpdate: EmitterConfiguration {
+    @objc public var sourceConfig: EmitterConfiguration?
+    @objc public var isPaused = false
     var bufferOptionUpdated = false
     var byteLimitGetUpdated = false
     var byteLimitPostUpdated = false

@@ -26,7 +26,7 @@ public class NetworkControllerImpl: Controller, NetworkController {
     private var requestCallback: RequestCallback?
 
     public var isCustomNetworkConnection: Bool {
-        return emitter.networkConnection != nil && !(emitter.networkConnection is SPDefaultNetworkConnection)
+        return emitter.networkConnection != nil && !(emitter.networkConnection is DefaultNetworkConnection)
     }
 
     // MARK: - Properties

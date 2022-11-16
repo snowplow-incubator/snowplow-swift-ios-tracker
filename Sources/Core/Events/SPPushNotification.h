@@ -20,7 +20,6 @@
 //
 
 #import "SPEventBase.h"
-#import "SPSelfDescribingJson.h"
 
 #if SNOWPLOW_TARGET_IOS
 #import <UserNotifications/UserNotifications.h>

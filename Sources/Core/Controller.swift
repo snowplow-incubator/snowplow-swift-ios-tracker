@@ -24,7 +24,7 @@ import Foundation
 public class Controller: NSObject {
     private(set) var serviceProvider: ServiceProviderProtocol
 
-    init(serviceProvider: ServiceProviderProtocol) {
+    @objc public init(serviceProvider: ServiceProviderProtocol) {
         self.serviceProvider = serviceProvider
         super.init()
     }

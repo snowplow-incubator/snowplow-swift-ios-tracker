@@ -22,7 +22,8 @@
 #import "SPLifecycleState.h"
 #import "SPBackground.h"
 #import "SPForeground.h"
-#import "SPLifecycleEntity.h"
+
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 @implementation SPLifecycleStateMachine
 

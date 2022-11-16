@@ -20,7 +20,6 @@
 //
 
 #import "SPTrackerEvent.h"
-#import "SPSelfDescribingJson.h"
 #import "SPTrackerError.h"
 
 @implementation SPTrackerEvent

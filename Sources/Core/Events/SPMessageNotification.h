@@ -19,7 +19,6 @@
 //
 
 #import "SPEventBase.h"
-#import "SPSelfDescribingJson.h"
 #import "SPMessageNotificationAttachment.h"
 
 NS_ASSUME_NONNULL_BEGIN

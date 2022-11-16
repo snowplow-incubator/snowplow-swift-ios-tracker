@@ -20,15 +20,16 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SPNetworkConnection.h"
 #import "SPEmitterEventProcessing.h"
 #import "SPEventStore.h"
+#import "SPNetworkConnection.h"
 
 @protocol SPRequestCallback;
 @class SPPayload;
 
 typedef NS_ENUM(NSInteger, SPProtocol);
 typedef NS_ENUM(NSInteger, SPBufferOption);
+typedef NS_ENUM(NSInteger, SPHttpMethod);
 
 /*!
  @brief The builder for SPEmitter.

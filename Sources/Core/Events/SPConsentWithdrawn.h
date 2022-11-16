@@ -20,7 +20,8 @@
 //
 
 #import "SPEventBase.h"
-#import "SPSelfDescribingJson.h"
+
+@class SPSelfDescribingJson;
 
 NS_ASSUME_NONNULL_BEGIN
 

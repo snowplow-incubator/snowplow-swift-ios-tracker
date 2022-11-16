@@ -23,7 +23,6 @@
 #import <XCTest/XCTest.h>
 #import "SPTrackerConstants.h"
 #import "SPSubject.h"
-#import "SPPayload.h"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"

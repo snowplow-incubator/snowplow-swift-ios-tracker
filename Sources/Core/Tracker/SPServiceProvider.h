@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class SPNetworkConfiguration;
 @class SPConfiguration;
 
+NS_SWIFT_NAME(ServiceProvider)
 @interface SPServiceProvider : NSObject <SPServiceProviderProtocol>
 
 - (instancetype)initWithNamespace:(NSString *)namespace network:(SPNetworkConfiguration *)networkConfiguration configurations:(NSArray<SPConfiguration *> *)configurations;

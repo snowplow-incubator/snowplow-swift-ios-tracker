@@ -21,7 +21,7 @@
 
 @objc(SPGDPRConfigurationUpdate)
 public class GDPRConfigurationUpdate: GDPRConfiguration {
-    var sourceConfig: GDPRConfiguration?
+    @objc public var sourceConfig: GDPRConfiguration?
     var gdpr: GDPRContext?
     var isEnabled = false
     var gdprUpdated = false

@@ -30,6 +30,7 @@
 /*!
  This is a class that contains utility functions used throughout the tracker.
  */
+NS_SWIFT_NAME(Utilities)
 @interface SPUtilities : NSObject
 
 /*!

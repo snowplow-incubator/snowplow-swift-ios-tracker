@@ -24,6 +24,8 @@
 #import "SPScreenState.h"
 #import "SPUtilities.h"
 
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
+
 @implementation SPScreenStateMachine
 
 - (NSArray<NSString *> *)subscribedEventSchemasForTransitions {

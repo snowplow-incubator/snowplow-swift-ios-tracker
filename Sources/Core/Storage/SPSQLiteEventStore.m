@@ -21,10 +21,10 @@
 
 #import "SPTrackerConstants.h"
 #import "SPSQLiteEventStore.h"
-#import "SPPayload.h"
 #import "SPUtilities.h"
 #import "SPJSONSerialization.h"
 #import "SPLogger.h"
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 #if SWIFT_PACKAGE
     #import <FMDB.h>
@@ -224,7 +224,7 @@ static NSString * const _queryDeleteAll   = @"DELETE FROM 'events'";
                 if (!dict) {
                     continue;
                 }
-                SPPayload *payload = [[SPPayload alloc] initWithNSDictionary:dict];
+                SPPayload *payload = [[SPPayload alloc] initWithDictionary:dict];
                 event = [[SPEmitterEvent alloc] initWithPayload:payload storeId:id_];
             }
             [s close];
@@ -254,7 +254,7 @@ static NSString * const _queryDeleteAll   = @"DELETE FROM 'events'";
                 if (!dict) {
                     continue;
                 }
-                SPPayload *payload = [[SPPayload alloc] initWithNSDictionary:dict];
+                SPPayload *payload = [[SPPayload alloc] initWithDictionary:dict];
                 SPEmitterEvent *event = [[SPEmitterEvent alloc] initWithPayload:payload storeId:index];
                 [res addObject:event];
             }
