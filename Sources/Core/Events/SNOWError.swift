@@ -1,5 +1,5 @@
 //
-//  SPTrackerStateSnapshot.h
+//  SNOWError.swift
 //  Snowplow
 //
 //  Copyright (c) 2013-2022 Snowplow Analytics Ltd. All rights reserved.
@@ -19,18 +19,28 @@
 //  License: Apache License Version 2.0
 //
 
-#import <Foundation/Foundation.h>
-#import "SPState.h"
+import Foundation
 
+@objc
+public class SNOWError: SelfDescribingAbstract {
+    @objc public var message: String
+    @objc public var name: String?
+    @objc public var stackTrace: String?
+    
+    @objc public init(message: String) {
+        self.message = message
+    }
+    
+    override public var schema: String {
+        return kSPErrorSchema
+    }
 
-NS_ASSUME_NONNULL_BEGIN
-
-NS_SWIFT_NAME(TrackerStateSnapshot)
-@protocol SPTrackerStateSnapshot <NSObject>
-
-/// Get a computed state with a specific state identifier
-- (nullable id<SPState>)stateWithIdentifier:(NSString *)stateIdentifier;
-
-@end
-
-NS_ASSUME_NONNULL_END
+    override public var payload: [String : NSObject] {
+        var payload: [String : NSObject] = [:]
+        payload[kSPErrorMessage] = message as NSObject
+        payload[kSPErrorStackTrace] = stackTrace as NSObject?
+        payload[kSPErrorName] = name as NSObject?
+        payload[kSPErrorLanguage] = "SWIFT" as NSObject
+        return payload
+    }
+}

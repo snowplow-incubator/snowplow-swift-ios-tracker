@@ -36,15 +36,15 @@ NS_ASSUME_NONNULL_END
 @implementation SPGlobalContext
 
 - (instancetype)initWithContextGenerator:(id<SPContextGenerator>)generator {
-    return [self initWithGenerator:^NSArray<SPSelfDescribingJson *> *(id<SPInspectableEvent> event) {
+    return [self initWithGenerator:^NSArray<SPSelfDescribingJson *> *(SPInspectableEvent *event) {
         return [generator generatorFromEvent:event];
-    } filter:^BOOL(id<SPInspectableEvent> event) {
+    } filter:^BOOL(SPInspectableEvent *event) {
         return [generator filterFromEvent:event];
     }];
 }
 
 - (instancetype)initWithStaticContexts:(NSArray<SPSelfDescribingJson *> *)staticContexts {
-    return [self initWithGenerator:^NSArray<SPSelfDescribingJson *> *(id<SPInspectableEvent> event) {
+    return [self initWithGenerator:^NSArray<SPSelfDescribingJson *> *(SPInspectableEvent *event) {
         return staticContexts;
     }];
 }
@@ -54,7 +54,7 @@ NS_ASSUME_NONNULL_END
 }
 
 - (instancetype)initWithStaticContexts:(NSArray<SPSelfDescribingJson *> *)staticContexts ruleset:(SPSchemaRuleset *)ruleset {
-    return [self initWithGenerator:^NSArray<SPSelfDescribingJson *> *(id<SPInspectableEvent> event) {
+    return [self initWithGenerator:^NSArray<SPSelfDescribingJson *> *(SPInspectableEvent *event) {
         return staticContexts;
     } filter:ruleset.filterBlock];
 }
@@ -64,7 +64,7 @@ NS_ASSUME_NONNULL_END
 }
 
 - (instancetype)initWithStaticContexts:(NSArray<SPSelfDescribingJson *> *)staticContexts filter:(SPFilterBlock)filter {
-    return [self initWithGenerator:^NSArray<SPSelfDescribingJson *> *(id<SPInspectableEvent> event) {
+    return [self initWithGenerator:^NSArray<SPSelfDescribingJson *> *(SPInspectableEvent *event) {
         return staticContexts;
     } filter:filter];
 }
@@ -77,7 +77,7 @@ NS_ASSUME_NONNULL_END
     return self;
 }
 
-- (NSArray<SPSelfDescribingJson *> *)contextsFromEvent:(id<SPInspectableEvent>)event {
+- (NSArray<SPSelfDescribingJson *> *)contextsFromEvent:(SPInspectableEvent *)event {
     if (!event) {
         return @[];
     }

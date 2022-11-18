@@ -24,6 +24,9 @@
 #import "SPSessionState.h"
 #import "OnSessionStateUpdate.h"
 
+@class Foreground;
+@class Background;
+
 NS_SWIFT_NAME(Session)
 @interface SPSession : NSObject
 

@@ -24,6 +24,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class SPInspectableEvent;
+
 @interface SPStateManager : NSObject
 
 - (void)addOrReplaceStateMachine:(id<SPStateMachineProtocol>)stateMachine identifier:(NSString *)stateMachineIdentifier;
@@ -31,9 +33,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (id<SPTrackerStateSnapshot>)trackerStateForProcessedEvent:(SPEvent *)event;
 
-- (NSArray<SPSelfDescribingJson *> *)entitiesForProcessedEvent:(id<SPInspectableEvent>)event;
+- (NSArray<SPSelfDescribingJson *> *)entitiesForProcessedEvent:(SPInspectableEvent *)event;
 
-- (BOOL)addPayloadValuesToEvent:(id<SPInspectableEvent>)event;
+- (BOOL)addPayloadValuesToEvent:(SPInspectableEvent *)event;
 
 @end
 

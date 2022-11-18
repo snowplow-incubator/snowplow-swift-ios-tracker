@@ -26,7 +26,6 @@
 #import "SPDevicePlatform.h"
 #import "SPTrackerEvent.h"
 #import "SPUtilities.h"
-#import "SPStructured.h"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"

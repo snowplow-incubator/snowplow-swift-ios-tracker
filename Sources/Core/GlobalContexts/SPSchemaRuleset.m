@@ -22,6 +22,8 @@
 #import "SPSchemaRuleset.h"
 #import "SPSchemaRule.h"
 
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SPSchemaRuleset ()
@@ -109,7 +111,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (SPFilterBlock)filterBlock {
-    return ^BOOL(id<SPInspectableEvent> event) {
+    return ^BOOL(SPInspectableEvent *event) {
         return [self matchWithUri:event.schema];
     };
 }

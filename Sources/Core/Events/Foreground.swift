@@ -1,5 +1,5 @@
 //
-//  SPTrackerStateSnapshot.h
+//  Foreground.swift
 //  Snowplow
 //
 //  Copyright (c) 2013-2022 Snowplow Analytics Ltd. All rights reserved.
@@ -19,18 +19,25 @@
 //  License: Apache License Version 2.0
 //
 
-#import <Foundation/Foundation.h>
-#import "SPState.h"
+/// A foreground transition event.
+@objc(SPForeground)
+public class Foreground: SelfDescribingAbstract {
+    /// Indicate the current transition.
+    @objc public var index: Int
 
+    /// Creates a foreground transition event.
+    /// - Parameter index: indicate the current transition.
+    @objc public init(index: Int) {
+        self.index = index
+    }
 
-NS_ASSUME_NONNULL_BEGIN
+    override public var schema: String {
+        return kSPForegroundSchema
+    }
 
-NS_SWIFT_NAME(TrackerStateSnapshot)
-@protocol SPTrackerStateSnapshot <NSObject>
-
-/// Get a computed state with a specific state identifier
-- (nullable id<SPState>)stateWithIdentifier:(NSString *)stateIdentifier;
-
-@end
-
-NS_ASSUME_NONNULL_END
+    override public var payload: [String : NSObject] {
+        var payload: [String : NSObject] = [:]
+        payload[kSPForegroundIndex] = NSNumber(value: index)
+        return payload
+    }
+}

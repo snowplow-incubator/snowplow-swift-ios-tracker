@@ -24,11 +24,12 @@
 #if !TARGET_OS_OSX
 
 #import "SPTracker.h"
-#import "SPEventBase.h"
 #import "SPUtilities.h"
 #import "UIKit/UIKit.h"
 #import "UIViewController+SPScreenView_SWIZZLE.h"
 #import <objc/runtime.h>
+
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 @implementation UIViewController (SPScreenView_SWIZZLE)
 

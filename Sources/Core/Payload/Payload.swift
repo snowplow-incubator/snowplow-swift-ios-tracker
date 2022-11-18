@@ -33,17 +33,17 @@ public class Payload: NSObject {
     }
 
     ///  Initializes a newly allocated SPPayload with an existing object of type NSDictionary.
-    ///  - Parameter dict: An object of NSDictionary.
+    ///  - Parameter dictionary: An object of NSDictionary.
     ///  - Returns: A SnowplowPayload.
     @objc public init(dictionary: [String : NSObject]) {
         super.init()
         payload = dictionary
     }
 
-    ///  Adds a simple name-value pair into the SPPayload intance.
-    ///  - Parameters:
-    ///   - value: A NSString value
-    ///    - key: A key of type NSString
+    /// Adds a simple name-value pair into the SPPayload intance.
+    /// - Parameters:
+    /// - value: A NSString value
+    /// - key: A key of type NSString
     @objc public func addValueToPayload(_ value: String?, forKey key: String) {
         objc_sync_enter(self)
         if value == nil || value?.count == 0 {
@@ -56,10 +56,10 @@ public class Payload: NSObject {
         objc_sync_exit(self)
     }
 
-    ///  Adds a simple name-value pair into the SPPayload intance.
-    ///  - Parameters:
-    ///   - value: A NSNumber value
-    ///    - key: A key of type NSString
+    /// Adds a simple name-value pair into the SPPayload intance.
+    /// - Parameters:
+    /// - value: A NSNumber value
+    /// - key: A key of type NSString
     @objc public func addNumericValueToPayload(_ value: NSNumber?, forKey key: String) {
         objc_sync_enter(self)
         if let value {
@@ -72,7 +72,7 @@ public class Payload: NSObject {
 
     ///  Adds a dictionary of attributes to be appended into the SPPayload instance. It does NOT overwrite the existing data in the object.
     ///  All attribute values must be NSString types to be added; all others are discarded.
-    ///  - Parameter dict: An object of NSDictionary.
+    ///  - Parameter dictionary: An object of NSDictionary.
     @objc public func addDictionaryToPayload(_ dictionary: [String : NSObject]?) {
         if dictionary == nil {
             return
@@ -88,10 +88,10 @@ public class Payload: NSObject {
 
     ///  Adds a dictionary of attributes to be appended into the SPPayload instance. Gives you the option to Base64 encode the data before adding it into the object.
     ///  - Parameters:
-    ///   - json: NSData of JSON-compatible data to be added.
-    ///    - encode: Boolean option to choose whether the JSON data should be encoded.
-    ///    - typeEncoded: If the data is to be encoded, the result will be a value of the key in typeEncoded.
-    ///    - typeNotEncoded: If the data is NOT going to be encoded, the result will be a value of the key in typeWhenNotEncoded.
+    ///  - json: NSData of JSON-compatible data to be added.
+    ///  - encode: Boolean option to choose whether the JSON data should be encoded.
+    ///  - typeEncoded: If the data is to be encoded, the result will be a value of the key in typeEncoded.
+    ///  - typeNotEncoded: If the data is NOT going to be encoded, the result will be a value of the key in typeWhenNotEncoded.
     @objc public func addJsonToPayload(
         _ json: Data,
         base64Encoded encode: Bool,
@@ -124,10 +124,10 @@ public class Payload: NSObject {
 
     ///  Adds a JSON string of attributes to be appended into the SPPayload instance. Gives you the option to Base64 encode the data before adding it into the object. This method converts the string to NSData and uses the data with addJsonStringToPayload:base64Encoded:typeWhenEncoded:typeWhenNotEncoded:
     ///  - Parameters:
-    ///   - json: NSData of JSON-compatible data to be added.
-    ///    - encode: Boolean option to choose whether the JSON data should be encoded.
-    ///    - typeEncoded: If the data is to be encoded, the result will be a value of the key in typeEncoded.
-    ///    - typeNotEncoded: If the data is NOT going to be encoded, the result will be a value of the key in typeWhenNotEncoded.
+    ///  - json: NSData of JSON-compatible data to be added.
+    ///  - encode: Boolean option to choose whether the JSON data should be encoded.
+    ///  - typeEncoded: If the data is to be encoded, the result will be a value of the key in typeEncoded.
+    ///  - typeNotEncoded: If the data is NOT going to be encoded, the result will be a value of the key in typeWhenNotEncoded.
     @objc public func addJsonStringToPayload(
         _ json: String,
         base64Encoded encode: Bool,
@@ -146,10 +146,10 @@ public class Payload: NSObject {
 
     ///  Adds a dictionary of attributes to be appended into the SPPayload instance. Gives you the option to Base64 encode the data before adding it into the object. This method converts the dictionary to NSData and uses the data with addJsonStringToPayload:base64Encoded:typeWhenEncoded:typeWhenNotEncoded:
     ///  - Parameters:
-    ///   - json: NSDictionary of JSON-compatible data to be added.
-    ///    - encode: Boolean option to choose whether the JSON data should be encoded.
-    ///    - typeEncoded: If the data is to be encoded, the result will be a value of the key in typeEncoded.
-    ///    - typeNotEncoded: If the data is NOT going to be encoded, the result will be a value of the key in typeWhenNotEncoded.
+    ///  - json: NSDictionary of JSON-compatible data to be added.
+    ///  - encode: Boolean option to choose whether the JSON data should be encoded.
+    ///  - typeEncoded: If the data is to be encoded, the result will be a value of the key in typeEncoded.
+    ///  - typeNotEncoded: If the data is NOT going to be encoded, the result will be a value of the key in typeWhenNotEncoded.
     @objc public func addDictionaryToPayload(
         _ dictionary: [String : NSObject],
         base64Encoded encode: Bool,

@@ -25,7 +25,6 @@
 #import "SPEmitter.h"
 #import "SPSubject.h"
 #import "SPRequestCallback.h"
-#import "SPEvent.h"
 #import "SPServiceProvider.h"
 
 // MARK: - Mocks

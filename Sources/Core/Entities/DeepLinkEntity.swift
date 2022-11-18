@@ -38,7 +38,7 @@ public class DeepLinkEntity: SelfDescribingJson {
     // --- Builder Methods
 
     @objc public func referrer(_ referrer: String?) -> Self {
-        if var data,
+        if let data,
            var parameters = data as? [String : NSObject] {
             parameters[DeepLinkEntity.paramReferrer] = referrer as? NSObject
         }

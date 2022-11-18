@@ -20,10 +20,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SPEventBase.h"
+
+@class Event;
 
 @class SPSelfDescribingJson;
 @class SPSchemaRuleset;
+@class SPInspectableEvent;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -32,14 +34,14 @@ NS_ASSUME_NONNULL_BEGIN
  @param event informations about the event to process.
  @return a user-generated self-describing JSON.
  */
-typedef NSArray<SPSelfDescribingJson *> * _Nullable (^SPGeneratorBlock)(id<SPInspectableEvent> event);
+typedef NSArray<SPSelfDescribingJson *> * _Nullable (^SPGeneratorBlock)(SPInspectableEvent *event);
 
 /*!
  @brief Block signature for context filtering, takes event information and decide if the context needs to be generated.
  @param event informations about the event to process.
  @return weather the context has to be generated.
 */
-typedef BOOL (^SPFilterBlock)(id<SPInspectableEvent> event);
+typedef BOOL (^SPFilterBlock)(SPInspectableEvent *event);
 
 #pragma mark - SPContextGenerator
 
@@ -55,14 +57,14 @@ NS_SWIFT_NAME(ContextGenerator)
  @param event informations about the event to process.
  @return weather the context has to be generated.
  */
-- (BOOL)filterFromEvent:(id<SPInspectableEvent>)event;
+- (BOOL)filterFromEvent:(SPInspectableEvent *)event;
 
 /*!
  @brief Takes event information and generates a context.
  @param event informations about the event to process.
  @return a user-generated self-describing JSON.
  */
-- (nullable NSArray<SPSelfDescribingJson *> *)generatorFromEvent:(id<SPInspectableEvent>)event;
+- (nullable NSArray<SPSelfDescribingJson *> *)generatorFromEvent:(SPInspectableEvent *)event;
 
 @end
 
@@ -122,7 +124,7 @@ NS_SWIFT_NAME(GlobalContext)
  @param event Event details used to filter and generate contexts.
  @return Generated contexts.
  */
-- (NSArray<SPSelfDescribingJson *> *)contextsFromEvent:(id<SPInspectableEvent>)event;
+- (NSArray<SPSelfDescribingJson *> *)contextsFromEvent:(SPInspectableEvent *)event;
 
 @end
 

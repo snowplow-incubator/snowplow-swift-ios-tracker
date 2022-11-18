@@ -20,7 +20,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SPEvent.h"
 #import "SPTrackerError.h"
 
 @interface LegacyTestEvent : XCTestCase

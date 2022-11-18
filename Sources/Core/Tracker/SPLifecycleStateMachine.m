@@ -20,8 +20,7 @@
 
 #import "SPLifecycleStateMachine.h"
 #import "SPLifecycleState.h"
-#import "SPBackground.h"
-#import "SPForeground.h"
+#import "SPTrackerConstants.h"
 
 #import <SnowplowTracker/SnowplowTracker-Swift.h>
 
@@ -34,11 +33,11 @@
 - (id<SPState>)transitionFromEvent:(SPEvent *)event state:(id<SPState>)currentState {
     if ([event isKindOfClass:SPForeground.class]) {
         SPForeground *e = (SPForeground *)event;
-        return [[SPLifecycleState alloc] initAsForegroundWithIndex:e.index];
+        return [[SPLifecycleState alloc] initAsForegroundWithIndex:[NSNumber numberWithInteger:e.index]];
     }
     if ([event isKindOfClass:SPBackground.class]) {
         SPBackground *e = (SPBackground *)event;
-        return [[SPLifecycleState alloc] initAsBackgroundWithIndex:e.index];
+        return [[SPLifecycleState alloc] initAsBackgroundWithIndex:[NSNumber numberWithInteger:e.index]];
     }
     return nil;
 }
@@ -47,7 +46,7 @@
     return @[@"*"];
 }
 
-- (NSArray<SPSelfDescribingJson *> *)entitiesFromEvent:(id<SPInspectableEvent>)event state:(id<SPState>)state {
+- (NSArray<SPSelfDescribingJson *> *)entitiesFromEvent:(SPInspectableEvent *)event state:(id<SPState>)state {
     if (!state) return @[[[[SPLifecycleEntity alloc] initWithIsVisible:YES] index:0]];
     SPLifecycleState *s = (SPLifecycleState *)state;
     return @[[[[SPLifecycleEntity alloc] initWithIsVisible:s.isForeground] index:s.index]];
@@ -57,7 +56,7 @@
     return @[];
 }
 
-- (NSDictionary<NSString *,NSObject *> *)payloadValuesFromEvent:(id<SPInspectableEvent>)event state:(id<SPState>)state {
+- (NSDictionary<NSString *,NSObject *> *)payloadValuesFromEvent:(SPInspectableEvent *)event state:(id<SPState>)state {
     return nil;
 }
 

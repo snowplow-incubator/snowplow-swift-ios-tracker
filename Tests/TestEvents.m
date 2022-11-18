@@ -4,9 +4,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SPEvent.h"
 #import "SPTrackerError.h"
-#import "SPSelfDescribing.h"
 #import "SPMockEventStore.h"
 
 @interface TestEvent : XCTestCase

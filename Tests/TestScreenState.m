@@ -24,7 +24,6 @@
 #import "SPEmitter.h"
 #import "SPSubject.h"
 #import "SPTrackerConstants.h"
-#import "SPEvent.h"
 #import "SPScreenState.h"
 #import "SPMockEventStore.h"
 

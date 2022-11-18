@@ -20,7 +20,6 @@
 //
 
 #import "SPScreenStateMachine.h"
-#import "SPScreenView.h"
 #import "SPScreenState.h"
 #import "SPUtilities.h"
 
@@ -48,7 +47,7 @@
     return newState;
 }
 
-- (NSArray<SPSelfDescribingJson *> *)entitiesFromEvent:(id<SPInspectableEvent>)event state:(id<SPState>)state {
+- (NSArray<SPSelfDescribingJson *> *)entitiesFromEvent:(SPInspectableEvent *)event state:(id<SPState>)state {
     if ([state isKindOfClass:SPScreenState.class]) {
         SPSelfDescribingJson *entity = [self screenContextFromScreenState:(SPScreenState *)state];
         return @[entity];
@@ -56,7 +55,7 @@
     return nil;
 }
 
-- (NSDictionary<NSString *,NSObject *> *)payloadValuesFromEvent:(id<SPInspectableEvent>)event state:(id<SPState>)state {
+- (NSDictionary<NSString *,NSObject *> *)payloadValuesFromEvent:(SPInspectableEvent *)event state:(id<SPState>)state {
     if ([state isKindOfClass:SPScreenState.class]) {
         SPScreenState *previousState = ((SPScreenState *)state).previousState;
         NSMutableDictionary<NSString *,NSObject *> *addedValues = [NSMutableDictionary new];

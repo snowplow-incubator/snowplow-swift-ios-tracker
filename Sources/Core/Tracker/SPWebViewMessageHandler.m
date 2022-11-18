@@ -20,10 +20,6 @@
 //
 
 #import "SPWebViewMessageHandler.h"
-#import "SPSelfDescribing.h"
-#import "SPStructured.h"
-#import "SPPageView.h"
-#import "SPScreenView.h"
 
 #import <SnowplowTracker/SnowplowTracker-Swift.h>
 

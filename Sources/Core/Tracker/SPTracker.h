@@ -31,7 +31,6 @@
 #import "SPEmitterEventProcessing.h"
 
 #import "SPDevicePlatform.h"
-#import "SPEventBase.h"
 #import "SPLoggerDelegate.h"
 
 void uncaughtExceptionHandler(NSException * _Nullable exception);
@@ -54,6 +53,7 @@ void uncaughtExceptionHandler(NSException * _Nullable exception);
 @class SPBackground;
 @class SPScreenState;
 @class SNOWError;
+@class SPEvent;
 
 @class SPGlobalContext;
 @class SPGdprContext;

@@ -33,6 +33,13 @@
 // Macros for iOS Versions
 #if SNOWPLOW_TARGET_IOS
 #import <UIKit/UIDevice.h>
+
+@class Background;
+@class Event;
+@class Foreground;
+@class Timing;
+@class Structured;
+
 #define SNOWPLOW_iOS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 #define SNOWPLOW_iOS_9_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0)
 #endif
@@ -260,7 +267,7 @@ extern NSString * const kSPPushTrigger;
 extern NSString * const kSPPushDeliveryDate;
 extern NSString * const kSPPushCategoryId;
 extern NSString * const kSPPushThreadId;
-extern NSString * const kSPPushNotification;
+extern NSString * const kSPPushNotificationParam;
 extern NSString * const kSPPnTitle;
 extern NSString * const kSPPnSubtitle;
 extern NSString * const kSPPnBody;

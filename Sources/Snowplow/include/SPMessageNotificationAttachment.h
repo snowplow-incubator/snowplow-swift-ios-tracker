@@ -1,1 +1,0 @@
-../../Core/Events/SPMessageNotificationAttachment.h

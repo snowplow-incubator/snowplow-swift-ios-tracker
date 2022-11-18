@@ -27,7 +27,6 @@
 #import "SPTracker.h"
 #import "SPSession.h"
 #import "SPSubject.h"
-#import "SPEvent.h"
 #import "SPUtilities.h"
 #import "SPTrackerEvent.h"
 #import "SPServiceProvider.h"

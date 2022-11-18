@@ -21,6 +21,8 @@
 
 #import "SPStateManager.h"
 
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
+
 @interface SPStateManager ()
 
 @property (nonatomic) NSMutableDictionary<NSString *, id<SPStateMachineProtocol>> *identifierToStateMachine;
@@ -118,7 +120,7 @@
     }
 }
 
-- (NSArray<SPSelfDescribingJson *> *)entitiesForProcessedEvent:(id<SPInspectableEvent>)event {
+- (NSArray<SPSelfDescribingJson *> *)entitiesForProcessedEvent:(SPInspectableEvent *)event {
     @synchronized (self) {
         NSMutableArray<SPSelfDescribingJson *> *result = [NSMutableArray new];
         NSMutableArray<id<SPStateMachineProtocol>> *stateMachines = self.eventSchemaToEntitiesGenerator[event.schema].mutableCopy ?: [NSMutableArray new];
@@ -135,7 +137,7 @@
     }
 }
 
-- (BOOL)addPayloadValuesToEvent:(id<SPInspectableEvent>)event {
+- (BOOL)addPayloadValuesToEvent:(SPInspectableEvent *)event {
     @synchronized (self) {
         int failures = 0;
         NSMutableArray<id<SPStateMachineProtocol>> *stateMachines = self.eventSchemaToPayloadUpdater[event.schema] ?: [NSMutableArray new];

@@ -20,9 +20,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SPEventBase.h"
+
+#import "SPState.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class SPInspectableEvent;
+@class SPSelfDescribingJson;
+@class SPEvent;
 
 @protocol SPStateMachineProtocol <NSObject>
 
@@ -32,9 +37,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (nullable id<SPState>)transitionFromEvent:(SPEvent *)event state:(nullable id<SPState>)state;
 
-- (nullable NSArray<SPSelfDescribingJson *> *)entitiesFromEvent:(id<SPInspectableEvent>)event state:(nullable id<SPState>)state;
+- (nullable NSArray<SPSelfDescribingJson *> *)entitiesFromEvent:(SPInspectableEvent *)event state:(nullable id<SPState>)state;
 
-- (nullable NSDictionary<NSString *, NSObject *> *)payloadValuesFromEvent:(id<SPInspectableEvent>)event state:(nullable id<SPState>)state;
+- (nullable NSDictionary<NSString *, NSObject *> *)payloadValuesFromEvent:(SPInspectableEvent *)event state:(nullable id<SPState>)state;
 
 @end
 

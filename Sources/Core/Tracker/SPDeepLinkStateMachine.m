@@ -20,8 +20,8 @@
 //
 
 #import "SPDeepLinkStateMachine.h"
-#import "SPDeepLinkReceived.h"
 #import "SPDeepLinkState.h"
+#import "SPTrackerConstants.h"
 
 #import <SnowplowTracker/SnowplowTracker-Swift.h>
 
@@ -40,7 +40,7 @@
  */
 
 - (nonnull NSArray<NSString *> *)subscribedEventSchemasForTransitions {
-    return @[kSPDeepLinkReceivedSchema, kSPScreenViewSchema];
+    return @[[SPDeepLinkReceived schema], kSPScreenViewSchema];
 }
 
 - (nonnull NSArray<NSString *> *)subscribedEventSchemasForEntitiesGeneration {
@@ -69,7 +69,7 @@
     }
 }
 
-- (NSArray<SPSelfDescribingJson *> *)entitiesFromEvent:(id<SPInspectableEvent>)event state:(id<SPState>)state {
+- (NSArray<SPSelfDescribingJson *> *)entitiesFromEvent:(SPInspectableEvent *)event state:(id<SPState>)state {
     if (!state) return nil;
     SPDeepLinkState *deepLinkState = (SPDeepLinkState *)state;
     if (!deepLinkState.readyForOutput) return nil;
@@ -78,7 +78,7 @@
     return @[entity];
 }
 
-- (NSDictionary<NSString *,NSObject *> *)payloadValuesFromEvent:(id<SPInspectableEvent>)event state:(id<SPState>)state {
+- (NSDictionary<NSString *,NSObject *> *)payloadValuesFromEvent:(SPInspectableEvent *)event state:(id<SPState>)state {
     return nil;
 }
 

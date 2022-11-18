@@ -28,8 +28,7 @@
 #import "SPLogger.h"
 #import "NSDictionary+SP_TypeMethods.h"
 
-#import "SPBackground.h"
-#import "SPForeground.h"
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 #if SNOWPLOW_TARGET_IOS || SNOWPLOW_TARGET_TV
 #import <UIKit/UIKit.h>
@@ -246,14 +245,14 @@
 
 - (void) sendBackgroundEvent {
     if (self.tracker) {
-        SPBackground *backgroundEvent = [[SPBackground alloc] initWithIndex:@(_backgroundIndex)];
+        SPBackground *backgroundEvent = [[SPBackground alloc] initWithIndex:_backgroundIndex];
         [self.tracker track:backgroundEvent];
     }
 }
 
 - (void) sendForegroundEvent {
     if (self.tracker) {
-        SPForeground *foregroundEvent = [[SPForeground alloc] initWithIndex:@(_foregroundIndex)];
+        SPForeground *foregroundEvent = [[SPForeground alloc] initWithIndex:_foregroundIndex];
         [self.tracker track:foregroundEvent];
     }
 }

@@ -28,22 +28,6 @@
 #import "SPInstallTracker.h"
 #import "SPGlobalContext.h"
 
-#import "SNOWError.h"
-#import "SPStructured.h"
-#import "SPSelfDescribing.h"
-#import "SPScreenView.h"
-#import "SPPageView.h"
-#import "SPTiming.h"
-#import "SPEcommerce.h"
-#import "SPEcommerceItem.h"
-#import "SPConsentWithdrawn.h"
-#import "SPConsentGranted.h"
-#import "SPForeground.h"
-#import "SPBackground.h"
-#import "SPPushNotification.h"
-#import "SPDeepLinkReceived.h"
-#import "SPTrackerEvent.h"
-#import "SPTrackerError.h"
 #import "SPLogger.h"
 
 #import "SPServiceProvider.h"
@@ -489,8 +473,8 @@ void uncaughtExceptionHandler(NSException *exception) {
     return _lifecycleEvents;
 }
 
-- (int) getDevicePlatformRawValue {
-    return (int)_devicePlatform;
+- (NSInteger) getDevicePlatformRawValue {
+    return (NSInteger)_devicePlatform;
 }
 
 - (NSArray<NSString *> *)globalContextTags {
@@ -501,7 +485,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 - (void) receiveScreenViewNotification:(NSNotification *)notification {
     NSString *name = notification.userInfo[@"name"];
-    NSString *type = stringWithSPScreenType([notification.userInfo[@"type"] integerValue]);
+    NSString *type = [SPScreenView stringWithScreenType:[notification.userInfo[@"type"] integerValue]];
     NSString *topViewControllerClassName = notification.userInfo[@"topViewControllerClassName"];
     NSString *viewControllerClassName = notification.userInfo[@"viewControllerClassName"];
 
@@ -534,7 +518,8 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 
     if (_exceptionEvents) {
-        SNOWError *event = [[[SNOWError alloc] initWithMessage:message] stackTrace:stacktrace];
+        SNOWError *event = [[SNOWError alloc] initWithMessage:message];
+        event.stackTrace = stacktrace;
         [self track:event];
     }
 }
@@ -641,9 +626,9 @@ void uncaughtExceptionHandler(NSException *exception) {
     NSString *url = nil;
     NSString *referrer = nil;
     
-    if ([event.schema isEqualToString:kSPDeepLinkReceivedSchema]) {
-        url = (NSString *)[event.payload objectForKey:kSPDeepLinkReceivedParamUrl];
-        referrer = (NSString *)[event.payload objectForKey:kSPDeepLinkReceivedParamReferrer];
+    if ([event.schema isEqualToString:[SPDeepLinkReceived schema]]) {
+        url = (NSString *)[event.payload objectForKey:[SPDeepLinkReceived paramUrl]];
+        referrer = (NSString *)[event.payload objectForKey:[SPDeepLinkReceived paramReferrer]];
     } else if ([event.schema isEqualToString:kSPScreenViewSchema]) {
         for (SPSelfDescribingJson *entity in contexts) {
             if ([[entity schema] isEqualToString:[SPDeepLinkEntity schema]]) {
@@ -709,13 +694,13 @@ void uncaughtExceptionHandler(NSException *exception) {
     }
 }
 
-- (void)addGlobalContextsToContexts:(NSMutableArray<SPSelfDescribingJson *> *)contexts event:(id<SPInspectableEvent>)event {
+- (void)addGlobalContextsToContexts:(NSMutableArray<SPSelfDescribingJson *> *)contexts event:(SPInspectableEvent *)event {
     [self.globalContextGenerators enumerateKeysAndObjectsUsingBlock:^(NSString *key, SPGlobalContext *generator, BOOL *stop) {
         [contexts addObjectsFromArray:[generator contextsFromEvent:event]];
     }];
 }
 
-- (void)addStateMachineEntitiesToContexts:(NSMutableArray<SPSelfDescribingJson *> *)contexts event:(id<SPInspectableEvent>)event {
+- (void)addStateMachineEntitiesToContexts:(NSMutableArray<SPSelfDescribingJson *> *)contexts event:(SPInspectableEvent *)event {
     NSArray<SPSelfDescribingJson *> *stateManagerEntities = [self.stateManager entitiesForProcessedEvent:event];
     [contexts addObjectsFromArray:stateManagerEntities];
 }
