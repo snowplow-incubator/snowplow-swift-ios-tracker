@@ -21,6 +21,9 @@
 
 #import <XCTest/XCTest.h>
 
+#import "SPMemoryEventStore.h"
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
+
 @interface TestMemoryEventStore : XCTestCase
 @end
 

@@ -20,7 +20,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SPTrackerError.h"
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 @interface LegacyTestEvent : XCTestCase
 
@@ -61,7 +61,7 @@
         event = [[SPPageView alloc] initWithPageUrl:@""];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"PageURL cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"PageURL cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
 }
@@ -77,7 +77,7 @@
         event = [[SPStructured alloc] initWithCategory:@"" action:@"action"];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"Category cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"Category cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
         
@@ -86,7 +86,7 @@
         event = [[SPStructured alloc] initWithCategory:@"category" action:@""];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"Action cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"Action cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
 }
@@ -101,23 +101,6 @@
     SPSelfDescribing *event = [[SPSelfDescribing alloc] initWithEventData:sdj];
     XCTAssertNotNil(event);
     event = nil;
-}
-
-- (void)testUnstructuredBuilderWrongDataCondition {
-    // Invalid dictionary
-    NSMutableDictionary * data = [[NSMutableDictionary alloc] init];
-    data[@12] = @12;
-    SPSelfDescribingJson * sdj = [[SPSelfDescribingJson alloc] initWithSchema:@"iglu:com.acme_company/demo_ios_event/jsonschema/1-0-0"
-                                                                      andData:data];
-    // Data is wrong
-    SPSelfDescribing *event;
-    @try {
-        event = [[SPSelfDescribing alloc] initWithEventData:sdj];
-    }
-    @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"EventData payload has to be JSON serializable.", exception.reason);
-    }
-    XCTAssertNil(event);
 }
 
 - (void)testConsentWithdrawnBuilderConditions {
@@ -168,59 +151,59 @@
 
 - (void)testTimingBuilderConditions {
     // Valid construction
-    SPTiming *event = [[SPTiming alloc] initWithCategory:@"category" variable:@"variable" timing:@5];
+    SPTiming *event = [[SPTiming alloc] initWithCategory:@"category" variable:@"variable" timing:5];
     XCTAssertNotNil(event);
     event = nil;
     
     // Category is empty
     @try {
-        event = [[SPTiming alloc] initWithCategory:@"" variable:@"variable" timing:@5];
+        event = [[SPTiming alloc] initWithCategory:@"" variable:@"variable" timing:5];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"Category cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"Category cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
         
     // Variable is empty
     @try {
-        event = [[SPTiming alloc] initWithCategory:@"category" variable:@"" timing:@5];
+        event = [[SPTiming alloc] initWithCategory:@"category" variable:@"" timing:5];
 
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"Variable cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"Variable cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
 }
 
 - (void)testEcommerceBuilderConditions {
     // Valid construction
-    SPEcommerce *event = [[SPEcommerce alloc] initWithOrderId:@"orderId" totalValue:@5 items:@[]];
+    SPEcommerce *event = [[SPEcommerce alloc] initWithOrderId:@"orderId" totalValue:5 items:@[]];
     XCTAssertNotNil(event);
     event = nil;
     
     // OrderID is empty
     @try {
-        event = [[SPEcommerce alloc] initWithOrderId:@"" totalValue:@5 items:@[]];
+        event = [[SPEcommerce alloc] initWithOrderId:@"" totalValue:5 items:@[]];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"OrderId cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"OrderId cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
 }
 
 - (void)testEcommerceItemBuilderConditions {
     // Valid construction
-    SPEcommerceItem *event = [[SPEcommerceItem alloc] initWithSku:@"sku" price:@5 quantity:@1];
+    SPEcommerceItem *event = [[SPEcommerceItem alloc] initWithSku:@"sku" price:5 quantity:1];
     event.orderId = @"orderId";
     XCTAssertNotNil(event);
     event = nil;
     
     // Sku is empty
     @try {
-        event = [[SPEcommerceItem alloc] initWithSku:@"" price:@5 quantity:@1];
+        event = [[SPEcommerceItem alloc] initWithSku:@"" price:5 quantity:1];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"SKU cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"SKU cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
 }
@@ -257,7 +240,7 @@
         event = [[SPNotificationContent alloc] initWithTitle:@"" body:@"body" badge:@5];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"Title cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"Title cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
 
@@ -266,7 +249,7 @@
         event = [[SPNotificationContent alloc] initWithTitle:@"title" body:@"" badge:@5];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"Body cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"Body cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
 }
@@ -305,7 +288,7 @@
         event = [[SPPushNotification alloc] initWithDate:@"date" action:@"" trigger:@"PUSH" category:@"category" thread:@"thread" notification:content];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"Action cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"Action cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
 
@@ -314,7 +297,7 @@
         event = [[SPPushNotification alloc] initWithDate:@"date" action:@"action" trigger:@"" category:@"category" thread:@"thread" notification:content];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"Trigger cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"Trigger cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
 
@@ -323,7 +306,7 @@
         event = [[SPPushNotification alloc] initWithDate:@"" action:@"action" trigger:@"PUSH" category:@"category" thread:@"thread" notification:content];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"Delivery date cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"Delivery date cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
 
@@ -332,7 +315,7 @@
         event = [[SPPushNotification alloc] initWithDate:@"date" action:@"action" trigger:@"PUSH" category:@"" thread:@"thread" notification:content];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"Category identifier cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"Category identifier cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
 
@@ -341,7 +324,7 @@
         event = [[SPPushNotification alloc] initWithDate:@"date" action:@"action" trigger:@"PUSH" category:@"category" thread:@"" notification:content];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"Thread identifier cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"Thread identifier cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
 }

@@ -44,8 +44,8 @@
 
 - (void)testReturnsGeolocationContextIfEnabled {
     SPSubject *subject = [[SPSubject alloc] initWithPlatformContext:NO andGeoContext:YES];
-    [subject setGeoLatitude:10.0];
-    [subject setGeoLongitude:10.0];
+    [subject setGeoLatitude:@10.0];
+    [subject setGeoLongitude:@10.0];
     NSDictionary *geoLocationDict = [subject getGeoLocationDict];
     XCTAssertNotNil(geoLocationDict);
     XCTAssertNotNil(geoLocationDict[kSPGeoLatitude]);
@@ -53,8 +53,8 @@
 
 - (void)testDoesntReturnGeolocationContextIfDisabled {
     SPSubject *subject = [[SPSubject alloc] initWithPlatformContext:NO andGeoContext:NO];
-    [subject setGeoLatitude:10.0];
-    [subject setGeoLongitude:10.0];
+    [subject setGeoLatitude:@10.0];
+    [subject setGeoLongitude:@10.0];
     NSDictionary *geoLocationDict = [subject getGeoLocationDict];
     XCTAssertNil(geoLocationDict);
 }

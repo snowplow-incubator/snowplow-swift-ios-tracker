@@ -21,13 +21,13 @@
 /// This class represents the default configuration applied in place of the remote configuration.
 @objc(SPConfigurationBundle)
 public class ConfigurationBundle: Configuration {
-    private(set) var namespace: String
-    var networkConfiguration: NetworkConfiguration?
-    var trackerConfiguration: TrackerConfiguration?
-    var subjectConfiguration: SubjectConfiguration?
-    var sessionConfiguration: SessionConfiguration?
+    @objc private(set) public var namespace: String
+    @objc public var networkConfiguration: NetworkConfiguration?
+    @objc public var trackerConfiguration: TrackerConfiguration?
+    @objc public var subjectConfiguration: SubjectConfiguration?
+    @objc public var sessionConfiguration: SessionConfiguration?
 
-    var configurations: [Configuration] {
+    @objc public var configurations: [Configuration] {
         var array: [Configuration] = []
         if let networkConfiguration = networkConfiguration {
             array.append(networkConfiguration)
@@ -44,16 +44,16 @@ public class ConfigurationBundle: Configuration {
         return array
     }
 
-    convenience init(namespace: String) {
+    @objc public convenience init(namespace: String) {
         self.init(namespace: namespace, networkConfiguration: nil)
     }
 
-    init(namespace: String, networkConfiguration: NetworkConfiguration?) {
+    @objc public init(namespace: String, networkConfiguration: NetworkConfiguration?) {
         self.namespace = namespace
         self.networkConfiguration = networkConfiguration
     }
 
-    init?(dictionary: [String : NSObject]) {
+    @objc public init?(dictionary: [String : NSObject]) {
         if let namespace = dictionary["namespace"] as? String {
             self.namespace = namespace
         } else {
@@ -86,6 +86,8 @@ public class ConfigurationBundle: Configuration {
     }
 
     // MARK: - NSSecureCoding
+    
+    @objc public override class var supportsSecureCoding: Bool { return true }
 
     override public func encode(with coder: NSCoder) {
         coder.encode(namespace, forKey: "namespace")

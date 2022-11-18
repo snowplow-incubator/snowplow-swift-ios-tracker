@@ -22,10 +22,6 @@ import Foundation
 
 @objc(SPConfiguration)
 public class Configuration: NSObject, NSCopying, NSSecureCoding {
-    @objc public class var supportsSecureCoding: Bool {
-        return true
-    }
-
     @objc public convenience init?(dictionary: [String : NSObject]) {
         self.init()
     }
@@ -37,6 +33,8 @@ public class Configuration: NSObject, NSCopying, NSSecureCoding {
     @objc public func encode(with coder: NSCoder) {
     }
 
+    @objc public class var supportsSecureCoding: Bool { return true }
+    
     @objc required convenience public init?(coder: NSCoder) {
         self.init()
     }

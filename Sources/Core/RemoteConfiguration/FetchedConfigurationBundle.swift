@@ -19,16 +19,18 @@
 //  License: Apache License Version 2.0
 //
 
-class FetchedConfigurationBundle: Configuration {
-    var schema = ""
-    var configurationVersion = 0
-    var configurationBundle: [ConfigurationBundle] = []
+@objc(SPFetchedConfigurationBundle)
+public class FetchedConfigurationBundle: Configuration {
+    @objc public var schema: String
+    @objc public var configurationVersion: Int
+    @objc public var configurationBundle: [ConfigurationBundle] = []
     
-    override init() {
-        super.init()
+    @objc public init(schema: String, configurationVersion: Int) {
+        self.schema = schema
+        self.configurationVersion = configurationVersion
     }
-
-    init?(dictionary: [String : NSObject]) {
+    
+    @objc public init?(dictionary: [String : NSObject]) {
         guard let schema = dictionary["$schema"] as? String else {
 //            SPLogDebug("Error assigning: schema")
             return nil
@@ -39,16 +41,16 @@ class FetchedConfigurationBundle: Configuration {
             return nil
         }
         self.configurationVersion = configurationVersion
-        guard let configurationBundle = dictionary["configurationBundle"] as? [ConfigurationBundle] else {
+        guard let bundles = dictionary["configurationBundle"] as? [[String : NSObject]] else {
 //            SPLogDebug("Error assigning: configurationBundle")
             return nil
         }
-        self.configurationBundle = configurationBundle
+        self.configurationBundle = bundles.map { ConfigurationBundle(dictionary: $0) }.filter { $0 != nil }.map { $0! }
     }
 
     // MARK: - NSCopying
 
-    override func copy(with zone: NSZone? = nil) -> Any {
+    override public func copy(with zone: NSZone? = nil) -> Any {
         let copy: FetchedConfigurationBundle? = nil
         copy?.schema = schema
         copy?.configurationVersion = configurationVersion
@@ -57,12 +59,10 @@ class FetchedConfigurationBundle: Configuration {
     }
 
     // MARK: - NSSecureCoding
+    
+    @objc public override class var supportsSecureCoding: Bool { return true }
 
-    class override var supportsSecureCoding: Bool {
-        return true
-    }
-
-    override func encode(with coder: NSCoder) {
+    override public func encode(with coder: NSCoder) {
         coder.encode(schema, forKey: "schema")
         coder.encode(configurationVersion, forKey: "configurationVersion")
         coder.encode(configurationBundle, forKey: "configurationBundle")

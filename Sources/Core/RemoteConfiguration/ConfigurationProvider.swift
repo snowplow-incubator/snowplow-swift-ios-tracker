@@ -21,7 +21,7 @@
 
 import Foundation
 
-typealias OnFetchCallback = (FetchedConfigurationBundle, ConfigurationState) -> Void
+public typealias OnFetchCallback = (FetchedConfigurationBundle, ConfigurationState) -> Void
 
 /// This class fetch a configuration from a remote source otherwise it provides a cached configuration.
 /// It can manage multiple sources and multiple caches.
@@ -33,23 +33,23 @@ public class ConfigurationProvider: NSObject {
     private var defaultBundle: FetchedConfigurationBundle?
     private var cacheBundle: FetchedConfigurationBundle?
 
-    convenience init(remoteConfiguration: RemoteConfiguration) {
+    @objc public convenience init(remoteConfiguration: RemoteConfiguration) {
         self.init(remoteConfiguration: remoteConfiguration, defaultConfigurationBundles: nil)
     }
 
-    init(remoteConfiguration: RemoteConfiguration, defaultConfigurationBundles defaultBundles: [ConfigurationBundle]?) {
+    @objc public init(remoteConfiguration: RemoteConfiguration, defaultConfigurationBundles defaultBundles: [ConfigurationBundle]?) {
         self.remoteConfiguration = remoteConfiguration
         cache = ConfigurationCache(remoteConfiguration: remoteConfiguration)
         if let defaultBundles {
-            let bundle = FetchedConfigurationBundle()
-            bundle.schema = "http://iglucentral.com/schemas/com.snowplowanalytics.mobile/remote_config/jsonschema/1-0-0"
-            bundle.configurationVersion = NSInteger.min
+            let bundle = FetchedConfigurationBundle(
+                schema: "http://iglucentral.com/schemas/com.snowplowanalytics.mobile/remote_config/jsonschema/1-0-0",
+                configurationVersion: NSInteger.min)
             bundle.configurationBundle = defaultBundles
             defaultBundle = bundle
         }
     }
 
-    func retrieveConfigurationOnlyRemote(_ onlyRemote: Bool, onFetchCallback: @escaping OnFetchCallback) {
+    @objc public func retrieveConfigurationOnlyRemote(_ onlyRemote: Bool, onFetchCallback: @escaping OnFetchCallback) {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
         if !onlyRemote {

@@ -21,7 +21,8 @@
 
 #import <XCTest/XCTest.h>
 #import "SPStateManager.h"
-#import "SPTrackerEvent.h"
+
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 // MARK: - MockState
 
@@ -66,7 +67,7 @@
     return @[@"*"];
 }
 
-- (NSArray<SPSelfDescribingJson *> *)entitiesFromEvent:(id<SPInspectableEvent>)event state:(id<SPState>)state {
+- (NSArray<SPSelfDescribingJson *> *)entitiesFromEvent:(SPInspectableEvent *)event state:(id<SPState>)state {
     MockState *mockState = (MockState *)state;
     SPSelfDescribingJson *sdj = [[SPSelfDescribingJson alloc] initWithSchema:@"entity" andDictionary:@{@"value":@(mockState.value)}];
     return @[sdj];
@@ -76,7 +77,7 @@
     return @[@"event"];
 }
 
-- (nullable NSDictionary<NSString *,NSObject *> *)payloadValuesFromEvent:(nonnull id<SPInspectableEvent>)event state:(nullable id<SPState>)state {
+- (nullable NSDictionary<NSString *,NSObject *> *)payloadValuesFromEvent:(nonnull SPInspectableEvent *)event state:(nullable id<SPState>)state {
     return @{@"newParam": @"value"};
 }
 
@@ -110,7 +111,7 @@
     id<SPTrackerStateSnapshot> trackerState = [stateManager trackerStateForProcessedEvent:eventInc];
     MockState *mockState = (MockState *)[trackerState stateWithIdentifier:@"identifier"];
     XCTAssertEqual(1, mockState.value);
-    id<SPInspectableEvent> e = [[SPTrackerEvent alloc] initWithEvent:eventInc state:trackerState];
+    SPInspectableEvent *e = [[SPTrackerEvent alloc] initWithEvent:eventInc state:trackerState];
     NSArray<SPSelfDescribingJson *> *entities = [stateManager entitiesForProcessedEvent:e];
     XCTAssertEqualObjects(@1, ((NSDictionary<NSString *, NSNumber *> *)(entities[0].data))[@"value"]);
     XCTAssertTrue([stateManager addPayloadValuesToEvent:e]);
@@ -151,7 +152,7 @@
     id<SPTrackerStateSnapshot> trackerState = [stateManager trackerStateForProcessedEvent:eventInc];
     MockState *mockState = (MockState *)[trackerState stateWithIdentifier:@"identifier"];
     XCTAssertNil(mockState);
-    id<SPInspectableEvent> e = [[SPTrackerEvent alloc] initWithEvent:eventInc state:trackerState];
+    SPInspectableEvent *e = [[SPTrackerEvent alloc] initWithEvent:eventInc state:trackerState];
     NSArray<SPSelfDescribingJson *> *entities = [stateManager entitiesForProcessedEvent:e];
     XCTAssertEqual(0, entities.count);
 }
@@ -164,7 +165,7 @@
     SPSelfDescribing *eventInc = [[SPSelfDescribing alloc] initWithSchema:@"inc" payload:@{@"value": @1}];
 
     id<SPTrackerStateSnapshot> trackerState = [stateManager trackerStateForProcessedEvent:eventInc];
-    id<SPInspectableEvent> e = [[SPTrackerEvent alloc] initWithEvent:eventInc state:trackerState];
+    SPInspectableEvent *e = [[SPTrackerEvent alloc] initWithEvent:eventInc state:trackerState];
     NSArray<SPSelfDescribingJson *> *entities = [stateManager entitiesForProcessedEvent:e];
     XCTAssertEqual(2, entities.count);
 }
@@ -177,7 +178,7 @@
     SPSelfDescribing *eventInc = [[SPSelfDescribing alloc] initWithSchema:@"inc" payload:@{@"value": @1}];
 
     id<SPTrackerStateSnapshot> trackerState = [stateManager trackerStateForProcessedEvent:eventInc];
-    id<SPInspectableEvent> e = [[SPTrackerEvent alloc] initWithEvent:eventInc state:trackerState];
+    SPInspectableEvent *e = [[SPTrackerEvent alloc] initWithEvent:eventInc state:trackerState];
     NSArray<SPSelfDescribingJson *> *entities = [stateManager entitiesForProcessedEvent:e];
     XCTAssertEqual(1, entities.count);
 }

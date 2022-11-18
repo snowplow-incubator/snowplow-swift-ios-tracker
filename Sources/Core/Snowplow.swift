@@ -113,7 +113,7 @@ public class Snowplow: NSObject {
     ///   - endpoint: The URL of the collector.
     ///   - method: The method for the requests to the collector (GET or POST).
     /// - Returns: The tracker instance created.
-    @objc class func createTracker(namespace: String, endpoint: String, method: HttpMethodOptions) -> TrackerController? {
+    @objc public class func createTracker(namespace: String, endpoint: String, method: HttpMethodOptions) -> TrackerController? {
         let networkConfiguration = NetworkConfiguration(endpoint: endpoint, method: method)
         return createTracker(namespace: namespace, network: networkConfiguration, configurations: [])
     }
@@ -168,17 +168,15 @@ public class Snowplow: NSObject {
     ///   - configurations: All the configuration objects with the details about the fine tuning of
     ///                       the tracker.
     /// - Returns: The tracker instance created.
-    @objc class func createTracker(namespace: String, network networkConfiguration: NetworkConfiguration, configurations: [Configuration]) -> TrackerController? {
+    @objc public class func createTracker(namespace: String, network networkConfiguration: NetworkConfiguration, configurations: [Configuration]) -> TrackerController? {
         if let serviceProvider = serviceProviderInstances[namespace] {
             serviceProvider.reset(with: configurations + [networkConfiguration])
             return serviceProvider.trackerController()
         } else {
             let serviceProvider = ServiceProvider(namespace: namespace, network: networkConfiguration, configurations: configurations)
-            if registerInstance(serviceProvider) {
-                return serviceProvider.trackerController()
-            }
+            let _ = registerInstance(serviceProvider)
+            return serviceProvider.trackerController()
         }
-        return nil
     }
 
     /// The default tracker instance is the first created in the app, but that can be overridden programmatically
@@ -221,7 +219,7 @@ public class Snowplow: NSObject {
     ///
     /// - Parameter trackerController: The tracker controller to remove.
     /// - Returns: Whether it has been able to remove it.
-    @objc class func remove(tracker trackerController: TrackerController?) -> Bool {
+    @objc public class func remove(tracker trackerController: TrackerController?) -> Bool {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
         if let namespace = trackerController?.namespace,

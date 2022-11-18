@@ -77,7 +77,7 @@
         NSMutableArray<NSNumber *> *eventIds = [NSMutableArray new];
         NSMutableArray<SPEmitterEvent *> *events = [NSMutableArray new];
         [self.db enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, SPPayload *obj, BOOL *stop) {
-            SPPayload *payloadCopy = [[SPPayload alloc] initWithNSDictionary:[obj getAsDictionary]];
+            SPPayload *payloadCopy = [[SPPayload alloc] initWithDictionary:[obj getAsDictionary]];
             SPEmitterEvent *event = [[SPEmitterEvent alloc] initWithPayload:payloadCopy storeId:key.longLongValue];
             [events addObject:event];
             [eventIds addObject:@(event.storeId)];

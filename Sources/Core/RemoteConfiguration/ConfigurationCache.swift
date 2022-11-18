@@ -26,14 +26,14 @@ public class ConfigurationCache: NSObject {
     private var cacheFileUrl: URL?
     private var configuration: FetchedConfigurationBundle?
 
-    init(remoteConfiguration: RemoteConfiguration) {
+    @objc public init(remoteConfiguration: RemoteConfiguration) {
         super.init()
         #if !(TARGET_OS_TV) && !(TARGET_OS_WATCH)
         createCachePath(with: remoteConfiguration)
         #endif
     }
 
-    func read() -> FetchedConfigurationBundle? {
+    @objc public func read() -> FetchedConfigurationBundle? {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
         #if !(TARGET_OS_TV) && !(TARGET_OS_WATCH)
@@ -45,7 +45,7 @@ public class ConfigurationCache: NSObject {
         return configuration
     }
 
-    func write(_ configuration: FetchedConfigurationBundle) {
+    @objc public func write(_ configuration: FetchedConfigurationBundle) {
         objc_sync_enter(self)
         self.configuration = configuration
         #if !(TARGET_OS_TV) && !(TARGET_OS_WATCH)
@@ -54,7 +54,7 @@ public class ConfigurationCache: NSObject {
         objc_sync_exit(self)
     }
 
-    func clear() {
+    @objc public func clear() {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
         configuration = nil

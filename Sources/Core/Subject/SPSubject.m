@@ -72,29 +72,29 @@
                 [self setViewPortWithWidth:size.width andHeight:size.height];
             }
             if (config.colorDepth) {
-                self.colorDepth = config.colorDepth.integerValue;
+                self.colorDepth = config.colorDepth;
             }
             // geolocation
             if (config.geoLatitude) {
-                [self setGeoLatitude:config.geoLatitude.floatValue];
+                [self setGeoLatitude:config.geoLatitude];
             }
             if (config.geoLongitude) {
-                [self setGeoLongitude:config.geoLongitude.floatValue];
+                [self setGeoLongitude:config.geoLongitude];
             }
             if (config.geoLatitudeLongitudeAccuracy) {
-                [self setGeoLatitudeLongitudeAccuracy:config.geoLatitudeLongitudeAccuracy.floatValue];
+                [self setGeoLatitudeLongitudeAccuracy:config.geoLatitudeLongitudeAccuracy];
             }
             if (config.geoAltitude) {
-                [self setGeoAltitude:config.geoAltitude.floatValue];
+                [self setGeoAltitude:config.geoAltitude];
             }
             if (config.geoAltitudeAccuracy) {
-                [self setGeoAltitudeAccuracy:config.geoAltitudeAccuracy.floatValue];
+                [self setGeoAltitudeAccuracy:config.geoAltitudeAccuracy];
             }
             if (config.geoSpeed) {
-                [self setGeoSpeed:config.geoSpeed.floatValue];
+                [self setGeoSpeed:config.geoSpeed];
             }
             if (config.geoBearing) {
-                [self setGeoBearing:config.geoBearing.floatValue];
+                [self setGeoBearing:config.geoBearing];
             }
             if (config.geoTimestamp) {
                 [self setGeoTimestamp:config.geoTimestamp];
@@ -168,9 +168,9 @@
     [_standardDict addValueToPayload:res forKey:kSPViewPort];
 }
 
-- (void) setColorDepth:(NSInteger)depth {
+- (void) setColorDepth:(NSNumber *)depth {
     _colorDepth = depth;
-    NSString * res = [NSString stringWithFormat:@"%@", (@(depth)).stringValue];
+    NSString * res = [NSString stringWithFormat:@"%@", depth.stringValue];
     [_standardDict addValueToPayload:res forKey:kSPColorDepth];
 }
 
@@ -210,56 +210,56 @@
     _geoLocationDict = [[NSMutableDictionary alloc] init];
 }
 
-- (void) setGeoLatitude:(float)latitude {
-    _geoLocationDict[kSPGeoLatitude] = @(latitude);
+- (void) setGeoLatitude:(NSNumber *)latitude {
+    _geoLocationDict[kSPGeoLatitude] = latitude;
 }
 
 - (NSNumber *)geoLatitude {
     return (NSNumber *)_geoLocationDict[kSPGeoLatitude];
 }
 
-- (void) setGeoLongitude:(float)longitude {
-    _geoLocationDict[kSPGeoLongitude] = @(longitude);
+- (void) setGeoLongitude:(NSNumber *)longitude {
+    _geoLocationDict[kSPGeoLongitude] = longitude;
 }
 
 - (NSNumber *)geoLongitude {
     return (NSNumber *)_geoLocationDict[kSPGeoLongitude];
 }
 
-- (void) setGeoLatitudeLongitudeAccuracy:(float)latitudeLongitudeAccuracy {
-    _geoLocationDict[kSPGeoLatLongAccuracy] = @(latitudeLongitudeAccuracy);
+- (void) setGeoLatitudeLongitudeAccuracy:(NSNumber *)latitudeLongitudeAccuracy {
+    _geoLocationDict[kSPGeoLatLongAccuracy] = latitudeLongitudeAccuracy;
 }
 
 - (NSNumber *)geoLatitudeLongitudeAccuracy {
     return (NSNumber *)_geoLocationDict[kSPGeoLatLongAccuracy];
 }
 
-- (void) setGeoAltitude:(float)altitude {
-    _geoLocationDict[kSPGeoAltitude] = @(altitude);
+- (void) setGeoAltitude:(NSNumber *)altitude {
+    _geoLocationDict[kSPGeoAltitude] = altitude;
 }
 
 - (NSNumber *)geoAltitude {
     return (NSNumber *)_geoLocationDict[kSPGeoAltitude];
 }
 
-- (void) setGeoAltitudeAccuracy:(float)altitudeAccuracy {
-    _geoLocationDict[kSPGeoAltitudeAccuracy] = @(altitudeAccuracy);
+- (void) setGeoAltitudeAccuracy:(NSNumber *)altitudeAccuracy {
+    _geoLocationDict[kSPGeoAltitudeAccuracy] = altitudeAccuracy;
 }
 
 - (NSNumber *)geoAltitudeAccuracy {
     return (NSNumber *)_geoLocationDict[kSPGeoAltitudeAccuracy];
 }
 
-- (void) setGeoBearing:(float)bearing {
-    _geoLocationDict[kSPGeoBearing] = @(bearing);
+- (void) setGeoBearing:(NSNumber *)bearing {
+    _geoLocationDict[kSPGeoBearing] = bearing;
 }
 
 - (NSNumber *)geoBearing {
     return (NSNumber *)_geoLocationDict[kSPGeoBearing];
 }
 
-- (void) setGeoSpeed:(float)speed {
-    _geoLocationDict[kSPGeoSpeed] = @(speed);
+- (void) setGeoSpeed:(NSNumber *)speed {
+    _geoLocationDict[kSPGeoSpeed] = speed;
 }
 
 - (NSNumber *)geoSpeed {

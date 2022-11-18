@@ -24,29 +24,31 @@ import Foundation
 @objc(SPEcommerce)
 public class Ecommerce : PrimitiveAbstract {
     /// Identifier of the order.
-    public var orderId: String
+    @objc public var orderId: String
     /// Total amount of the order.
-    public var totalValue: Double
+    @objc public var totalValue: Double
     /// Items purchased.
-    public var items: [EcommerceItem] = []
+    @objc public var items: [EcommerceItem]
     /// Identifies an affiliation.
-    public var affiliation: String?
+    @objc public var affiliation: String?
     /// Taxes applied to the purchase.
     public var taxValue: Double?
     /// Shipping number.
     public var shipping: Double?
     /// City for shipping.
-    public var city: String?
+    @objc public var city: String?
     /// State for shipping.
-    public var state: String?
+    @objc public var state: String?
     /// Country for shipping.
-    public var country: String?
+    @objc public var country: String?
     /// Currency used for totalValue and taxValue.
-    public var currency: String?
+    @objc public var currency: String?
 
-    @objc public init(orderId: String, totalValue: Double) {
+    @objc public init(orderId: String, totalValue: Double, items: [EcommerceItem]?) {
+        Utilities.checkArgument(orderId.count != 0, withMessage: "OrderId cannot be empty.")
         self.orderId = orderId
         self.totalValue = totalValue
+        self.items = items ?? []
     }
 
     override public var eventName: String {

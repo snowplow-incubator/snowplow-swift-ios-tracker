@@ -120,6 +120,8 @@ public class EmitterConfiguration: Configuration, EmitterConfigurationProtocol {
     }
 
     // MARK: - NSSecureCoding
+    
+    @objc public override class var supportsSecureCoding: Bool { return true }
 
     @objc public override func encode(with coder: NSCoder) {
         coder.encode(bufferOption, forKey: "bufferOption")

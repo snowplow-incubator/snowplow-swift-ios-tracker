@@ -89,7 +89,7 @@
         NSMutableArray<NSNumber *> *eventIds = [NSMutableArray new];
         NSMutableArray<SPEmitterEvent *> *events = [NSMutableArray new];
         [self.db enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, SPPayload *obj, BOOL *stop) {
-            SPPayload *payloadCopy = [[SPPayload alloc] initWithNSDictionary:[obj getAsDictionary]];
+            SPPayload *payloadCopy = [[SPPayload alloc] initWithDictionary:[obj getAsDictionary]];
             SPEmitterEvent *event = [[SPEmitterEvent alloc] initWithPayload:payloadCopy storeId:key.longLongValue];
             [events addObject:event];
             [eventIds addObject:@(event.storeId)];
@@ -229,7 +229,7 @@
 
 - (SPTracker *)getTrackerWithConnection:(id<SPNetworkConnection>)mockNetworkConnection eventStore:(id<SPEventStore>)mockEventStore {
     SPNetworkConfiguration *networkConfig = [[SPNetworkConfiguration alloc] initWithNetworkConnection:mockNetworkConnection];
-    SPTrackerConfiguration *trackerConfig = [[SPTrackerConfiguration new] appId:@"anAppId"];
+    SPTrackerConfiguration *trackerConfig = [[SPTrackerConfiguration alloc] initWithAppId:@"anAppId"];
     trackerConfig.platformContext = YES;
     trackerConfig.geoLocationContext = YES;
     trackerConfig.base64Encoding = NO;
@@ -330,23 +330,24 @@
     NSString *transactionID = @"6a8078be";
     NSMutableArray *itemArray = [NSMutableArray array];
     
-    SPEcommerceItem *item = [[SPEcommerceItem alloc] initWithSku:@"DemoItemSku" price:@0.75F quantity:@1];
-    [item name:@"DemoItemName"];
-    [item category:@"DemoItemCategory"];
-    [item currency:@"USD"];
-    [item contexts:self.customContext];
+    SPEcommerceItem *item = [[SPEcommerceItem alloc] initWithSku:@"DemoItemSku" price:0.75F quantity:1];
+    item.name = @"DemoItemName";
+    item.category = @"DemoItemCategory";
+    item.currency = @"USD";
+    item.contexts = self.customContext;
 
     [itemArray addObject:item];
     
-    SPEcommerce *event = [[SPEcommerce alloc] initWithOrderId:transactionID totalValue:@350 items:itemArray];
-    [event affiliation:@"DemoTranAffiliation"];
-    [event taxValue:@10];
-    [event shipping:@15];
-    [event city:@"Boston"];
-    [event state:@"Massachusetts"];
-    [event country:@"USA"];
-    [event currency:@"USD"];
-    [event contexts:self.customContext];
+    SPEcommerce *event = [[SPEcommerce alloc] initWithOrderId:transactionID totalValue:350 items:itemArray];
+    event.affiliation = @"DemoTranAffiliation";
+    // TODO: commented out because Obj-C can't access the fields
+//    event.taxValue = 10;
+//    event.shipping = 15;
+    event.city = @"Boston";
+    event.state = @"Massachusetts";
+    event.country = @"USA";
+    event.currency = @"USD";
+    event.contexts = self.customContext;
     [tracker_ track:event];
     return 2;
 }

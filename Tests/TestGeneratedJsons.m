@@ -28,11 +28,11 @@
 #import "SPSession.h"
 #import "SPSubject.h"
 #import "SPUtilities.h"
-#import "SPTrackerEvent.h"
 #import "SPServiceProvider.h"
 
 #import "SPScreenStateMachine.h"
 #import "SPScreenState.h"
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 
 /// Category needed to make the private methods testable.
@@ -62,7 +62,7 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
 
 - (void)testScreenContextJson {
     SPScreenStateMachine *stateMachine = [[SPScreenStateMachine alloc] init];
-    SPTrackerEvent *fakeEvent = [[SPTrackerEvent alloc] initWithEvent:[[SPStructured alloc] initWithCategory:@"fake" action:@"fake"]];
+    SPTrackerEvent *fakeEvent = [[SPTrackerEvent alloc] initWithEvent:[[SPStructured alloc] initWithCategory:@"fake" action:@"fake"] state:nil];
     id<SPState> screenState = [[SPScreenState alloc] initWithName:@"name" type:@"type" screenId:nil transitionType:@"transition" topViewControllerClassName:@"topVCname" viewControllerClassName:@"VCname"];
     NSArray<SPSelfDescribingJson *> *entities = [stateMachine entitiesFromEvent:fakeEvent state:screenState];
     SPSelfDescribingJson *screenContext = entities.firstObject;
@@ -94,14 +94,14 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
 
 - (void)testGeoContextJson {
     SPSubject * subject = [[SPSubject alloc] initWithPlatformContext:NO andGeoContext:YES];
-    [subject setGeoLongitude:5];
-    [subject setGeoLatitude:89.2];
+    [subject setGeoLongitude:@5];
+    [subject setGeoLatitude:@89.2];
     [subject setGeoTimestamp:@5];
-    [subject setGeoLatitudeLongitudeAccuracy:5.5];
-    [subject setGeoSpeed:6.2];
-    [subject setGeoBearing:82.3];
-    [subject setGeoAltitude:62.3];
-    [subject setGeoAltitudeAccuracy:16.3];
+    [subject setGeoLatitudeLongitudeAccuracy:@5.5];
+    [subject setGeoSpeed:@6.2];
+    [subject setGeoBearing:@82.3];
+    [subject setGeoAltitude:@62.3];
+    [subject setGeoAltitudeAccuracy:@16.3];
     NSDictionary * data = [subject getGeoLocationDict];
     NSDictionary * json = [[[SPSelfDescribingJson alloc] initWithSchema:kSPGeoContextSchema andData:data] getAsDictionary];
     XCTAssertTrue([validator validateJson:json]);
@@ -126,7 +126,7 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
     event.value = @5;
     
     // Check that the final payload passes validation
-    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event];
+    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event state:nil];
     NSDictionary *data = [[tracker payloadWithEvent:trackerEvent] getAsDictionary];
 
     NSArray * dataArray = @[data];
@@ -146,7 +146,7 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
     SPSelfDescribing *event = [[SPSelfDescribing alloc] initWithEventData:sdj];
     
     // Check that the final payload passes validation
-    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event];
+    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event state:nil];
     NSDictionary<NSString *, NSObject *> *data = [[tracker payloadWithEvent:trackerEvent] getAsDictionary];
 
     NSArray *dataArray = @[data];
@@ -172,7 +172,7 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
     SPSelfDescribing *event = [[SPSelfDescribing alloc] initWithEventData:sdj];
 
     // Check that the final payload passes validation
-    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event];
+    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event state:nil];
     NSDictionary<NSString *, NSObject *> *data = [[tracker payloadWithEvent:trackerEvent] getAsDictionary];
 
     NSArray *dataArray = @[data];
@@ -189,11 +189,11 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
 
 - (void)testConsentWithdrawnEventPayloadJson {
     SPConsentWithdrawn *event = [[SPConsentWithdrawn alloc] init];
-    [event documentDescription:@"Description"];
-    [event documentId:@"1234"];
-    [event version:@"10"];
-    [event all:false];
-    [event name:@"Name"];
+    event.documentDescription = @"Description";
+    event.documentId = @"1234";
+    event.version = @"10";
+    event.all = false;
+    event.name = @"Name";
 
     NSDictionary<NSString *, NSObject *> *sdj = [[[SPSelfDescribingJson alloc] initWithSchema:event.schema andData:event.payload] getAsDictionary];
     XCTAssertTrue([validator validateJson:sdj]);
@@ -201,17 +201,17 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
 
 - (void)testConsentDocumentEventPayloadJson {
     SPConsentDocument *event = [[SPConsentDocument alloc] initWithDocumentId:@"1234" version:@"10"];
-    [event documentDescription:@"Description"];
-    [event name:@"Name"];
+    event.documentDescription = @"Description";
+    event.name = @"Name";
     
-    NSDictionary<NSString *, NSObject *> *sdj = [[event getPayload] getAsDictionary];
+    NSDictionary<NSString *, NSObject *> *sdj = [[event payload] getAsDictionary];
     XCTAssertTrue([validator validateJson:sdj]);
 }
 
 - (void)testConsentGrantedEventPayloadJson {
     SPConsentGranted *event = [[SPConsentGranted alloc] initWithExpiry:@"2012-04-23T18:25:43.511Z" documentId:@"1234" version:@"10"];
-    [event documentDescription:@"Description"];
-    [event name:@"Name"];
+    event.documentDescription = @"Description";
+    event.name = @"Name";
     
     NSDictionary<NSString *, NSObject *> *sdj = [[[SPSelfDescribingJson alloc] initWithSchema:event.schema andData:event.payload] getAsDictionary];
     XCTAssertTrue([validator validateJson:sdj]);
@@ -224,7 +224,7 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
     event.referrer = @"DemoPageReferrer";
 
     // Check that the final payload passes validation
-    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event];
+    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event state:nil];
     NSDictionary<NSString *, NSObject *> *data = [[tracker payloadWithEvent:trackerEvent] getAsDictionary];
 
     NSArray *dataArray = @[data];
@@ -238,23 +238,24 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
     
     NSString *transactionID = @"6a8078be";
     NSMutableArray *itemArray = [NSMutableArray array];
-    SPEcommerceItem *item = [[SPEcommerceItem alloc] initWithSku:@"DemoItemSku" price:@0.75F quantity:@1];
-    [item name:@"DemoItemName"];
-    [item category:@"DemoItemCategory"];
-    [item currency:@"USD"];
+    SPEcommerceItem *item = [[SPEcommerceItem alloc] initWithSku:@"DemoItemSku" price:0.75F quantity:1];
+    item.name = @"DemoItemName";
+    item.category = @"DemoItemCategory";
+    item.currency = @"USD";
     
     [itemArray addObject:item];
-    SPEcommerce *event = [[SPEcommerce alloc] initWithOrderId:transactionID totalValue:@350 items:itemArray];
-    [event affiliation:@"DemoTranAffiliation"];
-    [event taxValue:@10];
-    [event shipping:@15];
-    [event city:@"Boston"];
-    [event state:@"Massachusetts"];
-    [event country:@"USA"];
-    [event currency:@"USD"];
+    SPEcommerce *event = [[SPEcommerce alloc] initWithOrderId:transactionID totalValue:350 items:itemArray];
+    event.affiliation = @"DemoTranAffiliation";
+    // TODO: incompatible properties with ObjC
+//    event.taxValue = 10;
+//    event.shipping = 15;
+    event.city = @"Boston";
+    event.state = @"Massachusetts";
+    event.country = @"USA";
+    event.currency = @"USD";
 
     // Check that the main payload passes validation
-    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event];
+    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event state:nil];
     NSDictionary<NSString *, NSObject *> *data = [[tracker payloadWithEvent:trackerEvent] getAsDictionary];
 
     NSArray *dataArray = @[data];
@@ -272,7 +273,7 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
 }
 
 - (void)testTimingEventJson {
-    SPTiming *event = [[SPTiming alloc] initWithCategory:@"DemoTimingCategory" variable:@"DemoTimingVariable" timing:@5];
+    SPTiming *event = [[SPTiming alloc] initWithCategory:@"DemoTimingCategory" variable:@"DemoTimingVariable" timing:5];
     NSDictionary<NSString *, NSObject *> *sdj = [[[SPSelfDescribingJson alloc] initWithSchema:event.schema andData:event.payload] getAsDictionary];
     XCTAssertTrue([validator validateJson:sdj]);
 }
@@ -301,10 +302,10 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
                                     };
 
     SPNotificationContent *content = [[SPNotificationContent alloc] initWithTitle:@"title" body:@"body" badge:@5];
-    [content subtitle:@"subtitle"];
-    [content sound:@"sound"];
-    [content launchImageName:@"launchImageName"];
-    [content userInfo: userInfo];
+    content.subtitle = @"subtitle";
+    content.sound = @"sound";
+    content.launchImageName = @"launchImageName";
+    content.userInfo =  userInfo;
 
     SPPushNotification *event = [[SPPushNotification alloc] initWithDate:@"date" action:@"action" trigger:@"PUSH" category:@"category" thread:@"thread" notification:content];
     
@@ -349,11 +350,11 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
 - (void)testFinalEventPayloadJson {
     SPTracker *tracker = [self getTracker:@"acme.fake.url"];
     SPPageView *event = [[SPPageView alloc] initWithPageUrl:@"DemoPageUrl"];
-    [event pageTitle:@"DemoPageTitle"];
-    [event referrer:@"DemoPageReferrer"];
+    event.pageTitle = @"DemoPageTitle";
+    event.referrer = @"DemoPageReferrer";
     
     // Check that the final payload passes validation
-    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event];
+    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event state:nil];
     NSDictionary<NSString *, NSObject *> *data = [[tracker payloadWithEvent:trackerEvent] getAsDictionary];
 
     NSArray *dataArray = @[data];
@@ -380,7 +381,7 @@ const NSString* IGLU_PATH = @"http://raw.githubusercontent.com/snowplow/iglu-cen
 - (SPTracker *)getTracker:(NSString *)url {
     NSString *endpoint = [NSString stringWithFormat:@"https://%@", url];
     SPNetworkConfiguration *networkConfig = [[SPNetworkConfiguration alloc] initWithEndpoint:endpoint method:SPHttpMethodPost];
-    SPTrackerConfiguration *trackerConfig = [[SPTrackerConfiguration new] appId:@"anAppId"];
+    SPTrackerConfiguration *trackerConfig = [[SPTrackerConfiguration alloc] initWithAppId:@"anAppId"];
     trackerConfig.platformContext = YES;
     trackerConfig.geoLocationContext = YES;
     trackerConfig.base64Encoding = NO;

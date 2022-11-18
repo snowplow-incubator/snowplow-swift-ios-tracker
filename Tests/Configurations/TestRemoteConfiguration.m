@@ -22,8 +22,7 @@
 #import <XCTest/XCTest.h>
 #import <Nocilla/Nocilla.h>
 
-#import "SPConfigurationFetcher.h"
-#import "SPConfigurationCache.h"
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 @interface TestRemoteConfiguration : XCTestCase
 @end
@@ -97,21 +96,19 @@
 
 - (void)testConfigurationCache {
     SPConfigurationBundle *bundle = [[SPConfigurationBundle alloc] initWithNamespace:@"namespace" networkConfiguration:[[SPNetworkConfiguration alloc] initWithEndpoint:@"endpoint"]];
-    SPFetchedConfigurationBundle *expected = [[SPFetchedConfigurationBundle alloc] init];
-    expected.schema = @"http://iglucentral.com/schemas/com.snowplowanalytics.mobile/remote_config/jsonschema/1-0-0";
-    expected.configurationVersion = 12;
+    SPFetchedConfigurationBundle *expected = [[SPFetchedConfigurationBundle alloc] initWithSchema:@"http://iglucentral.com/schemas/com.snowplowanalytics.mobile/remote_config/jsonschema/1-0-0" configurationVersion:12];
     expected.configurationBundle = @[bundle];
     
     SPRemoteConfiguration *remoteConfig = [[SPRemoteConfiguration alloc] initWithEndpoint:@"http://example.com" method:SPHttpMethodGet];
     
     SPConfigurationCache *cache = [[SPConfigurationCache alloc] initWithRemoteConfiguration:remoteConfig];
-    [cache clearCache];
-    [cache writeCache:expected];
+    [cache clear];
+    [cache write:expected];
     
     [NSThread sleepForTimeInterval:5]; // wait the config is written on cache.
     
     cache = [[SPConfigurationCache alloc] initWithRemoteConfiguration:remoteConfig];
-    SPFetchedConfigurationBundle *config = [cache readCache];
+    SPFetchedConfigurationBundle *config = [cache read];
     
     XCTAssertEqual(expected.configurationVersion, config.configurationVersion);
     XCTAssertEqualObjects(expected.schema, config.schema);
@@ -127,7 +124,7 @@
     NSString *endpoint = @"https://fake-snowplow.io/config.json";
     SPRemoteConfiguration *remoteConfig = [[SPRemoteConfiguration alloc] initWithEndpoint:endpoint method:SPHttpMethodGet];
     SPConfigurationCache *cache = [[SPConfigurationCache alloc] initWithRemoteConfiguration:remoteConfig];
-    [cache clearCache];
+    [cache clear];
     [[LSNocilla sharedInstance] start];
     stubRequest(@"GET", endpoint)
     .andReturn(404);
@@ -150,7 +147,7 @@
     NSString *endpoint = @"https://fake-snowplow.io/config.json";
     SPRemoteConfiguration *remoteConfig = [[SPRemoteConfiguration alloc] initWithEndpoint:endpoint method:SPHttpMethodGet];
     SPConfigurationCache *cache = [[SPConfigurationCache alloc] initWithRemoteConfiguration:remoteConfig];
-    [cache clearCache];
+    [cache clear];
     [[LSNocilla sharedInstance] start];
     stubRequest(@"GET", endpoint)
     .andReturn(200)
@@ -176,13 +173,11 @@
     SPRemoteConfiguration *remoteConfig = [[SPRemoteConfiguration alloc] initWithEndpoint:endpoint method:SPHttpMethodGet];
     
     SPConfigurationCache *cache = [[SPConfigurationCache alloc] initWithRemoteConfiguration:remoteConfig];
-    [cache clearCache];
+    [cache clear];
     SPConfigurationBundle *bundle = [[SPConfigurationBundle alloc] initWithNamespace:@"namespace" networkConfiguration:[[SPNetworkConfiguration alloc] initWithEndpoint:@"endpoint"]];
-    SPFetchedConfigurationBundle *cached = [[SPFetchedConfigurationBundle alloc] init];
-    cached.schema = @"http://iglucentral.com/schemas/com.snowplowanalytics.mobile/remote_config/jsonschema/1-0-0";
-    cached.configurationVersion = 1;
+    SPFetchedConfigurationBundle *cached = [[SPFetchedConfigurationBundle alloc] initWithSchema:@"http://iglucentral.com/schemas/com.snowplowanalytics.mobile/remote_config/jsonschema/1-0-0" configurationVersion:1];
     cached.configurationBundle = @[bundle];
-    [cache writeCache:cached];
+    [cache write:cached];
     [NSThread sleepForTimeInterval:5]; // wait to write on cache
     
     [[LSNocilla sharedInstance] start];
@@ -218,13 +213,11 @@
     SPRemoteConfiguration *remoteConfig = [[SPRemoteConfiguration alloc] initWithEndpoint:endpoint method:SPHttpMethodGet];
     
     SPConfigurationCache *cache = [[SPConfigurationCache alloc] initWithRemoteConfiguration:remoteConfig];
-    [cache clearCache];
+    [cache clear];
     SPConfigurationBundle *bundle = [[SPConfigurationBundle alloc] initWithNamespace:@"namespace" networkConfiguration:[[SPNetworkConfiguration alloc] initWithEndpoint:@"endpoint"]];
-    SPFetchedConfigurationBundle *cached = [[SPFetchedConfigurationBundle alloc] init];
-    cached.schema = @"http://iglucentral.com/schemas/com.snowplowanalytics.mobile/remote_config/jsonschema/1-0-0";
-    cached.configurationVersion = 1;
+    SPFetchedConfigurationBundle *cached = [[SPFetchedConfigurationBundle alloc] initWithSchema:@"http://iglucentral.com/schemas/com.snowplowanalytics.mobile/remote_config/jsonschema/1-0-0" configurationVersion:1];
     cached.configurationBundle = @[bundle];
-    [cache writeCache:cached];
+    [cache write:cached];
     [NSThread sleepForTimeInterval:5]; // wait to write on cache
     
     [[LSNocilla sharedInstance] start];
@@ -261,13 +254,11 @@
     SPRemoteConfiguration *remoteConfig = [[SPRemoteConfiguration alloc] initWithEndpoint:endpoint method:SPHttpMethodGet];
     
     SPConfigurationCache *cache = [[SPConfigurationCache alloc] initWithRemoteConfiguration:remoteConfig];
-    [cache clearCache];
+    [cache clear];
     SPConfigurationBundle *bundle = [[SPConfigurationBundle alloc] initWithNamespace:@"namespace" networkConfiguration:[[SPNetworkConfiguration alloc] initWithEndpoint:@"endpoint"]];
-    SPFetchedConfigurationBundle *cached = [[SPFetchedConfigurationBundle alloc] init];
-    cached.schema = @"http://iglucentral.com/schemas/com.snowplowanalytics.mobile/remote_config/jsonschema/1-0-0";
-    cached.configurationVersion = 1;
+    SPFetchedConfigurationBundle *cached = [[SPFetchedConfigurationBundle alloc] initWithSchema:@"http://iglucentral.com/schemas/com.snowplowanalytics.mobile/remote_config/jsonschema/1-0-0" configurationVersion:1];
     cached.configurationBundle = @[bundle];
-    [cache writeCache:cached];
+    [cache write:cached];
     [NSThread sleepForTimeInterval:5]; // wait to write on cache
     
     SPConfigurationProvider *provider = [[SPConfigurationProvider alloc] initWithRemoteConfiguration:remoteConfig];
@@ -304,13 +295,11 @@
     
     // write configuration (version 2) to cache
     SPConfigurationCache *cache = [[SPConfigurationCache alloc] initWithRemoteConfiguration:cachedRemoteConfig];
-    [cache clearCache];
+    [cache clear];
     SPConfigurationBundle *bundle = [[SPConfigurationBundle alloc] initWithNamespace:@"namespace" networkConfiguration:[[SPNetworkConfiguration alloc] initWithEndpoint:@"endpoint"]];
-    SPFetchedConfigurationBundle *cached = [[SPFetchedConfigurationBundle alloc] init];
-    cached.schema = @"http://iglucentral.com/schemas/com.snowplowanalytics.mobile/remote_config/jsonschema/1-0-0";
-    cached.configurationVersion = 2;
+    SPFetchedConfigurationBundle *cached = [[SPFetchedConfigurationBundle alloc] initWithSchema:@"http://iglucentral.com/schemas/com.snowplowanalytics.mobile/remote_config/jsonschema/1-0-0" configurationVersion:2];
     cached.configurationBundle = @[bundle];
-    [cache writeCache:cached];
+    [cache write:cached];
     [NSThread sleepForTimeInterval:5]; // wait to write on cache
 
     // stub request for configuration (return version 1)

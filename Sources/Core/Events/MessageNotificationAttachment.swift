@@ -32,7 +32,7 @@ public class MessageNotificationAttachment : NSObject {
     var url: String
     
     /// Attachments added to the notification (they can be part of the data object).
-    public init(identifier: String, type: String, url: String) {
+    @objc public init(identifier: String, type: String, url: String) {
         self.identifer = identifier
         self.type = type
         self.url = url

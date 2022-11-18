@@ -185,6 +185,8 @@ public class SubjectConfiguration: Configuration, SubjectConfigurationProtocol {
     }
 
     // MARK: - NSSecureCoding
+    
+    @objc public override class var supportsSecureCoding: Bool { return true }
 
     @objc public override func encode(with coder: NSCoder) {
         coder.encode(userId, forKey: "userId")

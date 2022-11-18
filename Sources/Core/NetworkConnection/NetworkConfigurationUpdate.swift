@@ -54,11 +54,13 @@ public class NetworkConfigurationUpdate: NSObject {
     }
 
     @objc public var method: HttpMethodOptions {
-        return ((sourceConfig)?.method)!
+        // TODO: return nil
+        return ((sourceConfig)?.method) ?? .post
     }
 
     @objc public var `protocol`: ProtocolOptions {
-        return ((sourceConfig)?.protocol)!
+        // TODO: return nil
+        return ((sourceConfig)?.protocol) ?? .https
     }
 
     @objc public var networkConnection: NetworkConnection? {

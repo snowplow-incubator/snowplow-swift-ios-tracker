@@ -73,8 +73,8 @@
     if (!state) return nil;
     SPDeepLinkState *deepLinkState = (SPDeepLinkState *)state;
     if (!deepLinkState.readyForOutput) return nil;
-    SPDeepLinkEntity *entity = [[[SPDeepLinkEntity alloc] initWithUrl:deepLinkState.url]
-                          referrer:deepLinkState.referrer];
+    SPDeepLinkEntity *entity = [[SPDeepLinkEntity alloc] initWithUrl:deepLinkState.url];
+    entity.referrer = deepLinkState.referrer;
     return @[entity];
 }
 

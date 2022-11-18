@@ -311,6 +311,7 @@ public class TrackerControllerImpl: Controller, TrackerController {
 
     private var tracker: Tracker {
         if !serviceProvider.isTrackerInitialized() {
+            // TODO: return nil
 //            SPLogError(@"Recreating tracker instance after it was removed. This will not be supported in future versions.");
         }
         return serviceProvider.tracker()

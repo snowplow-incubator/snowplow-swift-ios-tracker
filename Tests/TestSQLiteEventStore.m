@@ -21,6 +21,9 @@
 
 #import <XCTest/XCTest.h>
 
+#import "SPSQLiteEventStore.h"
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
+
 @interface TestSQLiteEventStore : XCTestCase
 @end
 
@@ -114,7 +117,7 @@
 
 - (void)testMigrationFromLegacyToNamespacedEventStore {
     SPSQLiteEventStore *eventStore = [[SPSQLiteEventStore alloc] initWithNamespace:@"aNamespace"];
-    [eventStore addEvent:[[SPPayload alloc] initWithNSDictionary:@{@"key": @"value"}]];
+    [eventStore addEvent:[[SPPayload alloc] initWithDictionary:@{@"key": @"value"}]];
     XCTAssertEqual(1, [eventStore count]);
     
     // Create fake legacy database
@@ -141,11 +144,11 @@
 
 - (void)testMultipleAccessToSameSQLiteFile {
     SPSQLiteEventStore *eventStore1 = [[SPSQLiteEventStore alloc] initWithNamespace:@"aNamespace"];
-    [eventStore1 addEvent:[[SPPayload alloc] initWithNSDictionary:@{@"key1": @"value1"}]];
+    [eventStore1 addEvent:[[SPPayload alloc] initWithDictionary:@{@"key1": @"value1"}]];
     XCTAssertEqual(1, [eventStore1 count]);
 
     SPSQLiteEventStore *eventStore2 = [[SPSQLiteEventStore alloc] initWithNamespace:@"aNamespace"];
-    [eventStore2 addEvent:[[SPPayload alloc] initWithNSDictionary:@{@"key2": @"value2"}]];
+    [eventStore2 addEvent:[[SPPayload alloc] initWithDictionary:@{@"key2": @"value2"}]];
     XCTAssertEqual(2, [eventStore2 count]);
 }
 

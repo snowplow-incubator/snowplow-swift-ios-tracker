@@ -126,8 +126,13 @@ public class TrackerConfiguration: Configuration, TrackerConfigurationProtocol {
     /// @note Do not use. Internal use only.
     @objc public var trackerVersionSuffix: String?
 
-    public override init() {
+    @objc public override init() {
         super.init()
+    }
+    
+    @objc public convenience init(appId: String) {
+        self.init()
+        self.appId = appId
     }
 
     @objc
@@ -213,6 +218,8 @@ public class TrackerConfiguration: Configuration, TrackerConfigurationProtocol {
     }
 
     // MARK: - NSSecureCoding
+    
+    @objc public override class var supportsSecureCoding: Bool { return true }
 
     public override func encode(with coder: NSCoder) {
         coder.encode(appId, forKey: "appId")

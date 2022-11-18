@@ -20,6 +20,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SPEventStore.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

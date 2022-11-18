@@ -24,8 +24,8 @@
 #import "SPEmitter.h"
 #import "SPSubject.h"
 #import "SPDevicePlatform.h"
-#import "SPTrackerEvent.h"
 #import "SPUtilities.h"
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -174,7 +174,7 @@ NSString *const TEST_SERVER_TRACKER = @"http://www.notarealurl.com";
     }];
     
     SPPrimitiveAbstract *event = [[SPStructured alloc] initWithCategory:@"Category" action:@"Action"];
-    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event];
+    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event state:nil];
     SPPayload *payload = [tracker payloadWithEvent:trackerEvent];
     NSDictionary *payloadDict = [payload getAsDictionary];
 
@@ -198,9 +198,9 @@ NSString *const TEST_SERVER_TRACKER = @"http://www.notarealurl.com";
 
 - (void)testEventIdNotDuplicated {
     SPPrimitiveAbstract *event = [[SPStructured alloc] initWithCategory:@"Category" action:@"Action"];
-    NSUUID *eventId = [[SPTrackerEvent alloc] initWithEvent:event].eventId;
+    NSUUID *eventId = [[SPTrackerEvent alloc] initWithEvent:event state:nil].eventId;
     XCTAssertNotNil(eventId);
-    NSUUID *newEventId = [[SPTrackerEvent alloc] initWithEvent:event].eventId;
+    NSUUID *newEventId = [[SPTrackerEvent alloc] initWithEvent:event state:nil].eventId;
     XCTAssertNotNil(newEventId);
     XCTAssertNotEqualObjects(eventId, newEventId);
 }

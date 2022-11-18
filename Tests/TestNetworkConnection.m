@@ -22,6 +22,8 @@
 #import <XCTest/XCTest.h>
 #import <Nocilla/Nocilla.h>
 
+#import "SPDefaultNetworkConnection.h"
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 @interface TestNetworkConnection : XCTestCase
 

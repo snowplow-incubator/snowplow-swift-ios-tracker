@@ -43,11 +43,14 @@ public enum ProtocolOptions : Int {
 @objc(SPNetworkConfiguration)
 public class NetworkConfiguration: Configuration {
     /// URL (without schema/protocol) used to send events to the collector.
-    private(set) var endpoint: String?
+    @objc private(set) public var endpoint: String?
+    // TODO: make this optional once Swift-only
     /// Method used to send events to the collector.
-    private(set) var method: HttpMethodOptions?
+    @objc private(set) public var method: HttpMethodOptions
+    // TODO: make this optional once Swift-only
+    /// Method used to send events to the collector.
     /// Protocol used to send events to the collector.
-    private(set) var `protocol`: ProtocolOptions?
+    @objc private(set) public var `protocol`: ProtocolOptions
     /// See `NetworkConfiguration(NetworkConnection)`
     @objc public var networkConnection: NetworkConnection?
     /// A custom path which will be added to the endpoint URL to specify the
@@ -61,12 +64,13 @@ public class NetworkConfiguration: Configuration {
     /// Allow endpoint and method only.
     @objc
     public convenience init?(dictionary: [String : NSObject]) {
-        if let endpoint = dictionary["endpoint"] as? String,
-           let method = dictionary["method"] as? String {
+        if let endpoint = dictionary["endpoint"] as? String {
+            let method = dictionary["method"] as? String
             let httpMethod = (method == "get") ? HttpMethodOptions.get : HttpMethodOptions.post
             self.init(endpoint: endpoint, method: httpMethod)
+        } else {
+            return nil
         }
-        return nil
     }
 
     /// - Parameters:
@@ -77,7 +81,6 @@ public class NetworkConfiguration: Configuration {
     ///   - method: The method used to send the requests (GET or POST).
     @objc
     public init(endpoint: String, method: HttpMethodOptions) {
-        super.init()
         let url = URL(string: endpoint)
         if url?.scheme == "https" {
             self.protocol = ProtocolOptions.https
@@ -98,17 +101,16 @@ public class NetworkConfiguration: Configuration {
     ///                 The URL can include the schema/protocol (e.g.: `http://collector-url.com`).
     ///                 In case the URL doesn't include the schema/protocol, the HTTPS protocol is
     ///                 automatically selected.
-    convenience init(endpoint: String) {
+    @objc public convenience init(endpoint: String) {
         self.init(endpoint: endpoint, method: HttpMethodOptions.post)
     }
 
     /// - Parameter networkConnection: The NetworkConnection component which will control the
     ///                          communication between the tracker and the collector.
-    init(networkConnection: NetworkConnection?) {
-        super.init()
+    @objc public init(networkConnection: NetworkConnection?) {
         endpoint = nil
-        self.protocol = nil
-        method = nil
+        self.protocol = .https
+        method = .post
         self.networkConnection = networkConnection
         customPostPath = nil
     }
@@ -132,27 +134,28 @@ public class NetworkConfiguration: Configuration {
         if let networkConnection {
             copy = NetworkConfiguration(networkConnection: networkConnection)
         } else {
-            copy = NetworkConfiguration(endpoint: endpoint ?? "", method: method ?? .post)
+            copy = NetworkConfiguration(endpoint: endpoint ?? "", method: method )
         }
         copy?.customPostPath = customPostPath
         return copy!
     }
 
     // MARK: - NSSecureCoding
+    
+    @objc public override class var supportsSecureCoding: Bool { return true }
 
     public override func encode(with coder: NSCoder) {
         coder.encode(endpoint, forKey: "endpoint")
-        coder.encode(self.protocol?.rawValue, forKey: "protocol")
-        coder.encode(method?.rawValue, forKey: "method")
+        coder.encode(self.protocol.rawValue, forKey: "protocol")
+        coder.encode(method.rawValue, forKey: "method")
         coder.encode(customPostPath, forKey: "customPostPath")
         coder.encode(requestHeaders, forKey: "requestHeaders")
     }
 
     required init?(coder: NSCoder) {
-        super.init()
         endpoint = coder.decodeObject(forKey: "endpoint") as? String
-        self.protocol = ProtocolOptions(rawValue: coder.decodeInteger(forKey: "protocol"))
-        method = HttpMethodOptions(rawValue: coder.decodeInteger(forKey: "method"))
+        self.protocol = ProtocolOptions(rawValue: coder.decodeInteger(forKey: "protocol")) ?? .https
+        method = HttpMethodOptions(rawValue: coder.decodeInteger(forKey: "method")) ?? .post
         customPostPath = coder.decodeObject(forKey: "customPostPath") as? String
         requestHeaders = coder.decodeObject(forKey: "requestHeaders") as? [String : String]
     }

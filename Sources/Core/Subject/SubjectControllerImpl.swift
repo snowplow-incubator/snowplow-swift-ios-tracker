@@ -131,16 +131,14 @@ public class SubjectControllerImpl: Controller, SubjectController {
     public var colorDepth: NSNumber? {
         get {
             if let subject = subject {
-                return NSNumber(value: subject.colorDepth)
+                return subject.colorDepth
             }
             return nil
         }
         set {
             dirtyConfig.colorDepth = newValue
             dirtyConfig.colorDepthUpdated = true
-            if let depth = newValue?.intValue {
-                subject?.colorDepth = depth
-            }
+            subject?.colorDepth = newValue
         }
     }
 
@@ -151,9 +149,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
             return subject?.geoLatitude()
         }
         set {
-            if let latitude = newValue?.floatValue {
-                subject?.setGeoLatitude(latitude)
-            }
+            subject?.setGeoLatitude(newValue)
         }
     }
 
@@ -162,9 +158,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
             return subject?.geoLongitude()
         }
         set {
-            if let longitude = newValue?.floatValue {
-                subject?.setGeoLongitude(longitude)
-            }
+            subject?.setGeoLongitude(newValue)
         }
     }
 
@@ -173,9 +167,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
             return subject?.geoLatitudeLongitudeAccuracy()
         }
         set {
-            if let accuracy = newValue?.floatValue {
-                subject?.setGeoLatitudeLongitudeAccuracy(accuracy)
-            }
+            subject?.setGeoLatitudeLongitudeAccuracy(newValue)
         }
     }
 
@@ -184,9 +176,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
             return subject?.geoAltitude()
         }
         set {
-            if let altitude = newValue?.floatValue {
-                subject?.setGeoAltitude(altitude)
-            }
+            subject?.setGeoAltitude(newValue)
         }
     }
 
@@ -195,9 +185,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
             return subject?.geoAltitudeAccuracy()
         }
         set {
-            if let accuracy = newValue?.floatValue {
-                subject?.setGeoAltitudeAccuracy(accuracy)
-            }
+            subject?.setGeoAltitudeAccuracy(newValue)
         }
     }
 
@@ -206,9 +194,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
             return subject?.geoSpeed()
         }
         set {
-            if let geoSpeed = newValue?.floatValue {
-                subject?.setGeoSpeed(geoSpeed)
-            }
+            subject?.setGeoSpeed(newValue)
         }
     }
 
@@ -217,9 +203,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
             return subject?.geoBearing()
         }
         set {
-            if let geoBearing = newValue?.floatValue {
-                subject?.setGeoBearing(geoBearing)
-            }
+            subject?.setGeoBearing(newValue)
         }
     }
 

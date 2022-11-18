@@ -21,6 +21,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 @interface TestSelfDescribingJson : XCTestCase
 
@@ -64,7 +65,7 @@
     SPSelfDescribingJson * sdj = [[SPSelfDescribingJson alloc] initWithSchema:@"iglu:acme.com/test_event/jsonschema/1-0-0"
                                                                       andData:data];
     XCTAssertEqualObjects(expected, [sdj getAsDictionary]);
-    XCTAssertEqualObjects([expected description], [sdj description]);
+    XCTAssertEqualObjects([expected description], [[sdj getAsDictionary] description]);
 }
 
 - (void)testInitWithSPPayload {

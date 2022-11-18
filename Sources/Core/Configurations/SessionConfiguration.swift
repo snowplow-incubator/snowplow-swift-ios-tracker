@@ -58,12 +58,11 @@ public class SessionConfiguration: Configuration, SessionConfigurationProtocol {
     @objc public var foregroundTimeoutInSeconds: Int
     @objc public var onSessionStateUpdate: ((_ sessionState: SPSessionState) -> Void)?
 
-    convenience override init() {
+    @objc public convenience override init() {
         self.init(foregroundTimeoutInSeconds: 1800, backgroundTimeoutInSeconds: 1800)
     }
 
-    convenience init?(dictionary: [String : AnyObject]) {
-        self.init()
+    @objc public convenience init?(dictionary: [String : NSObject]) {
         let foregroundTimeout = dictionary["foregroundTimeout"] as? Int ?? 1800
         let backgroundTimeout = dictionary["backgroundTimeout"] as? Int ?? 1800
         self.init(foregroundTimeoutInSeconds: foregroundTimeout, backgroundTimeoutInSeconds: backgroundTimeout)
@@ -73,7 +72,7 @@ public class SessionConfiguration: Configuration, SessionConfigurationProtocol {
     /// - Parameters:
     ///   - foregroundTimeout: The timeout set for the inactivity of app when in foreground.
     ///   - backgroundTimeout: The timeout set for the inactivity of app when in background.
-    convenience init(foregroundTimeout: Measurement<UnitDuration>, backgroundTimeout: Measurement<UnitDuration>) {
+    @objc public convenience init(foregroundTimeout: Measurement<UnitDuration>, backgroundTimeout: Measurement<UnitDuration>) {
         let foreground = foregroundTimeout.converted(to: .seconds)
         let foregroundInSeconds = Int(floor(foreground.value))
         let background = backgroundTimeout.converted(to: .seconds)
@@ -85,10 +84,9 @@ public class SessionConfiguration: Configuration, SessionConfigurationProtocol {
     /// - Parameters:
     ///   - foregroundTimeout: The timeout set for the inactivity of app when in foreground.
     ///   - backgroundTimeout: The timeout set for the inactivity of app when in background.
-    init(foregroundTimeoutInSeconds foregroundTimeout: Int, backgroundTimeoutInSeconds backgroundTimeout: Int) {
+    @objc public init(foregroundTimeoutInSeconds foregroundTimeout: Int, backgroundTimeoutInSeconds backgroundTimeout: Int) {
         self.backgroundTimeoutInSeconds = backgroundTimeout
         self.foregroundTimeoutInSeconds = foregroundTimeout
-        super.init()
     }
 
     @objc public var foregroundTimeout: Measurement<UnitDuration> {
@@ -131,11 +129,9 @@ public class SessionConfiguration: Configuration, SessionConfigurationProtocol {
     }
 
     // MARK: - NSSecureCoding
-
-    class public override var supportsSecureCoding: Bool {
-        return true
-    }
-
+    
+    @objc public override class var supportsSecureCoding: Bool { return true }
+    
     public override func encode(with coder: NSCoder) {
         coder.encode(backgroundTimeoutInSeconds, forKey: "backgroundTimeoutInSeconds")
         coder.encode(foregroundTimeoutInSeconds, forKey: "foregroundTimeoutInSeconds")

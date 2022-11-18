@@ -27,7 +27,12 @@ public class PushNotification : NSObject {
     public var thread: String
     public var notification: NotificationContent?
 
-    init(date: String, action: String, trigger: String, category: String, thread: String, notification: NotificationContent?) {
+    @objc public init(date: String, action: String, trigger: String, category: String, thread: String, notification: NotificationContent?) {
+        Utilities.checkArgument(date.count != 0, withMessage: "Delivery date cannot be empty.")
+        Utilities.checkArgument(action.count != 0, withMessage: "Action cannot be empty.")
+        Utilities.checkArgument(trigger.count != 0, withMessage: "Trigger cannot be empty.")
+        Utilities.checkArgument(category.count != 0, withMessage: "Category identifier cannot be empty.")
+        Utilities.checkArgument(thread.count != 0, withMessage: "Thread identifier cannot be empty.")
         self.date = date
         self.action = action
         self.trigger = trigger
@@ -38,7 +43,7 @@ public class PushNotification : NSObject {
 
     #if SNOWPLOW_TARGET_IOS
 
-    init(date: String, action: String, notificationTrigger trigger: UNNotificationTrigger?, category: String, thread: String, notification: NotificationContent?) {
+    @objc public init(date: String, action: String, notificationTrigger trigger: UNNotificationTrigger?, category: String, thread: String, notification: NotificationContent?) {
         super.init()
         self.date = date
         self.action = action
@@ -48,7 +53,7 @@ public class PushNotification : NSObject {
         self.notification = notification
     }
 
-    class func string(from trigger: UNNotificationTrigger?) -> String {
+    @objc public class func string(from trigger: UNNotificationTrigger?) -> String {
         var triggerType = "UNKNOWN"
         let triggerClass = NSStringFromClass(type(of: trigger).self)
         if triggerClass == "UNTimeIntervalNotificationTrigger" {
@@ -65,11 +70,11 @@ public class PushNotification : NSObject {
 
     #endif
 
-    public var schema: String {
+    @objc public var schema: String {
         return kSPPushNotificationSchema
     }
 
-    public var payload: [String : NSObject] {
+    @objc public var payload: [String : NSObject] {
         var data: [String: NSObject] = [
             kSPPushTrigger: trigger as NSObject,
             kSPPushAction: action as NSObject,
@@ -86,22 +91,24 @@ public class PushNotification : NSObject {
 
 @objc(SPNotificationContent)
 public class NotificationContent : NSObject {
-    public var title: String
-    public var body: String
-    public var badge: NSNumber?
-    public var subtitle: String?
-    public var sound: String?
-    public var launchImageName: String?
-    public var userInfo: [String : NSObject]?
-    public var attachments: [NSObject]?
+    @objc public var title: String
+    @objc public var body: String
+    @objc public var badge: NSNumber?
+    @objc public var subtitle: String?
+    @objc public var sound: String?
+    @objc public var launchImageName: String?
+    @objc public var userInfo: [String : NSObject]?
+    @objc public var attachments: [NSObject]?
 
     @objc public init(title: String, body: String, badge: NSNumber?) {
+        Utilities.checkArgument(title.count != 0, withMessage: "Title cannot be empty.")
+        Utilities.checkArgument(body.count != 0, withMessage: "Body cannot be empty.")
         self.title = title
         self.body = body
         self.badge = badge
     }
 
-    public var payload: [String : NSObject] {
+    @objc public var payload: [String : NSObject] {
         var event: [String : NSObject] = [:]
         event[kSPPnTitle] = title as NSObject
         event[kSPPnBody] = body as NSObject

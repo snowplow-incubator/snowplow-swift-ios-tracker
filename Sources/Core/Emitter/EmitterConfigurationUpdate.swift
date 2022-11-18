@@ -34,7 +34,7 @@ public class EmitterConfigurationUpdate: EmitterConfiguration {
 
     @objc public override var eventStore: EventStore? {
         get {
-            return ((sourceConfig == nil || eventStoreUpdated) ? super.eventStore : sourceConfig?.eventStore)!
+            return ((sourceConfig == nil || eventStoreUpdated) ? super.eventStore : sourceConfig?.eventStore)
         }
         set {
             super.eventStore = newValue
@@ -44,7 +44,7 @@ public class EmitterConfigurationUpdate: EmitterConfiguration {
 
     @objc public override var requestCallback: RequestCallback? {
         get {
-            return ((sourceConfig == nil || requestCallbackUpdated) ? super.requestCallback : sourceConfig?.requestCallback)!
+            return ((sourceConfig == nil || requestCallbackUpdated) ? super.requestCallback : sourceConfig?.requestCallback)
         }
         set {
             super.requestCallback = newValue
@@ -54,7 +54,7 @@ public class EmitterConfigurationUpdate: EmitterConfiguration {
 
     @objc public override var bufferOption: BufferOption {
         get {
-            return ((sourceConfig == nil || bufferOptionUpdated) ? super.bufferOption : sourceConfig?.bufferOption)!
+            return ((sourceConfig == nil || bufferOptionUpdated) ? super.bufferOption : sourceConfig?.bufferOption) ?? BufferOption.defaultGroup
         }
         set {
             super.bufferOption = newValue

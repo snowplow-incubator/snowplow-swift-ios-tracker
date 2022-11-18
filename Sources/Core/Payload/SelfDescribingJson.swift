@@ -40,7 +40,7 @@ public class SelfDescribingJson: NSObject {
     }
     
     /// Data of the self-describing JSON.
-    @objc private(set) public var data: NSObject?
+    @objc public var data: NSObject?
 
     /// Initializes a newly allocated SPSelfDescribingJson.
     /// - Parameters:
@@ -51,7 +51,7 @@ public class SelfDescribingJson: NSObject {
         Utilities.checkArgument(schema.count != 0, withMessage: "Schema cannot be nil or empty.")
         self._schema = schema
         super.init()
-        setDataWith(data)
+        setData(withObject: data)
     }
 
     /// Initializes a newly allocated SPSelfDescribingJson.
@@ -92,20 +92,20 @@ public class SelfDescribingJson: NSObject {
 
     /// Sets the data field of the self-describing JSON.
     /// - Parameter data: An NSObject to be nested into the data.
-    @objc public func setDataWith(_ data: NSObject?) {
+    @objc public func setData(withObject data: NSObject?) {
         self.data = data
     }
 
     /// Sets the data field of the self-describing JSON.
     /// - Parameter data: An SPPayload to be nested into the data.
-    public func setDataWith(_ data: Payload) {
-        return setDataWith(data.getAsDictionary() as? NSObject)
+    @objc public func setData(withPayload data: Payload) {
+        return setData(withObject: data.getAsDictionary() as? NSObject)
     }
 
     /// Sets the data field of the self-describing JSON.
     /// - Parameter data: A self-describing JSON to be nested into the data.
-    public func setDataWith(_ data: SelfDescribingJson) {
-        return setDataWith(data.getAsDictionary() as? NSObject)
+    @objc public func setData(withSelfDescribingJson data: SelfDescribingJson) {
+        return setData(withObject: data.getAsDictionary() as? NSObject)
     }
 
     /// Returns the internal NSDictionary of the self-describing JSON.

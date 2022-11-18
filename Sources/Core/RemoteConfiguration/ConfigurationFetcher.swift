@@ -26,14 +26,14 @@ public class ConfigurationFetcher: NSObject {
     private var remoteConfiguration: RemoteConfiguration
     private var onFetchCallback: OnFetchCallback
 
-    init(remoteSource remoteConfiguration: RemoteConfiguration, onFetchCallback: @escaping OnFetchCallback) {
+    @objc public init(remoteSource remoteConfiguration: RemoteConfiguration, onFetchCallback: @escaping OnFetchCallback) {
         self.remoteConfiguration = remoteConfiguration
         self.onFetchCallback = onFetchCallback
         super.init()
         performRequest()
     }
 
-    func performRequest() {
+    @objc public func performRequest() {
         guard let url = URL(string: remoteConfiguration.endpoint) else { return }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
@@ -49,7 +49,7 @@ public class ConfigurationFetcher: NSObject {
         }.resume()
     }
 
-    func resolveRequest(with data: Data) {
+    @objc public func resolveRequest(with data: Data) {
         if let jsonObject = try? JSONSerialization.jsonObject(with: data) as? [String : NSObject],
            let jsonObject,
            let fetchedConfigurationBundle = FetchedConfigurationBundle(dictionary: jsonObject) {

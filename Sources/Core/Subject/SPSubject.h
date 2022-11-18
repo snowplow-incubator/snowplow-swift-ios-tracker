@@ -44,7 +44,7 @@ NS_SWIFT_NAME(Subject)
 @property (nonatomic) NSString *language;
 @property (nonatomic) SPSize *screenResolution;
 @property (nonatomic) SPSize *screenViewPort;
-@property (nonatomic) NSInteger colorDepth;
+@property (nonatomic) NSNumber *colorDepth;
 
 
 /*!
@@ -110,7 +110,7 @@ NS_SWIFT_NAME(Subject)
  @brief Sets the color depth.
  @param depth The user's color depth.
  */
-- (void) setColorDepth:(NSInteger)depth;
+- (void) setColorDepth:(NSNumber *)depth;
 
 /*!
  @brief Sets the timezone.
@@ -162,49 +162,49 @@ NS_SWIFT_NAME(Subject)
  @brief Sets the latitude value for the geolocation context.
  @param latitude A non-nil number.
  */
-- (void) setGeoLatitude:(float)latitude;
+- (void) setGeoLatitude:(NSNumber *)latitude;
 - (NSNumber *)geoLatitude;
 
 /*!
  @brief Sets the longitude value for the geo context.
  @param longitude A non-nil number.
  */
-- (void) setGeoLongitude:(float)longitude;
+- (void) setGeoLongitude:(NSNumber *)longitude;
 - (NSNumber *)geoLongitude;
 
 /*!
  @brief Sets the latitudeLongitudeAccuracy value for the geolocation context.
  @param latitudeLongitudeAccuracy A non-nil number
  */
-- (void) setGeoLatitudeLongitudeAccuracy:(float)latitudeLongitudeAccuracy;
+- (void) setGeoLatitudeLongitudeAccuracy:(NSNumber *)latitudeLongitudeAccuracy;
 - (NSNumber *)geoLatitudeLongitudeAccuracy;
 
 /*!
  @brief Sets the altitude value for the geolocation context.
  @param altitude A non-nil number.
  */
-- (void) setGeoAltitude:(float)altitude;
+- (void) setGeoAltitude:(NSNumber *)altitude;
 - (NSNumber *)geoAltitude;
 
 /*!
  @brief Sets the altitudeAccuracy value for the geolocation context.
  @param altitudeAccuracy A non-nil number.
  */
-- (void) setGeoAltitudeAccuracy:(float)altitudeAccuracy;
+- (void) setGeoAltitudeAccuracy:(NSNumber *)altitudeAccuracy;
 - (NSNumber *)geoAltitudeAccuracy;
 
 /*!
  @brief Sets the bearing value for the geolocation context.
  @param bearing A non-nil number.
  */
-- (void) setGeoBearing:(float)bearing;
+- (void) setGeoBearing:(NSNumber *)bearing;
 - (NSNumber *)geoBearing;
 
 /*!
  @brief Sets the speed value for the geolocation context.
  @param speed A non-nil number.
  */
-- (void) setGeoSpeed:(float)speed;
+- (void) setGeoSpeed:(NSNumber *)speed;
 - (NSNumber *)geoSpeed;
 
 /*!

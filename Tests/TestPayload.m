@@ -21,6 +21,8 @@
 
 #import <XCTest/XCTest.h>
 
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
+
 @interface TestPayload : XCTestCase
 
 @end
@@ -47,12 +49,12 @@
 - (void)testInitWithNSDictionary {
     NSDictionary *sample_dict = @{@"Key1": @"Value1",
                                  @"Key2": @"Value2"};
-    SPPayload *sample_payload = [[SPPayload alloc] initWithNSDictionary:sample_dict];
+    SPPayload *sample_payload = [[SPPayload alloc] initWithDictionary:sample_dict];
 
     XCTAssertEqualObjects(sample_payload.getAsDictionary,
                           sample_dict,
                           @"Payload is not initialized with the correct JSON or NSDictionary");
-    XCTAssertTrue([[sample_payload description] isEqualToString:@"{\n    Key1 = Value1;\n    Key2 = Value2;\n}"]);
+    XCTAssertTrue([[sample_payload description] isEqualToString:@"[\"Key1\": Value1, \"Key2\": Value2]"]);
 }
 
 - (void)testInitWithWrongDictionary {
@@ -60,7 +62,7 @@
                                  @"Key2": @"Value2"};
     NSDictionary *sample_dict2 = @{@"Key2": @"Value1",
                                   @"Key1": @"Value2"};
-    SPPayload *sample_payload = [[SPPayload alloc] initWithNSDictionary:sample_dict];
+    SPPayload *sample_payload = [[SPPayload alloc] initWithDictionary:sample_dict];
     
     XCTAssertNotEqualObjects(sample_payload.getAsDictionary,
                              sample_dict2,
@@ -69,7 +71,7 @@
 
 - (void)testInitWithNullDictionary {
     NSDictionary *sample_dict = nil;
-    SPPayload *sample_payload = [[SPPayload alloc] initWithNSDictionary:sample_dict];
+    SPPayload *sample_payload = [[SPPayload alloc] initWithDictionary:sample_dict];
     
     XCTAssertEqualObjects(sample_payload.getAsDictionary,
                           [[NSDictionary alloc] init],
@@ -102,7 +104,7 @@
     NSDictionary *sample_dict_init = @{@"Key1": @"Value1"};
     NSDictionary *sample_dict_final = @{@"Key1": @"Value1",
                                  @"Key2": @"Value2"};
-    SPPayload *sample_payload = [[SPPayload alloc] initWithNSDictionary:sample_dict_init];
+    SPPayload *sample_payload = [[SPPayload alloc] initWithDictionary:sample_dict_init];
     [sample_payload addValueToPayload:@"Value2" forKey:@"Key2"];
     
     XCTAssertEqualObjects(sample_payload.getAsDictionary,
@@ -117,7 +119,7 @@
 }
 
 - (void)testAddNilValueToPayloadUnsetsKey {
-    SPPayload *payload = [[SPPayload alloc] initWithNSDictionary:@{@"foo":@"bar"}];
+    SPPayload *payload = [[SPPayload alloc] initWithDictionary:@{@"foo":@"bar"}];
     [payload addValueToPayload:nil forKey:@"foo"];
     XCTAssertEqualObjects(payload.getAsDictionary, [[NSDictionary alloc] init]);
 }
@@ -144,7 +146,7 @@
 }
 
 - (void)testAddNilNumericValueToPayloadUnsetsKey {
-    SPPayload *sample_payload = [[SPPayload alloc] initWithNSDictionary:@{@"Key1":@100}];
+    SPPayload *sample_payload = [[SPPayload alloc] initWithDictionary:@{@"Key1":@100}];
     [sample_payload addNumericValueToPayload:nil forKey:@"Key1"];
     
     
@@ -168,7 +170,7 @@
     NSDictionary *sample_dic2 = @{@"Key2": @"Value2"};
     NSDictionary *sample_dict_final = @{@"Key1": @"Value1",
                                        @"Key2": @"Value2"};
-    SPPayload *sample_payload = [[SPPayload alloc] initWithNSDictionary:sample_dic];
+    SPPayload *sample_payload = [[SPPayload alloc] initWithDictionary:sample_dic];
     [sample_payload addDictionaryToPayload:sample_dic2];
 
     XCTAssertEqualObjects(sample_payload.getAsDictionary,
@@ -181,7 +183,7 @@
     NSDictionary *sample_dic2 = @{@"Key2": @2};
     NSDictionary *sample_dict_final = @{@"Key1": @"Value1"};
     
-    SPPayload *sample_payload = [[SPPayload alloc] initWithNSDictionary:sample_dic];
+    SPPayload *sample_payload = [[SPPayload alloc] initWithDictionary:sample_dic];
     [sample_payload addDictionaryToPayload:sample_dic2];
     
     XCTAssertEqualObjects(sample_payload.getAsDictionary,
@@ -275,7 +277,7 @@
 
 - (void)testgetPayloadAsDictionary2 {
     NSDictionary *sample_dict = @{@"Key1": @"Value1"};
-    SPPayload *sample_payload = [[SPPayload alloc] initWithNSDictionary:@{@"Key1": @"Value1"}];
+    SPPayload *sample_payload = [[SPPayload alloc] initWithDictionary:@{@"Key1": @"Value1"}];
     
     XCTAssertEqualObjects(sample_payload.getAsDictionary,
                           sample_dict,

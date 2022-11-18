@@ -25,23 +25,22 @@ public class DeepLinkEntity: SelfDescribingJson {
     @objc public static let schema = "iglu:com.snowplowanalytics.mobile/deep_link/jsonschema/1-0-0"
     @objc public static let paramReferrer = "referrer"
     @objc public static let paramUrl = "url"
+    
+    @objc public var url: String
+    @objc public var referrer: String?
 
     @objc public init(url: String) {
-        var parameters: [String : NSObject] = [:]
-        parameters[DeepLinkEntity.paramUrl] = url as NSObject
-        super.init(schema: DeepLinkEntity.schema, andData: parameters as NSObject)
-        
-        // Set here further checks about the arguments.
-        // e.g.: [SPUtilities checkArgument:([_name length] != 0) withMessage:@"Name cannot be empty."];
+        self.url = url
+        super.init(schema: DeepLinkEntity.schema, andData: nil)
     }
 
-    // --- Builder Methods
-
-    @objc public func referrer(_ referrer: String?) -> Self {
-        if let data,
-           var parameters = data as? [String : NSObject] {
-            parameters[DeepLinkEntity.paramReferrer] = referrer as? NSObject
+    override public var data: NSObject? {
+        get {
+            var data: [String: NSObject] = [:]
+            data[DeepLinkEntity.paramUrl] = url as NSObject
+            data[DeepLinkEntity.paramReferrer] = referrer as NSObject?
+            return data as NSObject
         }
-        return self
+        set {}
     }
 }

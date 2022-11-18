@@ -568,7 +568,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     } else {
         [self addSelfDescribingPropertiesToPayload:payload event:event];
     }
-    NSMutableArray<SPSelfDescribingJson *> *contexts = event.contexts;
+    NSMutableArray<SPSelfDescribingJson *> *contexts = [event.contexts mutableCopy];
     [self addBasicContextsToContexts:contexts event:event];
     [self addGlobalContextsToContexts:contexts event:event];
     [self addStateMachineEntitiesToContexts:contexts event:event];

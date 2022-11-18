@@ -22,12 +22,12 @@
 
 #import <XCTest/XCTest.h>
 #import "SPTracker.h"
-#import "SPTrackerEvent.h"
 #import "SPServiceProvider.h"
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 /// Category needed to make the private methods testable.
 @interface SPTracker (Testing)
-- (void)addGlobalContextsToContexts:(NSMutableArray<SPSelfDescribingJson *> *)contexts event:(id<SPInspectableEvent>)event;
+- (void)addGlobalContextsToContexts:(NSMutableArray<SPSelfDescribingJson *> *)contexts event:(SPInspectableEvent *)event;
 @end
 
 #pragma mark - GlobalContextGenerator
@@ -37,11 +37,11 @@
 
 @implementation GlobalContextGenerator
 
-- (BOOL)filterFromEvent:(id<SPInspectableEvent>)event {
+- (BOOL)filterFromEvent:(SPInspectableEvent *)event {
     return [@"StringToMatch" isEqualToString:(NSString *)event.payload[kSPStuctCategory]];
 }
 
-- (NSArray<SPSelfDescribingJson *> *)generatorFromEvent:(id<SPInspectableEvent>)event {
+- (NSArray<SPSelfDescribingJson *> *)generatorFromEvent:(SPInspectableEvent *)event {
     return @[
         [[SPSelfDescribingJson alloc] initWithSchema:@"schema" andData:@{@"key": @"value"}],
     ];
@@ -59,7 +59,7 @@
 - (void)testGlobalContexts {
     SPGlobalContext *staticGC = [[SPGlobalContext alloc] initWithStaticContexts:@[[[SPSelfDescribingJson alloc] initWithSchema:@"schema" andData:@{@"key": @"value"}]]];
     SPGlobalContext *generatorGC = [[SPGlobalContext alloc] initWithContextGenerator:[GlobalContextGenerator new]];
-    SPGlobalContext *blockGC = [[SPGlobalContext alloc] initWithGenerator:^NSArray<SPSelfDescribingJson *> *(id<SPInspectableEvent> event) {
+    SPGlobalContext *blockGC = [[SPGlobalContext alloc] initWithGenerator:^NSArray<SPSelfDescribingJson *> *(SPInspectableEvent *event) {
         return @[
             [[SPSelfDescribingJson alloc] initWithSchema:@"schemaBlock" andData:@{@"key": @"value"}],
         ];
@@ -132,7 +132,7 @@
     SPTracker *tracker = [self getTrackerWithGlobalContextGenerators:@{@"static": staticGC}.mutableCopy];
     
     SPPrimitiveAbstract *event = [[SPStructured alloc] initWithCategory:@"Category" action:@"Action"];
-    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event];
+    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event state:nil];
     
     NSMutableArray<SPSelfDescribingJson *> *contexts = [NSMutableArray array];
     [tracker addGlobalContextsToContexts:contexts event:trackerEvent];
@@ -143,10 +143,10 @@
 - (void)testStaticGeneratortWithFilter {
     NSString *stringToMatch = @"StringToMatch";
     SPGlobalContext *filterMatchingGC = [[SPGlobalContext alloc] initWithStaticContexts:@[[[SPSelfDescribingJson alloc] initWithSchema:@"schema" andData:@{@"key": @"value"}]]
-                                                                                 filter:^BOOL(id<SPInspectableEvent> event) {
+                                                                                 filter:^BOOL(SPInspectableEvent *event) {
         return [stringToMatch isEqualToString:(NSString *)event.payload[kSPStuctCategory]];
     }];
-    SPGlobalContext *filterNotMatchingGC = [[SPGlobalContext alloc] initWithStaticContexts:@[[[SPSelfDescribingJson alloc] initWithSchema:@"schemaNotMatching" andData:@{@"key": @"value"}]] filter:^BOOL(id<SPInspectableEvent> event) {
+    SPGlobalContext *filterNotMatchingGC = [[SPGlobalContext alloc] initWithStaticContexts:@[[[SPSelfDescribingJson alloc] initWithSchema:@"schemaNotMatching" andData:@{@"key": @"value"}]] filter:^BOOL(SPInspectableEvent *event) {
         return NO;
     }];
     SPTracker *tracker = [self getTrackerWithGlobalContextGenerators:@{
@@ -155,7 +155,7 @@
     }.mutableCopy];
 
     SPPrimitiveAbstract *event = [[SPStructured alloc] initWithCategory:stringToMatch action:@"Action"];
-    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event];
+    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event state:nil];
     
     NSMutableArray<SPSelfDescribingJson *> *contexts = [NSMutableArray array];
     [tracker addGlobalContextsToContexts:contexts event:trackerEvent];
@@ -175,32 +175,34 @@
 
     // Not matching primitive event
     SPPrimitiveAbstract *primitiveEvent = [[SPStructured alloc] initWithCategory:@"Category" action:@"Action"];
-    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:primitiveEvent];
+    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:primitiveEvent state:nil];
     [tracker addGlobalContextsToContexts:contexts event:trackerEvent];
     XCTAssertTrue(contexts.count == 0);
 
     // Not matching self-describing event with mobile schema
-    SPSelfDescribingAbstract *selfDescribingEvent = [[[SPScreenView alloc] initWithName:@"Name" screenId:nil] type:@"Type"];
-    trackerEvent = [[SPTrackerEvent alloc] initWithEvent:selfDescribingEvent];
+    SPScreenView *screenView = [[SPScreenView alloc] initWithName:@"Name" screenId:nil];
+    screenView.type = @"Type";
+    trackerEvent = [[SPTrackerEvent alloc] initWithEvent:screenView state:nil];
     [tracker addGlobalContextsToContexts:contexts event:trackerEvent];
     XCTAssertTrue(contexts.count == 0);
 
     // Matching self-describing event with general schema
-    selfDescribingEvent = [[[SPTiming alloc] initWithCategory:@"Category" variable:@"Variable" timing:@123] label:@"Label"];
-    trackerEvent = [[SPTrackerEvent alloc] initWithEvent:selfDescribingEvent];
+    SPTiming *timing = [[SPTiming alloc] initWithCategory:@"Category" variable:@"Variable" timing:123];
+    timing.label = @"Label";
+    trackerEvent = [[SPTrackerEvent alloc] initWithEvent:timing state:nil];
     [tracker addGlobalContextsToContexts:contexts event:trackerEvent];
     XCTAssertTrue(contexts.count == 1);
     XCTAssertEqual(contexts[0].schema, @"schema");
 }
 
 - (void)testBlockGenerator {
-    SPGlobalContext *generatorGC = [[SPGlobalContext alloc] initWithGenerator:^NSArray<SPSelfDescribingJson *> *(id<SPInspectableEvent> event) {
+    SPGlobalContext *generatorGC = [[SPGlobalContext alloc] initWithGenerator:^NSArray<SPSelfDescribingJson *> *(SPInspectableEvent *event) {
         return @[[[SPSelfDescribingJson alloc] initWithSchema:@"schema" andData:@{@"key": @"value"}]];
     }];
     SPTracker *tracker = [self getTrackerWithGlobalContextGenerators:@{@"generator": generatorGC}.mutableCopy];
 
     SPPrimitiveAbstract *event = [[SPStructured alloc] initWithCategory:@"Category" action:@"Action"];
-    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event];
+    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event state:nil];
     
     NSMutableArray<SPSelfDescribingJson *> *contexts = [NSMutableArray array];
     [tracker addGlobalContextsToContexts:contexts event:trackerEvent];
@@ -213,7 +215,7 @@
     SPTracker *tracker = [self getTrackerWithGlobalContextGenerators:@{@"contextGenerator": contextGeneratorGC}.mutableCopy];
     
     SPPrimitiveAbstract *event = [[SPStructured alloc] initWithCategory:@"StringToMatch" action:@"Action"];
-    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event];
+    SPTrackerEvent *trackerEvent = [[SPTrackerEvent alloc] initWithEvent:event state:nil];
     
     NSMutableArray<SPSelfDescribingJson *> *contexts = [NSMutableArray array];
     [tracker addGlobalContextsToContexts:contexts event:trackerEvent];

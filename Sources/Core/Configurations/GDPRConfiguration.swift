@@ -83,7 +83,9 @@ public class GDPRConfiguration: Configuration, GDPRConfigurationProtocol {
         return copy
     }
 
-    // MARK: - NSSecureCoding
+    // MARK: - NSSecureCodin
+    
+    @objc public override class var supportsSecureCoding: Bool { return true }
 
     @objc public override func encode(with coder: NSCoder) {
         coder.encode(basisForProcessing.rawValue, forKey: "basisForProcessing")

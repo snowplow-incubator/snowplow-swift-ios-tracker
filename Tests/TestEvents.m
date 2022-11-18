@@ -4,8 +4,8 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SPTrackerError.h"
 #import "SPMockEventStore.h"
+#import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 @interface TestEvent : XCTestCase
 
@@ -150,7 +150,7 @@
         event = [[SPPageView alloc] initWithPageUrl:@""];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"PageURL cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"PageURL cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
 }
@@ -166,7 +166,7 @@
         event = [[SPStructured alloc] initWithCategory:@"" action:@"action"];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"Category cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"Category cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
         
@@ -175,7 +175,7 @@
         event = [[SPStructured alloc] initWithCategory:@"category" action:@""];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"Action cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"Action cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
 }
@@ -191,31 +191,14 @@
     XCTAssertNotNil(event);
 }
 
-- (void)testUnstructuredWithWrongData {
-    // Invalid dictionary
-    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
-    data[@12] = @12;
-    SPSelfDescribingJson *sdj = [[SPSelfDescribingJson alloc] initWithSchema:@"iglu:com.acme_company/demo_ios_event/jsonschema/1-0-0"
-                                                                      andData:data];
-    // Data is wrong
-    SPSelfDescribing *event;
-    @try {
-        event = [[SPSelfDescribing alloc] initWithEventData:sdj];
-    }
-    @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"EventData payload has to be JSON serializable.", exception.reason);
-    }
-    XCTAssertNil(event);
-}
-
 - (void)testConsentWithdrawn {
     // Valid construction
-    SPConsentWithdrawn *event = [[[[[[[SPConsentWithdrawn alloc] init]
-                                     name:@"name"]
-                                    all:NO]
-                                   version:@"3"]
-                                  documentId:@"1000"]
-                                 documentDescription:@"description"];
+    SPConsentWithdrawn *event = [[SPConsentWithdrawn alloc] init];
+    event.name = @"name";
+    event.all = NO;
+    event.version = @"3";
+    event.documentId = @"1000";
+    event.documentDescription = @"description";
     XCTAssertNotNil(event);
 }
 
@@ -254,57 +237,57 @@
 
 - (void)testTiming {
     // Valid construction
-    SPTiming *event = [[SPTiming alloc] initWithCategory:@"cat" variable:@"var" timing:@5];
+    SPTiming *event = [[SPTiming alloc] initWithCategory:@"cat" variable:@"var" timing:5];
     XCTAssertNotNil(event);
     event = nil;
     
     // Category is empty
     @try {
-        event = [[SPTiming alloc] initWithCategory:@"" variable:@"var" timing:@5];
+        event = [[SPTiming alloc] initWithCategory:@"" variable:@"var" timing:5];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"Category cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"Category cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
     
     // Variable is empty
     @try {
-        event = [[SPTiming alloc] initWithCategory:@"cat" variable:@"" timing:@5];
+        event = [[SPTiming alloc] initWithCategory:@"cat" variable:@"" timing:5];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"Variable cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"Variable cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
 }
 
 - (void)testEcommerce {
     // Valid construction
-    SPEcommerce *event = [[SPEcommerce alloc] initWithOrderId:@"id" totalValue:@5 items:@[]];
+    SPEcommerce *event = [[SPEcommerce alloc] initWithOrderId:@"id" totalValue:5 items:@[]];
     XCTAssertNotNil(event);
     event = nil;
     
     // OrderID is empty
     @try {
-        event = [[SPEcommerce alloc] initWithOrderId:@"" totalValue:@5 items:@[]];
+        event = [[SPEcommerce alloc] initWithOrderId:@"" totalValue:5 items:@[]];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"OrderId cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"OrderId cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
 }
 
 - (void)testEcommerceItem {
     // Valid construction
-    SPEcommerceItem *event = [[SPEcommerceItem alloc] initWithSku:@"sku" price:@5.3 quantity:@5];
+    SPEcommerceItem *event = [[SPEcommerceItem alloc] initWithSku:@"sku" price:5.3 quantity:5];
     XCTAssertNotNil(event);
     event = nil;
     
     // Sku is empty
     @try {
-        event = [[SPEcommerceItem alloc] initWithSku:@"" price:@5.3 quantity:@5];
+        event = [[SPEcommerceItem alloc] initWithSku:@"" price:5.3 quantity:5];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"SKU cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"SKU cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
 }
@@ -341,7 +324,7 @@
         event = [[SPNotificationContent alloc] initWithTitle:@"" body:@"body" badge:@5];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"Title cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"Title cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
 
@@ -350,7 +333,7 @@
         event = [[SPNotificationContent alloc] initWithTitle:@"title" body:@"" badge:@5];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"Body cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"Body cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
 }
@@ -402,7 +385,7 @@
                                             notification:content];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"Action cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"Action cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
 
@@ -416,7 +399,7 @@
                                             notification:content];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"Trigger cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"Trigger cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
     
@@ -430,7 +413,7 @@
                                             notification:content];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"Delivery date cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"Delivery date cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
     
@@ -444,7 +427,7 @@
                                             notification:content];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"Category identifier cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"Category identifier cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
     
@@ -458,7 +441,7 @@
                                             notification:content];
     }
     @catch (NSException *exception) {
-        XCTAssertEqualObjects(@"Thread identifier cannot be nil or empty.", exception.reason);
+        XCTAssertEqualObjects(@"Thread identifier cannot be empty.", exception.reason);
     }
     XCTAssertNil(event);
 }
@@ -470,32 +453,33 @@
     event.bodyLocKey = @"loc key";
     event.bodyLocArgs = @[@"loc arg1", @"loc arg2"];
     event.sound = @"chime.mp3";
-    event.notificationCount = @9;
+    // TODO: commented out because Obj-C does not support the property
+//    event.notificationCount = @9;
     event.category = @"category1";
     event.attachments = @[[[SPMessageNotificationAttachment alloc] initWithIdentifier:@"id" type:@"type" url:@"url"]];
 
     NSDictionary<NSString *, NSObject *> *payload = event.payload;
-    XCTAssertEqualObjects(@"title", payload[kSPMessageNotificationParamTitle]);
-    XCTAssertEqualObjects(@"body", payload[kSPMessageNotificationParamBody]);
-    XCTAssertEqualObjects(@"2020-12-31T15:59:60-08:00", payload[kSPMessageNotificationParamNotificationTimestamp]);
-    XCTAssertEqualObjects(@"push", payload[kSPMessageNotificationParamTrigger]);
-    XCTAssertEqualObjects(@"action", payload[kSPMessageNotificationParamAction]);
-    XCTAssertEqualObjects(@"loc key", payload[kSPMessageNotificationParamBodyLocKey]);
-    NSArray<NSString *> *locArgs = (NSArray<NSString *> *)(payload[kSPMessageNotificationParamBodyLocArgs]);
+    XCTAssertEqualObjects(@"title", payload[@"title"]);
+    XCTAssertEqualObjects(@"body", payload[@"body"]);
+    XCTAssertEqualObjects(@"2020-12-31T15:59:60-08:00", payload[@"notificationTimestamp"]);
+    XCTAssertEqualObjects(@"push", payload[@"trigger"]);
+    XCTAssertEqualObjects(@"action", payload[@"action"]);
+    XCTAssertEqualObjects(@"loc key", payload[@"bodyLocKey"]);
+    NSArray<NSString *> *locArgs = (NSArray<NSString *> *)(payload[@"bodyLocArgs"]);
     XCTAssertNotNil(locArgs);
     XCTAssertEqual(2, locArgs.count);
     XCTAssertEqualObjects(@"loc arg1", locArgs[0]);
     XCTAssertEqualObjects(@"loc arg2", locArgs[1]);
-    XCTAssertEqualObjects(@"chime.mp3", payload[kSPMessageNotificationParamSound]);
-    XCTAssertEqualObjects(@9, payload[kSPMessageNotificationParamNotificationCount]);
-    XCTAssertEqualObjects(@"category1", payload[kSPMessageNotificationParamCategory]);
-    NSArray<NSDictionary<NSString *, NSObject *> *> *attachments = (NSArray<NSDictionary<NSString *, NSObject *> *> *)(payload[kSPMessageNotificationParamMessageNotificationAttachments]);
+    XCTAssertEqualObjects(@"chime.mp3", payload[@"sound"]);
+//    XCTAssertEqualObjects(@9, payload["notificationCount"]);
+    XCTAssertEqualObjects(@"category1", payload[@"category"]);
+    NSArray<NSDictionary<NSString *, NSObject *> *> *attachments = (NSArray<NSDictionary<NSString *, NSObject *> *> *)(payload[@"attachments"]);
     XCTAssertNotNil(attachments);
     XCTAssertEqual(1, attachments.count);
     NSDictionary<NSString *, NSObject *> *attachment = attachments[0];
-    XCTAssertEqualObjects(@"id", attachment[kSPMessageNotificationAttachmentParamIdentifier]);
-    XCTAssertEqualObjects(@"type", attachment[kSPMessageNotificationAttachmentParamType]);
-    XCTAssertEqualObjects(@"url", attachment[kSPMessageNotificationAttachmentParamUrl]);
+    XCTAssertEqualObjects(@"id", attachment[@"identifier"]);
+    XCTAssertEqualObjects(@"type", attachment[@"type"]);
+    XCTAssertEqualObjects(@"url", attachment[@"url"]);
 }
 
 - (void)testMessageNotificationWithUserInfo {
@@ -517,24 +501,24 @@
     SPMessageNotification *event = [SPMessageNotification messageNotificationWithUserInfo:userInfo defaultTitle:nil defaultBody:nil];
     XCTAssertNotNil(event);
     NSDictionary<NSString *, NSObject *> *payload = event.payload;
-    XCTAssertEqualObjects(@"test-title", payload[kSPMessageNotificationParamTitle]);
-    XCTAssertEqualObjects(@"test-body", payload[kSPMessageNotificationParamBody]);
-    XCTAssertEqualObjects(@"loc key", payload[kSPMessageNotificationParamBodyLocKey]);
-    NSArray *locArgs = (NSArray *)payload[kSPMessageNotificationParamBodyLocArgs];
+    XCTAssertEqualObjects(@"test-title", payload[@"title"]);
+    XCTAssertEqualObjects(@"test-body", payload[@"body"]);
+    XCTAssertEqualObjects(@"loc key", payload[@"bodyLocKey"]);
+    NSArray *locArgs = (NSArray *)payload[@"bodyLocArgs"];
     XCTAssertEqual(2, locArgs.count);
     XCTAssertEqualObjects(@"loc arg1", locArgs[0]);
     XCTAssertEqualObjects(@"loc arg2", locArgs[1]);
-    XCTAssertEqualObjects(@9, payload[kSPMessageNotificationParamNotificationCount]);
-    XCTAssertEqualObjects(@"chime.aiff", payload[kSPMessageNotificationParamSound]);
-    XCTAssertEqualObjects(@"category1", payload[kSPMessageNotificationParamCategory]);
-    XCTAssertEqualObjects(@YES, payload[kSPMessageNotificationParamContentAvailable]);
+    XCTAssertEqualObjects(@9, payload[@"notificationCount"]);
+    XCTAssertEqualObjects(@"chime.aiff", payload[@"sound"]);
+    XCTAssertEqualObjects(@"category1", payload[@"category"]);
+    XCTAssertEqualObjects(@YES, payload[@"contentAvailable"]);
 }
 
 - (void)testError {
     // Valid construction
-    SNOWError *error = [[[[SNOWError alloc] initWithMessage:@"message"]
-                         name:@"name"]
-                        stackTrace:@"stacktrace"];
+    SNOWError *error = [[SNOWError alloc] initWithMessage:@"message"];
+    error.name = @"name";
+    error.stackTrace = @"stacktrace";
     XCTAssertNotNil(error);
 }
 

@@ -23,7 +23,7 @@ import Foundation
 
 /// A consent document event.
 @objc(SPConsentDocument)
-class ConsentDocument: NSObject {
+public class ConsentDocument: NSObject {
     /// Identifier of the document.
     @objc public var documentId: String
     /// Version of the document.
@@ -37,7 +37,7 @@ class ConsentDocument: NSObject {
     /// - Parameters:
     ///   - documentId: identifier of the document.
     ///   - version: version of the document.
-    init(documentId: String, version: String) {
+    @objc public init(documentId: String, version: String) {
         self.documentId = documentId
         self.version = version
     }

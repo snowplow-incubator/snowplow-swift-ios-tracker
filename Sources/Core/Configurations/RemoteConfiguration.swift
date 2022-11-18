@@ -25,9 +25,23 @@ import Foundation
 @objc(SPRemoteConfiguration)
 public class RemoteConfiguration: Configuration {
     /// URL of the remote configuration.
-    private(set) var endpoint: String
+    @objc private(set) public var endpoint: String
     /// The method used to send the request.
     private(set) var method: HttpMethodOptions?
+    
+    /// - Parameters:
+    ///   - endpoint: URL of the remote configuration.
+    ///                 The URL can include the schema/protocol (e.g.: `http://remote-config-url.xyz`).
+    ///                 In case the URL doesn't include the schema/protocol, the HTTPS protocol is
+    ///                 automatically selected.
+    @objc public init(endpoint: String) {
+        let url = URL(string: endpoint)
+        if url?.scheme != nil && ["https", "http"].contains(url?.scheme ?? "") {
+            self.endpoint = endpoint
+        } else {
+            self.endpoint = "https://\(endpoint)"
+        }
+    }
 
     /// - Parameters:
     ///   - endpoint: URL of the remote configuration.
@@ -35,20 +49,17 @@ public class RemoteConfiguration: Configuration {
     ///                 In case the URL doesn't include the schema/protocol, the HTTPS protocol is
     ///                 automatically selected.
     ///   - method: The method used to send the requests (GET or POST).
-    init(endpoint: String, method: HttpMethodOptions?) {
-        let url = URL(string: endpoint)
-        if url?.scheme != nil && ["https", "http"].contains(url?.scheme ?? "") {
-            self.endpoint = endpoint
-        } else {
-            self.endpoint = "https://\(endpoint)"
-        }
+    @objc public convenience init(endpoint: String, method: HttpMethodOptions) {
+        self.init(endpoint: endpoint)
         self.method = method
     }
 
     // MARK: - NSCopying
 
     override public func copy(with zone: NSZone? = nil) -> Any {
-        return RemoteConfiguration(endpoint: endpoint, method: method)
+        let copy = RemoteConfiguration(endpoint: endpoint)
+        copy.method = method
+        return copy
     }
 
     // MARK: - NSSecureCoding
@@ -57,7 +68,9 @@ public class RemoteConfiguration: Configuration {
         coder.encode(endpoint, forKey: "endpoint")
         coder.encode(method?.rawValue, forKey: "method")
     }
-
+    
+    @objc public override class var supportsSecureCoding: Bool { return true }
+    
     required init?(coder: NSCoder) {
         if let endpoint = coder.decodeObject(forKey: "endpoint") as? String {
             self.endpoint = endpoint

@@ -24,21 +24,22 @@ import Foundation
 @objc(SPEcommerceItem)
 public class EcommerceItem : PrimitiveAbstract {
     /// Stock Keeping Unit of the item.
-    public var sku: String
+    @objc public var sku: String
     /// Price of the item.
-    public var price: Double
+    @objc public var price: Double
     /// Quantity of the item.
-    public var quantity: Int
+    @objc public var quantity: Int
     /// Name of the item.
-    public var name: String?
+    @objc public var name: String?
     /// Category of the item.
-    public var category: String?
+    @objc public var category: String?
     /// Currency used for the price of the item.
-    public var currency: String?
+    @objc public var currency: String?
     /// OrderID of the order that contains this item.
-    public var orderId: String?
+    @objc public var orderId: String?
 
     @objc public init(sku: String, price: Double, quantity: Int) {
+        Utilities.checkArgument(sku.count != 0, withMessage: "SKU cannot be empty.")
         self.sku = sku
         self.price = price
         self.quantity = quantity

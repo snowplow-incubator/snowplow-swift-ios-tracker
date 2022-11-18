@@ -47,10 +47,9 @@
     SPEmitterConfiguration *emitterConfig = [[SPEmitterConfiguration alloc] init];
     emitterConfig.eventStore = [SPMockEventStore new];
     emitterConfig.bufferOption = SPBufferOptionSingle;
-    SPNetworkConfiguration *networkConfig = [[SPNetworkConfiguration alloc] initWithEndpoint:@"" method:SPHttpMethodPost];
-    networkConfig.networkConnection = networkConnection;
+    SPNetworkConfiguration *networkConfig = [[SPNetworkConfiguration alloc] initWithNetworkConnection:networkConnection];
     
-    SPTrackerConfiguration *trackerConfig = [[SPTrackerConfiguration new] appId:@"appid"];
+    SPTrackerConfiguration *trackerConfig = [[SPTrackerConfiguration alloc] initWithAppId:@"appid"];
     trackerConfig.installAutotracking = false;
     trackerConfig.screenViewAutotracking = false;
     trackerConfig.lifecycleAutotracking = false;

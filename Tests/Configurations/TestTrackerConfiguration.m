@@ -37,7 +37,8 @@
     XCTAssertEqual(SPProtocolHttps, networkConfig.protocol);
     XCTAssertEqual(SPHttpMethodPost, networkConfig.method);
     
-    SPTrackerConfiguration *trackerConfig = [[SPTrackerConfiguration new] appId:@"appid"];
+    SPTrackerConfiguration *trackerConfig = [SPTrackerConfiguration new];
+    trackerConfig.appId = @"appid";
     id<SPTrackerController> tracker = [SPSnowplow createTrackerWithNamespace:@"namespace" network:networkConfig configurations:@[trackerConfig]];
     XCTAssertNotNil(tracker);
 }
@@ -48,7 +49,8 @@
     XCTAssertEqual(SPProtocolHttps, networkConfig.protocol);
     XCTAssertEqual(SPHttpMethodGet, networkConfig.method);
     
-    SPTrackerConfiguration *trackerConfig = [[SPTrackerConfiguration new] appId:@"appid"];
+    SPTrackerConfiguration *trackerConfig = [SPTrackerConfiguration new];
+    trackerConfig.appId = @"appid";
     id<SPTrackerController> tracker = [SPSnowplow createTrackerWithNamespace:@"namespace" network:networkConfig configurations:@[trackerConfig]];
     XCTAssertNotNil(tracker);
 }
@@ -59,7 +61,8 @@
     XCTAssertEqual(SPProtocolHttps, networkConfig.protocol);
     XCTAssertEqual(SPHttpMethodGet, networkConfig.method);
     
-    SPTrackerConfiguration *trackerConfig = [[SPTrackerConfiguration new] appId:@"appid"];
+    SPTrackerConfiguration *trackerConfig = [SPTrackerConfiguration new];
+    trackerConfig.appId = @"appid";
     id<SPTrackerController> tracker = [SPSnowplow createTrackerWithNamespace:@"namespace" network:networkConfig configurations:@[trackerConfig]];
     XCTAssertNotNil(tracker);
 }
@@ -70,7 +73,8 @@
     XCTAssertEqual(SPProtocolHttp, networkConfig.protocol);
     XCTAssertEqual(SPHttpMethodGet, networkConfig.method);
     
-    SPTrackerConfiguration *trackerConfig = [[SPTrackerConfiguration new] appId:@"appid"];
+    SPTrackerConfiguration *trackerConfig = [SPTrackerConfiguration new];
+    trackerConfig.appId = @"appid";
     id<SPTrackerController> tracker = [SPSnowplow createTrackerWithNamespace:@"namespace" network:networkConfig configurations:@[trackerConfig]];
     XCTAssertNotNil(tracker);
 }
@@ -81,7 +85,8 @@
     XCTAssertEqual(SPProtocolHttps, networkConfig.protocol);
     XCTAssertEqual(SPHttpMethodGet, networkConfig.method);
     
-    SPTrackerConfiguration *trackerConfig = [[SPTrackerConfiguration new] appId:@"appid"];
+    SPTrackerConfiguration *trackerConfig = [SPTrackerConfiguration new];
+    trackerConfig.appId = @"appid";
     id<SPTrackerController> tracker = [SPSnowplow createTrackerWithNamespace:@"namespace" network:networkConfig configurations:@[trackerConfig]];
     XCTAssertNotNil(tracker);
 }
@@ -92,14 +97,15 @@
     XCTAssertEqual(SPProtocolHttp, networkConfig.protocol);
     XCTAssertEqual(SPHttpMethodGet, networkConfig.method);
     
-    SPTrackerConfiguration *trackerConfig = [[SPTrackerConfiguration new] appId:@"appid"];
+    SPTrackerConfiguration *trackerConfig = [SPTrackerConfiguration new];
+    trackerConfig.appId = @"appid";
     id<SPTrackerController> tracker = [SPSnowplow createTrackerWithNamespace:@"namespace" network:networkConfig configurations:@[trackerConfig]];
     XCTAssertNotNil(tracker);
 }
 
 - (void)testBasicInitialization {
     SPNetworkConfiguration *networkConfig = [[SPNetworkConfiguration alloc] initWithEndpoint:@"https://fake-url" method:SPHttpMethodPost];
-    SPTrackerConfiguration *trackerConfig = [[SPTrackerConfiguration new] appId:@"appid"];
+    SPTrackerConfiguration *trackerConfig = [[SPTrackerConfiguration alloc] initWithAppId:@"appid"];
     trackerConfig.platformContext = YES;
     id<SPTrackerController> tracker = [SPSnowplow createTrackerWithNamespace:@"namespace" network:networkConfig configurations:@[trackerConfig]];
 
@@ -124,7 +130,7 @@
     NSInteger expectedForeground = 42;
     NSInteger expectedBackground = 24;
     SPNetworkConfiguration *networkConfig = [[SPNetworkConfiguration alloc] initWithEndpoint:@"https://fake-url" method:SPHttpMethodPost];
-    SPTrackerConfiguration *trackerConfig = [[SPTrackerConfiguration new] appId:@"appid"];
+    SPTrackerConfiguration *trackerConfig = [[SPTrackerConfiguration alloc] initWithAppId:@"appid"];
     SPSessionConfiguration *sessionConfig = [[SPSessionConfiguration alloc] initWithForegroundTimeoutInSeconds:expectedForeground
                                                                                     backgroundTimeoutInSeconds:expectedBackground];
     id<SPTrackerController> tracker = [SPSnowplow createTrackerWithNamespace:@"namespace" network:networkConfig configurations:@[trackerConfig, sessionConfig]];
@@ -142,7 +148,7 @@
 
 - (void)testSessionControllerUnavailableWhenContextTurnedOff {
     SPNetworkConfiguration *networkConfig = [[SPNetworkConfiguration alloc] initWithEndpoint:@"https://fake-url" method:SPHttpMethodPost];
-    SPTrackerConfiguration *trackerConfig = [[SPTrackerConfiguration new] appId:@"appid"];
+    SPTrackerConfiguration *trackerConfig = [[SPTrackerConfiguration alloc] initWithAppId:@"appid"];
     trackerConfig.sessionContext = YES;
     id<SPTrackerController> tracker = [SPSnowplow createTrackerWithNamespace:@"namespace" network:networkConfig configurations:@[trackerConfig]];
     XCTAssertNotNil(tracker.session);
@@ -157,7 +163,7 @@
     XCTestExpectation *expectation = [XCTestExpectation new];
 
     SPNetworkConfiguration *networkConfig = [[SPNetworkConfiguration alloc] initWithEndpoint:@"https://fake-url" method:SPHttpMethodPost];
-    SPTrackerConfiguration *trackerConfig = [[SPTrackerConfiguration new] appId:@"appid"];
+    SPTrackerConfiguration *trackerConfig = [[SPTrackerConfiguration alloc] initWithAppId:@"appid"];
     SPSessionConfiguration *sessionConfig = [[SPSessionConfiguration alloc] initWithForegroundTimeoutInSeconds:100 backgroundTimeoutInSeconds:100];
 
     sessionConfig.onSessionStateUpdate = ^(SPSessionState * _Nonnull sessionState) {
@@ -178,7 +184,7 @@
     XCTestExpectation *expectation = [XCTestExpectation new];
 
     SPNetworkConfiguration *networkConfig = [[SPNetworkConfiguration alloc] initWithEndpoint:@"https://fake-url" method:SPHttpMethodPost];
-    SPTrackerConfiguration *trackerConfig = [[SPTrackerConfiguration new] appId:@"appid"];
+    SPTrackerConfiguration *trackerConfig = [[SPTrackerConfiguration alloc] initWithAppId:@"appid"];
     SPSessionConfiguration *sessionConfig = [[SPSessionConfiguration alloc] initWithForegroundTimeoutInSeconds:100 backgroundTimeoutInSeconds:100];
     __block NSString *sessionId;
     sessionConfig.onSessionStateUpdate = ^(SPSessionState * _Nonnull sessionState) {
@@ -235,7 +241,7 @@
 - (void)testGDPRConfiguration {
     SPMockEventStore *eventStore = [SPMockEventStore new];
     SPNetworkConfiguration *networkConfiguration = [[SPNetworkConfiguration alloc] initWithEndpoint:@"fake-url" method:SPHttpMethodPost];
-    SPTrackerConfiguration *trackerConfiguration = [[[SPTrackerConfiguration alloc] init] appId:@"appid"];
+    SPTrackerConfiguration *trackerConfiguration = [[SPTrackerConfiguration alloc] initWithAppId:@"appid"];
     trackerConfiguration.base64Encoding = NO;
     SPEmitterConfiguration *emitterConfiguration = [[SPEmitterConfiguration alloc] init];
     emitterConfiguration.eventStore = eventStore;
@@ -296,7 +302,7 @@
 - (void)testWithoutGDPRConfiguration {
     SPMockEventStore *eventStore = [SPMockEventStore new];
     SPNetworkConfiguration *networkConfiguration = [[SPNetworkConfiguration alloc] initWithEndpoint:@"fake-url" method:SPHttpMethodPost];
-    SPTrackerConfiguration *trackerConfiguration = [[[SPTrackerConfiguration alloc] init] appId:@"appid"];
+    SPTrackerConfiguration *trackerConfiguration = [[SPTrackerConfiguration alloc] initWithAppId:@"appid"];
     trackerConfiguration.base64Encoding = NO;
     SPEmitterConfiguration *emitterConfiguration = [[SPEmitterConfiguration alloc] init];
     emitterConfiguration.eventStore = eventStore;
@@ -345,7 +351,7 @@
     // Initialize a tracker with anonymous user tracking
     SPMockEventStore *eventStore = [SPMockEventStore new];
     SPNetworkConfiguration *networkConfiguration = [[SPNetworkConfiguration alloc] initWithEndpoint:@"fake-url" method:SPHttpMethodPost];
-    SPTrackerConfiguration *trackerConfiguration = [[[SPTrackerConfiguration alloc] init] appId:@"appid"];
+    SPTrackerConfiguration *trackerConfiguration = [[SPTrackerConfiguration alloc] initWithAppId:@"appid"];
     trackerConfiguration.base64Encoding = NO;
     trackerConfiguration.userAnonymisation = YES;
     trackerConfiguration.sessionContext = YES;

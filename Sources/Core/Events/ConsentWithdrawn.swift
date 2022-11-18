@@ -23,17 +23,17 @@
 @objc(SPConsentWithdrawn)
 public class ConsentWithdrawn: SelfDescribingAbstract {
     /// Consent to all.
-    public var all = false
+    @objc public var all = false
     /// Identifier of the first document.
-    public var documentId: String?
+    @objc public var documentId: String?
     /// Version of the first document.
-    public var version: String?
+    @objc public var version: String?
     /// Name of the first document.
-    public var name: String?
+    @objc public var name: String?
     /// Description of the first document.
-    public var documentDescription: String?
+    @objc public var documentDescription: String?
     /// Other documents.
-    public var documents: [SelfDescribingJson]?
+    @objc public var documents: [SelfDescribingJson]?
 
     public override var schema: String {
         return kSPConsentWithdrawnSchema

@@ -52,7 +52,7 @@ public class TrackerEvent : InspectableEvent {
     @objc public var isPrimitive: Bool
     @objc public var isService: Bool
     
-    @objc public init(event: Event, state: TrackerStateSnapshot?) {
+    @objc public init(event: Event, state: TrackerStateSnapshot? = nil) {
         eventId = UUID()
         timestamp = Int64(Date().timeIntervalSince1970 * 1000)
         trueTimestamp = event.trueTimestamp

@@ -65,7 +65,7 @@
 - (void)testUpdateDefaultTracker {
     [SPSnowplow createTrackerWithNamespace:@"t1"network:[[SPNetworkConfiguration alloc] initWithEndpoint:@"snowplowanalytics.fake"]];
     id<SPTrackerController> t2 = [SPSnowplow createTrackerWithNamespace:@"t2" network:[[SPNetworkConfiguration alloc] initWithEndpoint:@"snowplowanalytics.fake2"]];
-    [SPSnowplow setTrackerAsDefault:t2];
+    [SPSnowplow setAsDefaultWithTracker:t2];
     id<SPTrackerController> td = [SPSnowplow defaultTracker];
     XCTAssertEqual(t2, td);
 }
@@ -73,14 +73,14 @@
 - (void)testRemoveTracker {
     id<SPTrackerController> t1 = [SPSnowplow createTrackerWithNamespace:@"t1"network:[[SPNetworkConfiguration alloc] initWithEndpoint:@"snowplowanalytics.fake"]];
     id<SPTrackerController> t2 = [SPSnowplow createTrackerWithNamespace:@"t2" network:[[SPNetworkConfiguration alloc] initWithEndpoint:@"snowplowanalytics.fake2"]];
-    [SPSnowplow removeTracker:t1];
+    [SPSnowplow removeWithTracker:t1];
     XCTAssertNotNil(t2);
     XCTAssertEqualObjects(@[@"t2"], [SPSnowplow instancedTrackerNamespaces]);
 }
 
 - (void)testRecreateTrackerWhichWasRemovedWithSameNamespace {
     id<SPTrackerController> t1 = [SPSnowplow createTrackerWithNamespace:@"t1"network:[[SPNetworkConfiguration alloc] initWithEndpoint:@"snowplowanalytics.fake"]];
-    [SPSnowplow removeTracker:t1];
+    [SPSnowplow removeWithTracker:t1];
     id<SPTrackerController> t2 = [SPSnowplow createTrackerWithNamespace:@"t1" network:[[SPNetworkConfiguration alloc] initWithEndpoint:@"snowplowanalytics.fake2"]];
     XCTAssertNotEqual(t1, t2);
     XCTAssertEqualObjects(@[@"t1"], [SPSnowplow instancedTrackerNamespaces]);
@@ -88,7 +88,7 @@
 
 - (void)testRemoveDefaultTracker {
     id<SPTrackerController> t1 = [SPSnowplow createTrackerWithNamespace:@"t1"network:[[SPNetworkConfiguration alloc] initWithEndpoint:@"snowplowanalytics.fake"]];
-    [SPSnowplow removeTracker:t1];
+    [SPSnowplow removeWithTracker:t1];
     id<SPTrackerController> td = [SPSnowplow defaultTracker];
     XCTAssertNil(td);
     XCTAssertEqualObjects(@[], [SPSnowplow instancedTrackerNamespaces]);

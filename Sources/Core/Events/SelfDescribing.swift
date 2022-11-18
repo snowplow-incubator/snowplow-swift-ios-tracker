@@ -51,6 +51,8 @@ public class SelfDescribing: SelfDescribingAbstract {
     }
 
     @objc public init(schema: String, payload: [String : NSObject]) {
+        Utilities.checkArgument(JSONSerialization.isValidJSONObject(payload), withMessage: "EventData payload has to be JSON serializable.")
+        
         self._schema = schema
         self._payload = payload
     }

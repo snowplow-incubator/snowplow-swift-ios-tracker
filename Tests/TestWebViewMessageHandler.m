@@ -40,9 +40,9 @@
     
     SPNetworkConfiguration *networkConfig = [[SPNetworkConfiguration alloc] initWithNetworkConnection:self.networkConnection];
     SPTrackerConfiguration *trackerConfig = [[SPTrackerConfiguration alloc] init];
-    [trackerConfig base64Encoding:NO];
-    [trackerConfig sessionContext:NO];
-    [trackerConfig platformContext:NO];
+    trackerConfig.base64Encoding = NO;
+    trackerConfig.sessionContext = NO;
+    trackerConfig.platformContext = NO;
 
     [SPSnowplow removeAllTrackers];
     [SPSnowplow createTrackerWithNamespace:[NSUUID UUID].UUIDString network:networkConfig configurations:@[trackerConfig]];

@@ -40,7 +40,7 @@ public class ConsentGranted: SelfDescribingAbstract {
     ///   - expiry: consent expiration.
     ///   - documentId: identifier of the first document.
     ///   - version: version of the first document.
-    init(expiry: String, documentId: String, version: String) {
+    @objc public init(expiry: String, documentId: String, version: String) {
         self.expiry = expiry
         self.documentId = documentId
         self.version = version
@@ -50,10 +50,10 @@ public class ConsentGranted: SelfDescribingAbstract {
         return kSPConsentGrantedSchema
     }
 
-    func payload() -> [String : NSObject] {
-        var payload: [AnyHashable : Any] = [:]
-        payload[KSPCgExpiry] = expiry
-        return payload as? [String : NSObject] ?? [:]
+    override public var payload: [String : NSObject] {
+        var payload: [String : NSObject] = [:]
+        payload[KSPCgExpiry] = expiry as NSObject
+        return payload
     }
 
     /// Retuns the full list of attached documents.

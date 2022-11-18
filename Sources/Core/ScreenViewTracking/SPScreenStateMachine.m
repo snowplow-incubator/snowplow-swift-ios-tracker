@@ -72,7 +72,7 @@
 - (SPScreenState *)screenStateFromScreenView:(SPScreenView *)screenView {
     return [[SPScreenState alloc] initWithName:screenView.name
                                           type:screenView.type
-                                      screenId:screenView.screenId
+                                      screenId:screenView.screenId.UUIDString
                                 transitionType:screenView.transitionType
                     topViewControllerClassName:screenView.topViewControllerClassName
                        viewControllerClassName:screenView.viewControllerClassName];
