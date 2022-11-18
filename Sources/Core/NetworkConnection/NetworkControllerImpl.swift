@@ -33,19 +33,19 @@ public class NetworkControllerImpl: Controller, NetworkController {
 
     public var endpoint: String? {
         get {
-            return emitter.urlEndpoint.absoluteString
+            return emitter.urlEndpoint
         }
         set {
-            emitter.setUrlEndpoint(newValue)
+            emitter.urlEndpoint = newValue
         }
     }
 
     public var method: HttpMethodOptions {
         get {
-            return HttpMethodOptions(rawValue: emitter.getHttpMethodRawValue())!
+            return emitter.method
         }
         set {
-            emitter.setHttpMethodRawValue(newValue.rawValue)
+            emitter.method = newValue
         }
     }
 
@@ -56,7 +56,7 @@ public class NetworkControllerImpl: Controller, NetworkController {
         set {
             dirtyConfig.customPostPath = newValue
             dirtyConfig.customPostPathUpdated = true
-            emitter.setCustomPostPath(newValue)
+            emitter.customPostPath = newValue
         }
     }
 
@@ -67,7 +67,7 @@ public class NetworkControllerImpl: Controller, NetworkController {
         set {
             dirtyConfig.requestHeaders = requestHeaders
             dirtyConfig.requestHeadersUpdated = true
-            emitter.setRequestHeaders(newValue)
+            emitter.requestHeaders = newValue
         }
     }
 

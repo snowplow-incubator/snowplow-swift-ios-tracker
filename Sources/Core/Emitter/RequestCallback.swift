@@ -1,5 +1,5 @@
 //
-//  SPEmitterEvent.m
+//  SPRequestCallback.swift
 //  Snowplow
 //
 //  Copyright (c) 2013-2022 Snowplow Analytics Ltd. All rights reserved.
@@ -15,31 +15,14 @@
 //  express or implied. See the Apache License Version 2.0 for the specific
 //  language governing permissions and limitations there under.
 //
-//  Authors: Alex Benini
+//  Authors: Joshua Beemster
 //  License: Apache License Version 2.0
 //
 
-#import "SPEmitterEvent.h"
+import Foundation
 
-@interface SPEmitterEvent ()
-
-@property (nonatomic, readwrite) SPPayload *payload;
-@property (nonatomic, readwrite) long long storeId;
-
-@end
-
-@implementation SPEmitterEvent
-
-- (instancetype)initWithPayload:(SPPayload *)payload storeId:(long long)storeId {
-    if (self = [super init]) {
-        self.payload = payload;
-        self.storeId = storeId;
-    }
-    return self;
+@objc(SPRequestCallback)
+public protocol RequestCallback: NSObjectProtocol {
+    func onSuccess(withCount successCount: Int)
+    func onFailure(withCount failureCount: Int, successCount: Int)
 }
-
-- (NSString *)description {
-    return [NSString stringWithFormat:@"EmitterEvent{ %lld }", self.storeId];
-}
-
-@end

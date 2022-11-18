@@ -21,7 +21,6 @@
 
 #import "SPServiceProvider.h"
 
-#import "SPEmitter.h"
 #import "SPSubject.h"
 #import "SPTracker.h"
 #import "SPSession.h"

@@ -23,7 +23,6 @@
 #import "SPTrackerConstants.h"
 #import "SPSession.h"
 #import "SPUtilities.h"
-#import "SPWeakTimerTarget.h"
 #import "SPTracker.h"
 #import "SPLogger.h"
 #import "NSDictionary+SP_TypeMethods.h"

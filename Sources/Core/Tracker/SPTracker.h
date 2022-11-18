@@ -27,9 +27,6 @@
 
 #import <Foundation/Foundation.h>
 
-
-#import "SPEmitterEventProcessing.h"
-
 #import "SPDevicePlatform.h"
 #import "SPLoggerDelegate.h"
 

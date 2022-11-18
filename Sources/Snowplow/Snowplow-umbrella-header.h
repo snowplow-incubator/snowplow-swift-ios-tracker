@@ -9,19 +9,10 @@
 // Controllers
 
 // NetworkConnection
-#import "SPNetworkConnection.h"
-#import "SPDefaultNetworkConnection.h"
 
 // EventStore
-#import "SPEventStore.h"
-#import "SPSQLiteEventStore.h"
-#import "SPMemoryEventStore.h"
 
 // Emitter
-#import "SPRequest.h"
-#import "SPRequestResult.h"
-#import "SPEmitterEvent.h"
-#import "SPRequestCallback.h"
 
 // Entities
 
@@ -39,7 +30,9 @@
 #import "SPSubject.h"
 #import "SPSession.h"
 #import "SPLogger.h"
-#import "SPEmitter.h"
 #import "SPServiceProvider.h"
 #import "SPUtilities.h"
 #import "SPTrackerState.h"
+
+@class Emitter;
+

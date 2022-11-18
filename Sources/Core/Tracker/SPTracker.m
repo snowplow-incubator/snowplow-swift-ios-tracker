@@ -21,7 +21,6 @@
 
 #import "SPTrackerConstants.h"
 #import "SPTracker.h"
-#import "SPEmitter.h"
 #import "SPSubject.h"
 #import "SPUtilities.h"
 #import "SPSession.h"
@@ -31,7 +30,6 @@
 #import "SPLogger.h"
 
 #import "SPServiceProvider.h"
-#import "SPEmitterEventProcessing.h"
 
 #import "SPStateManager.h"
 #import "SPScreenStateMachine.h"

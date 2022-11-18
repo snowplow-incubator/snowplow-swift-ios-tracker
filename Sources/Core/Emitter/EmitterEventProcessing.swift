@@ -1,5 +1,5 @@
 //
-//  SPNetworkConnection.h
+//  SPEmitterEventProcessing.h
 //  Snowplow
 //
 //  Copyright (c) 2013-2022 Snowplow Analytics Ltd. All rights reserved.
@@ -19,38 +19,11 @@
 //  License: Apache License Version 2.0
 //
 
-#import <Foundation/Foundation.h>
-#import "SPRequest.h"
-#import "SPRequestResult.h"
+import Foundation
 
-NS_ASSUME_NONNULL_BEGIN
-
-typedef NS_ENUM(NSInteger, SPHttpMethod);
-
-/**
- * Interface for the component that
- * sends events to the collector.
- */
-NS_SWIFT_NAME(NetworkConnection)
-@protocol SPNetworkConnection <NSObject>
-
-/**
- * Send requests to the collector.
- * @param requests to send,
- * @return results of the sending operation.
- */
-- (NSArray<SPRequestResult *> *)sendRequests:(NSArray<SPRequest *> *)requests;
-
-/**
- * @return http method used to send requests to the collector.
- */
-- (SPHttpMethod)httpMethod;
-
-/**
- * @return URL of the collector.
- */
-- (NSURL *)url;
-
-@end
-
-NS_ASSUME_NONNULL_END
+protocol EmitterEventProcessing: AnyObject {
+    func addPayload(toBuffer eventPayload: Payload)
+    func pauseTimer()
+    func resumeTimer()
+    func flush()
+}

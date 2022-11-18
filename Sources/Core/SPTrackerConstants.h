@@ -34,6 +34,8 @@
 #if SNOWPLOW_TARGET_IOS
 #import <UIKit/UIDevice.h>
 
+@class Emitter;
+
 @class Background;
 @class Event;
 @class Foreground;

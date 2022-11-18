@@ -1,5 +1,5 @@
 //
-//  SPWeakTimer.h
+//  SPNetworkConnection.swift
 //  Snowplow
 //
 //  Copyright (c) 2013-2022 Snowplow Analytics Ltd. All rights reserved.
@@ -15,24 +15,24 @@
 //  express or implied. See the Apache License Version 2.0 for the specific
 //  language governing permissions and limitations there under.
 //
-//  Authors: Joshua Beemster
+//  Authors: Alex Benini
 //  License: Apache License Version 2.0
 //
 
-#import <Foundation/Foundation.h>
+import Foundation
 
-@interface SPWeakTimerTarget : NSObject
+func NS_ENUM(_ NSInteger: Int, _ SPHttpMethod: Int) {
+}
 
-/**
- * Creates a new WeakTarget object which simply prevents circular retention when using things like NSTimer.
- * @param target The parent object to store
- */
-- (id)initWithTarget:(id)target andSelector:(SEL)selector;
-
-/**
- * Fires the timer method in the target object.
- * @param timer The timer object passed from the parent target
- */
-- (void)timerFired:(NSTimer *)timer;
-
-@end
+/// Interface for the component that
+/// sends events to the collector.
+@objc public protocol NetworkConnection: NSObjectProtocol {
+    /// Send requests to the collector.
+    /// - Parameter requests: to send,
+    /// - Returns: results of the sending operation.
+    func sendRequests(_ requests: [Request]) -> [RequestResult]
+    /// - Returns: http method used to send requests to the collector.
+    var httpMethod: HttpMethodOptions { get }
+    /// - Returns: URL of the collector.
+    var urlEndpoint: URL? { get }
+}

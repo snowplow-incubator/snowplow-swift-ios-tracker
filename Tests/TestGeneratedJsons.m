@@ -23,7 +23,6 @@
 #import <XCTest/XCTest.h>
 #import <SnowplowIgluClient/IGLUClient.h>
 #import "SPTrackerConstants.h"
-#import "SPEmitter.h"
 #import "SPTracker.h"
 #import "SPSession.h"
 #import "SPSubject.h"

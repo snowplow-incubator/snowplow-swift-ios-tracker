@@ -22,9 +22,7 @@
 #import <XCTest/XCTest.h>
 #import "SPTrackerConstants.h"
 #import "SPTracker.h"
-#import "SPEmitter.h"
 #import "SPSubject.h"
-#import "SPRequestCallback.h"
 #import "SPServiceProvider.h"
 
 // MARK: - Mocks

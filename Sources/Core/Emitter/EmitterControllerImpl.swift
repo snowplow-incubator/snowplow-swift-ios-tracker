@@ -28,12 +28,12 @@ public class EmitterControllerImpl: Controller, EmitterController {
 
     public var bufferOption: BufferOption {
         get {
-            return BufferOption(rawValue:  emitter.getBufferOptionRawValue())!
+            return emitter.bufferOption
         }
         set {
             dirtyConfig.bufferOption = newValue
             dirtyConfig.bufferOptionUpdated = true
-            emitter.setBufferOptionRawValue(newValue.rawValue)
+            emitter.bufferOption = newValue
         }
     }
 
@@ -44,7 +44,7 @@ public class EmitterControllerImpl: Controller, EmitterController {
         set {
             dirtyConfig.byteLimitGet = newValue
             dirtyConfig.byteLimitGetUpdated = true
-            emitter.setByteLimitGet(newValue)
+            emitter.byteLimitGet = newValue
         }
     }
 
@@ -55,7 +55,7 @@ public class EmitterControllerImpl: Controller, EmitterController {
         set {
             dirtyConfig.byteLimitPost = newValue
             dirtyConfig.byteLimitPostUpdated = true
-            emitter.setByteLimitPost(newValue)
+            emitter.byteLimitPost = newValue
         }
     }
 
@@ -66,7 +66,7 @@ public class EmitterControllerImpl: Controller, EmitterController {
         set {
             dirtyConfig.serverAnonymisation = newValue
             dirtyConfig.serverAnonymisationUpdated = true
-            emitter.setServerAnonymisation(newValue)
+            emitter.serverAnonymisation = newValue
         }
     }
 
@@ -77,7 +77,7 @@ public class EmitterControllerImpl: Controller, EmitterController {
         set {
             dirtyConfig.emitRange = newValue
             dirtyConfig.emitRangeUpdated = true
-            emitter.setEmitRange(newValue)
+            emitter.emitRange = newValue
         }
     }
 
@@ -88,7 +88,7 @@ public class EmitterControllerImpl: Controller, EmitterController {
         set {
             dirtyConfig.threadPoolSize = newValue
             dirtyConfig.threadPoolSizeUpdated = true
-            emitter.setEmitThreadPoolSize(newValue)
+            emitter.emitThreadPoolSize = newValue
         }
     }
 
@@ -99,16 +99,16 @@ public class EmitterControllerImpl: Controller, EmitterController {
         }
         set {
             _requestCallback = newValue
-            emitter.setCallback(newValue)
+            emitter.callback = newValue
         }
     }
 
     public var dbCount: Int {
-        return Int(emitter.getDbCount())
+        return Int(emitter.dbCount)
     }
 
     public var isSending: Bool {
-        return emitter.getSendingStatus()
+        return emitter.isSending
     }
     
     public var customRetryForStatusCodes: [NSNumber : NSNumber]? {
@@ -118,7 +118,7 @@ public class EmitterControllerImpl: Controller, EmitterController {
         set {
             dirtyConfig.customRetryForStatusCodes = newValue
             dirtyConfig.customRetryForStatusCodesUpdated = true
-            emitter.setCustomRetryForStatusCodes(newValue)
+            emitter.customRetryForStatusCodes = newValue
         }
     }
 

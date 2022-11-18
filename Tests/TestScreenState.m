@@ -21,7 +21,6 @@
 
 #import <XCTest/XCTest.h>
 #import "SPTracker.h"
-#import "SPEmitter.h"
 #import "SPSubject.h"
 #import "SPTrackerConstants.h"
 #import "SPScreenState.h"

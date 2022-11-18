@@ -24,7 +24,6 @@
 #import "SPSession.h"
 #import "SPDataPersistence.h"
 #import "SPTrackerConstants.h"
-#import "SPEmitter.h"
 
 /// Category needed to make the private methods testable.
 @interface SPSession (Testing)
