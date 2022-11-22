@@ -20,7 +20,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SPServiceProvider.h"
 
 @interface TestMultipleInstances : XCTestCase
 

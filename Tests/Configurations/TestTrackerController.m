@@ -20,8 +20,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SPTracker.h"
-#import "SPSession.h"
 
 @interface TestTrackerController : XCTestCase
 

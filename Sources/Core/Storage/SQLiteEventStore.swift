@@ -48,7 +48,7 @@ public class SQLiteEventStore: NSObject, EventStore {
     ///                          the allowedNamespaces will be cleared.
     /// - Returns: The list of namespaces that have been found with EventStores and have been cleared out.
     class func removeUnsentEventsExcept(forNamespaces allowedNamespaces: [String]?) -> [String]? {
-        #if SNOWPLOW_TARGET_TV
+        #if os(tvOS)
         let libraryPath = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).map(\.path)[0]
         #else
         let libraryPath = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).map(\.path)[0]
@@ -90,7 +90,7 @@ public class SQLiteEventStore: NSObject, EventStore {
         self.namespace = namespace ?? ""
         sendLimit = limit
 
-        #if SNOWPLOW_TARGET_TV
+        #if os(tvOS)
         let libraryPath = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).map(\.path)[0]
         #else
         let libraryPath = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).map(\.path)[0]

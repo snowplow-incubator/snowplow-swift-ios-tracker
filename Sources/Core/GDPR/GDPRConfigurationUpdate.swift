@@ -19,6 +19,8 @@
 //  License: Apache License Version 2.0
 //
 
+import Foundation
+
 @objc(SPGDPRConfigurationUpdate)
 public class GDPRConfigurationUpdate: GDPRConfiguration {
     @objc public var sourceConfig: GDPRConfiguration?

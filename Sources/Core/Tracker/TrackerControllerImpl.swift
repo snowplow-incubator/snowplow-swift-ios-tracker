@@ -1,26 +1,5 @@
 //
-//  SPTrackerController.h
-//  Snowplow
-//
-//  Copyright (c) 2013-2022 Snowplow Analytics Ltd. All rights reserved.
-//
-//  This program is licensed to you under the Apache License Version 2.0,
-//  and you may not use this file except in compliance with the Apache License
-//  Version 2.0. You may obtain a copy of the Apache License Version 2.0 at
-//  http://www.apache.org/licenses/LICENSE-2.0.
-//
-//  Unless required by applicable law or agreed to in writing,
-//  software distributed under the Apache License Version 2.0 is distributed on
-//  an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
-//  express or implied. See the Apache License Version 2.0 for the specific
-//  language governing permissions and limitations there under.
-//
-//  Authors: Alex Benini
-//  License: Apache License Version 2.0
-//
-
-//
-//  SPTrackerController.m
+//  TrackerController.swift
 //  Snowplow
 //
 //  Copyright (c) 2013-2022 Snowplow Analytics Ltd. All rights reserved.
@@ -48,31 +27,31 @@ public class TrackerControllerImpl: Controller, TrackerController {
     // MARK: - Controllers
 
     public var network: NetworkController? {
-        return serviceProvider.networkController()
+        return serviceProvider.networkController
     }
 
     public var emitter: EmitterController? {
-        return serviceProvider.emitterController()
+        return serviceProvider.emitterController
     }
 
     public var gdpr: GDPRController? {
-        return serviceProvider.gdprController()
+        return serviceProvider.gdprController
     }
 
     public var globalContexts: GlobalContextsController? {
-        return serviceProvider.globalContextsController()
+        return serviceProvider.globalContextsController
     }
 
     public var subject: SubjectController? {
-        return serviceProvider.subjectController()
+        return serviceProvider.subjectController
     }
 
     public var sessionController: SessionControllerImpl {
-        return serviceProvider.sessionController()
+        return serviceProvider.sessionController
     }
 
     public var session: SessionController? {
-        let sessionController = serviceProvider.sessionController()
+        let sessionController = serviceProvider.sessionController
         return sessionController.isEnabled ? sessionController : nil
     }
 
@@ -101,7 +80,7 @@ public class TrackerControllerImpl: Controller, TrackerController {
         set {
             dirtyConfig.appId = newValue
             dirtyConfig.appIdUpdated = true
-            tracker.setAppId(newValue)
+            tracker.appId = newValue
         }
     }
 
@@ -111,12 +90,12 @@ public class TrackerControllerImpl: Controller, TrackerController {
 
     public var devicePlatform: DevicePlatform {
         get {
-            return DevicePlatform(rawValue: tracker.getDevicePlatformRawValue()) ?? .mobile
+            return tracker.devicePlatform
         }
         set {
             dirtyConfig.devicePlatform = newValue
             dirtyConfig.devicePlatformUpdated = true
-            tracker.setDevicePlatformRawValue(newValue.rawValue)
+            tracker.devicePlatform = newValue
         }
     }
 
@@ -127,18 +106,18 @@ public class TrackerControllerImpl: Controller, TrackerController {
         set {
             dirtyConfig.base64Encoding = newValue
             dirtyConfig.base64EncodingUpdated = true
-            tracker.setBase64Encoded(newValue)
+            tracker.base64Encoded = newValue
         }
     }
 
     public var logLevel: LogLevel {
         get {
-            return LogLevel(rawValue: Logger.logLevelRawValue()) ?? .off
+            return tracker.logLevel
         }
         set {
             dirtyConfig.logLevel = newValue
             dirtyConfig.logLevelUpdated = true
-            Logger.setLogLevelRawValue(newValue.rawValue)
+            tracker.logLevel = newValue
         }
     }
 
@@ -153,12 +132,12 @@ public class TrackerControllerImpl: Controller, TrackerController {
 
     public var applicationContext: Bool {
         get {
-            return tracker.applicationContext()
+            return tracker.applicationContext
         }
         set {
             dirtyConfig.applicationContext = newValue
             dirtyConfig.applicationContextUpdated = true
-            tracker.setApplicationContext(newValue)
+            tracker.applicationContext = newValue
         }
     }
 
@@ -189,78 +168,78 @@ public class TrackerControllerImpl: Controller, TrackerController {
 
     public var diagnosticAutotracking: Bool {
         get {
-            return tracker.trackerDiagnostic()
+            return tracker.trackerDiagnostic
         }
         set {
             dirtyConfig.diagnosticAutotracking = newValue
             dirtyConfig.diagnosticAutotrackingUpdated = true
-            tracker.setTrackerDiagnostic(newValue)
+            tracker.trackerDiagnostic = newValue
         }
     }
 
     public var exceptionAutotracking: Bool {
         get {
-            return tracker.exceptionEvents()
+            return tracker.exceptionEvents
         }
         set {
             dirtyConfig.exceptionAutotracking = newValue
             dirtyConfig.exceptionAutotrackingUpdated = true
-            tracker.setExceptionEvents(newValue)
+            tracker.exceptionEvents = newValue
         }
     }
 
     public var installAutotracking: Bool {
         get {
-            return tracker.installEvent()
+            return tracker.installEvent
         }
         set {
             dirtyConfig.installAutotracking = newValue
             dirtyConfig.installAutotrackingUpdated = true
-            tracker.setInstallEvent(newValue)
+            tracker.installEvent = newValue
         }
     }
 
     public var lifecycleAutotracking: Bool {
         get {
-            return tracker.getLifecycleEvents()
+            return tracker.lifecycleEvents
         }
         set {
             dirtyConfig.lifecycleAutotracking = newValue
             dirtyConfig.lifecycleAutotrackingUpdated = true
-            tracker.setLifecycleEvents(newValue)
+            tracker.lifecycleEvents = newValue
         }
     }
 
     public var deepLinkContext: Bool {
         get {
-            return tracker.deepLinkContext()
+            return tracker.deepLinkContext
         }
         set {
             dirtyConfig.deepLinkContext = newValue
             dirtyConfig.deepLinkContextUpdated = true
-            tracker.setDeepLinkContext(newValue)
+            tracker.deepLinkContext = newValue
         }
     }
 
     public var screenContext: Bool {
         get {
-            return tracker.screenContext()
+            return tracker.screenContext
         }
         set {
             dirtyConfig.screenContext = newValue
             dirtyConfig.screenContextUpdated = true
-            tracker.setScreenContext(newValue)
+            tracker.screenContext = newValue
         }
     }
 
     public var screenViewAutotracking: Bool {
         get {
-            return tracker.autoTrackScreenView()
+            return tracker.autotrackScreenViews
         }
         set {
             dirtyConfig.screenViewAutotracking = newValue
             dirtyConfig.screenViewAutotrackingUpdated = true
-            tracker.setAutotrackScreenViews(newValue)
+            tracker.autotrackScreenViews = newValue
         }
     }
 
@@ -272,35 +251,35 @@ public class TrackerControllerImpl: Controller, TrackerController {
             dirtyConfig.trackerVersionSuffix = newValue
             dirtyConfig.trackerVersionSuffixUpdated = true
             if let value = newValue {
-                tracker.setTrackerVersionSuffix(value)
+                tracker.trackerVersionSuffix = value
             }
         }
     }
 
     public var sessionContext: Bool {
         get {
-            return tracker.sessionContext()
+            return tracker.sessionContext
         }
         set {
             dirtyConfig.sessionContext = newValue
             dirtyConfig.sessionContextUpdated = true
-            tracker.setSessionContext(newValue)
+            tracker.sessionContext = newValue
         }
     }
     
     public var userAnonymisation: Bool {
         get {
-            return tracker.userAnonymisation()
+            return tracker.userAnonymisation
         }
         set {
             dirtyConfig.userAnonymisation = newValue
             dirtyConfig.userAnonymisationUpdated = true
-            tracker.setUserAnonymisation(newValue)
+            tracker.userAnonymisation = newValue
         }
     }
 
     public var isTracking: Bool {
-        return tracker.getIsTracking()
+        return tracker.isTracking
     }
 
     public var version: String {
@@ -310,14 +289,14 @@ public class TrackerControllerImpl: Controller, TrackerController {
     // MARK: - Private methods
 
     private var tracker: Tracker {
-        if !serviceProvider.isTrackerInitialized() {
+        if !serviceProvider.isTrackerInitialized {
             // TODO: return nil
 //            SPLogError(@"Recreating tracker instance after it was removed. This will not be supported in future versions.");
         }
-        return serviceProvider.tracker()
+        return serviceProvider.tracker
     }
 
     private var dirtyConfig: TrackerConfigurationUpdate {
-        return serviceProvider.trackerConfigurationUpdate()
+        return serviceProvider.trackerConfigurationUpdate
     }
 }

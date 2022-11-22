@@ -26,10 +26,10 @@ public class GlobalContextsControllerImpl: Controller, GlobalContextsController 
 
     public var contextGenerators: [String : GlobalContext] {
         get {
-            return tracker.globalContextGenerators as! [String : GlobalContext]
+            return tracker.globalContextGenerators
         }
         set {
-            tracker.setGlobalContextGenerators(newValue)
+            tracker.globalContextGenerators = newValue
         }
     }
 
@@ -48,6 +48,6 @@ public class GlobalContextsControllerImpl: Controller, GlobalContextsController 
     // MARK: - Private methods
 
     private var tracker: Tracker {
-        return serviceProvider.tracker()
+        return serviceProvider.tracker
     }
 }

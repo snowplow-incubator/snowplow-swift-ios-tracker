@@ -20,7 +20,6 @@
 //
 
 #import "SPMockNetworkConnection.h"
-#import "SPLogger.h"
 
 @implementation SPMockNetworkConnection
 

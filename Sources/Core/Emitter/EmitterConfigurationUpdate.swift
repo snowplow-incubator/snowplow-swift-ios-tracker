@@ -18,6 +18,8 @@
 //  License: Apache License Version 2.0
 //
 
+import Foundation
+
 @objc(SPEmitterConfigurationUpdate)
 public class EmitterConfigurationUpdate: EmitterConfiguration {
     @objc public var sourceConfig: EmitterConfiguration?

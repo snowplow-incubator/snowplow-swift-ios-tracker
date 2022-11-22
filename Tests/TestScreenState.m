@@ -20,10 +20,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SPTracker.h"
 #import "SPSubject.h"
-#import "SPTrackerConstants.h"
-#import "SPScreenState.h"
 #import "SPMockEventStore.h"
 
 @interface TestScreenState : XCTestCase

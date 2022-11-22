@@ -19,6 +19,8 @@
 //  License: Apache License Version 2.0
 //
 
+import Foundation
+
 @objc(SPSessionConfigurationUpdate)
 public class SessionConfigurationUpdate: SessionConfiguration {
     @objc public var sourceConfig: SessionConfiguration?
@@ -47,7 +49,7 @@ public class SessionConfigurationUpdate: SessionConfiguration {
         }
     }
 
-    @objc public override var onSessionStateUpdate: ((_ sessionState: SPSessionState) -> Void)? {
+    @objc public override var onSessionStateUpdate: ((_ sessionState: SessionState) -> Void)? {
         get {
             return ((sourceConfig == nil || onSessionStateUpdateUpdated) ? super.onSessionStateUpdate : sourceConfig?.onSessionStateUpdate)
         }

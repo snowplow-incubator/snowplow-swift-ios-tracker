@@ -19,6 +19,8 @@
 //  License: Apache License Version 2.0
 //
 
+import Foundation
+
 /// An enum for screen types.
 @objc(SPScreenType)
 public enum ScreenType : Int {

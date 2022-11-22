@@ -141,10 +141,10 @@ public class EmitterControllerImpl: Controller, EmitterController {
     // MARK: - Private methods
 
     private var emitter: Emitter {
-        return serviceProvider.tracker().emitter
+        return serviceProvider.tracker.emitter
     }
 
     private var dirtyConfig: EmitterConfigurationUpdate {
-        return serviceProvider.emitterConfigurationUpdate()
+        return serviceProvider.emitterConfigurationUpdate
     }
 }

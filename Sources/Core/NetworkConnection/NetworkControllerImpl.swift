@@ -74,10 +74,10 @@ public class NetworkControllerImpl: Controller, NetworkController {
     // MARK: - Private methods
 
     private var emitter: Emitter {
-        return serviceProvider.tracker().emitter
+        return serviceProvider.tracker.emitter
     }
 
     private var dirtyConfig: NetworkConfigurationUpdate {
-        return serviceProvider.networkConfigurationUpdate()
+        return serviceProvider.networkConfigurationUpdate
     }
 }

@@ -109,9 +109,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
         set {
             dirtyConfig.screenResolution = newValue
             dirtyConfig.screenResolutionUpdated = true
-            if let size = newValue {
-                subject?.setResolutionWithWidth(size.width, andHeight: size.height)
-            }
+            subject?.screenResolution = newValue
         }
     }
 
@@ -122,9 +120,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
         set {
             dirtyConfig.screenViewPort = newValue
             dirtyConfig.screenViewPortUpdated = true
-            if let size = newValue {
-                subject?.setViewPortWithWidth(size.width, andHeight: size.height)
-            }
+            subject?.screenViewPort = newValue
         }
     }
 
@@ -146,73 +142,73 @@ public class SubjectControllerImpl: Controller, SubjectController {
 
     public var geoLatitude: NSNumber? {
         get {
-            return subject?.geoLatitude()
+            return subject?.geoLatitude
         }
         set {
-            subject?.setGeoLatitude(newValue)
+            subject?.geoLatitude = newValue
         }
     }
 
     public var geoLongitude: NSNumber? {
         get {
-            return subject?.geoLongitude()
+            return subject?.geoLongitude
         }
         set {
-            subject?.setGeoLongitude(newValue)
+            subject?.geoLongitude = newValue
         }
     }
 
     public var geoLatitudeLongitudeAccuracy: NSNumber? {
         get {
-            return subject?.geoLatitudeLongitudeAccuracy()
+            return subject?.geoLatitudeLongitudeAccuracy
         }
         set {
-            subject?.setGeoLatitudeLongitudeAccuracy(newValue)
+            subject?.geoLatitudeLongitudeAccuracy = newValue
         }
     }
 
     public var geoAltitude: NSNumber? {
         get {
-            return subject?.geoAltitude()
+            return subject?.geoAltitude
         }
         set {
-            subject?.setGeoAltitude(newValue)
+            subject?.geoAltitude = newValue
         }
     }
 
     public var geoAltitudeAccuracy: NSNumber? {
         get {
-            return subject?.geoAltitudeAccuracy()
+            return subject?.geoAltitudeAccuracy
         }
         set {
-            subject?.setGeoAltitudeAccuracy(newValue)
+            subject?.geoAltitudeAccuracy = newValue
         }
     }
 
     public var geoSpeed: NSNumber? {
         get {
-            return subject?.geoSpeed()
+            return subject?.geoSpeed
         }
         set {
-            subject?.setGeoSpeed(newValue)
+            subject?.geoSpeed = newValue
         }
     }
 
     public var geoBearing: NSNumber? {
         get {
-            return subject?.geoBearing()
+            return subject?.geoBearing
         }
         set {
-            subject?.setGeoBearing(newValue)
+            subject?.geoBearing = newValue
         }
     }
 
     public var geoTimestamp: NSNumber? {
         get {
-            return subject?.geoTimestamp()
+            return subject?.geoTimestamp
         }
         set {
-            subject?.setGeoTimestamp(newValue)
+            subject?.geoTimestamp = newValue
         }
     }
 
@@ -220,11 +216,11 @@ public class SubjectControllerImpl: Controller, SubjectController {
 
     private var subject: Subject? {
         get {
-            return serviceProvider.tracker().subject
+            return serviceProvider.tracker.subject
         }
     }
 
     private var dirtyConfig: SubjectConfigurationUpdate {
-        return serviceProvider.subjectConfigurationUpdate()
+        return serviceProvider.subjectConfigurationUpdate
     }
 }

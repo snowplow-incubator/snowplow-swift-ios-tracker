@@ -39,7 +39,7 @@ public protocol SessionConfigurationProtocol: AnyObject {
     /// background.
     @objc var backgroundTimeout: Measurement<UnitDuration> { get set }
     /// The callback called everytime the session is updated.
-    @objc var onSessionStateUpdate: ((_ sessionState: SPSessionState) -> Void)? { get set }
+    @objc var onSessionStateUpdate: ((_ sessionState: SessionState) -> Void)? { get set }
 }
 
 /// This class represents the configuration from of the applications session.
@@ -56,7 +56,7 @@ public protocol SessionConfigurationProtocol: AnyObject {
 public class SessionConfiguration: Configuration, SessionConfigurationProtocol {
     @objc public var backgroundTimeoutInSeconds: Int
     @objc public var foregroundTimeoutInSeconds: Int
-    @objc public var onSessionStateUpdate: ((_ sessionState: SPSessionState) -> Void)?
+    @objc public var onSessionStateUpdate: ((_ sessionState: SessionState) -> Void)?
 
     @objc public convenience override init() {
         self.init(foregroundTimeoutInSeconds: 1800, backgroundTimeoutInSeconds: 1800)
@@ -113,7 +113,7 @@ public class SessionConfiguration: Configuration, SessionConfigurationProtocol {
 
     // MARK: - Builders
 
-    func onSessionStateUpdate(_ value: ((_ sessionState: SPSessionState) -> Void)?) -> Self {
+    func onSessionStateUpdate(_ value: ((_ sessionState: SessionState) -> Void)?) -> Self {
         onSessionStateUpdate = value
         return self
     }

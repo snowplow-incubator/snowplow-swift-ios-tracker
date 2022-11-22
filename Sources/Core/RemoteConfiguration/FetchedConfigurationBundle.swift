@@ -19,6 +19,8 @@
 //  License: Apache License Version 2.0
 //
 
+import Foundation
+
 @objc(SPFetchedConfigurationBundle)
 public class FetchedConfigurationBundle: Configuration {
     @objc public var schema: String

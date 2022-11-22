@@ -20,12 +20,9 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SPSession.h"
 #import "SPMockEventStore.h"
 #import "SPDataPersistence.h"
 #import "SPMockNetworkConnection.h"
-#import "SPLogger.h"
-#import "SPServiceProvider.h"
 #import "SPMockLoggerDelegate.h"
 
 

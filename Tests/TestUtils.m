@@ -22,7 +22,6 @@
 #import <XCTest/XCTest.h>
 #import <AdSupport/AdSupport.h>
 #import "SPUtilities.h"
-#import "SPTrackerConstants.h"
 
 @interface TestUtils : XCTestCase
 

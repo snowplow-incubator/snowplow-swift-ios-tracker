@@ -19,6 +19,8 @@
 //  License: Apache License Version 2.0
 //
 
+import Foundation
+
 @objc(SPTrackerConfigurationUpdate)
 public class TrackerConfigurationUpdate: TrackerConfiguration {
     @objc public var sourceConfig: TrackerConfiguration?
@@ -51,7 +53,7 @@ public class TrackerConfigurationUpdate: TrackerConfiguration {
 
     @objc override public var devicePlatform: DevicePlatform {
         get {
-            return ((sourceConfig == nil) || devicePlatformUpdated) ? super.devicePlatform : sourceConfig?.devicePlatform ?? DevicePlatform.mobile
+            return ((sourceConfig == nil) || devicePlatformUpdated) ? super.devicePlatform : sourceConfig?.devicePlatform ?? .mobile
         }
         set {
             super.devicePlatform = newValue

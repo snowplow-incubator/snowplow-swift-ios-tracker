@@ -20,7 +20,6 @@
 //
 
 #import "SPMockEventStore.h"
-#import "SPLogger.h"
 
 @implementation SPMockEventStore
 

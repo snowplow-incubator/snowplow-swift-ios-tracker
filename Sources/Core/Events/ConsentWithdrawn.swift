@@ -19,6 +19,8 @@
 //  License: Apache License Version 2.0
 //
 
+import Foundation
+
 /// A consent withdrawn event.
 @objc(SPConsentWithdrawn)
 public class ConsentWithdrawn: SelfDescribingAbstract {

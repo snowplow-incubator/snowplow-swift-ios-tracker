@@ -21,7 +21,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SPTrackerConstants.h"
 #import "SPSubject.h"
 
 #pragma clang diagnostic push

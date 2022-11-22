@@ -20,7 +20,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SPTracker.h"
 #import "SPMockEventStore.h"
 
 @interface TestLifecycleState : XCTestCase

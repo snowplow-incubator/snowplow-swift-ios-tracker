@@ -19,6 +19,8 @@
 //  License: Apache License Version 2.0
 //
 
+import Foundation
+
 /// A timing event.
 @objc(SPTiming)
 public class Timing: SelfDescribingAbstract {

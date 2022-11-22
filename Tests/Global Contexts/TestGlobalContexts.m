@@ -21,8 +21,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SPTracker.h"
-#import "SPServiceProvider.h"
 #import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 /// Category needed to make the private methods testable.

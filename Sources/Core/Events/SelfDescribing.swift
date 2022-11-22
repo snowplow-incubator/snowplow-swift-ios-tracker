@@ -19,6 +19,8 @@
 //  License: Apache License Version 2.0
 //
 
+import Foundation
+
 /// A self-describing event.
 @objc(SPSelfDescribing)
 public class SelfDescribing: SelfDescribingAbstract {

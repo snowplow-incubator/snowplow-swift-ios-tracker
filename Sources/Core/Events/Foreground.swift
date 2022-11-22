@@ -19,6 +19,8 @@
 //  License: Apache License Version 2.0
 //
 
+import Foundation
+
 /// A foreground transition event.
 @objc(SPForeground)
 public class Foreground: SelfDescribingAbstract {

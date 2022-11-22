@@ -170,19 +170,19 @@ public class Snowplow: NSObject {
     /// - Returns: The tracker instance created.
     @objc public class func createTracker(namespace: String, network networkConfiguration: NetworkConfiguration, configurations: [Configuration]) -> TrackerController? {
         if let serviceProvider = serviceProviderInstances[namespace] {
-            serviceProvider.reset(with: configurations + [networkConfiguration])
-            return serviceProvider.trackerController()
+            serviceProvider.reset(withConfigurations: configurations + [networkConfiguration])
+            return serviceProvider.trackerController
         } else {
             let serviceProvider = ServiceProvider(namespace: namespace, network: networkConfiguration, configurations: configurations)
             let _ = registerInstance(serviceProvider)
-            return serviceProvider.trackerController()
+            return serviceProvider.trackerController
         }
     }
 
     /// The default tracker instance is the first created in the app, but that can be overridden programmatically
     /// calling `setTrackerAsDefault(TrackerController)`.
     @objc public class func defaultTracker() -> TrackerController? {
-        return defaultServiceProvider?.trackerController()
+        return defaultServiceProvider?.trackerController
     }
 
     /// Using the namespace identifier is possible to get the trackerController if already instanced.
@@ -190,7 +190,7 @@ public class Snowplow: NSObject {
     /// - Parameter namespace: The namespace that identifies the tracker.
     /// - Returns: The tracker if it exist with that namespace.
     @objc public class func tracker(namespace: String) -> TrackerController? {
-        return serviceProviderInstances[namespace]?.trackerController()
+        return serviceProviderInstances[namespace]?.trackerController
     }
 
     /// Set the passed tracker as default tracker if it's registered as an active tracker in the app.
@@ -289,13 +289,13 @@ public class Snowplow: NSObject {
         return namespaces ?? []
     }
 
-    #if SNOWPLOW_TARGET_IOS || SNOWPLOW_TARGET_OSX
+    #if os(iOS) || os(macOS)
 
     /// Subscribe to events tracked in a Web view using the Snowplow WebView tracker JavaScript library.
     /// - Parameter webViewConfiguration: Configuration of the Web view to subscribe to events from
 
     class func subscribeToWebViewEvents(with webViewConfiguration: WKWebViewConfiguration) {
-        let messageHandler = SPWebViewMessageHandler()
+        let messageHandler = WebViewMessageHandler()
 
         webViewConfiguration.userContentController.add(messageHandler, name: "snowplow")
     }

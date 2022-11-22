@@ -1,1 +1,0 @@
-../../Core/Configurations/SPSize.h

@@ -19,6 +19,8 @@
 //  License: Apache License Version 2.0
 //
 
+import Foundation
+
 /// A background transition event.
 @objc(SPBackground)
 public class Background: SelfDescribingAbstract {

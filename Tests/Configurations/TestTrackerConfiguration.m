@@ -20,7 +20,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SPSession.h"
 #import "SPMockEventStore.h"
 #import "SPDataPersistence.h"
 

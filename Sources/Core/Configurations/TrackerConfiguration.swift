@@ -20,18 +20,6 @@
 
 import Foundation
 
-@objc(SPDevicePlatform)
-public enum DevicePlatform : Int {
-    case web = 0
-    case mobile
-    case desktop
-    case serverSideApp
-    case general
-    case connectedTV
-    case gameConsole
-    case internetOfThings
-}
-
 @objc(SPLogLevel)
 public enum LogLevel : Int {
     case off = 0
@@ -142,8 +130,7 @@ public class TrackerConfiguration: Configuration, TrackerConfigurationProtocol {
             self.appId = appId
         }
         if let devicePlatform = dictionary["devicePlatform"] as? String {
-            let platforms = ["web", "mob", "pc", "srv", "app", "tv", "cnsl", "iot"]
-            self.devicePlatform = DevicePlatform(rawValue: platforms.firstIndex(of: devicePlatform) ?? DevicePlatform.mobile.rawValue) ?? .mobile
+            self.devicePlatform = stringToDevicePlatform(devicePlatform) ?? .mobile
         }
         // TODO: Uniform "base64encoding" string on both Android and iOS trackers
         if let base64Encoding = dictionary["base64encoding"] as? Bool {

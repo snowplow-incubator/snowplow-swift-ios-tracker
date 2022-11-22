@@ -18,6 +18,8 @@
 // License: Apache License Version 2.0
 //
 
+import Foundation
+
 /// Entity that indicates the state of the app is visible (foreground) when the event is tracked.
 let kSPLifecycleEntitySchema = "iglu:com.snowplowanalytics.mobile/application_lifecycle/jsonschema/1-0-0"
 let kSPLifecycleEntityParamIndex = "index"

@@ -136,7 +136,7 @@ public class DefaultNetworkConnection: NSObject, NetworkConnection, DefaultNetwo
         } else {
 //            SPLogDebug("Invalid emitter URL: '%@'", urlEndpoint)
         }
-        var userDefaults = UserDefaults.standard
+        let userDefaults = UserDefaults.standard
         userDefaults.set(endpoint, forKey: kSPErrorTrackerUrl)
         userDefaults.set(urlSuffix, forKey: kSPErrorTrackerProtocol)
         userDefaults.set(urlPrefix, forKey: kSPErrorTrackerMethod)
@@ -161,7 +161,6 @@ public class DefaultNetworkConnection: NSObject, NetworkConnection, DefaultNetwo
                 sem = DispatchSemaphore(value: 0)
 
                 URLSession.shared.dataTask(with: urlRequest) { data, urlResponse, error in
-
                     connectionError = error
                     httpResponse = urlResponse as? HTTPURLResponse
                     sem.signal()
@@ -188,7 +187,7 @@ public class DefaultNetworkConnection: NSObject, NetworkConnection, DefaultNetwo
     func buildPost(_ request: Request) -> URLRequest {
         var requestData: Data? = nil
         do {
-            requestData = try JSONSerialization.data(withJSONObject: request.payload?.getAsDictionary(), options: [])
+            requestData = try JSONSerialization.data(withJSONObject: request.payload?.getAsDictionary() ?? [:], options: [])
         } catch {
         }
         let url = URL(string: urlEndpoint!.absoluteString)!
@@ -208,8 +207,8 @@ public class DefaultNetworkConnection: NSObject, NetworkConnection, DefaultNetwo
     }
 
     func buildGet(_ request: Request) -> URLRequest {
-        let payload = request.payload?.getAsDictionary()
-        let url = "\(urlEndpoint!.absoluteString)?\(Utilities.urlEncode(payload) ?? "")"
+        let payload = request.payload?.getAsDictionary() ?? [:]
+        let url = "\(urlEndpoint!.absoluteString)?\(Utilities.urlEncode(payload))"
         let anUrl = URL(string: url)!
         var urlRequest = URLRequest(url: anUrl)
         urlRequest.setValue(kSPAcceptContentHeader, forHTTPHeaderField: "Accept")

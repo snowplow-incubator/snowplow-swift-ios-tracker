@@ -20,9 +20,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SPTracker.h"
 #import "SPSubject.h"
-#import "SPDevicePlatform.h"
 #import "SPUtilities.h"
 #import <SnowplowTracker/SnowplowTracker-Swift.h>
 

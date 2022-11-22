@@ -18,6 +18,11 @@
 //  License: Apache License Version 2.0
 //
 
+import Foundation
+#if os(iOS)
+import UserNotifications
+#endif
+
 @objc(SPPushNotification)
 public class PushNotification : NSObject {
     public var date: String
@@ -41,10 +46,9 @@ public class PushNotification : NSObject {
         self.notification = notification
     }
 
-    #if SNOWPLOW_TARGET_IOS
+    #if os(iOS)
 
     @objc public init(date: String, action: String, notificationTrigger trigger: UNNotificationTrigger?, category: String, thread: String, notification: NotificationContent?) {
-        super.init()
         self.date = date
         self.action = action
         self.trigger = PushNotification.string(from: trigger)
@@ -55,15 +59,17 @@ public class PushNotification : NSObject {
 
     @objc public class func string(from trigger: UNNotificationTrigger?) -> String {
         var triggerType = "UNKNOWN"
-        let triggerClass = NSStringFromClass(type(of: trigger).self)
-        if triggerClass == "UNTimeIntervalNotificationTrigger" {
-            triggerType = "TIME_INTERVAL"
-        } else if triggerClass == "UNCalendarNotificationTrigger" {
-            triggerType = "CALENDAR"
-        } else if triggerClass == "UNLocationNotificationTrigger" {
-            triggerType = "LOCATION"
-        } else if triggerClass == "UNPushNotificationTrigger" {
-            triggerType = "PUSH"
+        if let trigger {
+            let triggerClass = NSStringFromClass(type(of: trigger).self)
+            if triggerClass == "UNTimeIntervalNotificationTrigger" {
+                triggerType = "TIME_INTERVAL"
+            } else if triggerClass == "UNCalendarNotificationTrigger" {
+                triggerType = "CALENDAR"
+            } else if triggerClass == "UNLocationNotificationTrigger" {
+                triggerType = "LOCATION"
+            } else if triggerClass == "UNPushNotificationTrigger" {
+                triggerType = "PUSH"
+            }
         }
         return triggerType
     }

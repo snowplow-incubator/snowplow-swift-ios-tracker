@@ -32,38 +32,30 @@ public class GDPRControllerImpl: Controller, GDPRController {
         documentVersion: String?,
         documentDescription: String?
     ) {
-        tracker.setGdprContextWithBasis(
-            Int32(basisForProcessing.rawValue),
+        gdpr = GDPRContext(
+            basis: basisForProcessing,
             documentId: documentId,
             documentVersion: documentVersion,
             documentDescription: documentDescription)
-        gdpr = tracker.gdprContext()
+        tracker.gdprContext = gdpr
         dirtyConfig.gdpr = gdpr
         dirtyConfig.gdprUpdated = true
     }
 
     public func disable() {
         dirtyConfig.isEnabled = false
-        tracker.disableGdprContext()
+        tracker.gdprContext = nil
     }
 
     public var isEnabled: Bool {
         get {
-            return tracker.gdprContext() != nil
+            return tracker.gdprContext != nil
         }
     }
 
     public func enable() -> Bool {
-        if gdpr == nil {
-            return false
-        }
-        if let basis = gdpr?.basis {
-            tracker.enableGdprContext(
-                withBasis: Int32(basis.rawValue),
-                documentId: gdpr?.documentId,
-                documentVersion: gdpr?.documentVersion,
-                documentDescription: gdpr?.documentDescription)
-        }
+        if let gdpr { tracker.gdprContext = gdpr }
+        else { return false }
         dirtyConfig.isEnabled = true
         return true
     }
@@ -96,13 +88,13 @@ public class GDPRControllerImpl: Controller, GDPRController {
 
     public var tracker: Tracker {
         get {
-            return serviceProvider.tracker()
+            return serviceProvider.tracker
         }
     }
 
     public var dirtyConfig: GDPRConfigurationUpdate {
         get {
-            return serviceProvider.gdprConfigurationUpdate()
+            return serviceProvider.gdprConfigurationUpdate
         }
     }
 }

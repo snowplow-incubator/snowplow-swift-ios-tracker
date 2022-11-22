@@ -20,7 +20,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SPLogger.h"
 
 @interface MockDiagnosticLogger : NSObject
 @property (nonatomic) void (^callback)(NSString *tag, NSString *message, NSError *error, NSException *exception);

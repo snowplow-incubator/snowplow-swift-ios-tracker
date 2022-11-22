@@ -20,8 +20,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SPPlatformContext.h"
-#import "SPTrackerConstants.h"
 #import "SPMockDeviceInfoMonitor.h"
 
 @interface TestPlatformContext : XCTestCase
@@ -38,7 +36,7 @@
 }
 
 - (void)testContainsMobileInfo {
-#if SNOWPLOW_TARGET_IOS
+#if os(iOS)
     SPPlatformContext *context = [[SPPlatformContext alloc] init];
     NSDictionary *platformDict = [[context fetchPlatformDictWithUserAnonymisation:NO] getAsDictionary];
     XCTAssertNotNil(platformDict[kSPMobileAvailableStorage]);
@@ -69,7 +67,7 @@
 }
 
 - (void)testUpdatesMobileInfo {
-#if SNOWPLOW_TARGET_IOS
+#if os(iOS)
     SPMockDeviceInfoMonitor *deviceInfoMonitor = [[SPMockDeviceInfoMonitor alloc] init];
     SPPlatformContext *context = [[SPPlatformContext alloc] initWithMobileDictUpdateFrequency:0 networkDictUpdateFrequency:1 deviceInfoMonitor:deviceInfoMonitor];
     XCTAssertEqual(1, [deviceInfoMonitor accessCount:@"batteryLevel"]);
@@ -84,7 +82,7 @@
 }
 
 - (void)testDoesntUpdateMobileInfoWithinUpdateWindow {
-#if SNOWPLOW_TARGET_IOS
+#if os(iOS)
     SPMockDeviceInfoMonitor *deviceInfoMonitor = [[SPMockDeviceInfoMonitor alloc] init];
     SPPlatformContext *context = [[SPPlatformContext alloc] initWithMobileDictUpdateFrequency:1000 networkDictUpdateFrequency:1 deviceInfoMonitor:deviceInfoMonitor];
     XCTAssertEqual(1, [deviceInfoMonitor accessCount:@"batteryLevel"]);
@@ -99,7 +97,7 @@
 }
 
 - (void)testUpdatesNetworkInfo {
-#if SNOWPLOW_TARGET_IOS
+#if os(iOS)
     SPMockDeviceInfoMonitor *deviceInfoMonitor = [[SPMockDeviceInfoMonitor alloc] init];
     SPPlatformContext *context = [[SPPlatformContext alloc] initWithMobileDictUpdateFrequency:1 networkDictUpdateFrequency:0 deviceInfoMonitor:deviceInfoMonitor];
     XCTAssertEqual(1, [deviceInfoMonitor accessCount:@"networkTechnology"]);
@@ -114,7 +112,7 @@
 }
 
 - (void)testDoesntUpdateNetworkInfoWithinUpdateWindow {
-#if SNOWPLOW_TARGET_IOS
+#if os(iOS)
     SPMockDeviceInfoMonitor *deviceInfoMonitor = [[SPMockDeviceInfoMonitor alloc] init];
     SPPlatformContext *context = [[SPPlatformContext alloc] initWithMobileDictUpdateFrequency:0 networkDictUpdateFrequency:1000 deviceInfoMonitor:deviceInfoMonitor];
     XCTAssertEqual(1, [deviceInfoMonitor accessCount:@"networkTechnology"]);
@@ -129,7 +127,7 @@
 }
 
 - (void)testDoesntUpdateNonEphemeralInfo {
-#if SNOWPLOW_TARGET_IOS
+#if os(iOS)
     SPMockDeviceInfoMonitor *deviceInfoMonitor = [[SPMockDeviceInfoMonitor alloc] init];
     SPPlatformContext *context = [[SPPlatformContext alloc] initWithMobileDictUpdateFrequency:0 networkDictUpdateFrequency:0 deviceInfoMonitor:deviceInfoMonitor];
     XCTAssertEqual(1, [deviceInfoMonitor accessCount:@"physicalMemory"]);
@@ -144,7 +142,7 @@
 }
 
 - (void)testDoesntUpdateIdfaAndIdfvIfNotNil {
-#if SNOWPLOW_TARGET_IOS
+#if os(iOS)
     SPMockDeviceInfoMonitor *deviceInfoMonitor = [[SPMockDeviceInfoMonitor alloc] init];
     SPPlatformContext *context = [[SPPlatformContext alloc] initWithMobileDictUpdateFrequency:0 networkDictUpdateFrequency:1 deviceInfoMonitor:deviceInfoMonitor];
     XCTAssertEqual(1, [deviceInfoMonitor accessCount:@"appleIdfa"]);
@@ -156,7 +154,7 @@
 }
 
 - (void)testUpdatesIdfaAndIdfvIfNil {
-#if SNOWPLOW_TARGET_IOS
+#if os(iOS)
     SPMockDeviceInfoMonitor *deviceInfoMonitor = [[SPMockDeviceInfoMonitor alloc] init];
     deviceInfoMonitor.customAppleIdfa = nil;
     deviceInfoMonitor.customAppleIdfv = nil;
@@ -170,7 +168,7 @@
 }
 
 - (void)testAnonymisesUserIdentifiers {
-#if SNOWPLOW_TARGET_IOS
+#if os(iOS)
     SPDeviceInfoMonitor *deviceInfoMonitor = [[SPMockDeviceInfoMonitor alloc] init];
     SPPlatformContext *context = [[SPPlatformContext alloc] initWithMobileDictUpdateFrequency:0 networkDictUpdateFrequency:1 deviceInfoMonitor:deviceInfoMonitor];
     NSDictionary *platformDict = [[context fetchPlatformDictWithUserAnonymisation:YES] getAsDictionary];

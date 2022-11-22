@@ -19,6 +19,8 @@
 //  License: Apache License Version 2.0
 //
 
+import Foundation
+
 /// A structured event.
 @objc(SPStructured)
 public class Structured: PrimitiveAbstract {

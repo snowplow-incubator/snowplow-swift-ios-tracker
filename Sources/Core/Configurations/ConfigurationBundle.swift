@@ -18,6 +18,8 @@
 //  License: Apache License Version 2.0
 //
 
+import Foundation
+
 /// This class represents the default configuration applied in place of the remote configuration.
 @objc(SPConfigurationBundle)
 public class ConfigurationBundle: Configuration {

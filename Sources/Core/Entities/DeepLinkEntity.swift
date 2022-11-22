@@ -18,8 +18,9 @@
 // License: Apache License Version 2.0
 //
 
-/// Entity that indicates a deep-link has been received and processed.
+import Foundation
 
+/// Entity that indicates a deep-link has been received and processed.
 @objc(SPDeepLinkEntity)
 public class DeepLinkEntity: SelfDescribingJson {
     @objc public static let schema = "iglu:com.snowplowanalytics.mobile/deep_link/jsonschema/1-0-0"

@@ -1,5 +1,5 @@
 //
-//  SPEmitter.swift
+//  Emitter.swift
 //  Snowplow
 //
 //  Copyright (c) 2013-2022 Snowplow Analytics Ltd. All rights reserved.
@@ -25,12 +25,12 @@ import Foundation
 let POST_WRAPPER_BYTES = 88
 
 @objc(SPEmitter)
-public class Emitter: NSObject, EmitterBuilder, EmitterEventProcessing {
+public class Emitter: NSObject, EmitterEventProcessing {
     
     private var timer: Timer?
     /// Whether the emitter is currently sending.
     private(set) public var isSending = false
-    private var dataOperationQueue: OperationQueue?
+    private var dataOperationQueue: OperationQueue = OperationQueue()
     private var builderFinished = false
 
     private var pausedEmit = false
@@ -139,8 +139,8 @@ public class Emitter: NSObject, EmitterBuilder, EmitterEventProcessing {
         set(emitThreadPoolSize) {
             if emitThreadPoolSize > 0 {
                 _emitThreadPoolSize = emitThreadPoolSize
-                if dataOperationQueue?.maxConcurrentOperationCount != emitThreadPoolSize {
-                    dataOperationQueue?.maxConcurrentOperationCount = _emitThreadPoolSize
+                if dataOperationQueue.maxConcurrentOperationCount != emitThreadPoolSize {
+                    dataOperationQueue.maxConcurrentOperationCount = _emitThreadPoolSize
                 }
                 if builderFinished && networkConnection != nil {
                     setupNetworkConnection()
@@ -263,21 +263,18 @@ public class Emitter: NSObject, EmitterBuilder, EmitterEventProcessing {
     
     // MARK: - Initialization
     
-    override init() {
+    init(urlEndpoint: String) {
         super.init()
-        dataOperationQueue = OperationQueue()
+        self._urlEndpoint = urlEndpoint
     }
-
-    /// Builds the emitter using a build block of functions.
-    class func build(_ buildBlock: @escaping (_ builder: EmitterBuilder?) -> Void) -> Emitter {
-        let emitter = Emitter()
-        buildBlock(emitter)
-        emitter.setup()
-        return emitter
+    
+    init(networkConnection: NetworkConnection) {
+        super.init()
+        self._networkConnection = networkConnection
     }
 
     func setup() {
-        dataOperationQueue?.maxConcurrentOperationCount = emitThreadPoolSize
+        dataOperationQueue.maxConcurrentOperationCount = emitThreadPoolSize
         setupNetworkConnection()
         resumeTimer()
         builderFinished = true
@@ -427,7 +424,7 @@ public class Emitter: NSObject, EmitterBuilder, EmitterEventProcessing {
         }
         let allFailureCount = failedWillRetryCount + failedWontRetryCount
 
-        eventStore.removeEvents(withIds: removableEvents)
+        let _ = eventStore.removeEvents(withIds: removableEvents)
 
 //        SPLogDebug("Success Count: %@", NSNumber(value: successCount).stringValue)
 //        SPLogDebug("Failure Count: %@", NSNumber(value: allFailureCount).stringValue)
@@ -460,7 +457,7 @@ public class Emitter: NSObject, EmitterBuilder, EmitterEventProcessing {
         if httpMethod == .get {
             for event in events {
                 let payload = event.payload
-                if let sendingTime { addSendingTime(to: payload, timestamp: sendingTime) }
+                addSendingTime(to: payload, timestamp: sendingTime)
                 let oversize = isOversize(payload)
                 let request = Request(payload: payload, emitterEventId: event.storeId, oversize: oversize)
                 requests.append(request)
@@ -476,10 +473,10 @@ public class Emitter: NSObject, EmitterBuilder, EmitterEventProcessing {
 
                     let payload = event.payload
                     let emitterEventId = NSNumber(value: event.storeId)
-                    if let sendingTime { addSendingTime(to: payload, timestamp: sendingTime) }
+                    addSendingTime(to: payload, timestamp: sendingTime)
 
                     if isOversize(payload) {
-                        var request = Request(payload: payload, emitterEventId: emitterEventId.int64Value, oversize: true)
+                        let request = Request(payload: payload, emitterEventId: emitterEventId.int64Value, oversize: true)
                         requests.append(request)
                     } else if isOversize(payload, previousPayloads: eventArray) {
                         let request = Request(payloads: eventArray, emitterEventIds: indexArray)

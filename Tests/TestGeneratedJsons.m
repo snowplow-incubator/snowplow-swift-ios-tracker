@@ -22,15 +22,9 @@
 
 #import <XCTest/XCTest.h>
 #import <SnowplowIgluClient/IGLUClient.h>
-#import "SPTrackerConstants.h"
-#import "SPTracker.h"
-#import "SPSession.h"
 #import "SPSubject.h"
 #import "SPUtilities.h"
-#import "SPServiceProvider.h"
 
-#import "SPScreenStateMachine.h"
-#import "SPScreenState.h"
 #import <SnowplowTracker/SnowplowTracker-Swift.h>
 
 

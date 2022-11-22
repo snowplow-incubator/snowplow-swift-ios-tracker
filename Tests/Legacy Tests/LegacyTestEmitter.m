@@ -21,8 +21,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SPTrackerConstants.h"
-#import "SPLogger.h"
 #import "SPMockEventStore.h"
 #import "SPMockNetworkConnection.h"
 

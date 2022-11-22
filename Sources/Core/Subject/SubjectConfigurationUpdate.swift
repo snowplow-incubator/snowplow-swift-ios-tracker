@@ -18,6 +18,8 @@
 //  License: Apache License Version 2.0
 //
 
+import Foundation
+
 @objc(SPSubjectConfigurationUpdate)
 public class SubjectConfigurationUpdate: SubjectConfiguration {
     @objc public var sourceConfig: SubjectConfiguration?

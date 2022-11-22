@@ -57,7 +57,7 @@ public class SessionControllerImpl: Controller, SessionController {
         get {
             if let session = session {
                 if isEnabled {
-                    return Int(session.getForegroundTimeout() / 1000)
+                    return Int(session.foregroundTimeout / 1000)
                 } else {
 //                    SPLogTrack(nil, "Attempt to access SessionController fields when disabled")
                 }
@@ -67,7 +67,7 @@ public class SessionControllerImpl: Controller, SessionController {
         set {
             dirtyConfig.foregroundTimeoutInSeconds = newValue
             dirtyConfig.foregroundTimeoutInSecondsUpdated = true
-            session?.setForegroundTimeout(newValue * 1000)
+            session?.foregroundTimeout = newValue * 1000
         }
     }
 
@@ -85,7 +85,7 @@ public class SessionControllerImpl: Controller, SessionController {
         get {
             if let session = session {
                 if isEnabled {
-                    return Int(session.getBackgroundTimeout() / 1000)
+                    return Int(session.backgroundTimeout / 1000)
                 } else {
 //                    SPLogTrack(nil, "Attempt to access SessionController fields when disabled")
                 }
@@ -95,11 +95,11 @@ public class SessionControllerImpl: Controller, SessionController {
         set {
             dirtyConfig.backgroundTimeoutInSeconds = newValue
             dirtyConfig.backgroundTimeoutInSecondsUpdated = true
-            session?.setBackgroundTimeout(newValue * 1000)
+            session?.backgroundTimeout = newValue * 1000
         }
     }
 
-    public var onSessionStateUpdate: ((_ sessionState: SPSessionState) -> Void)? {
+    public var onSessionStateUpdate: ((_ sessionState: SessionState) -> Void)? {
         get {
             if !isEnabled {
 //                SPLogTrack(nil, "Attempt to access SessionController fields when disabled")
@@ -135,7 +135,7 @@ public class SessionControllerImpl: Controller, SessionController {
 //            SPLogTrack(nil, "Attempt to access SessionController fields when disabled")
             return nil
         }
-        return session?.getUserId()
+        return session?.userId
     }
 
     public var isInBackground: Bool {
@@ -143,7 +143,7 @@ public class SessionControllerImpl: Controller, SessionController {
 //            SPLogTrack(nil, "Attempt to access SessionController fields when disabled")
             return false
         }
-        return session?.getInBackground() ?? false
+        return session?.inBackground ?? false
     }
 
     public var backgroundIndex: Int {
@@ -151,7 +151,7 @@ public class SessionControllerImpl: Controller, SessionController {
 //            SPLogTrack(nil, "Attempt to access SessionController fields when disabled")
             return -1
         }
-        return session?.getBackgroundIndex() ?? -1
+        return session?.backgroundIndex ?? -1
     }
 
     public var foregroundIndex: Int {
@@ -159,20 +159,20 @@ public class SessionControllerImpl: Controller, SessionController {
 //            PLogTrack(nil, "Attempt to access SessionController fields when disabled")
             return -1
         }
-        return session?.getForegroundIndex() ?? -1
+        return session?.foregroundIndex ?? -1
     }
 
     // MARK: - Private methods
 
     private var session: Session? {
         get {
-            return serviceProvider.tracker().session
+            return serviceProvider.tracker.session
         }
     }
 
     private var dirtyConfig: SessionConfigurationUpdate {
         get {
-            return serviceProvider.sessionConfigurationUpdate()
+            return serviceProvider.sessionConfigurationUpdate
         }
     }
 }

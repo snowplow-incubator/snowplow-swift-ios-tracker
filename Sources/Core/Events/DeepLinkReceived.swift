@@ -18,6 +18,8 @@
 // License: Apache License Version 2.0
 //
 
+import Foundation
+
 /// A deep-link received in the app.
 @objc(SPDeepLinkReceived)
 public class DeepLinkReceived: SelfDescribingAbstract {

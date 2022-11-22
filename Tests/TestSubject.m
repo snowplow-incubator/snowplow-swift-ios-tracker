@@ -20,7 +20,6 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SPTrackerConstants.h"
 #import "SPSubject.h"
 
 @interface TestSubject : XCTestCase
