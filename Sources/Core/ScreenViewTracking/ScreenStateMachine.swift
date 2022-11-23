@@ -22,19 +22,22 @@
 import Foundation
 
 class ScreenStateMachine: StateMachineProtocol {
-    override var subscribedEventSchemasForTransitions: [String] {
+    static var identifier: String { return "ScreenContext" }
+    var identifier: String { return ScreenStateMachine.identifier }
+
+    var subscribedEventSchemasForTransitions: [String] {
         return [kSPScreenViewSchema]
     }
 
-    override var subscribedEventSchemasForEntitiesGeneration: [String] {
+    var subscribedEventSchemasForEntitiesGeneration: [String] {
         return ["*"]
     }
 
-    override var subscribedEventSchemasForPayloadUpdating: [String] {
+    var subscribedEventSchemasForPayloadUpdating: [String] {
         return [kSPScreenViewSchema]
     }
 
-    override func transition(from event: Event, state currentState: State?) -> State? {
+    func transition(from event: Event, state currentState: State?) -> State? {
         if let screenView = event as? ScreenView {
             let newState: ScreenState = screenState(from: screenView)
             newState.previousState = currentState as? ScreenState
@@ -43,7 +46,7 @@ class ScreenStateMachine: StateMachineProtocol {
         return nil
     }
 
-    override func entities(from event: InspectableEvent, state: State?) -> [SelfDescribingJson]? {
+    func entities(from event: InspectableEvent, state: State?) -> [SelfDescribingJson]? {
         if let state = state as? ScreenState,
            let entity = screenContext(from: state) {
             return [entity]
@@ -51,7 +54,7 @@ class ScreenStateMachine: StateMachineProtocol {
         return nil
     }
 
-    override func payloadValues(from event: InspectableEvent, state: State?) -> [String : NSObject]? {
+    func payloadValues(from event: InspectableEvent, state: State?) -> [String : NSObject]? {
         if let state = state as? ScreenState {
             let previousState = state.previousState
             var addedValues: [String : NSObject] = [:]

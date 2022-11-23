@@ -137,15 +137,6 @@ class Utilities {
         return string.addingPercentEncoding(withAllowedCharacters: allowedCharSet) ?? string
     }
 
-    class func checkArgument(_ argument: Bool, withMessage message: String?) {
-        if !argument {
-//            SPLogDebug("Error occurred while checking argument: %@", message)
-            #if DEBUG
-            throw NSException(name: .invalidArgumentException, reason: message, userInfo: nil)
-            #endif
-        }
-    }
-
     /// Removes all entries which have a value of NSNull from the dictionary.
     /// - Parameter dict: An NSDictionary to be cleaned.
     /// - Returns: The same NSDictionary without any Null values.
@@ -156,6 +147,7 @@ class Utilities {
                 continue
             }
             if let aDict = dict[key] {
+                if aDict is NSNull { continue }
                 cleanDictionary[key] = aDict
             }
         }

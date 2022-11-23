@@ -21,11 +21,14 @@
 import Foundation
 
 class LifecycleStateMachine: StateMachineProtocol {
-    override var subscribedEventSchemasForTransitions: [String] {
+    static var identifier: String { return "Lifecycle" }
+    var identifier: String { return LifecycleStateMachine.identifier }
+
+    var subscribedEventSchemasForTransitions: [String] {
         return [kSPBackgroundSchema, kSPForegroundSchema]
     }
 
-    override func transition(from event: Event, state currentState: State?) -> State? {
+    func transition(from event: Event, state currentState: State?) -> State? {
         if let e = event as? Foreground {
             return LifecycleState(asForegroundWithIndex: NSNumber(value: e.index))
         }
@@ -35,11 +38,11 @@ class LifecycleStateMachine: StateMachineProtocol {
         return nil
     }
 
-    override var subscribedEventSchemasForEntitiesGeneration: [String] {
+    var subscribedEventSchemasForEntitiesGeneration: [String] {
         return ["*"]
     }
 
-    override func entities(from event: InspectableEvent, state: State?) -> [SelfDescribingJson]? {
+    func entities(from event: InspectableEvent, state: State?) -> [SelfDescribingJson]? {
         if state == nil {
             return [LifecycleEntity(isVisible: true).index(0)]
         }
@@ -51,11 +54,11 @@ class LifecycleStateMachine: StateMachineProtocol {
         return nil
     }
 
-    override var subscribedEventSchemasForPayloadUpdating: [String] {
+    var subscribedEventSchemasForPayloadUpdating: [String] {
         return []
     }
 
-    override func payloadValues(from event: InspectableEvent, state: State?) -> [String : NSObject]? {
+    func payloadValues(from event: InspectableEvent, state: State?) -> [String : NSObject]? {
         return nil
     }
 }

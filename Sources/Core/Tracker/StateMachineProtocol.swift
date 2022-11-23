@@ -21,12 +21,13 @@
 
 import Foundation
 
-// TODO: changed to a class to enable storing in map in StageManager, change it back to protocol
-class StateMachineProtocol: NSObject {
-    var subscribedEventSchemasForTransitions: [String] { get { abort() } }
-    var subscribedEventSchemasForEntitiesGeneration: [String] { get { abort() } }
-    var subscribedEventSchemasForPayloadUpdating: [String] { get { abort() }}
-    func transition(from event: Event, state: State?) -> State? { abort() }
-    func entities(from event: InspectableEvent, state: State?) -> [SelfDescribingJson]? { abort() }
-    func payloadValues(from event: InspectableEvent, state: State?) -> [String : NSObject]? { abort() }
+@objc
+public protocol StateMachineProtocol {
+    var identifier: String { get }
+    var subscribedEventSchemasForTransitions: [String] { get }
+    var subscribedEventSchemasForEntitiesGeneration: [String] { get }
+    var subscribedEventSchemasForPayloadUpdating: [String] { get }
+    func transition(from event: Event, state: State?) -> State?
+    func entities(from event: InspectableEvent, state: State?) -> [SelfDescribingJson]?
+    func payloadValues(from event: InspectableEvent, state: State?) -> [String : NSObject]?
 }

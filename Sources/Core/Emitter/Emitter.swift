@@ -39,6 +39,9 @@ public class Emitter: NSObject, EmitterEventProcessing {
     /// Collector endpoint.
     public var urlEndpoint: String? {
         get {
+            if builderFinished {
+                return networkConnection?.urlEndpoint?.absoluteString
+            }
             return _urlEndpoint
         }
         set {
@@ -284,8 +287,8 @@ public class Emitter: NSObject, EmitterEventProcessing {
         if !builderFinished && networkConnection != nil {
             return
         }
-        if let urlEndpoint {
-            var endpoint = "\(urlEndpoint)"
+        if let _urlEndpoint {
+            var endpoint = "\(_urlEndpoint)"
             if !endpoint.hasPrefix("http") {
                 let `protocol` = self.protocol == .https ? "https://" : "http://"
                 endpoint = `protocol` + endpoint
@@ -301,7 +304,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
             defaultNetworkConnection.byteLimitPost = byteLimitPost
             defaultNetworkConnection.serverAnonymisation = serverAnonymisation
             defaultNetworkConnection.setup()
-            networkConnection = defaultNetworkConnection
+            _networkConnection = defaultNetworkConnection
         }
     }
 
@@ -468,7 +471,8 @@ public class Emitter: NSObject, EmitterEventProcessing {
                 var eventArray: [Payload] = []
                 var indexArray: [NSNumber] = []
 
-                for j in i..<Int((i + bufferOption.rawValue)) {
+                let iUntil = min(i + bufferOption.rawValue, events.count)
+                for j in i..<iUntil {
                     let event = events[j]
 
                     let payload = event.payload

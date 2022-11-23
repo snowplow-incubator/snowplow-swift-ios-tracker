@@ -38,8 +38,6 @@ public class Timing: SelfDescribingAbstract {
     /// @param variable The timing variable
     /// @param timing The time
     @objc public init(category: String, variable: String, timing: Int) {
-        Utilities.checkArgument(category.count != 0, withMessage: "Category cannot be empty.")
-        Utilities.checkArgument(variable.count != 0, withMessage: "Variable cannot be empty.")
         self.category = category
         self.variable = variable
         self.timing = timing

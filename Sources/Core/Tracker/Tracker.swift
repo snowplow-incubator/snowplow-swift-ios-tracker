@@ -176,9 +176,9 @@ public class Tracker: NSObject {
             objc_sync_enter(self)
             _deepLinkContext = deepLinkContext
             if deepLinkContext {
-                stateManager.addOrReplaceStateMachine(DeepLinkStateMachine(), identifier: "DeepLinkContext")
+                stateManager.addOrReplaceStateMachine(DeepLinkStateMachine())
             } else {
-                let _ = stateManager.removeStateMachine("DeepLinkContext")
+                _ = stateManager.removeStateMachine(DeepLinkStateMachine.identifier)
             }
             objc_sync_exit(self)
         }
@@ -193,9 +193,9 @@ public class Tracker: NSObject {
             objc_sync_enter(self)
             _screenContext = screenContext
             if screenContext {
-                stateManager.addOrReplaceStateMachine(ScreenStateMachine(), identifier: "ScreenContext")
+                stateManager.addOrReplaceStateMachine(ScreenStateMachine())
             } else {
-                let _ = stateManager.removeStateMachine("ScreenContext")
+                _ = stateManager.removeStateMachine(ScreenStateMachine.identifier)
             }
             objc_sync_exit(self)
         }
@@ -243,9 +243,9 @@ public class Tracker: NSObject {
             objc_sync_enter(self)
             _lifecycleEvents = lifecycleEvents
             if lifecycleEvents {
-                stateManager.addOrReplaceStateMachine(LifecycleStateMachine(), identifier: "Lifecycle")
+                stateManager.addOrReplaceStateMachine(LifecycleStateMachine())
             } else {
-                stateManager.removeStateMachine("Lifecycle")
+                _ = stateManager.removeStateMachine(LifecycleStateMachine.identifier)
             }
             objc_sync_exit(self)
         }
@@ -263,9 +263,7 @@ public class Tracker: NSObject {
         set(userAnonymisation) {
             if _userAnonymisation != userAnonymisation {
                 _userAnonymisation = userAnonymisation
-                if session != nil {
-                    session?.startNewSession()
-                }
+                if let session { session.startNewSession() }
             }
         }
     }
@@ -615,8 +613,8 @@ public class Tracker: NSObject {
         }
 
         // Add session
-        if session != nil {
-            if let sessionDict = session?.getDictWithEventId(eventId, eventTimestamp: eventTimestamp, userAnonymisation: userAnonymisation) {
+        if let session {
+            if let sessionDict = session.getDictWithEventId(eventId, eventTimestamp: eventTimestamp, userAnonymisation: userAnonymisation) {
                 contexts.append(SelfDescribingJson(schema: kSPSessionContextSchema, andDictionary: sessionDict))
             } else {
 //                SPLogTrack(nil, "Unable to get session context for eventId: %@", eventId)

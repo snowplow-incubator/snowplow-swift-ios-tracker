@@ -33,20 +33,23 @@ class DeepLinkStateMachine: StateMachineProtocol {
      Entity Generation:
       - ReadyForOutput
      */
+    
+    static var identifier: String { return "DeepLinkContext" }
+    var identifier: String { return DeepLinkStateMachine.identifier }
 
-    override var subscribedEventSchemasForTransitions: [String] {
+    var subscribedEventSchemasForTransitions: [String] {
         return [DeepLinkReceived.schema, kSPScreenViewSchema]
     }
 
-    override var subscribedEventSchemasForEntitiesGeneration: [String] {
+    var subscribedEventSchemasForEntitiesGeneration: [String] {
         return [kSPScreenViewSchema]
     }
 
-    override var subscribedEventSchemasForPayloadUpdating: [String] {
+    var subscribedEventSchemasForPayloadUpdating: [String] {
         return []
     }
 
-    override func transition(from event: Event, state: State?) -> State? {
+    func transition(from event: Event, state: State?) -> State? {
         if let dlEvent = event as? DeepLinkReceived {
             return DeepLinkState(url: dlEvent.url, referrer: dlEvent.referrer)
         } else {
@@ -62,7 +65,7 @@ class DeepLinkStateMachine: StateMachineProtocol {
         return nil
     }
 
-    override func entities(from event: InspectableEvent, state: State?) -> [SelfDescribingJson]? {
+    func entities(from event: InspectableEvent, state: State?) -> [SelfDescribingJson]? {
         if let deepLinkState = state as? DeepLinkState {
             if !(deepLinkState.readyForOutput) {
                 return nil
@@ -74,7 +77,7 @@ class DeepLinkStateMachine: StateMachineProtocol {
         return nil
     }
 
-    override func payloadValues(from event: InspectableEvent, state: State?) -> [String : NSObject]? {
+    func payloadValues(from event: InspectableEvent, state: State?) -> [String : NSObject]? {
         return nil
     }
 }

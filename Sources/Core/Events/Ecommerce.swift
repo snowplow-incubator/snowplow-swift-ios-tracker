@@ -45,7 +45,6 @@ public class Ecommerce : PrimitiveAbstract {
     @objc public var currency: String?
 
     @objc public init(orderId: String, totalValue: Double, items: [EcommerceItem]?) {
-        Utilities.checkArgument(orderId.count != 0, withMessage: "OrderId cannot be empty.")
         self.orderId = orderId
         self.totalValue = totalValue
         self.items = items ?? []

@@ -24,7 +24,7 @@ import Foundation
 let kRulePattern = "^iglu:((?:(?:[a-zA-Z0-9-_]+|\\*)\\.)+(?:[a-zA-Z0-9-_]+|\\*))\\/([a-zA-Z0-9-_\\.]+|\\*)\\/([a-zA-Z0-9-_\\.]+|\\*)\\/([1-9][0-9]*|\\*)-(0|[1-9][0-9]*|\\*)-(0|[1-9][0-9]*|\\*)$"
 let kUriPattern = "^iglu:((?:(?:[a-zA-Z0-9-_]+)\\.)+(?:[a-zA-Z0-9-_]+))\\/([a-zA-Z0-9-_]+)\\/([a-zA-Z0-9-_]+)\\/([1-9][0-9]*)\\-(0|[1-9][0-9]*)\\-(0|[1-9][0-9]*)$"
 
-public class SchemaRule: NSObject, NSCopying {
+public class SchemaRule: Equatable {
     private(set) var rule: String
     private(set) var ruleParts: [String]
 
@@ -34,15 +34,12 @@ public class SchemaRule: NSObject, NSCopying {
 
     public required init?(rule: String) {
         self.rule = rule
-        let parts = SchemaRule.parts(fromUri: rule, regexPattern: kRulePattern)
+        guard let parts = SchemaRule.parts(fromUri: rule, regexPattern: kRulePattern) else { return nil }
         // reject rule if vendor format isn't valid
-        if (parts?.count ?? 0) == 0 || !SchemaRule.validateVendor(parts?[0] ?? "") {
+        if (parts.count == 0 || !SchemaRule.validateVendor(parts[0])) {
             return nil
         }
-        if let parts {
-            ruleParts = parts
-        }
-        return nil
+        ruleParts = parts
     }
 
     public func match(withUri uri: String) -> Bool {
@@ -137,17 +134,9 @@ public class SchemaRule: NSObject, NSCopying {
         }
         return true
     }
-
-    // MARK: - Overriden methods
-
-    public override func isEqual(_ object: Any?) -> Bool {
-        if self == (object as? SchemaRule) {
-            return true
-        }
-        return (object is SchemaRule) && (rule == (object as? SchemaRule)?.rule)
+    
+    public static func == (lhs: SchemaRule, rhs: SchemaRule) -> Bool {
+        return lhs.rule == rhs.rule
     }
 
-    public override var hash: Int {
-        return rule.hash
-    }
 }

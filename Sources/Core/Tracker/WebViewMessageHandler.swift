@@ -39,6 +39,10 @@ public class WebViewMessageHandler: NSObject, WKScriptMessageHandler {
         _ userContentController: WKUserContentController,
         didReceive message: WKScriptMessage
     ) {
+        receivedMesssage(message)
+    }
+    
+    public func receivedMesssage(_ message: WKScriptMessage) {
         if let body = message.body as? [AnyHashable : Any],
            let event = body["event"] as? [AnyHashable : Any],
            let command = body["command"] as? String {

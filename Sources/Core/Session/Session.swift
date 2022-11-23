@@ -22,11 +22,11 @@
 import Foundation
 import UIKit
 
-class Session: NSObject {
+class Session {
     /// Whether the application is in the background or foreground
     private(set) var inBackground = false
     /// The session's userId
-    private(set) var userId: String?
+    private(set) var userId: String
     /// The foreground index count
     private(set) var foregroundIndex = 0
     /// The background index count
@@ -45,7 +45,7 @@ class Session: NSObject {
     /// The currently set Background Timeout in milliseconds
     public var backgroundTimeout = 1800
 
-    private var isNewSession = false
+    private var isNewSession = true
     private var isSessionCheckerEnabled = false
     private var lastSessionCheck: NSNumber = Utilities.getTimestamp()
     private var dataPersistence: DataPersistence?
@@ -66,7 +66,6 @@ class Session: NSObject {
     ///   - tracker: reference to the associated tracker of the session
     /// - Returns: a SnowplowSession
     init(foregroundTimeout: Int, andBackgroundTimeout backgroundTimeout: Int, andTracker tracker: Tracker?) {
-        super.init()
         
         self.foregroundTimeout = foregroundTimeout * 1000
         self.backgroundTimeout = backgroundTimeout * 1000
@@ -74,13 +73,12 @@ class Session: NSObject {
         if let namespace = tracker?.trackerNamespace {
             dataPersistence = DataPersistence.getFor(namespace: namespace)
         }
-        if var storedSessionDict = dataPersistence?.session {
-            userId = retrieveUserId(withSessionDict: storedSessionDict)
-            if let userId {
-                storedSessionDict[kSPSessionUserId] = userId as NSObject?
-                state = SessionState(storedState: storedSessionDict)
-                dataPersistence?.session = storedSessionDict
-            }
+        let storedSessionDict = dataPersistence?.session
+        userId = Session.retrieveUserId(withSessionDict: storedSessionDict)
+        if var storedSessionDict {
+            storedSessionDict[kSPSessionUserId] = userId as NSObject?
+            state = SessionState(storedState: storedSessionDict)
+            dataPersistence?.session = storedSessionDict
         }
         if state == nil {
 //            SPLogTrack(nil, "No previous session info available")
@@ -129,14 +127,12 @@ class Session: NSObject {
     ///   - userAnonymisation: Whether to anonymise user identifiers
     /// - Returns: a SnowplowPayload containing the session dictionary
     func getDictWithEventId(_ eventId: String?, eventTimestamp: Int64, userAnonymisation: Bool) -> [String : NSObject]? {
-        guard let state else { return nil }
-        
         var context: [String : NSObject]? = nil
         objc_sync_enter(self)
         if isSessionCheckerEnabled {
             if shouldUpdate() {
                 update(withEventId: eventId, eventTimestamp: eventTimestamp)
-                if let onSessionStateUpdate {
+                if let onSessionStateUpdate, let state {
                     DispatchQueue.global(qos: .default).async(execute: {
                         onSessionStateUpdate(state)
                     })
@@ -147,7 +143,7 @@ class Session: NSObject {
 
         eventIndex += 1
 
-        context = state.sessionContext
+        context = state?.sessionContext
         context?[kSPSessionEventIndex] = NSNumber(value: eventIndex)
         objc_sync_exit(self)
 
@@ -165,7 +161,7 @@ class Session: NSObject {
 
     // MARK: - Private
 
-    private func retrieveUserId(withSessionDict sessionDict: [AnyHashable : Any]?) -> String? {
+    private static func retrieveUserId(withSessionDict sessionDict: [String : NSObject]?) -> String {
         var userId = sessionDict?[kSPSessionUserId] as? String ?? Utilities.getUUIDString()
         // Session_UserID is available only if the session context is enabled.
         // In a future version we would like to make it available even if the session context is disabled.
@@ -204,7 +200,7 @@ class Session: NSObject {
             currentSessionId: Utilities.getUUIDString(),
             previousSessionId: state?.sessionId,
             sessionIndex: sessionIndex,
-            userId: userId ?? "",
+            userId: userId,
             storage: "LOCAL_STORAGE")
         var sessionToPersist = state?.sessionContext
         // Remove previousSessionId if nil because dictionaries with nil values aren't plist serializable

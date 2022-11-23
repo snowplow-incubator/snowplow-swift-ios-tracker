@@ -61,7 +61,6 @@ public class ScreenView: SelfDescribingAbstract {
     /// @param name Name of the screen.
     /// @param screenId Identifier of the screen.
     @objc public init(name: String, screenId: UUID?) {
-        Utilities.checkArgument(name.count != 0, withMessage: "Name cannot be empty.")
         self.screenId = screenId ?? UUID()
         self.name = name
     }

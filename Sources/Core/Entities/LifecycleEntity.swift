@@ -32,9 +32,6 @@ public class LifecycleEntity: SelfDescribingJson {
         var parameters: [String : NSObject] = [:]
         parameters[kSPLifecycleEntityParamIsVisible] = NSNumber(value: isVisible)
         super.init(schema: kSPLifecycleEntitySchema, andData: parameters as NSObject)
-        
-        // Set here further checks about the arguments.
-        // e.g.: [SPUtilities checkArgument:([_name length] != 0) withMessage:@"Name cannot be empty."];
     }
 
     // --- Builder Methods

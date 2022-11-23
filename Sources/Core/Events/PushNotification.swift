@@ -33,11 +33,6 @@ public class PushNotification : NSObject {
     public var notification: NotificationContent?
 
     @objc public init(date: String, action: String, trigger: String, category: String, thread: String, notification: NotificationContent?) {
-        Utilities.checkArgument(date.count != 0, withMessage: "Delivery date cannot be empty.")
-        Utilities.checkArgument(action.count != 0, withMessage: "Action cannot be empty.")
-        Utilities.checkArgument(trigger.count != 0, withMessage: "Trigger cannot be empty.")
-        Utilities.checkArgument(category.count != 0, withMessage: "Category identifier cannot be empty.")
-        Utilities.checkArgument(thread.count != 0, withMessage: "Thread identifier cannot be empty.")
         self.date = date
         self.action = action
         self.trigger = trigger
@@ -107,8 +102,6 @@ public class NotificationContent : NSObject {
     @objc public var attachments: [NSObject]?
 
     @objc public init(title: String, body: String, badge: NSNumber?) {
-        Utilities.checkArgument(title.count != 0, withMessage: "Title cannot be empty.")
-        Utilities.checkArgument(body.count != 0, withMessage: "Body cannot be empty.")
         self.title = title
         self.body = body
         self.badge = badge

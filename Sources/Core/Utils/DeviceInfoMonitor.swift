@@ -41,7 +41,7 @@ class DeviceInfoMonitor {
      Note that `advertisingIdentifier` returns a sequence of 0s when used in the simulator.
      Use a real device if you want a proper IDFA.
      */
-    class var appleIdfa: String? {
+    var appleIdfa: String? {
         #if os(iOS) || os(tvOS)
         #if SNOWPLOW_IDFA_ENABLED
         var errorMsg = "ASIdentifierManager not found. Please, add the AdSupport.framework if you want to use it."
@@ -109,7 +109,7 @@ class DeviceInfoMonitor {
 
     /// Returns the generated identifier for vendors. More info can be found in UIDevice's identifierForVendor documentation. If you do not want to use IDFV, add the comiler flag <code>SNOWPLOW_NO_IDFV</code> to your build settings.
     /// - Returns: A string containing a formatted UUID for example E621E1F8-C36C-495A-93FC-0C247A3E6E5F.
-    class var appleIdfv: String? {
+    var appleIdfv: String? {
         var idfv: String? = nil
         #if os(iOS) || os(tvOS)
         #if !SNOWPLOW_NO_IDFV
@@ -121,13 +121,13 @@ class DeviceInfoMonitor {
 
     /// Returns the current device's vendor in the form of a string.
     /// - Returns: A string with vendor, i.e. "Apple Inc."
-    class var deviceVendor: String? {
+    var deviceVendor: String? {
         return "Apple Inc."
     }
 
     /// Returns the current device's model in the form of a string.
     /// - Returns: A string with device model.
-    class var deviceModel: String? {
+    var deviceModel: String? {
         let simulatorModel = (ProcessInfo.processInfo.environment)["SIMULATOR_MODEL_IDENTIFIER"]
         if simulatorModel != nil {
             return simulatorModel
@@ -142,7 +142,7 @@ class DeviceInfoMonitor {
 
     /// This is to detect what the version of mobile OS of the current device.
     /// - Returns: The current device's OS version type as a string.
-    class var osVersion: String? {
+    var osVersion: String? {
         #if os(iOS) || os(tvOS)
         return UIDevice.current.systemVersion
         #elseif os(watchOS)
@@ -161,7 +161,7 @@ class DeviceInfoMonitor {
         #endif
     }
 
-    class var osType: String? {
+    var osType: String? {
         #if os(iOS)
         return "ios"
         #elseif os(tvOS)
@@ -175,7 +175,7 @@ class DeviceInfoMonitor {
 
     /// Returns the carrier of the SIM inserted in the device.
     /// - Returns: A string containing the carrier name of the service provider.
-    class var carrierName: String? {
+    var carrierName: String? {
         #if os(iOS)
         let networkInfo = CTTelephonyNetworkInfo()
         var carrier: CTCarrier?
@@ -194,7 +194,7 @@ class DeviceInfoMonitor {
 
     /// Returns the Network Technology the device is using.
     /// - Returns: A string containing the Network Technology.
-    class var networkTechnology: String? {
+    var networkTechnology: String? {
         #if os(iOS)
         let networkInfo = CTTelephonyNetworkInfo()
         if #available(iOS 12.1, *) {
@@ -205,11 +205,12 @@ class DeviceInfoMonitor {
         } else {
             return networkInfo.currentRadioAccessTechnology ?? ""
         }
-        #endif
+        #else
         return ""
+        #endif
     }
 
-    class var carrierKey: String {
+    var carrierKey: String {
         #if os(iOS)
         if #available(iOS 12.1, *) {
             let networkInfo = CTTelephonyNetworkInfo()
@@ -226,7 +227,7 @@ class DeviceInfoMonitor {
 
     /// Returns the Network Type the device is connected to.
     /// - Returns: A string containing the Network Type.
-    class var networkType: String? {
+    var networkType: String? {
         #if os(iOS)
         let networkStatus = SNOWReachability.forInternetConnection()?.networkStatus
         switch networkStatus {
@@ -245,7 +246,7 @@ class DeviceInfoMonitor {
 
     /// Returns remaining battery level as an integer percentage of total battery capacity.
     /// - Returns: Battery level.
-    class var batteryLevel: Int? {
+    var batteryLevel: Int? {
         #if os(iOS)
         let batteryLevel = UIDevice.current.batteryLevel
         if batteryLevel != Float(UIDevice.BatteryState.unknown.rawValue) && batteryLevel >= 0 {
@@ -257,7 +258,7 @@ class DeviceInfoMonitor {
 
     /// Returns battery state for the device.
     /// - Returns: One of "charging", "full", "unplugged" or NULL
-    class var batteryState: String {
+    var batteryState: String {
         #if os(iOS)
         switch UIDevice.current.batteryState {
         case .charging:
@@ -276,7 +277,7 @@ class DeviceInfoMonitor {
 
     /// Returns whether low power mode is activated.
     /// - Returns: Boolean indicating the state of low power mode.
-    class var isLowPowerModeEnabled: Bool? {
+    var isLowPowerModeEnabled: Bool? {
         #if os(iOS)
         return ProcessInfo.processInfo.isLowPowerModeEnabled
         #else
@@ -286,13 +287,13 @@ class DeviceInfoMonitor {
 
     /// Returns total physical system memory in bytes.
     /// - Returns: Total physical system memory in bytes.
-    class var physicalMemory: UInt64 {
+    var physicalMemory: UInt64 {
         return ProcessInfo.processInfo.physicalMemory
     }
 
     /// Returns the amount of memory in bytes available to the current app (iOS 13+).
     /// - Returns: Amount of memory in bytes available to the current app (or 0 if not supported).
-    class var appAvailableMemory: Int? {
+    var appAvailableMemory: Int? {
         #if os(iOS)
         if #available(iOS 13.0, *) {
             return os_proc_available_memory()
@@ -303,7 +304,7 @@ class DeviceInfoMonitor {
 
     /// Returns number of bytes of storage remaining. The information is requested from the home directory.
     /// - Returns: Bytes of storage remaining.
-    class var availableStorage: Int64? {
+    var availableStorage: Int64? {
         #if os(iOS)
         let fileURL = URL(fileURLWithPath: NSHomeDirectory() as String)
         do {
@@ -318,7 +319,7 @@ class DeviceInfoMonitor {
 
     /// Returns the total number of bytes of storage. The information is requested from the home directory.
     /// - Returns: Total size of storage in bytes.
-    class var totalStorage: Int? {
+    var totalStorage: Int? {
         #if os(iOS)
         let fileURL = URL(fileURLWithPath: NSHomeDirectory() as String)
         do {

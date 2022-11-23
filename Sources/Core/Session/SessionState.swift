@@ -61,7 +61,7 @@ public class SessionState: NSObject, State {
             withFirstEventId: firstEventId,
             firstEventTimestamp: firstEventTimestamp,
             currentSessionId: currentSessionId,
-            previousSessionId: previousSessionId ?? "",
+            previousSessionId: previousSessionId,
             sessionIndex: sessionIndex,
             userId: userId,
             storage: storage)

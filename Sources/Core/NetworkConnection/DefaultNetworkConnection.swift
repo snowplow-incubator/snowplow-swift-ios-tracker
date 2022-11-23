@@ -84,9 +84,9 @@ public class DefaultNetworkConnection: NSObject, NetworkConnection, DefaultNetwo
             return _emitThreadPoolSize
         }
         set(emitThreadPoolSize) {
-            self.emitThreadPoolSize = emitThreadPoolSize
+            self._emitThreadPoolSize = emitThreadPoolSize
             if dataOperationQueue.maxConcurrentOperationCount != emitThreadPoolSize {
-                dataOperationQueue.maxConcurrentOperationCount = self.emitThreadPoolSize
+                dataOperationQueue.maxConcurrentOperationCount = emitThreadPoolSize
             }
         }
     }
@@ -173,9 +173,9 @@ public class DefaultNetworkConnection: NSObject, NetworkConnection, DefaultNetwo
 //                    SPLogError("Connection error: %@", connectionError)
                 }
 
-                objc_sync_enter(results)
+                objc_sync_enter(self)
                 results.append(result)
-                objc_sync_exit(results)
+                objc_sync_exit(self)
             })
         }
         dataOperationQueue.waitUntilAllOperationsAreFinished()

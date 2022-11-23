@@ -31,9 +31,6 @@ public class Structured: PrimitiveAbstract {
     @objc public var value: NSNumber?
 
     @objc public init(category: String, action: String) {
-        Utilities.checkArgument(category.count > 0, withMessage: "Category cannot be empty.")
-        Utilities.checkArgument(action.count > 0, withMessage: "Action cannot be empty.")
-        
         self.category = category
         self.action = action
     }

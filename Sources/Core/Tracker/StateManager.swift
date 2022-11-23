@@ -23,25 +23,22 @@ import Foundation
 
 class StateManager: NSObject {
     private var identifierToStateMachine: [String : StateMachineProtocol] = [:]
-    // TODO: remove by storing the identifier in the state machine protocol?
-    private var stateMachineToIdentifier: NSMapTable<StateMachineProtocol, NSString> = NSMapTable.weakToStrongObjects()
     private var eventSchemaToStateMachine: [String : [StateMachineProtocol]] = [:]
     private var eventSchemaToEntitiesGenerator: [String : [StateMachineProtocol]] = [:]
     private var eventSchemaToPayloadUpdater: [String : [StateMachineProtocol]] = [:]
     private var trackerState = TrackerState()
 
-    func addOrReplaceStateMachine(_ stateMachine: StateMachineProtocol, identifier stateMachineIdentifier: String) {
+    func addOrReplaceStateMachine(_ stateMachine: StateMachineProtocol) {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
         
-        if let previousStateMachine = identifierToStateMachine[stateMachineIdentifier] {
+        if let previousStateMachine = identifierToStateMachine[stateMachine.identifier] {
             if type(of: stateMachine) == type(of: previousStateMachine) {
                 return
             }
-            let _ = removeStateMachine(stateMachineIdentifier)
+            let _ = removeStateMachine(stateMachine.identifier)
         }
-        identifierToStateMachine[stateMachineIdentifier] = stateMachine
-        stateMachineToIdentifier.setObject(stateMachineIdentifier as NSString, forKey: stateMachine)
+        identifierToStateMachine[stateMachine.identifier] = stateMachine
         add(
             toSchemaRegistry: &eventSchemaToStateMachine,
             schemas: stateMachine.subscribedEventSchemasForTransitions,
@@ -61,7 +58,6 @@ class StateManager: NSObject {
             return false
         }
         identifierToStateMachine.removeValue(forKey: stateMachineIdentifier)
-        stateMachineToIdentifier.removeObject(forKey: stateMachine)
         trackerState.remove(withIdentifier: stateMachineIdentifier)
         remove(
             fromSchemaRegistry: &eventSchemaToStateMachine,
@@ -86,15 +82,13 @@ class StateManager: NSObject {
             stateMachines.append(contentsOf: eventSchemaToStateMachine["*"] ?? [])
             
             for stateMachine in stateMachines {
-                guard let stateIdentifier = stateMachineToIdentifier.object(forKey: stateMachine) as? String,
-                      let previousStateFuture = trackerState.stateFuture(withIdentifier: stateIdentifier) else { continue }
-                
+                let previousStateFuture = trackerState.stateFuture(withIdentifier: stateMachine.identifier)
                 let currentStateFuture = StateFuture(
                     event: sdEvent,
                     previousState: previousStateFuture,
                     stateMachine: stateMachine)
                 
-                trackerState.setStateFuture(currentStateFuture, identifier: stateIdentifier)
+                trackerState.setStateFuture(currentStateFuture, identifier: stateMachine.identifier)
                 // TODO: Remove early state computation.
                 /*
                  The early state-computation causes low performance as it's executed synchronously on
@@ -106,7 +100,7 @@ class StateManager: NSObject {
                  externally)
                  Remove the early state-computation only when these two problems are fixed.
                  */
-                let _ = currentStateFuture.state // Early state-computation
+                _ = currentStateFuture.state // Early state-computation
             }
         }
         return trackerState.snapshot()
@@ -122,9 +116,8 @@ class StateManager: NSObject {
         stateMachines.append(contentsOf: eventSchemaToEntitiesGenerator["*"] ?? [])
         
         for stateMachine in stateMachines {
-            if let stateIdentifier = stateMachineToIdentifier.object(forKey: stateMachine) as? String,
-               let state = event.state?.state(withIdentifier: stateIdentifier),
-               let entities = stateMachine.entities(from: event, state: state) {
+            let state = event.state?.state(withIdentifier: stateMachine.identifier)
+            if let entities = stateMachine.entities(from: event, state: state) {
                 result.append(contentsOf: entities)
             }
         }
@@ -140,9 +133,8 @@ class StateManager: NSObject {
         var stateMachines = eventSchemaToPayloadUpdater[schema] ?? []
         stateMachines.append(contentsOf: eventSchemaToPayloadUpdater["*"] ?? [])
         for stateMachine in stateMachines {
-            if let stateIdentifier = stateMachineToIdentifier.object(forKey: stateMachine) as? String,
-                let state = event.state?.state(withIdentifier: stateIdentifier),
-                let payloadValues = stateMachine.payloadValues(from: event, state: state) {
+            let state = event.state?.state(withIdentifier: stateMachine.identifier)
+            if let payloadValues = stateMachine.payloadValues(from: event, state: state) {
                 if !event.addPayloadValues(payloadValues) {
                     failures += 1
                 }
@@ -155,21 +147,19 @@ class StateManager: NSObject {
 
     func add(toSchemaRegistry schemaRegistry: inout [String : [StateMachineProtocol]], schemas: [String], stateMachine: StateMachineProtocol?) {
         for eventSchema in schemas {
-            var array = schemaRegistry[eventSchema]
-            if array == nil {
-                array = []
-                schemaRegistry[eventSchema] = array
-            }
+            var array = schemaRegistry[eventSchema] ?? []
             if let stateMachine {
-                array?.append(stateMachine)
+                array.append(stateMachine)
             }
+            schemaRegistry[eventSchema] = array
         }
     }
 
-    func remove(fromSchemaRegistry schemaRegistry: inout [String : [StateMachineProtocol]], schemas: [String], stateMachine: StateMachineProtocol?) {
+    func remove(fromSchemaRegistry schemaRegistry: inout [String : [StateMachineProtocol]], schemas: [String], stateMachine: StateMachineProtocol) {
         for eventSchema in schemas {
             var array = schemaRegistry[eventSchema]
-            array?.removeAll { $0 === stateMachine }
+            array?.removeAll { $0.identifier == stateMachine.identifier }
+            schemaRegistry[eventSchema] = array
         }
     }
 }

@@ -27,17 +27,8 @@ import Foundation
 /// - seealso: SPPayload
 @objc(SPSelfDescribingJson)
 public class SelfDescribingJson: NSObject {
-    private var _schema: String
     /// the schema URI for this self-describing JSON.
-    @objc public var schema: String {
-        get {
-            _schema
-        }
-        set(schema) {
-            Utilities.checkArgument(schema.count != 0, withMessage: "Schema cannot be nil or empty.")
-            _schema = schema
-        }
-    }
+    @objc public var schema: String
     
     /// Data of the self-describing JSON.
     @objc public var data: NSObject?
@@ -48,8 +39,7 @@ public class SelfDescribingJson: NSObject {
     ///   - data: Data to set for data field of the self-describing JSON, should be an NSDictionary.
     /// - Returns: An SPSelfDescribingJson.
     @objc public init(schema: String, andData data: NSObject?) {
-        Utilities.checkArgument(schema.count != 0, withMessage: "Schema cannot be nil or empty.")
-        self._schema = schema
+        self.schema = schema
         super.init()
         setData(withObject: data)
     }

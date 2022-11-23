@@ -39,7 +39,6 @@ public class EcommerceItem : PrimitiveAbstract {
     @objc public var orderId: String?
 
     @objc public init(sku: String, price: Double, quantity: Int) {
-        Utilities.checkArgument(sku.count != 0, withMessage: "SKU cannot be empty.")
         self.sku = sku
         self.price = price
         self.quantity = quantity

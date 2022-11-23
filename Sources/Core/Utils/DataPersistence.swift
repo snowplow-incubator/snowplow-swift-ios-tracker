@@ -196,7 +196,7 @@ public class DataPersistence: NSObject {
         do {
             try (dictionary as NSDictionary).write(to: fileUrl)
             result = true
-        } catch let e {
+        } catch _ {
 //        SPLogError("Unable to write file for sessions: %@", error?.localizedDescription ?? "-")
             result = false
         }

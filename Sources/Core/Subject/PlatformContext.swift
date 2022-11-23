@@ -30,6 +30,7 @@ class PlatformContext {
     private var networkDictUpdateFrequency: TimeInterval = 0.0
     private var lastUpdatedEphemeralMobileDict: TimeInterval = 0.0
     private var lastUpdatedEphemeralNetworkDict: TimeInterval = 0.0
+    private var deviceInfoMonitor: DeviceInfoMonitor
 
     /// Initializes a newly allocated PlatformContext object with default update frequency
     /// - Returns: a PlatformContext object
@@ -43,7 +44,9 @@ class PlatformContext {
     ///   - networkDictUpdateFrequency: Minimal gap between subsequent updates of network platform information
     /// - Returns: a PlatformContext object
     convenience init(mobileDictUpdateFrequency: TimeInterval, networkDictUpdateFrequency: TimeInterval) {
-        self.init(mobileDictUpdateFrequency: mobileDictUpdateFrequency, networkDictUpdateFrequency: networkDictUpdateFrequency)
+        self.init(mobileDictUpdateFrequency: mobileDictUpdateFrequency,
+                  networkDictUpdateFrequency: networkDictUpdateFrequency,
+                  deviceInfoMonitor: DeviceInfoMonitor())
     }
 
     /// Initializes a newly allocated PlatformContext object with custom update frequency for mobile and network properties and a custom device info monitor
@@ -55,6 +58,7 @@ class PlatformContext {
     init(mobileDictUpdateFrequency: TimeInterval, networkDictUpdateFrequency: TimeInterval, deviceInfoMonitor: DeviceInfoMonitor) {
         self.mobileDictUpdateFrequency = mobileDictUpdateFrequency
         self.networkDictUpdateFrequency = networkDictUpdateFrequency
+        self.deviceInfoMonitor = deviceInfoMonitor
         #if os(iOS)
         UIDevice.current.isBatteryMonitoringEnabled = true
         #endif
@@ -90,10 +94,10 @@ class PlatformContext {
 
     func setPlatformDict() {
         platformDict = Payload()
-        platformDict.addValueToPayload(DeviceInfoMonitor.osType, forKey: kSPPlatformOsType)
-        platformDict.addValueToPayload(DeviceInfoMonitor.osVersion, forKey: kSPPlatformOsVersion)
-        platformDict.addValueToPayload(DeviceInfoMonitor.deviceVendor, forKey: kSPPlatformDeviceManu)
-        platformDict.addValueToPayload(DeviceInfoMonitor.deviceModel, forKey: kSPPlatformDeviceModel)
+        platformDict.addValueToPayload(deviceInfoMonitor.osType, forKey: kSPPlatformOsType)
+        platformDict.addValueToPayload(deviceInfoMonitor.osVersion, forKey: kSPPlatformOsVersion)
+        platformDict.addValueToPayload(deviceInfoMonitor.deviceVendor, forKey: kSPPlatformDeviceManu)
+        platformDict.addValueToPayload(deviceInfoMonitor.deviceModel, forKey: kSPPlatformDeviceModel)
 
         #if os(iOS)
         setMobileDict()
@@ -101,11 +105,11 @@ class PlatformContext {
     }
 
     func setMobileDict() {
-        platformDict.addValueToPayload(DeviceInfoMonitor.carrierName, forKey: kSPMobileCarrier)
-        if let totalStorage = DeviceInfoMonitor.totalStorage {
+        platformDict.addValueToPayload(deviceInfoMonitor.carrierName, forKey: kSPMobileCarrier)
+        if let totalStorage = deviceInfoMonitor.totalStorage {
             platformDict.addNumericValueToPayload(NSNumber(value: totalStorage), forKey: kSPMobileTotalStorage)
         }
-        platformDict.addNumericValueToPayload(NSNumber(value: DeviceInfoMonitor.physicalMemory), forKey: kSPMobilePhysicalMemory)
+        platformDict.addNumericValueToPayload(NSNumber(value: deviceInfoMonitor.physicalMemory), forKey: kSPMobilePhysicalMemory)
         
         setEphemeralMobileDict()
         setEphemeralNetworkDict()
@@ -116,23 +120,23 @@ class PlatformContext {
 
         if let currentDict = platformDict.getAsDictionary() {
             if currentDict[kSPMobileAppleIdfa] == nil {
-                platformDict.addValueToPayload(DeviceInfoMonitor.appleIdfa, forKey: kSPMobileAppleIdfa)
+                platformDict.addValueToPayload(deviceInfoMonitor.appleIdfa, forKey: kSPMobileAppleIdfa)
             }
             if currentDict[kSPMobileAppleIdfv] == nil {
-                platformDict.addValueToPayload(DeviceInfoMonitor.appleIdfv, forKey: kSPMobileAppleIdfv)
+                platformDict.addValueToPayload(deviceInfoMonitor.appleIdfv, forKey: kSPMobileAppleIdfv)
             }
             
-            if let batteryLevel = DeviceInfoMonitor.batteryLevel {
+            if let batteryLevel = deviceInfoMonitor.batteryLevel {
                 platformDict.addNumericValueToPayload(NSNumber(value: batteryLevel), forKey: kSPMobileBatteryLevel)
             }
-            platformDict.addValueToPayload(DeviceInfoMonitor.batteryState, forKey: kSPMobileBatteryState)
-            if let isLowPowerModeEnabled = DeviceInfoMonitor.isLowPowerModeEnabled {
+            platformDict.addValueToPayload(deviceInfoMonitor.batteryState, forKey: kSPMobileBatteryState)
+            if let isLowPowerModeEnabled = deviceInfoMonitor.isLowPowerModeEnabled {
                 platformDict.addNumericValueToPayload(NSNumber(value: isLowPowerModeEnabled), forKey: kSPMobileLowPowerMode)
             }
-            if let availableStorage = DeviceInfoMonitor.availableStorage {
+            if let availableStorage = deviceInfoMonitor.availableStorage {
                 platformDict.addNumericValueToPayload(NSNumber(value: availableStorage), forKey: kSPMobileAvailableStorage)
             }
-            if let appAvailableMemory = DeviceInfoMonitor.appAvailableMemory {
+            if let appAvailableMemory = deviceInfoMonitor.appAvailableMemory {
                 platformDict.addNumericValueToPayload(NSNumber(value: appAvailableMemory), forKey: kSPMobileAppAvailableMemory)
             }
         }
@@ -141,7 +145,7 @@ class PlatformContext {
     func setEphemeralNetworkDict() {
         lastUpdatedEphemeralNetworkDict = Date().timeIntervalSince1970
 
-        platformDict.addValueToPayload(DeviceInfoMonitor.networkTechnology, forKey: kSPMobileNetworkTech)
-        platformDict.addValueToPayload(DeviceInfoMonitor.networkType, forKey: kSPMobileNetworkType)
+        platformDict.addValueToPayload(deviceInfoMonitor.networkTechnology, forKey: kSPMobileNetworkTech)
+        platformDict.addValueToPayload(deviceInfoMonitor.networkType, forKey: kSPMobileNetworkType)
     }
 }

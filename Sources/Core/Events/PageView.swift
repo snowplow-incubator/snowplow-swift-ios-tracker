@@ -37,7 +37,6 @@ public class PageView : PrimitiveAbstract {
     /// @param pageTitle Page title
     /// @param referrer Page referrer URL
     @objc public init(pageUrl: String) {
-        Utilities.checkArgument(pageUrl.count > 0, withMessage: "PageURL cannot be empty.")
         self.pageUrl = pageUrl
     }
     
