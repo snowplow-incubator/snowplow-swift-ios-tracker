@@ -1,3 +1,4 @@
 framework module SnowplowTracker {
+    umbrella header "Snowplow-umbrella-header.h"
     export *
 }

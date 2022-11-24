@@ -1,5 +1,5 @@
 //
-//  Tests-bridging-header.h
+//  Snowplow-umbrella-header.h
 //  Snowplow
 //
 //  Copyright (c) 2013-2022 Snowplow Analytics Ltd. All rights reserved.
@@ -19,9 +19,11 @@
 //  License: Apache License Version 2.0
 //
 
-#ifndef Tests_bridging_header_h
-#define Tests_bridging_header_h
+#ifndef Snowplow_umbrella_header_h
+#define Snowplow_umbrella_header_h
 
-#import <SnowplowIgluClient/IGLUClient.h>
+#if __has_include(<os/proc.h>)
+#import <os/proc.h>
+#endif
 
-#endif /* Tests_bridging_header_h */
+#endif /* Snowplow_umbrella_header_h */

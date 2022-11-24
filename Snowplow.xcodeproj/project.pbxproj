@@ -515,6 +515,10 @@
 		6BE70874292F68A700911E55 /* GDPRProcessingBasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE70872292F68A700911E55 /* GDPRProcessingBasis.swift */; };
 		6BE70875292F68A700911E55 /* GDPRProcessingBasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE70872292F68A700911E55 /* GDPRProcessingBasis.swift */; };
 		6BE70876292F68A700911E55 /* GDPRProcessingBasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE70872292F68A700911E55 /* GDPRProcessingBasis.swift */; };
+		6BE7087D292FBC8300911E55 /* Snowplow-umbrella-header.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BE7087C292FBC8300911E55 /* Snowplow-umbrella-header.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BE7087E292FBC8300911E55 /* Snowplow-umbrella-header.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BE7087C292FBC8300911E55 /* Snowplow-umbrella-header.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BE7087F292FBC8300911E55 /* Snowplow-umbrella-header.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BE7087C292FBC8300911E55 /* Snowplow-umbrella-header.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BE70880292FBC8300911E55 /* Snowplow-umbrella-header.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BE7087C292FBC8300911E55 /* Snowplow-umbrella-header.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		752DABD521CC38560065F874 /* SnowplowTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 752DABCC21CC38550065F874 /* SnowplowTracker.framework */; };
 		752DABFE21CC3B380065F874 /* Snowplow_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 752DABF521CC3B380065F874 /* Snowplow_macOS.framework */; };
 		752DAC3F21CC4A7B0065F874 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9E8213192DEC38006744C9 /* CoreTelephony.framework */; };
@@ -736,6 +740,7 @@
 		6BE70867292F67C000911E55 /* InspectableEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectableEvent.swift; sourceTree = "<group>"; };
 		6BE7086C292F683600911E55 /* LogLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogLevel.swift; sourceTree = "<group>"; };
 		6BE70872292F68A700911E55 /* GDPRProcessingBasis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDPRProcessingBasis.swift; sourceTree = "<group>"; };
+		6BE7087C292FBC8300911E55 /* Snowplow-umbrella-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Snowplow-umbrella-header.h"; sourceTree = "<group>"; };
 		750E7F1121F2735C0050A993 /* Nocilla.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nocilla.framework; path = Carthage/Build/iOS/Nocilla.framework; sourceTree = "<group>"; };
 		752DABCC21CC38550065F874 /* SnowplowTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SnowplowTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		752DABD421CC38560065F874 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1044,6 +1049,7 @@
 				AB0C27C3191B408200018557 /* Supporting Files */,
 				6BE70866292F678000911E55 /* Tracker */,
 				6BE70871292F686A00911E55 /* Utils */,
+				6BE7087C292FBC8300911E55 /* Snowplow-umbrella-header.h */,
 			);
 			path = Snowplow;
 			sourceTree = "<group>";
@@ -1302,6 +1308,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BE7087D292FBC8300911E55 /* Snowplow-umbrella-header.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1309,6 +1316,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BE7087E292FBC8300911E55 /* Snowplow-umbrella-header.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1316,6 +1324,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BE7087F292FBC8300911E55 /* Snowplow-umbrella-header.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1323,6 +1332,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BE70880292FBC8300911E55 /* Snowplow-umbrella-header.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
