@@ -295,11 +295,12 @@ class DeviceInfoMonitor {
     /// Returns the amount of memory in bytes available to the current app (iOS 13+).
     /// - Returns: Amount of memory in bytes available to the current app (or 0 if not supported).
     var appAvailableMemory: Int? {
-        #if os(iOS)
-        if #available(iOS 13.0, *) {
-            return os_proc_available_memory()
-        }
-        #endif
+        // TODO: couldn't find a way to import <os/proc.h>
+//        #if os(iOS)
+//        if #available(iOS 13.0, *) {
+//            return os_proc_available_memory()
+//        }
+//        #endif
         return nil
     }
 
