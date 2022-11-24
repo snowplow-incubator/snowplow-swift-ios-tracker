@@ -127,9 +127,9 @@ public class DefaultNetworkConnection: NetworkConnection {
 
         // Log
         if urlEndpoint?.scheme != nil && urlEndpoint?.host != nil {
-//            SPLogDebug("Emitter URL created successfully '%@'", urlEndpoint)
+            logDebug(message: "Emitter URL created successfully '\(urlEndpoint?.absoluteString ?? "-")'")
         } else {
-//            SPLogDebug("Invalid emitter URL: '%@'", urlEndpoint)
+            logDebug(message: "Invalid emitter URL: '\(urlEndpoint?.absoluteString ?? "-")'")
         }
         let userDefaults = UserDefaults.standard
         userDefaults.set(endpoint, forKey: kSPErrorTrackerUrl)
@@ -165,7 +165,7 @@ public class DefaultNetworkConnection: NetworkConnection {
 
                 let result = RequestResult(statusCode: httpResponse?.statusCode, oversize: request.oversize, storeIds: request.emitterEventIds)
                 if !result.isSuccessful {
-//                    SPLogError("Connection error: %@", connectionError)
+                    logError(message: "Connection error: " + (connectionError?.localizedDescription ?? "-"))
                 }
 
                 objc_sync_enter(self)

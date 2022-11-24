@@ -156,6 +156,7 @@ extension UIViewController {
         if viewController is UISplitViewController {
             return .splitView
         }
+        // TODO: this was taken over from Obj-C, how would it ever occur?
         if viewController is UIPopoverPresentationController {
             return .popoverPresentation
         }
@@ -178,18 +179,14 @@ extension UIViewController {
     }
 
     func _SP_topViewController(_ rootViewController: UIViewController) -> UIViewController {
-        if rootViewController is UINavigationController {
-            let navigationController = rootViewController as? UINavigationController
-            if let last = navigationController?.viewControllers.last {
-                return _SP_topViewController(last)
-            }
+        if let navigationController = rootViewController as? UINavigationController,
+           let last = navigationController.viewControllers.last {
+            return _SP_topViewController(last)
         }
 
-        if rootViewController is UITabBarController {
-            let tabController = rootViewController as? UITabBarController
-            if let controller = tabBarController?.selectedViewController {
-                return _SP_topViewController(controller)
-            }
+        if let tabBarController = rootViewController as? UITabBarController,
+           let controller = tabBarController.selectedViewController {
+            return _SP_topViewController(controller)
         }
 
         if let presentedViewController = rootViewController.presentedViewController {

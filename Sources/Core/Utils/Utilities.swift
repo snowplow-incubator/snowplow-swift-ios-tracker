@@ -192,10 +192,8 @@ class Utilities {
     /// - Parameter key: A kebab-case key.
     /// - Returns: A camel-case string.
     class func camelcaseParsedKey(_ key: String) -> String? {
-        let scanner = Scanner(string: key)
         let words = key.split(separator: "-")
 
-//        SPLogVerbose("%@", words)
         if words.count == 0 {
             return nil
         } else if words.count == 1 {

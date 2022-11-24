@@ -58,7 +58,7 @@ public class ConfigurationBundle: Configuration {
         if let namespace = dictionary["namespace"] as? String {
             self.namespace = namespace
         } else {
-//            SPLogDebug("Error assigning: namespace")
+            logDebug(message: "Error assigning: namespace")
             return nil
         }
         if let config = dictionary["networkConfiguration"] as? [String : NSObject] {

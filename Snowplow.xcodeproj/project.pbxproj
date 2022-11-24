@@ -1334,7 +1334,6 @@
 			buildConfigurationList = 752DABDD21CC38560065F874 /* Build configuration list for PBXNativeTarget "Snowplow-iOS" */;
 			buildPhases = (
 				752DABC721CC38550065F874 /* Headers */,
-				ED8867182571695B00DB53BB /* Run Script - Copy public headers */,
 				752DABC821CC38550065F874 /* Sources */,
 				752DABC921CC38550065F874 /* Frameworks */,
 				752DABCA21CC38550065F874 /* Resources */,
@@ -1373,7 +1372,6 @@
 			buildConfigurationList = 752DABED21CC3A090065F874 /* Build configuration list for PBXNativeTarget "Snowplow-watchOS" */;
 			buildPhases = (
 				752DABE321CC3A090065F874 /* Headers */,
-				ED8C8D0825E4FC4500BF6D14 /* Run Script - Copy public headers */,
 				752DABE421CC3A090065F874 /* Sources */,
 				752DABE521CC3A090065F874 /* Frameworks */,
 				752DABE621CC3A090065F874 /* Resources */,
@@ -1392,7 +1390,6 @@
 			buildConfigurationList = 752DAC0621CC3B380065F874 /* Build configuration list for PBXNativeTarget "Snowplow-macOS" */;
 			buildPhases = (
 				752DABF021CC3B380065F874 /* Headers */,
-				ED8C8D0925E4FCF000BF6D14 /* Run Script - Copy public headers */,
 				752DABF121CC3B380065F874 /* Sources */,
 				752DABF221CC3B380065F874 /* Frameworks */,
 				752DABF321CC3B380065F874 /* Resources */,
@@ -1429,7 +1426,6 @@
 			buildConfigurationList = 75F9C5CE21FA2E0F00A5B8FC /* Build configuration list for PBXNativeTarget "Snowplow-iOS-Static" */;
 			buildPhases = (
 				75F9C5E321FA359400A5B8FC /* Headers */,
-				ED8C8D0A25E4FD1100BF6D14 /* Run Script - Copy public headers */,
 				75F9C5C421FA2E0F00A5B8FC /* Sources */,
 				75F9C5C521FA2E0F00A5B8FC /* Frameworks */,
 				75F9C5C621FA2E0F00A5B8FC /* CopyFiles */,
@@ -1449,7 +1445,7 @@
 		AB0C27B5191B408200018557 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1230;
+				LastUpgradeCheck = 1410;
 				ORGANIZATIONNAME = "Snowplow Analytics";
 				TargetAttributes = {
 					752DABCB21CC38550065F874 = {
@@ -1532,78 +1528,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		ED8867182571695B00DB53BB /* Run Script - Copy public headers */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script - Copy public headers";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "sh ./.scripts/copy_public_headers.sh\n";
-		};
-		ED8C8D0825E4FC4500BF6D14 /* Run Script - Copy public headers */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script - Copy public headers";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "sh ./.scripts/copy_public_headers.sh\n";
-		};
-		ED8C8D0925E4FCF000BF6D14 /* Run Script - Copy public headers */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script - Copy public headers";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "sh ./.scripts/copy_public_headers.sh\n";
-		};
-		ED8C8D0A25E4FD1100BF6D14 /* Run Script - Copy public headers */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script - Copy public headers";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "sh ./.scripts/copy_public_headers.sh\n";
-		};
 		ED8EA918258A7118008E292C /* Run Script - Copy Frameworks (Carthage) */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2541,6 +2465,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
@@ -2597,6 +2522,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
@@ -2649,6 +2575,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2685,6 +2612,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;

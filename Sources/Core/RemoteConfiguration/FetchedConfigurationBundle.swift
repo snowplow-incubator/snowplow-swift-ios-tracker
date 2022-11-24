@@ -33,17 +33,17 @@ class FetchedConfigurationBundle: Configuration {
     
     init?(dictionary: [String : NSObject]) {
         guard let schema = dictionary["$schema"] as? String else {
-//            SPLogDebug("Error assigning: schema")
+            logDebug(message: "Error assigning: schema")
             return nil
         }
         self.schema = schema
         guard let configurationVersion = dictionary["configurationVersion"] as? Int else {
-//            SPLogDebug("Error assigning: configurationVersion")
+            logDebug(message: "Error assigning: configurationVersion")
             return nil
         }
         self.configurationVersion = configurationVersion
         guard let bundles = dictionary["configurationBundle"] as? [[String : NSObject]] else {
-//            SPLogDebug("Error assigning: configurationBundle")
+            logDebug(message: "Error assigning: configurationBundle")
             return nil
         }
         self.configurationBundle = bundles.map { ConfigurationBundle(dictionary: $0) }.filter { $0 != nil }.map { $0! }

@@ -49,7 +49,7 @@ class MockNetworkConnection: NSObject, NetworkConnection {
         var requestResults: [RequestResult] = []
         for request in requests {
             let result = RequestResult(statusCode: statusCode, oversize: request.oversize, storeIds: request.emitterEventIds)
-//            SPLogVerbose("Sent %@ with success %@", request.emitterEventIds, result.isSuccessful() ? "YES" : "NO")
+            logVerbose(message: "Sent \(String(describing: request.emitterEventIds)) with success \(result.isSuccessful ? "YES" : "NO")")
             requestResults.append(result)
         }
         previousRequests.append(requests)

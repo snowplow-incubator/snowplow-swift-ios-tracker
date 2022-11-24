@@ -62,7 +62,7 @@ class MemoryEventStore: NSObject, EventStore {
             return []
         }
         let len = min(Int(queryLimit), setCount)
-        let range = NSRange(location: 0, length: len)
+        _ = NSRange(location: 0, length: len)
         var count = 0
         let indexes = orderedSet.indexes { _, _, _ in
             count += 1

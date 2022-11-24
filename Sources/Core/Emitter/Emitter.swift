@@ -384,13 +384,7 @@ class Emitter: NSObject, EmitterEventProcessing {
         objc_sync_enter(self)
         if !isSending && !pausedEmit {
             isSending = true
-//            do {
-            // TODO: check if try catch is necessary
             attemptEmit()
-//            } catch {
-////                SPLogError("Received exception during emission process: %@", exception)
-//                isSending = false
-//            }
         }
         objc_sync_exit(self)
     }
@@ -398,7 +392,7 @@ class Emitter: NSObject, EmitterEventProcessing {
     func attemptEmit() {
         guard let eventStore else { return }
         if eventStore.count() == 0 {
-//            SPLogDebug("Database empty. Returning.", nil)
+            logDebug(message: "Database empty. Returning.")
             isSending = false
             return
         }
@@ -407,7 +401,7 @@ class Emitter: NSObject, EmitterEventProcessing {
         let requests = buildRequests(fromEvents: events)
         let sendResults = networkConnection?.sendRequests(requests)
 
-//        SPLogVerbose("Processing emitter results.")
+        logVerbose(message: "Processing emitter results.")
 
         var successCount = 0
         var failedWillRetryCount = 0
@@ -428,15 +422,15 @@ class Emitter: NSObject, EmitterEventProcessing {
                 if let resultIndexArray {
                     removableEvents.append(contentsOf: resultIndexArray)
                 }
-//                SPLogError("Sending events to Collector failed with status %ld. Events will be dropped.", result.statusCode)
+                logError(message: String(format: "Sending events to Collector failed with status %ld. Events will be dropped.", result.statusCode ?? -1))
             }
         }
         let allFailureCount = failedWillRetryCount + failedWontRetryCount
 
         let _ = eventStore.removeEvents(withIds: removableEvents)
 
-//        SPLogDebug("Success Count: %@", NSNumber(value: successCount).stringValue)
-//        SPLogDebug("Failure Count: %@", NSNumber(value: allFailureCount).stringValue)
+        logDebug(message: String(format: "Success Count: %d", successCount))
+        logDebug(message: String(format: "Failure Count: %d", allFailureCount))
 
         if callback != nil {
             if allFailureCount == 0 {
@@ -447,7 +441,7 @@ class Emitter: NSObject, EmitterEventProcessing {
         }
 
         if failedWillRetryCount > 0 && successCount == 0 {
-//            SPLogDebug("Ending emitter run as all requests failed.", nil)
+            logDebug(message: "Ending emitter run as all requests failed.")
             Thread.sleep(forTimeInterval: 5)
             isSending = false
             return

@@ -186,5 +186,3 @@ public class Payload: NSObject {
         return getAsDictionary()?.description ?? ""
     }
 }
-
-//#define SPLogPayloadError(issue, format, ...) if (self.allowDiagnostic) SPLogTrack(issue, format, ##__VA_ARGS__); else SPLogError(format, ##__VA_ARGS__)

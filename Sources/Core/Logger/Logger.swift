@@ -21,12 +21,34 @@
 
 import Foundation
 
-//func SPLogTrack(_ errorOrException: Any?, _ format: String)
+func logDiagnostic(message: String,
+                   errorOrException: Any? = nil,
+                   file: String = #file,
+                   line: Int = #line,
+                   function: String = #function) {
+    Logger.diagnostic("\(file):\(line) : \(function)", message: message, errorOrException: errorOrException)
+}
 
-//#define SPLogTrack(optionalErrorOrException, format, ...) [SPLogger diagnostic:NSStringFromClass(self.class) message:[[NSString alloc] initWithFormat:format, ##__VA_ARGS__] errorOrException:optionalErrorOrException]
-//#define SPLogError(format, ...) [SPLogger error:NSStringFromClass(self.class) message:[[NSString alloc] initWithFormat:format, ##__VA_ARGS__]]
-//#define SPLogDebug(format, ...) [SPLogger debug:NSStringFromClass(self.class) message:[[NSString alloc] initWithFormat:format, ##__VA_ARGS__]]
-//#define SPLogVerbose(format, ...) [SPLogger verbose:NSStringFromClass(self.class) message:[[NSString alloc] initWithFormat:format, ##__VA_ARGS__]]
+func logError(message: String,
+              file: String = #file,
+              line: Int = #line,
+              function: String = #function) {
+    Logger.error("\(file):\(line) : \(function)", message: message)
+}
+
+func logDebug(message: String,
+              file: String = #file,
+              line: Int = #line,
+              function: String = #function) {
+    Logger.debug("\(file):\(line) : \(function)", message: message)
+}
+
+func logVerbose(message: String,
+                file: String = #file,
+                line: Int = #line,
+                function: String = #function) {
+    Logger.verbose("\(file):\(line) : \(function)", message: message)
+}
 
 class Logger: NSObject {
     private static var _logLevel: LogLevel = .off
@@ -84,8 +106,6 @@ class Logger: NSObject {
                 delegate.debug(tag, message: message)
             case .verbose:
                 delegate.verbose(tag, message: message)
-            @unknown default:
-                break
             }
             return
         }

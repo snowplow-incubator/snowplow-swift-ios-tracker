@@ -61,8 +61,8 @@ class ConfigurationCache: NSObject {
         if let cacheFileUrl {
             do {
                 try FileManager.default.removeItem(at: cacheFileUrl)
-            } catch let e {
-                //            SPLogError("Error on clearing configuration from cache: %@", error.localizedDescription)
+            } catch let error {
+                logError(message: String(format: "Error on clearing configuration from cache: %@", error.localizedDescription))
             }
         }
         #endif
@@ -79,18 +79,18 @@ class ConfigurationCache: NSObject {
             if #available(iOS 12, tvOS 12, watchOS 5, macOS 10.14, *) {
                 configuration = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? FetchedConfigurationBundle
             } else {
-                var unarchiver = NSKeyedUnarchiver(forReadingWith: data)
+                let unarchiver = NSKeyedUnarchiver(forReadingWith: data)
                 configuration = unarchiver.decodeObject() as? FetchedConfigurationBundle
                 unarchiver.finishDecoding()
             }
-        } catch let e {
-//          SPLogError("Exception on getting configuration from cache: %@", exception.reason)
+        } catch let error {
+            logError(message: String(format: "Exception on getting configuration from cache: %@", error.localizedDescription))
             configuration = nil
         }
     }
 
     func store() {
-        DispatchQueue.global(qos: .default)
+        _ = DispatchQueue.global(qos: .default)
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
         
@@ -112,8 +112,8 @@ class ConfigurationCache: NSObject {
                 archiver?.finishEncoding()
             }
             try data.write(to: cacheFileUrl, options: .atomic)
-        } catch let e {
-            //     SPLogError("Error on caching configuration: %@", error.localizedDescription)
+        } catch let error {
+            logError(message: String(format: "Error on caching configuration: %@", error.localizedDescription))
         }
     }
 

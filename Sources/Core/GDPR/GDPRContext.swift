@@ -76,8 +76,6 @@ class GDPRContext: NSObject {
             return "public_task"
         case .legitimateInterests:
             return "legitimate_interests"
-        default:
-            return ""
         }
     }
 }

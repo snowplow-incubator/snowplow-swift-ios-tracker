@@ -614,7 +614,7 @@ class Tracker: NSObject {
             if let sessionDict = session.getDictWithEventId(eventId, eventTimestamp: eventTimestamp, userAnonymisation: userAnonymisation) {
                 contexts.append(SelfDescribingJson(schema: kSPSessionContextSchema, andDictionary: sessionDict))
             } else {
-//                SPLogTrack(nil, "Unable to get session context for eventId: %@", eventId)
+                logDiagnostic(message: String(format: "Unable to get session context for eventId: %@", eventId))
             }
         }
 

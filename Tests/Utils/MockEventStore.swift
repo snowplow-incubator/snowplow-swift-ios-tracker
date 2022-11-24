@@ -36,7 +36,7 @@ class MockEventStore: NSObject, EventStore {
     func addEvent(_ payload: Payload) {
         objc_sync_enter(self)
         lastInsertedRow += 1
-//        SPLogVerbose("Add %@", payload)
+        logVerbose(message: "Add \(payload)")
         db[Int64(lastInsertedRow)] = payload
         objc_sync_exit(self)
     }
@@ -44,7 +44,7 @@ class MockEventStore: NSObject, EventStore {
     func removeEvent(withId storeId: Int64) -> Bool {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
-//        SPLogVerbose("Remove %lld", storeId)
+        logVerbose(message: "Remove \(storeId)")
         return db.removeValue(forKey: storeId) != nil
     }
 
@@ -84,7 +84,7 @@ class MockEventStore: NSObject, EventStore {
         if queryLimit < events.count {
             events = Array(events.prefix(Int(queryLimit)))
         }
-//        SPLogVerbose("emittableEventsWithQueryLimit: %@", eventIds)
+        logVerbose(message: "emittableEventsWithQueryLimit: \(eventIds)")
         return events
     }
 }

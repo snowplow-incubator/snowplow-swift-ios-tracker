@@ -81,7 +81,7 @@ class Session {
             dataPersistence?.session = storedSessionDict
         }
         if state == nil {
-//            SPLogTrack(nil, "No previous session info available")
+            logDiagnostic(message: "No previous session info available")
         }
         
         // Start session check

@@ -328,7 +328,7 @@ class Subject : NSObject {
             if geoLocationDict[kSPGeoLatitude] != nil && geoLocationDict[kSPGeoLongitude] != nil {
                 return geoLocationDict
             } else {
-//                SPLogDebug("GeoLocation missing required fields; cannot get.")
+                logDebug(message: "GeoLocation missing required fields; cannot get.")
                 return nil
             }
         } else {

@@ -156,8 +156,8 @@ class DataPersistence: NSObject {
         if let fileUrl {
             do {
                 try FileManager.default.removeItem(at: fileUrl)
-            } catch let e {
-                //                SPLogError("%@", error?.localizedDescription)
+            } catch let error {
+                logError(message: error.localizedDescription)
                 return false
             }
         }
@@ -187,7 +187,9 @@ class DataPersistence: NSObject {
             error = e
         }
         
-//        SPLogError("Unable to create directory for tracker data persistence: %@", error?.localizedDescription)
+        if let error {
+            logError(message: String(format: "Unable to create directory for tracker data persistence: %@", error.localizedDescription))
+        }
         return nil
     }
 
@@ -196,8 +198,8 @@ class DataPersistence: NSObject {
         do {
             try (dictionary as NSDictionary).write(to: fileUrl)
             result = true
-        } catch _ {
-//        SPLogError("Unable to write file for sessions: %@", error?.localizedDescription ?? "-")
+        } catch let error {
+            logError(message: String(format: "Unable to write file for sessions: %@", error.localizedDescription))
             result = false
         }
         return result

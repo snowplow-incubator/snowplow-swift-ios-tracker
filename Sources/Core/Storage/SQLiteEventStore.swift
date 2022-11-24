@@ -134,7 +134,7 @@ class SQLiteEventStore: NSObject, EventStore {
         var res = false
         queue?.inDatabase({ db in
             if db.open() {
-//                SPLogDebug("Removing %@ from database now.", NSNumber(value: storeId).stringValue)
+                logDebug(message: String(format: "Removing %d from database now.", storeId))
                 res = db.executeUpdate(_queryDeleteId, withArgumentsIn: [storeId])
             }
         })
@@ -146,7 +146,7 @@ class SQLiteEventStore: NSObject, EventStore {
         queue?.inDatabase({ db in
             if db.open() && storeIds.count != 0 {
                 let ids = storeIds.map { $0.stringValue }.joined(separator: ",")
-//                SPLogDebug("Removing [%@] from database now.", ids)
+                logDebug(message: String(format: "Removing [%@] from database now.", ids))
                 let query = String(format: _queryDeleteIds, ids)
                 res = db.executeUpdate(query, withArgumentsIn: [])
             }
@@ -158,7 +158,7 @@ class SQLiteEventStore: NSObject, EventStore {
         var res = false
         queue?.inDatabase({ db in
             if db.open() {
-//                SPLogDebug("Removing all events from database now.")
+                logDebug(message: "Removing all events from database now.")
                 res = db.executeUpdate(_queryDeleteAll, withArgumentsIn: [])
             }
         })

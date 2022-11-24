@@ -36,7 +36,7 @@ public class LifecycleEntity: SelfDescribingJson {
     // --- Builder Methods
 
     public func index(_ index: NSNumber?) -> Self {
-        if var data,
+        if let data,
            var parameters = data as? [String : NSObject] {
             parameters[kSPLifecycleEntityParamIndex] = index
         }

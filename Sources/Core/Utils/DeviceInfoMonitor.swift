@@ -47,13 +47,13 @@ class DeviceInfoMonitor {
         var errorMsg = "ASIdentifierManager not found. Please, add the AdSupport.framework if you want to use it."
         let identifierManagerClass: AnyClass? = NSClassFromString("ASIdentifierManager")
         if identifierManagerClass == nil {
-//            SPLogError(errorMsg)
+            logError(message: errorMsg)
             return ""
         }
 
         let sharedManagerSelector = NSSelectorFromString("sharedManager")
         if !(identifierManagerClass?.responds(to: sharedManagerSelector) ?? false) {
-//            SPLogError(errorMsg)
+            logError(message: errorMsg)
             return ""
         }
 
@@ -63,13 +63,13 @@ class DeviceInfoMonitor {
             errorMsg = "ATTrackingManager not found. Please, add the AppTrackingTransparency.framework if you want to use it."
             let trackingManagerClass: AnyClass? = NSClassFromString("ATTrackingManager")
             if trackingManagerClass == nil {
-//                SPLogError(errorMsg)
+                logError(message: errorMsg)
                 return ""
             }
 
             let trackingStatusSelector = NSSelectorFromString("trackingAuthorizationStatus")
             if !(trackingManagerClass?.responds(to: trackingStatusSelector) ?? false) {
-//                SPLogError(errorMsg)
+                logError(message: errorMsg)
                 return ""
             }
 
@@ -77,26 +77,26 @@ class DeviceInfoMonitor {
             let authorizationStatus = (Int(trackingManagerClass?.method(for: trackingStatusSelector) ?? 0))(trackingManagerClass, trackingStatusSelector)
 
             if authorizationStatus != 3 {
-//                SPLogDebug("The user didn't let tracking of IDFA. Authorization status is: %d", authorizationStatus)
+                logDebug(message: String(format: "The user didn't let tracking of IDFA. Authorization status is: %d", authorizationStatus))
                 return ""
             }
         } else {
             let isAdvertisingTrackingEnabledSelector = NSSelectorFromString("isAdvertisingTrackingEnabled")
             if !(identifierManager?.responds(to: isAdvertisingTrackingEnabledSelector) ?? false) {
-//                SPLogError(errorMsg)
+                logError(message: errorMsg)
                 return ""
             }
 
             let isAdvertisingTrackingEnabled = (Bool(identifierManager?.method(for: isAdvertisingTrackingEnabledSelector) ?? false))(identifierManager, isAdvertisingTrackingEnabledSelector)
             if !isAdvertisingTrackingEnabled {
-//                SPLogError("The user didn't let tracking of IDFA.")
+                logError(message: "The user didn't let tracking of IDFA.")
                 return ""
             }
         }
 
         let advertisingIdentifierSelector = NSSelectorFromString("advertisingIdentifier")
         if !(identifierManager?.responds(to: advertisingIdentifierSelector) ?? false) {
-//            SPLogError("ASIdentifierManager doesn't respond to selector `advertisingIdentifier`.")
+            logError(message: "ASIdentifierManager doesn't respond to selector `advertisingIdentifier`.")
             return ""
         }
 
@@ -312,7 +312,7 @@ class DeviceInfoMonitor {
             let values = try fileURL.resourceValues(forKeys: [.volumeAvailableCapacityForImportantUsageKey])
             return values.volumeAvailableCapacityForImportantUsage
         } catch {
-//            SPLogError("Failed to read available storage size: \(error.localizedDescription)")
+            logError(message: "Failed to read available storage size: \(error.localizedDescription)")
         }
         #endif
         return nil
@@ -327,7 +327,7 @@ class DeviceInfoMonitor {
             let values = try fileURL.resourceValues(forKeys: [.volumeTotalCapacityKey])
             return values.volumeTotalCapacity
         } catch {
-//            SPLogError("Failed to read available storage size: \(error.localizedDescription)")
+            logError(message: "Failed to read available storage size: \(error.localizedDescription)")
         }
         #endif
         return nil

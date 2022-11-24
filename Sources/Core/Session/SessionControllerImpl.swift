@@ -58,7 +58,7 @@ class SessionControllerImpl: Controller, SessionController {
                 if isEnabled {
                     return Int(session.foregroundTimeout / 1000)
                 } else {
-//                    SPLogTrack(nil, "Attempt to access SessionController fields when disabled")
+                    logDiagnostic(message: "Attempt to access SessionController fields when disabled")
                 }
             }
             return -1
@@ -86,7 +86,7 @@ class SessionControllerImpl: Controller, SessionController {
                 if isEnabled {
                     return Int(session.backgroundTimeout / 1000)
                 } else {
-//                    SPLogTrack(nil, "Attempt to access SessionController fields when disabled")
+                    logDiagnostic(message: "Attempt to access SessionController fields when disabled")
                 }
             }
             return -1
@@ -101,7 +101,7 @@ class SessionControllerImpl: Controller, SessionController {
     var onSessionStateUpdate: ((_ sessionState: SessionState) -> Void)? {
         get {
             if !isEnabled {
-//                SPLogTrack(nil, "Attempt to access SessionController fields when disabled")
+                logDiagnostic(message: "Attempt to access SessionController fields when disabled")
                 return nil
             }
             return session?.onSessionStateUpdate
@@ -115,7 +115,7 @@ class SessionControllerImpl: Controller, SessionController {
 
     var sessionIndex: Int {
         if !isEnabled {
-//            SPLogTrack(nil, "Attempt to access SessionController fields when disabled")
+            logDiagnostic(message: "Attempt to access SessionController fields when disabled")
             return -1
         }
         return session?.state?.sessionIndex ?? -1
@@ -123,7 +123,7 @@ class SessionControllerImpl: Controller, SessionController {
 
     var sessionId: String? {
         if !isEnabled {
-//            SPLogTrack(nil, "Attempt to access SessionController fields when disabled")
+            logDiagnostic(message: "Attempt to access SessionController fields when disabled")
             return nil
         }
         return session?.state?.sessionId
@@ -131,7 +131,7 @@ class SessionControllerImpl: Controller, SessionController {
 
     var userId: String? {
         if !isEnabled {
-//            SPLogTrack(nil, "Attempt to access SessionController fields when disabled")
+            logDiagnostic(message: "Attempt to access SessionController fields when disabled")
             return nil
         }
         return session?.userId
@@ -139,7 +139,7 @@ class SessionControllerImpl: Controller, SessionController {
 
     var isInBackground: Bool {
         if !isEnabled {
-//            SPLogTrack(nil, "Attempt to access SessionController fields when disabled")
+            logDiagnostic(message: "Attempt to access SessionController fields when disabled")
             return false
         }
         return session?.inBackground ?? false
@@ -147,7 +147,7 @@ class SessionControllerImpl: Controller, SessionController {
 
     var backgroundIndex: Int {
         if !isEnabled {
-//            SPLogTrack(nil, "Attempt to access SessionController fields when disabled")
+            logDiagnostic(message: "Attempt to access SessionController fields when disabled")
             return -1
         }
         return session?.backgroundIndex ?? -1
@@ -155,7 +155,7 @@ class SessionControllerImpl: Controller, SessionController {
 
     var foregroundIndex: Int {
         if !isEnabled {
-//            PLogTrack(nil, "Attempt to access SessionController fields when disabled")
+            logDiagnostic(message: "Attempt to access SessionController fields when disabled")
             return -1
         }
         return session?.foregroundIndex ?? -1
