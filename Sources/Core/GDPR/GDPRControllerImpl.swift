@@ -20,13 +20,12 @@
 
 import Foundation
 
-@objc(SPGDPRControllerImpl)
-public class GDPRControllerImpl: Controller, GDPRController {
+class GDPRControllerImpl: Controller, GDPRController {
     var gdpr: GDPRContext?
     
     // MARK: - Methods
 
-    public func reset(
+    func reset(
         basis basisForProcessing: GDPRProcessingBasis,
         documentId: String?,
         documentVersion: String?,
@@ -42,43 +41,43 @@ public class GDPRControllerImpl: Controller, GDPRController {
         dirtyConfig.gdprUpdated = true
     }
 
-    public func disable() {
+    func disable() {
         dirtyConfig.isEnabled = false
         tracker.gdprContext = nil
     }
 
-    public var isEnabled: Bool {
+    var isEnabled: Bool {
         get {
             return tracker.gdprContext != nil
         }
     }
 
-    public func enable() -> Bool {
+    func enable() -> Bool {
         if let gdpr { tracker.gdprContext = gdpr }
         else { return false }
         dirtyConfig.isEnabled = true
         return true
     }
 
-    public var basisForProcessing: GDPRProcessingBasis {
+    var basisForProcessing: GDPRProcessingBasis {
         get {
             return ((gdpr)?.basis)!
         }
     }
 
-    public var documentId: String? {
+    var documentId: String? {
         get {
             return (gdpr)?.documentId
         }
     }
 
-    public var documentVersion: String? {
+    var documentVersion: String? {
         get {
             return (gdpr)?.documentVersion
         }
     }
 
-    public var documentDescription: String? {
+    var documentDescription: String? {
         get {
             return (gdpr)?.documentDescription
         }
@@ -86,13 +85,13 @@ public class GDPRControllerImpl: Controller, GDPRController {
 
     // MARK: - Private methods
 
-    public var tracker: Tracker {
+    private var tracker: Tracker {
         get {
             return serviceProvider.tracker
         }
     }
 
-    public var dirtyConfig: GDPRConfigurationUpdate {
+    private var dirtyConfig: GDPRConfigurationUpdate {
         get {
             return serviceProvider.gdprConfigurationUpdate
         }

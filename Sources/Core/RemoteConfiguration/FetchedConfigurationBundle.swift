@@ -21,18 +21,17 @@
 
 import Foundation
 
-@objc(SPFetchedConfigurationBundle)
-public class FetchedConfigurationBundle: Configuration {
-    @objc public var schema: String
-    @objc public var configurationVersion: Int
-    @objc public var configurationBundle: [ConfigurationBundle] = []
+class FetchedConfigurationBundle: Configuration {
+    var schema: String
+    var configurationVersion: Int
+    var configurationBundle: [ConfigurationBundle] = []
     
-    @objc public init(schema: String, configurationVersion: Int) {
+    init(schema: String, configurationVersion: Int) {
         self.schema = schema
         self.configurationVersion = configurationVersion
     }
     
-    @objc public init?(dictionary: [String : NSObject]) {
+    init?(dictionary: [String : NSObject]) {
         guard let schema = dictionary["$schema"] as? String else {
 //            SPLogDebug("Error assigning: schema")
             return nil
@@ -52,7 +51,7 @@ public class FetchedConfigurationBundle: Configuration {
 
     // MARK: - NSCopying
 
-    override public func copy(with zone: NSZone? = nil) -> Any {
+    override func copy(with zone: NSZone? = nil) -> Any {
         let copy: FetchedConfigurationBundle? = nil
         copy?.schema = schema
         copy?.configurationVersion = configurationVersion
@@ -62,9 +61,9 @@ public class FetchedConfigurationBundle: Configuration {
 
     // MARK: - NSSecureCoding
     
-    @objc public override class var supportsSecureCoding: Bool { return true }
+    override class var supportsSecureCoding: Bool { return true }
 
-    override public func encode(with coder: NSCoder) {
+    override func encode(with coder: NSCoder) {
         coder.encode(schema, forKey: "schema")
         coder.encode(configurationVersion, forKey: "configurationVersion")
         coder.encode(configurationBundle, forKey: "configurationBundle")

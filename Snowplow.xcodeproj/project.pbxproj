@@ -61,9 +61,6 @@
 		6B85870B29239A9D006E4A5F /* MemoryEventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85870029239A9D006E4A5F /* MemoryEventStore.swift */; };
 		6B85870C29239A9D006E4A5F /* MemoryEventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85870029239A9D006E4A5F /* MemoryEventStore.swift */; };
 		6B85870E2923C18D006E4A5F /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85870D2923C18C006E4A5F /* EventStore.swift */; };
-		6B85870F2923C18D006E4A5F /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85870D2923C18C006E4A5F /* EventStore.swift */; };
-		6B8587102923C18D006E4A5F /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85870D2923C18C006E4A5F /* EventStore.swift */; };
-		6B8587112923C18D006E4A5F /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85870D2923C18C006E4A5F /* EventStore.swift */; };
 		6B85872D2923C5F0006E4A5F /* TrackerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85872B2923C5F0006E4A5F /* TrackerController.swift */; };
 		6B85872E2923C5F0006E4A5F /* TrackerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85872B2923C5F0006E4A5F /* TrackerController.swift */; };
 		6B85872F2923C5F0006E4A5F /* TrackerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85872B2923C5F0006E4A5F /* TrackerController.swift */; };
@@ -245,9 +242,6 @@
 		6B9DA5CE2927BCD6006D721A /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA5C12927BCD6006D721A /* RequestResult.swift */; };
 		6B9DA5CF2927BCD6006D721A /* RequestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA5C12927BCD6006D721A /* RequestResult.swift */; };
 		6B9DA5D02927BCD6006D721A /* EmitterEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA5C22927BCD6006D721A /* EmitterEvent.swift */; };
-		6B9DA5D12927BCD6006D721A /* EmitterEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA5C22927BCD6006D721A /* EmitterEvent.swift */; };
-		6B9DA5D22927BCD6006D721A /* EmitterEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA5C22927BCD6006D721A /* EmitterEvent.swift */; };
-		6B9DA5D32927BCD6006D721A /* EmitterEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA5C22927BCD6006D721A /* EmitterEvent.swift */; };
 		6B9DA5D42927BCD6006D721A /* Emitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA5C32927BCD6006D721A /* Emitter.swift */; };
 		6B9DA5D52927BCD6006D721A /* Emitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA5C32927BCD6006D721A /* Emitter.swift */; };
 		6B9DA5D62927BCD6006D721A /* Emitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA5C32927BCD6006D721A /* Emitter.swift */; };
@@ -487,6 +481,40 @@
 		6BABED54291E91E000F6798A /* RemoteConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABED52291E91E000F6798A /* RemoteConfiguration.swift */; };
 		6BABED55291E91E000F6798A /* RemoteConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABED52291E91E000F6798A /* RemoteConfiguration.swift */; };
 		6BABED56291E91E000F6798A /* RemoteConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABED52291E91E000F6798A /* RemoteConfiguration.swift */; };
+		6BE7084A292F64A700911E55 /* BufferOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE70849292F64A700911E55 /* BufferOption.swift */; };
+		6BE7084D292F654D00911E55 /* ContextGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE7084C292F654D00911E55 /* ContextGenerator.swift */; };
+		6BE7084E292F656500911E55 /* BufferOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE70849292F64A700911E55 /* BufferOption.swift */; };
+		6BE7084F292F656500911E55 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85870D2923C18C006E4A5F /* EventStore.swift */; };
+		6BE70850292F656500911E55 /* EmitterEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA5C22927BCD6006D721A /* EmitterEvent.swift */; };
+		6BE70851292F656500911E55 /* BufferOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE70849292F64A700911E55 /* BufferOption.swift */; };
+		6BE70852292F656500911E55 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85870D2923C18C006E4A5F /* EventStore.swift */; };
+		6BE70853292F656500911E55 /* EmitterEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA5C22927BCD6006D721A /* EmitterEvent.swift */; };
+		6BE70854292F656700911E55 /* BufferOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE70849292F64A700911E55 /* BufferOption.swift */; };
+		6BE70855292F656700911E55 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85870D2923C18C006E4A5F /* EventStore.swift */; };
+		6BE70856292F656700911E55 /* EmitterEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA5C22927BCD6006D721A /* EmitterEvent.swift */; };
+		6BE70857292F657E00911E55 /* ContextGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE7084C292F654D00911E55 /* ContextGenerator.swift */; };
+		6BE70858292F657F00911E55 /* ContextGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE7084C292F654D00911E55 /* ContextGenerator.swift */; };
+		6BE70859292F657F00911E55 /* ContextGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE7084C292F654D00911E55 /* ContextGenerator.swift */; };
+		6BE7085C292F66B300911E55 /* HttpMethodOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE7085B292F66B300911E55 /* HttpMethodOptions.swift */; };
+		6BE7085D292F66B300911E55 /* HttpMethodOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE7085B292F66B300911E55 /* HttpMethodOptions.swift */; };
+		6BE7085E292F66B300911E55 /* HttpMethodOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE7085B292F66B300911E55 /* HttpMethodOptions.swift */; };
+		6BE7085F292F66B300911E55 /* HttpMethodOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE7085B292F66B300911E55 /* HttpMethodOptions.swift */; };
+		6BE70861292F66E800911E55 /* ProtocolOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE70860292F66E800911E55 /* ProtocolOptions.swift */; };
+		6BE70862292F66E800911E55 /* ProtocolOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE70860292F66E800911E55 /* ProtocolOptions.swift */; };
+		6BE70863292F66E800911E55 /* ProtocolOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE70860292F66E800911E55 /* ProtocolOptions.swift */; };
+		6BE70864292F66E800911E55 /* ProtocolOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE70860292F66E800911E55 /* ProtocolOptions.swift */; };
+		6BE70868292F67C000911E55 /* InspectableEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE70867292F67C000911E55 /* InspectableEvent.swift */; };
+		6BE70869292F67C000911E55 /* InspectableEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE70867292F67C000911E55 /* InspectableEvent.swift */; };
+		6BE7086A292F67C000911E55 /* InspectableEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE70867292F67C000911E55 /* InspectableEvent.swift */; };
+		6BE7086B292F67C000911E55 /* InspectableEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE70867292F67C000911E55 /* InspectableEvent.swift */; };
+		6BE7086D292F683600911E55 /* LogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE7086C292F683600911E55 /* LogLevel.swift */; };
+		6BE7086E292F683600911E55 /* LogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE7086C292F683600911E55 /* LogLevel.swift */; };
+		6BE7086F292F683600911E55 /* LogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE7086C292F683600911E55 /* LogLevel.swift */; };
+		6BE70870292F683600911E55 /* LogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE7086C292F683600911E55 /* LogLevel.swift */; };
+		6BE70873292F68A700911E55 /* GDPRProcessingBasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE70872292F68A700911E55 /* GDPRProcessingBasis.swift */; };
+		6BE70874292F68A700911E55 /* GDPRProcessingBasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE70872292F68A700911E55 /* GDPRProcessingBasis.swift */; };
+		6BE70875292F68A700911E55 /* GDPRProcessingBasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE70872292F68A700911E55 /* GDPRProcessingBasis.swift */; };
+		6BE70876292F68A700911E55 /* GDPRProcessingBasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE70872292F68A700911E55 /* GDPRProcessingBasis.swift */; };
 		752DABD521CC38560065F874 /* SnowplowTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 752DABCC21CC38550065F874 /* SnowplowTracker.framework */; };
 		752DABFE21CC3B380065F874 /* Snowplow_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 752DABF521CC3B380065F874 /* Snowplow_macOS.framework */; };
 		752DAC3F21CC4A7B0065F874 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9E8213192DEC38006744C9 /* CoreTelephony.framework */; };
@@ -701,6 +729,13 @@
 		6BABED48291E884900F6798A /* ConfigurationBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationBundle.swift; sourceTree = "<group>"; };
 		6BABED4D291E8B6E00F6798A /* GlobalContextsConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalContextsConfiguration.swift; sourceTree = "<group>"; };
 		6BABED52291E91E000F6798A /* RemoteConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteConfiguration.swift; sourceTree = "<group>"; };
+		6BE70849292F64A700911E55 /* BufferOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BufferOption.swift; sourceTree = "<group>"; };
+		6BE7084C292F654D00911E55 /* ContextGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextGenerator.swift; sourceTree = "<group>"; };
+		6BE7085B292F66B300911E55 /* HttpMethodOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpMethodOptions.swift; sourceTree = "<group>"; };
+		6BE70860292F66E800911E55 /* ProtocolOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolOptions.swift; sourceTree = "<group>"; };
+		6BE70867292F67C000911E55 /* InspectableEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectableEvent.swift; sourceTree = "<group>"; };
+		6BE7086C292F683600911E55 /* LogLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogLevel.swift; sourceTree = "<group>"; };
+		6BE70872292F68A700911E55 /* GDPRProcessingBasis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDPRProcessingBasis.swift; sourceTree = "<group>"; };
 		750E7F1121F2735C0050A993 /* Nocilla.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nocilla.framework; path = Carthage/Build/iOS/Nocilla.framework; sourceTree = "<group>"; };
 		752DABCC21CC38550065F874 /* SnowplowTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SnowplowTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		752DABD421CC38560065F874 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -795,6 +830,80 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6BE70847292F63D000911E55 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6B0CCFBD292275580054954B /* Controller.swift */,
+				6B85873A2923E024006E4A5F /* EmitterController.swift */,
+				6B0CCFD329236D4A0054954B /* SubjectController.swift */,
+				6B0CCFB4292262640054954B /* GDPRController.swift */,
+				6B8586F4292388C9006E4A5F /* SessionController.swift */,
+				6B85874F2923E7CF006E4A5F /* NetworkController.swift */,
+				6B85872B2923C5F0006E4A5F /* TrackerController.swift */,
+				6B8587442923E5A2006E4A5F /* GlobalContextsController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		6BE70848292F648000911E55 /* Emitter */ = {
+			isa = PBXGroup;
+			children = (
+				6B9DA6DD292F49B2006D721A /* EmitterDefaults.swift */,
+				6BE70849292F64A700911E55 /* BufferOption.swift */,
+				6B9DA5C22927BCD6006D721A /* EmitterEvent.swift */,
+				6B85870D2923C18C006E4A5F /* EventStore.swift */,
+			);
+			path = Emitter;
+			sourceTree = "<group>";
+		};
+		6BE7084B292F653100911E55 /* GlobalContexts */ = {
+			isa = PBXGroup;
+			children = (
+				6BE7084C292F654D00911E55 /* ContextGenerator.swift */,
+				6B9DA675292BD2D7006D721A /* GlobalContext.swift */,
+				6B9DA674292BD2D6006D721A /* SchemaRuleset.swift */,
+			);
+			path = GlobalContexts;
+			sourceTree = "<group>";
+		};
+		6BE7085A292F668F00911E55 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				6BE7085B292F66B300911E55 /* HttpMethodOptions.swift */,
+				6BE70860292F66E800911E55 /* ProtocolOptions.swift */,
+				6B9DA5BF2927BCD5006D721A /* Request.swift */,
+				6B9DA5C02927BCD5006D721A /* RequestCallback.swift */,
+				6B9DA5C12927BCD6006D721A /* RequestResult.swift */,
+				6B85877629251CBD006E4A5F /* DefaultNetworkConnection.swift */,
+				6B85877729251CBD006E4A5F /* NetworkConnection.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		6BE70866292F678000911E55 /* Tracker */ = {
+			isa = PBXGroup;
+			children = (
+				6B9DA646292B5487006D721A /* DevicePlatform.swift */,
+				6BE70867292F67C000911E55 /* InspectableEvent.swift */,
+				6B9DA683292BDD3A006D721A /* LoggerDelegate.swift */,
+				6BE7086C292F683600911E55 /* LogLevel.swift */,
+				6B9DA6232928B2FB006D721A /* SessionState.swift */,
+				6B9DA6002927E669006D721A /* State.swift */,
+				6B9DA6052927E6F2006D721A /* StateMachineProtocol.swift */,
+				6B9DA60D2927E99B006D721A /* TrackerStateSnapshot.swift */,
+			);
+			path = Tracker;
+			sourceTree = "<group>";
+		};
+		6BE70871292F686A00911E55 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6B9DA669292BBC83006D721A /* SPSize.swift */,
+				6BE70872292F68A700911E55 /* GDPRProcessingBasis.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		6BEBA0EF29195AF700B5737F /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -808,10 +917,7 @@
 			isa = PBXGroup;
 			children = (
 				6B9DA68C292BF03B006D721A /* TrackerConstants.swift */,
-				6B8587582924CDB0006E4A5F /* Snowplow.swift */,
-				6B0CCFBD292275580054954B /* Controller.swift */,
 				ED7F080426190AF2005D377E /* RemoteConfiguration */,
-				ED8BF8B0256FFEA4001DFDD9 /* Configurations */,
 				EDC9B37B255C3DC600F4136D /* Subject */,
 				ED88B5F9257953EE0048FAD1 /* GDPR */,
 				EDC9B37A255C3D3700F4136D /* ScreenViewTracking */,
@@ -820,12 +926,9 @@
 				EDC9B353255B02AB00F4136D /* Storage */,
 				EDC9B352255B027E00F4136D /* NetworkConnection */,
 				EDC9B351255AEEBC00F4136D /* Tracker */,
-				EDC9B350255AEDF000F4136D /* Payload */,
 				EDC9B34F255AEC7E00F4136D /* Logger */,
 				EDC9B34E255AE66D00F4136D /* GlobalContexts */,
 				EDC9B34D255AE46300F4136D /* Emitter */,
-				EDAB65D626CD2F970067755F /* Entities */,
-				EDC9B346255ACF5100F4136D /* Events */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -929,7 +1032,18 @@
 		AB0C27C2191B408200018557 /* Snowplow */ = {
 			isa = PBXGroup;
 			children = (
+				6B8587582924CDB0006E4A5F /* Snowplow.swift */,
+				ED8BF8B0256FFEA4001DFDD9 /* Configurations */,
+				6BE70847292F63D000911E55 /* Controllers */,
+				6BE70848292F648000911E55 /* Emitter */,
+				EDAB65D626CD2F970067755F /* Entities */,
+				EDC9B346255ACF5100F4136D /* Events */,
+				6BE7084B292F653100911E55 /* GlobalContexts */,
+				6BE7085A292F668F00911E55 /* Network */,
+				EDC9B350255AEDF000F4136D /* Payload */,
 				AB0C27C3191B408200018557 /* Supporting Files */,
+				6BE70866292F678000911E55 /* Tracker */,
+				6BE70871292F686A00911E55 /* Utils */,
 			);
 			path = Snowplow;
 			sourceTree = "<group>";
@@ -947,7 +1061,6 @@
 		ED7F080426190AF2005D377E /* RemoteConfiguration */ = {
 			isa = PBXGroup;
 			children = (
-				6B85877129251779006E4A5F /* ConfigurationState.swift */,
 				6B858767292509AC006E4A5F /* ConfigurationCache.swift */,
 				6B858768292509AC006E4A5F /* ConfigurationFetcher.swift */,
 				6B8587622924F76F006E4A5F /* ConfigurationProvider.swift */,
@@ -961,7 +1074,6 @@
 			children = (
 				6B0CCFCD29236B0A0054954B /* GDPRContext.swift */,
 				6B0CCFC8292284380054954B /* GDPRConfigurationUpdate.swift */,
-				6B0CCFB4292262640054954B /* GDPRController.swift */,
 				6B0CCFB3292262640054954B /* GDPRControllerImpl.swift */,
 			);
 			path = GDPR;
@@ -980,7 +1092,7 @@
 		ED8BF8B0256FFEA4001DFDD9 /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
-				6B9DA669292BBC83006D721A /* SPSize.swift */,
+				6B85877129251779006E4A5F /* ConfigurationState.swift */,
 				6BABED52291E91E000F6798A /* RemoteConfiguration.swift */,
 				6BABED4D291E8B6E00F6798A /* GlobalContextsConfiguration.swift */,
 				6BABED48291E884900F6798A /* ConfigurationBundle.swift */,
@@ -1067,15 +1179,9 @@
 			isa = PBXGroup;
 			children = (
 				6B9DA5C32927BCD6006D721A /* Emitter.swift */,
-				6B9DA5C22927BCD6006D721A /* EmitterEvent.swift */,
-				6B9DA5BF2927BCD5006D721A /* Request.swift */,
-				6B9DA5C02927BCD5006D721A /* RequestCallback.swift */,
-				6B9DA5C12927BCD6006D721A /* RequestResult.swift */,
-				6B85873A2923E024006E4A5F /* EmitterController.swift */,
 				6B85873B2923E024006E4A5F /* EmitterControllerImpl.swift */,
 				6BABED3E291E833D00F6798A /* EmitterConfigurationUpdate.swift */,
 				6B9DA5E22927D1F7006D721A /* EmitterEventProcessing.swift */,
-				6B9DA6DD292F49B2006D721A /* EmitterDefaults.swift */,
 			);
 			path = Emitter;
 			sourceTree = "<group>";
@@ -1083,10 +1189,7 @@
 		EDC9B34E255AE66D00F4136D /* GlobalContexts */ = {
 			isa = PBXGroup;
 			children = (
-				6B9DA675292BD2D7006D721A /* GlobalContext.swift */,
 				6B9DA673292BD2D6006D721A /* SchemaRule.swift */,
-				6B9DA674292BD2D6006D721A /* SchemaRuleset.swift */,
-				6B8587442923E5A2006E4A5F /* GlobalContextsController.swift */,
 				6B8587452923E5A2006E4A5F /* GlobalContextsControllerImpl.swift */,
 			);
 			path = GlobalContexts;
@@ -1096,7 +1199,6 @@
 			isa = PBXGroup;
 			children = (
 				6B9DA682292BDD39006D721A /* Logger.swift */,
-				6B9DA683292BDD3A006D721A /* LoggerDelegate.swift */,
 			);
 			path = Logger;
 			sourceTree = "<group>";
@@ -1113,26 +1215,22 @@
 		EDC9B351255AEEBC00F4136D /* Tracker */ = {
 			isa = PBXGroup;
 			children = (
-				6B9DA660292BAE5F006D721A /* ServiceProvider.swift */,
-				6B9DA65F292BAE5F006D721A /* ServiceProviderProtocol.swift */,
-				6B9DA6322928CAA3006D721A /* Tracker.swift */,
-				6B9DA60B2927E99B006D721A /* StateFuture.swift */,
-				6B9DA60C2927E99B006D721A /* StateManager.swift */,
-				6B9DA60E2927E99C006D721A /* TrackerState.swift */,
-				6B9DA60D2927E99B006D721A /* TrackerStateSnapshot.swift */,
-				6B9DA60A2927E99A006D721A /* WebViewMessageHandler.swift */,
-				6B9DA6052927E6F2006D721A /* StateMachineProtocol.swift */,
 				6B9DA5E92927E635006D721A /* DeepLinkState.swift */,
 				6B9DA5EA2927E635006D721A /* DeepLinkStateMachine.swift */,
 				6B9DA5E82927E635006D721A /* InstallTracker.swift */,
 				6B9DA5EB2927E635006D721A /* LifecycleState.swift */,
 				6B9DA5E72927E634006D721A /* LifecycleStateMachine.swift */,
-				6B85872B2923C5F0006E4A5F /* TrackerController.swift */,
-				6B85872C2923C5F0006E4A5F /* TrackerControllerImpl.swift */,
+				6B9DA660292BAE5F006D721A /* ServiceProvider.swift */,
+				6B9DA65F292BAE5F006D721A /* ServiceProviderProtocol.swift */,
+				6B9DA60B2927E99B006D721A /* StateFuture.swift */,
+				6B9DA60C2927E99B006D721A /* StateManager.swift */,
+				6B9DA6322928CAA3006D721A /* Tracker.swift */,
 				6BABE8BC291BFCAD00F6798A /* TrackerConfigurationUpdate.swift */,
-				6B9DA5B529269755006D721A /* TrackerEvent.swift */,
-				6B9DA6002927E669006D721A /* State.swift */,
+				6B85872C2923C5F0006E4A5F /* TrackerControllerImpl.swift */,
 				6B9DA6E3292F4ED9006D721A /* TrackerDefaults.swift */,
+				6B9DA5B529269755006D721A /* TrackerEvent.swift */,
+				6B9DA60E2927E99C006D721A /* TrackerState.swift */,
+				6B9DA60A2927E99A006D721A /* WebViewMessageHandler.swift */,
 			);
 			path = Tracker;
 			sourceTree = "<group>";
@@ -1140,11 +1238,8 @@
 		EDC9B352255B027E00F4136D /* NetworkConnection */ = {
 			isa = PBXGroup;
 			children = (
-				6B85877629251CBD006E4A5F /* DefaultNetworkConnection.swift */,
-				6B85877729251CBD006E4A5F /* NetworkConnection.swift */,
-				6B85874F2923E7CF006E4A5F /* NetworkController.swift */,
-				6B85874E2923E7CF006E4A5F /* NetworkControllerImpl.swift */,
 				6B8587352923DCA2006E4A5F /* NetworkConfigurationUpdate.swift */,
+				6B85874E2923E7CF006E4A5F /* NetworkControllerImpl.swift */,
 			);
 			path = NetworkConnection;
 			sourceTree = "<group>";
@@ -1152,7 +1247,6 @@
 		EDC9B353255B02AB00F4136D /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				6B85870D2923C18C006E4A5F /* EventStore.swift */,
 				6B85870029239A9D006E4A5F /* MemoryEventStore.swift */,
 				6B8586FE29239A9D006E4A5F /* SQLiteEventStore.swift */,
 			);
@@ -1174,8 +1268,6 @@
 			isa = PBXGroup;
 			children = (
 				6B9DA6242928B2FB006D721A /* Session.swift */,
-				6B9DA6232928B2FB006D721A /* SessionState.swift */,
-				6B8586F4292388C9006E4A5F /* SessionController.swift */,
 				6B8586F5292388C9006E4A5F /* SessionControllerImpl.swift */,
 				6BABEB7B291D1C7C00F6798A /* SessionConfigurationUpdate.swift */,
 			);
@@ -1196,9 +1288,7 @@
 			isa = PBXGroup;
 			children = (
 				6B9DA655292B60E1006D721A /* Subject.swift */,
-				6B9DA646292B5487006D721A /* DevicePlatform.swift */,
 				6B9DA647292B5487006D721A /* PlatformContext.swift */,
-				6B0CCFD329236D4A0054954B /* SubjectController.swift */,
 				6B0CCFD229236D4A0054954B /* SubjectControllerImpl.swift */,
 				6BABED43291E85F200F6798A /* SubjectConfigurationUpdate.swift */,
 			);
@@ -1547,6 +1637,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BE70873292F68A700911E55 /* GDPRProcessingBasis.swift in Sources */,
 				6B9DA6332928CAA3006D721A /* Tracker.swift in Sources */,
 				6B9DA6E4292F4ED9006D721A /* TrackerDefaults.swift in Sources */,
 				6B9DA62E2928C08D006D721A /* DataPersistence.swift in Sources */,
@@ -1585,6 +1676,7 @@
 				6B9DA648292B5487006D721A /* DevicePlatform.swift in Sources */,
 				6B9DA656292B60E2006D721A /* Subject.swift in Sources */,
 				6B8587542923E7D0006E4A5F /* NetworkController.swift in Sources */,
+				6BE7084A292F64A700911E55 /* BufferOption.swift in Sources */,
 				6B9DA55F29261E5B006D721A /* ConsentDocument.swift in Sources */,
 				6B8587632924F76F006E4A5F /* ConfigurationProvider.swift in Sources */,
 				6BABED44291E85F200F6798A /* SubjectConfigurationUpdate.swift in Sources */,
@@ -1603,11 +1695,13 @@
 				6B9DA5F02927E635006D721A /* InstallTracker.swift in Sources */,
 				6B9DA56329261E5B006D721A /* EventBase.swift in Sources */,
 				6B9DA57729261E5C006D721A /* Timing.swift in Sources */,
+				6BE70868292F67C000911E55 /* InspectableEvent.swift in Sources */,
 				6B9DA5B629269755006D721A /* TrackerEvent.swift in Sources */,
 				6B9DA684292BDD3A006D721A /* Logger.swift in Sources */,
 				6B9DA688292BDD3A006D721A /* LoggerDelegate.swift in Sources */,
 				6B9DA5C82927BCD6006D721A /* RequestCallback.swift in Sources */,
 				6BABEB6C291CE94900F6798A /* NetworkConfiguration.swift in Sources */,
+				6BE70861292F66E800911E55 /* ProtocolOptions.swift in Sources */,
 				6B9DA5B129269036006D721A /* SNOWError.swift in Sources */,
 				6B9DA6062927E6F2006D721A /* StateMachineProtocol.swift in Sources */,
 				6B8587362923DCA2006E4A5F /* NetworkConfigurationUpdate.swift in Sources */,
@@ -1616,6 +1710,7 @@
 				6B9DA5EC2927E635006D721A /* LifecycleStateMachine.swift in Sources */,
 				6B9DA53F29253951006D721A /* LifecycleEntity.swift in Sources */,
 				6B85878229251DF4006E4A5F /* SelfDescribingJson.swift in Sources */,
+				6BE7084D292F654D00911E55 /* ContextGenerator.swift in Sources */,
 				6BABED3A291E60F000F6798A /* GDPRConfiguration.swift in Sources */,
 				6BABEB7C291D1C7C00F6798A /* SessionConfigurationUpdate.swift in Sources */,
 				6B8586FA292388C9006E4A5F /* SessionControllerImpl.swift in Sources */,
@@ -1624,6 +1719,7 @@
 				6B9DA6172927E99C006D721A /* StateManager.swift in Sources */,
 				6B9DA6252928B2FC006D721A /* SessionState.swift in Sources */,
 				6B85870929239A9D006E4A5F /* MemoryEventStore.swift in Sources */,
+				6BE7085C292F66B300911E55 /* HttpMethodOptions.swift in Sources */,
 				6BABE8BD291BFCAD00F6798A /* TrackerConfigurationUpdate.swift in Sources */,
 				6B9DA598292677E0006D721A /* MessageNotificationAttachment.swift in Sources */,
 				6BABEB71291CF1B900F6798A /* SessionConfiguration.swift in Sources */,
@@ -1640,6 +1736,7 @@
 				6B9DA68D292BF03C006D721A /* TrackerConstants.swift in Sources */,
 				6B0CCFD829236D4A0054954B /* SubjectController.swift in Sources */,
 				6B9DA63E292B5197006D721A /* ScreenStateMachine.swift in Sources */,
+				6BE7086D292F683600911E55 /* LogLevel.swift in Sources */,
 				6B8587312923C5F0006E4A5F /* TrackerControllerImpl.swift in Sources */,
 				6B9DA54329253952006D721A /* DeepLinkEntity.swift in Sources */,
 				6B9DA58929264EC2006D721A /* MessageNotification.swift in Sources */,
@@ -1705,6 +1802,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BE70874292F68A700911E55 /* GDPRProcessingBasis.swift in Sources */,
 				6B9DA649292B5487006D721A /* DevicePlatform.swift in Sources */,
 				6B9DA6E5292F4ED9006D721A /* TrackerDefaults.swift in Sources */,
 				6B85874B2923E5A2006E4A5F /* GlobalContextsControllerImpl.swift in Sources */,
@@ -1745,8 +1843,8 @@
 				6BABED22291E3DB200F6798A /* Configuration.swift in Sources */,
 				6B8587472923E5A2006E4A5F /* GlobalContextsController.swift in Sources */,
 				6B9DA67B292BD2D7006D721A /* SchemaRuleset.swift in Sources */,
+				6BE7084E292F656500911E55 /* BufferOption.swift in Sources */,
 				6B9DA685292BDD3A006D721A /* Logger.swift in Sources */,
-				6B85870F2923C18D006E4A5F /* EventStore.swift in Sources */,
 				6B9DA65C292B6E68006D721A /* Utilities.swift in Sources */,
 				6BABED27291E4FEF00F6798A /* SubjectConfiguration.swift in Sources */,
 				6B9DA54429253952006D721A /* DeepLinkEntity.swift in Sources */,
@@ -1754,7 +1852,6 @@
 				6BABEB72291CF1B900F6798A /* SessionConfiguration.swift in Sources */,
 				6BABED40291E833E00F6798A /* EmitterConfigurationUpdate.swift in Sources */,
 				6B9DA666292BAE5F006D721A /* ServiceProvider.swift in Sources */,
-				6B9DA5D12927BCD6006D721A /* EmitterEvent.swift in Sources */,
 				6B9DA57029261E5C006D721A /* SelfDescribing.swift in Sources */,
 				6B8587412923E025006E4A5F /* EmitterControllerImpl.swift in Sources */,
 				6B85877D29251CBD006E4A5F /* NetworkConnection.swift in Sources */,
@@ -1763,11 +1860,13 @@
 				6B9DA58029261E5C006D721A /* ScreenView.swift in Sources */,
 				6B9DA6102927E99C006D721A /* WebViewMessageHandler.swift in Sources */,
 				6B0CCFD929236D4A0054954B /* SubjectController.swift in Sources */,
+				6BE70869292F67C000911E55 /* InspectableEvent.swift in Sources */,
 				6B9DA67F292BD2D7006D721A /* GlobalContext.swift in Sources */,
 				6B8586F7292388C9006E4A5F /* SessionController.swift in Sources */,
 				6B9DA54029253952006D721A /* LifecycleEntity.swift in Sources */,
 				6B9DA689292BDD3A006D721A /* LoggerDelegate.swift in Sources */,
 				6B9DA5C52927BCD6006D721A /* Request.swift in Sources */,
+				6BE70862292F66E800911E55 /* ProtocolOptions.swift in Sources */,
 				6BABED36291E596100F6798A /* EmitterConfiguration.swift in Sources */,
 				6B8586FB292388C9006E4A5F /* SessionControllerImpl.swift in Sources */,
 				6B8587512923E7D0006E4A5F /* NetworkControllerImpl.swift in Sources */,
@@ -1776,6 +1875,7 @@
 				6B9DA56C29261E5C006D721A /* Foreground.swift in Sources */,
 				6B9DA677292BD2D7006D721A /* SchemaRule.swift in Sources */,
 				6BABED54291E91E000F6798A /* RemoteConfiguration.swift in Sources */,
+				6BE70857292F657E00911E55 /* ContextGenerator.swift in Sources */,
 				6B9DA6342928CAA3006D721A /* Tracker.swift in Sources */,
 				6B85870229239A9D006E4A5F /* SQLiteEventStore.swift in Sources */,
 				6B9DA652292B562D006D721A /* DeviceInfoMonitor.swift in Sources */,
@@ -1784,6 +1884,7 @@
 				6B9DA6202927E99C006D721A /* TrackerState.swift in Sources */,
 				6B9DA64D292B5487006D721A /* PlatformContext.swift in Sources */,
 				6B9DA6262928B2FC006D721A /* SessionState.swift in Sources */,
+				6BE7085D292F66B300911E55 /* HttpMethodOptions.swift in Sources */,
 				6B9DA6022927E669006D721A /* State.swift in Sources */,
 				6BABED4F291E8B6F00F6798A /* GlobalContextsConfiguration.swift in Sources */,
 				6B9DA5F52927E635006D721A /* DeepLinkState.swift in Sources */,
@@ -1794,14 +1895,17 @@
 				6B85876A292509AD006E4A5F /* ConfigurationCache.swift in Sources */,
 				6B9DA6E0292F4A0D006D721A /* EmitterDefaults.swift in Sources */,
 				6B9DA68E292BF03C006D721A /* TrackerConstants.swift in Sources */,
+				6BE7084F292F656500911E55 /* EventStore.swift in Sources */,
 				6B85870A29239A9D006E4A5F /* MemoryEventStore.swift in Sources */,
 				6B9DA662292BAE5F006D721A /* ServiceProviderProtocol.swift in Sources */,
 				6B85873D2923E025006E4A5F /* EmitterController.swift in Sources */,
 				6B8587322923C5F0006E4A5F /* TrackerControllerImpl.swift in Sources */,
 				6BABEB7D291D1C7C00F6798A /* SessionConfigurationUpdate.swift in Sources */,
+				6BE7086E292F683600911E55 /* LogLevel.swift in Sources */,
 				6B9DA55C29261E5B006D721A /* DeepLinkReceived.swift in Sources */,
 				6B9DA55429261E5B006D721A /* ConsentWithdrawn.swift in Sources */,
 				6B9DA61C2927E99C006D721A /* TrackerStateSnapshot.swift in Sources */,
+				6BE70850292F656500911E55 /* EmitterEvent.swift in Sources */,
 				6B9DA5B229269036006D721A /* SNOWError.swift in Sources */,
 				6B9DA5C92927BCD6006D721A /* RequestCallback.swift in Sources */,
 				6B9DA6182927E99C006D721A /* StateManager.swift in Sources */,
@@ -1821,6 +1925,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BE70875292F68A700911E55 /* GDPRProcessingBasis.swift in Sources */,
 				6B9DA64A292B5487006D721A /* DevicePlatform.swift in Sources */,
 				6B9DA6E6292F4ED9006D721A /* TrackerDefaults.swift in Sources */,
 				6B85874C2923E5A2006E4A5F /* GlobalContextsControllerImpl.swift in Sources */,
@@ -1861,9 +1966,9 @@
 				6B9DA5D62927BCD6006D721A /* Emitter.swift in Sources */,
 				6B9DA5A929268B0E006D721A /* TrackerError.swift in Sources */,
 				6B0CCFD629236D4A0054954B /* SubjectControllerImpl.swift in Sources */,
+				6BE70851292F656500911E55 /* BufferOption.swift in Sources */,
 				6BABED23291E3DB200F6798A /* Configuration.swift in Sources */,
 				6B8587482923E5A2006E4A5F /* GlobalContextsController.swift in Sources */,
-				6B8587102923C18D006E4A5F /* EventStore.swift in Sources */,
 				6B9DA68A292BDD3A006D721A /* LoggerDelegate.swift in Sources */,
 				6B9DA65D292B6E68006D721A /* Utilities.swift in Sources */,
 				6BABED28291E4FEF00F6798A /* SubjectConfiguration.swift in Sources */,
@@ -1873,17 +1978,18 @@
 				6BABED41291E833E00F6798A /* EmitterConfigurationUpdate.swift in Sources */,
 				6B9DA686292BDD3A006D721A /* Logger.swift in Sources */,
 				6B9DA667292BAE5F006D721A /* ServiceProvider.swift in Sources */,
-				6B9DA5D22927BCD6006D721A /* EmitterEvent.swift in Sources */,
 				6B9DA57129261E5C006D721A /* SelfDescribing.swift in Sources */,
 				6B8587422923E025006E4A5F /* EmitterControllerImpl.swift in Sources */,
 				6B85877E29251CBD006E4A5F /* NetworkConnection.swift in Sources */,
 				6B0CCFC0292275580054954B /* Controller.swift in Sources */,
 				6B9DA6082927E6F2006D721A /* StateMachineProtocol.swift in Sources */,
+				6BE7086A292F67C000911E55 /* InspectableEvent.swift in Sources */,
 				6B9DA58129261E5C006D721A /* ScreenView.swift in Sources */,
 				6B9DA6112927E99C006D721A /* WebViewMessageHandler.swift in Sources */,
 				6B0CCFDA29236D4A0054954B /* SubjectController.swift in Sources */,
 				6B8586F8292388C9006E4A5F /* SessionController.swift in Sources */,
 				6B9DA5C62927BCD6006D721A /* Request.swift in Sources */,
+				6BE70863292F66E800911E55 /* ProtocolOptions.swift in Sources */,
 				6B9DA54129253952006D721A /* LifecycleEntity.swift in Sources */,
 				6BABED37291E596100F6798A /* EmitterConfiguration.swift in Sources */,
 				6B8586FC292388C9006E4A5F /* SessionControllerImpl.swift in Sources */,
@@ -1892,6 +1998,7 @@
 				6B9DA56D29261E5C006D721A /* Foreground.swift in Sources */,
 				6B85878829251DF4006E4A5F /* Payload.swift in Sources */,
 				6B9DA6352928CAA3006D721A /* Tracker.swift in Sources */,
+				6BE70858292F657F00911E55 /* ContextGenerator.swift in Sources */,
 				6BABED55291E91E000F6798A /* RemoteConfiguration.swift in Sources */,
 				6B85870329239A9D006E4A5F /* SQLiteEventStore.swift in Sources */,
 				6B9DA62B2928B2FC006D721A /* Session.swift in Sources */,
@@ -1900,6 +2007,7 @@
 				6B9DA6302928C08D006D721A /* DataPersistence.swift in Sources */,
 				6B9DA6212927E99C006D721A /* TrackerState.swift in Sources */,
 				6B9DA64E292B5487006D721A /* PlatformContext.swift in Sources */,
+				6BE7085E292F66B300911E55 /* HttpMethodOptions.swift in Sources */,
 				6B9DA6272928B2FC006D721A /* SessionState.swift in Sources */,
 				6BABED50291E8B6F00F6798A /* GlobalContextsConfiguration.swift in Sources */,
 				6B9DA5F62927E635006D721A /* DeepLinkState.swift in Sources */,
@@ -1910,14 +2018,17 @@
 				6B85876B292509AD006E4A5F /* ConfigurationCache.swift in Sources */,
 				6B9DA6E1292F4A0D006D721A /* EmitterDefaults.swift in Sources */,
 				6B85870B29239A9D006E4A5F /* MemoryEventStore.swift in Sources */,
+				6BE70852292F656500911E55 /* EventStore.swift in Sources */,
 				6B9DA663292BAE5F006D721A /* ServiceProviderProtocol.swift in Sources */,
 				6B85873E2923E025006E4A5F /* EmitterController.swift in Sources */,
 				6B8587332923C5F0006E4A5F /* TrackerControllerImpl.swift in Sources */,
 				6BABEB7E291D1C7C00F6798A /* SessionConfigurationUpdate.swift in Sources */,
 				6B9DA55D29261E5B006D721A /* DeepLinkReceived.swift in Sources */,
+				6BE7086F292F683600911E55 /* LogLevel.swift in Sources */,
 				6B9DA678292BD2D7006D721A /* SchemaRule.swift in Sources */,
 				6B9DA61D2927E99C006D721A /* TrackerStateSnapshot.swift in Sources */,
 				6B9DA55529261E5B006D721A /* ConsentWithdrawn.swift in Sources */,
+				6BE70853292F656500911E55 /* EmitterEvent.swift in Sources */,
 				6B9DA5B329269036006D721A /* SNOWError.swift in Sources */,
 				6B9DA6192927E99C006D721A /* StateManager.swift in Sources */,
 				6B9DA5CA2927BCD6006D721A /* RequestCallback.swift in Sources */,
@@ -1944,6 +2055,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BE70876292F68A700911E55 /* GDPRProcessingBasis.swift in Sources */,
 				6B9DA668292BAE5F006D721A /* ServiceProvider.swift in Sources */,
 				6B9DA6E7292F4ED9006D721A /* TrackerDefaults.swift in Sources */,
 				6B9DA645292B5197006D721A /* ScreenState.swift in Sources */,
@@ -1984,6 +2096,7 @@
 				6B9DA64F292B5487006D721A /* PlatformContext.swift in Sources */,
 				6B9DA67D292BD2D7006D721A /* SchemaRuleset.swift in Sources */,
 				6B9DA64B292B5487006D721A /* DevicePlatform.swift in Sources */,
+				6BE70854292F656700911E55 /* BufferOption.swift in Sources */,
 				6B9DA687292BDD3A006D721A /* Logger.swift in Sources */,
 				6B858770292509AD006E4A5F /* ConfigurationFetcher.swift in Sources */,
 				6B0CCFD729236D4A0054954B /* SubjectControllerImpl.swift in Sources */,
@@ -1994,27 +2107,28 @@
 				6BABED29291E4FEF00F6798A /* SubjectConfiguration.swift in Sources */,
 				6B9DA6122927E99C006D721A /* WebViewMessageHandler.swift in Sources */,
 				6B8587492923E5A2006E4A5F /* GlobalContextsController.swift in Sources */,
-				6B8587112923C18D006E4A5F /* EventStore.swift in Sources */,
 				6B9DA62C2928B2FC006D721A /* Session.swift in Sources */,
 				6B9DA6282928B2FC006D721A /* SessionState.swift in Sources */,
 				6B9DA5A529268956006D721A /* EcommerceItem.swift in Sources */,
 				6B85876C292509AD006E4A5F /* ConfigurationCache.swift in Sources */,
 				6B9DA664292BAE5F006D721A /* ServiceProviderProtocol.swift in Sources */,
 				6BABEB74291CF1B900F6798A /* SessionConfiguration.swift in Sources */,
+				6BE7086B292F67C000911E55 /* InspectableEvent.swift in Sources */,
 				6B9DA61E2927E99C006D721A /* TrackerStateSnapshot.swift in Sources */,
 				6B9DA681292BD2D7006D721A /* GlobalContext.swift in Sources */,
 				6BABED42291E833E00F6798A /* EmitterConfigurationUpdate.swift in Sources */,
 				6B9DA68B292BDD3A006D721A /* LoggerDelegate.swift in Sources */,
 				6B9DA57E29261E5C006D721A /* Structured.swift in Sources */,
+				6BE70864292F66E800911E55 /* ProtocolOptions.swift in Sources */,
 				6B8587432923E025006E4A5F /* EmitterControllerImpl.swift in Sources */,
 				6B9DA61A2927E99C006D721A /* StateManager.swift in Sources */,
 				6B0CCFC1292275580054954B /* Controller.swift in Sources */,
-				6B9DA5D32927BCD6006D721A /* EmitterEvent.swift in Sources */,
 				6B9DA6222927E99C006D721A /* TrackerState.swift in Sources */,
 				6B9DA5872926437F006D721A /* PushNotification.swift in Sources */,
 				6B9DA5AF29268E4E006D721A /* PageView.swift in Sources */,
 				6B9DA679292BD2D7006D721A /* SchemaRule.swift in Sources */,
 				6B9DA57629261E5C006D721A /* Background.swift in Sources */,
+				6BE70859292F657F00911E55 /* ContextGenerator.swift in Sources */,
 				6B85877529251779006E4A5F /* ConfigurationState.swift in Sources */,
 				6B9DA5E62927D1F7006D721A /* EmitterEventProcessing.swift in Sources */,
 				6B0CCFDB29236D4A0054954B /* SubjectController.swift in Sources */,
@@ -2023,6 +2137,7 @@
 				6B9DA6312928C08D006D721A /* DataPersistence.swift in Sources */,
 				6BABED38291E596100F6798A /* EmitterConfiguration.swift in Sources */,
 				6B8586FD292388C9006E4A5F /* SessionControllerImpl.swift in Sources */,
+				6BE7085F292F66B300911E55 /* HttpMethodOptions.swift in Sources */,
 				6B9DA5C72927BCD6006D721A /* Request.swift in Sources */,
 				6B9DA55A29261E5B006D721A /* ConsentGranted.swift in Sources */,
 				6B8587532923E7D0006E4A5F /* NetworkControllerImpl.swift in Sources */,
@@ -2033,14 +2148,17 @@
 				6B9DA690292BF03C006D721A /* TrackerConstants.swift in Sources */,
 				6B9DA6E2292F4A0E006D721A /* EmitterDefaults.swift in Sources */,
 				6B9DA5FF2927E635006D721A /* LifecycleState.swift in Sources */,
+				6BE70855292F656700911E55 /* EventStore.swift in Sources */,
 				6B8587612924DA67006E4A5F /* FetchedConfigurationBundle.swift in Sources */,
 				6BABED4C291E884900F6798A /* ConfigurationBundle.swift in Sources */,
 				6B9DA56629261E5B006D721A /* EventBase.swift in Sources */,
 				6B85878929251DF4006E4A5F /* Payload.swift in Sources */,
 				6B85870C29239A9D006E4A5F /* MemoryEventStore.swift in Sources */,
+				6BE70870292F683600911E55 /* LogLevel.swift in Sources */,
 				6B9DA6092927E6F2006D721A /* StateMachineProtocol.swift in Sources */,
 				6B85873F2923E025006E4A5F /* EmitterController.swift in Sources */,
 				6B8587342923C5F0006E4A5F /* TrackerControllerImpl.swift in Sources */,
+				6BE70856292F656700911E55 /* EmitterEvent.swift in Sources */,
 				6B9DA672292BBCDE006D721A /* SNOWReachability.swift in Sources */,
 				6B9DA5F72927E635006D721A /* DeepLinkState.swift in Sources */,
 				6B85878529251DF4006E4A5F /* SelfDescribingJson.swift in Sources */,

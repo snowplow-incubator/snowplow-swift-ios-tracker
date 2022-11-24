@@ -21,8 +21,7 @@
 
 import Foundation
 
-@objc(SPMemoryEventStore)
-public class MemoryEventStore: NSObject, EventStore {
+class MemoryEventStore: NSObject, EventStore {
 
     var sendLimit: UInt
     var index: Int64
@@ -41,7 +40,7 @@ public class MemoryEventStore: NSObject, EventStore {
 
     // Interface methods
 
-    public func addEvent(_ payload: Payload) {
+    func addEvent(_ payload: Payload) {
         objc_sync_enter(self)
         let item = EmitterEvent(payload: payload, storeId: index)
         orderedSet.add(item)
@@ -49,13 +48,13 @@ public class MemoryEventStore: NSObject, EventStore {
         index += 1
     }
 
-    public func count() -> UInt {
+    func count() -> UInt {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
         return UInt(orderedSet.count)
     }
 
-    public func emittableEvents(withQueryLimit queryLimit: UInt) -> [EmitterEvent] {
+    func emittableEvents(withQueryLimit queryLimit: UInt) -> [EmitterEvent] {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
         let setCount = (orderedSet).count
@@ -79,18 +78,18 @@ public class MemoryEventStore: NSObject, EventStore {
         return result
     }
 
-    public func removeAllEvents() -> Bool {
+    func removeAllEvents() -> Bool {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
         orderedSet.removeAllObjects()
         return true
     }
 
-    public func removeEvent(withId storeId: Int64) -> Bool {
+    func removeEvent(withId storeId: Int64) -> Bool {
         return removeEvents(withIds: [NSNumber(value: storeId)])
     }
 
-    public func removeEvents(withIds storeIds: [NSNumber]) -> Bool {
+    func removeEvents(withIds storeIds: [NSNumber]) -> Bool {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
         var itemsToRemove: [EmitterEvent] = []

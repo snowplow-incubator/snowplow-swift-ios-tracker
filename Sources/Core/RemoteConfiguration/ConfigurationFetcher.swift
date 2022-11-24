@@ -21,19 +21,18 @@
 
 import Foundation
 
-@objc(SPConfigurationFetcher)
-public class ConfigurationFetcher: NSObject {
+class ConfigurationFetcher: NSObject {
     private var remoteConfiguration: RemoteConfiguration
     private var onFetchCallback: OnFetchCallback
 
-    @objc public init(remoteSource remoteConfiguration: RemoteConfiguration, onFetchCallback: @escaping OnFetchCallback) {
+    init(remoteSource remoteConfiguration: RemoteConfiguration, onFetchCallback: @escaping OnFetchCallback) {
         self.remoteConfiguration = remoteConfiguration
         self.onFetchCallback = onFetchCallback
         super.init()
         performRequest()
     }
 
-    @objc public func performRequest() {
+    func performRequest() {
         guard let url = URL(string: remoteConfiguration.endpoint) else { return }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
@@ -49,7 +48,7 @@ public class ConfigurationFetcher: NSObject {
         }.resume()
     }
 
-    @objc public func resolveRequest(with data: Data) {
+    func resolveRequest(with data: Data) {
         if let jsonObject = try? JSONSerialization.jsonObject(with: data) as? [String : NSObject],
            let fetchedConfigurationBundle = FetchedConfigurationBundle(dictionary: jsonObject) {
             onFetchCallback(fetchedConfigurationBundle, ConfigurationState.fetched)

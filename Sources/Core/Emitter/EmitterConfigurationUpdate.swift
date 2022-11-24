@@ -1,3 +1,4 @@
+//
 //  SPEmitterConfigurationUpdate.swift
 //  Snowplow
 //
@@ -20,10 +21,9 @@
 
 import Foundation
 
-@objc(SPEmitterConfigurationUpdate)
-public class EmitterConfigurationUpdate: EmitterConfiguration {
-    @objc public var sourceConfig: EmitterConfiguration?
-    @objc public var isPaused = false
+class EmitterConfigurationUpdate: EmitterConfiguration {
+    var sourceConfig: EmitterConfiguration?
+    var isPaused = false
     var bufferOptionUpdated = false
     var byteLimitGetUpdated = false
     var byteLimitPostUpdated = false
@@ -34,7 +34,7 @@ public class EmitterConfigurationUpdate: EmitterConfiguration {
     var eventStoreUpdated = false
     var requestCallbackUpdated = false
 
-    @objc public override var eventStore: EventStore? {
+    override var eventStore: EventStore? {
         get {
             return ((sourceConfig == nil || eventStoreUpdated) ? super.eventStore : sourceConfig?.eventStore)
         }
@@ -44,7 +44,7 @@ public class EmitterConfigurationUpdate: EmitterConfiguration {
         }
     }
 
-    @objc public override var requestCallback: RequestCallback? {
+    override var requestCallback: RequestCallback? {
         get {
             return ((sourceConfig == nil || requestCallbackUpdated) ? super.requestCallback : sourceConfig?.requestCallback)
         }
@@ -54,7 +54,7 @@ public class EmitterConfigurationUpdate: EmitterConfiguration {
         }
     }
 
-    @objc public override var bufferOption: BufferOption {
+    override var bufferOption: BufferOption {
         get {
             return ((sourceConfig == nil || bufferOptionUpdated) ? super.bufferOption : sourceConfig?.bufferOption) ?? EmitterDefaults.bufferOption
         }
@@ -64,7 +64,7 @@ public class EmitterConfigurationUpdate: EmitterConfiguration {
         }
     }
 
-    @objc public override var emitRange: Int {
+    override var emitRange: Int {
         get {
             return ((sourceConfig == nil || emitRangeUpdated) ? super.emitRange : sourceConfig?.emitRange) ?? 0
         }
@@ -74,7 +74,7 @@ public class EmitterConfigurationUpdate: EmitterConfiguration {
         }
     }
 
-    @objc public override var threadPoolSize: Int {
+    override var threadPoolSize: Int {
         get {
             return ((sourceConfig == nil || threadPoolSizeUpdated) ? super.threadPoolSize : sourceConfig?.threadPoolSize) ?? EmitterDefaults.emitThreadPoolSize
         }
@@ -84,7 +84,7 @@ public class EmitterConfigurationUpdate: EmitterConfiguration {
         }
     }
 
-    @objc public override var byteLimitGet: Int {
+    override var byteLimitGet: Int {
         get {
             return ((sourceConfig == nil || byteLimitGetUpdated) ? super.byteLimitGet : sourceConfig?.byteLimitGet) ?? EmitterDefaults.byteLimitGet
         }
@@ -94,7 +94,7 @@ public class EmitterConfigurationUpdate: EmitterConfiguration {
         }
     }
 
-    @objc public override var byteLimitPost: Int {
+    override var byteLimitPost: Int {
         get {
             return ((sourceConfig == nil || byteLimitPostUpdated) ? super.byteLimitPost : sourceConfig?.byteLimitPost) ?? EmitterDefaults.byteLimitPost
         }
@@ -104,7 +104,7 @@ public class EmitterConfigurationUpdate: EmitterConfiguration {
         }
     }
 
-    @objc public override var customRetryForStatusCodes: [Int : Bool]? {
+    override var customRetryForStatusCodes: [Int : Bool]? {
         get {
             return ((sourceConfig == nil || customRetryForStatusCodesUpdated) ? super.customRetryForStatusCodes : sourceConfig?.customRetryForStatusCodes)
         }
@@ -114,7 +114,7 @@ public class EmitterConfigurationUpdate: EmitterConfiguration {
         }
     }
 
-    @objc public override var serverAnonymisation: Bool {
+    override var serverAnonymisation: Bool {
         get {
             return ((sourceConfig == nil || serverAnonymisationUpdated) ? super.serverAnonymisation : sourceConfig?.serverAnonymisation) ?? EmitterDefaults.serverAnonymisation
         }

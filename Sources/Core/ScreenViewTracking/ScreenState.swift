@@ -22,9 +22,6 @@
 import Foundation
 
 /// Forward declaration for SPScreenView
-
-
-
 class ScreenState: NSObject, State, NSCopying {
     /// Screenview name
     private(set) var name: String

@@ -21,38 +21,37 @@
 
 import Foundation
 
-@objc(SPTrackerEvent)
-public class TrackerEvent : InspectableEvent {
+class TrackerEvent : InspectableEvent {
     
     private var _payload: [String: NSObject]
-    @objc override public var payload: [String: NSObject] {
+    var payload: [String: NSObject] {
         get { return _payload }
         set { _payload = newValue }
     }
     private var _schema: String?
-    @objc override public var schema: String? {
+    var schema: String? {
         get { return _schema }
         set { _schema = newValue }
     }
     private var _eventName: String?
-    @objc override public var eventName: String? {
+    var eventName: String? {
         get { return _eventName }
         set { _eventName = newValue }
     }
-    @objc public var eventId: UUID
-    @objc public var timestamp: Int64
-    @objc public var trueTimestamp: Date?
-    @objc public var contexts: [SelfDescribingJson]
+    var eventId: UUID
+    var timestamp: Int64
+    var trueTimestamp: Date?
+    var contexts: [SelfDescribingJson]
     private var _state: TrackerStateSnapshot
-    @objc public override var state: TrackerStateSnapshot {
+    var state: TrackerStateSnapshot {
         get { return _state }
         set { _state = newValue }
     }
 
-    @objc public var isPrimitive: Bool
-    @objc public var isService: Bool
+    var isPrimitive: Bool
+    var isService: Bool
     
-    @objc public init(event: Event, state: TrackerStateSnapshot? = nil) {
+    init(event: Event, state: TrackerStateSnapshot? = nil) {
         eventId = UUID()
         timestamp = Int64(Date().timeIntervalSince1970 * 1000)
         trueTimestamp = event.trueTimestamp
@@ -70,7 +69,7 @@ public class TrackerEvent : InspectableEvent {
         }
     }
 
-    override public func addPayloadValues(_ payload: [String : NSObject]) -> Bool {
+    func addPayloadValues(_ payload: [String : NSObject]) -> Bool {
         var result = true
         for (key, obj) in payload {
             if self.payload[key] == nil {

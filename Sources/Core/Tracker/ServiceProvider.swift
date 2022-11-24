@@ -21,15 +21,14 @@
 
 import Foundation
 
-@objc(SPServiceProvider)
-public class ServiceProvider: NSObject, ServiceProviderProtocol {
-    public private(set) var namespace: String
+class ServiceProvider: NSObject, ServiceProviderProtocol {
+    private(set) var namespace: String
     
-    public var isTrackerInitialized: Bool { return _tracker != nil }
+    var isTrackerInitialized: Bool { return _tracker != nil }
 
     // Internal services
     private var _subject: Subject?
-    public var subject: Subject {
+    var subject: Subject {
         if let _subject {
             return _subject
         }
@@ -39,7 +38,7 @@ public class ServiceProvider: NSObject, ServiceProviderProtocol {
     }
 
     private var _emitter: Emitter?
-    public var emitter: Emitter {
+    var emitter: Emitter {
         if let _emitter {
             return _emitter
         }
@@ -49,7 +48,7 @@ public class ServiceProvider: NSObject, ServiceProviderProtocol {
     }
 
     private var _tracker: Tracker?
-    public var tracker: Tracker {
+    var tracker: Tracker {
         if let _tracker {
             return _tracker
         }
@@ -61,7 +60,7 @@ public class ServiceProvider: NSObject, ServiceProviderProtocol {
     // Controllers
 
     private var _trackerController: TrackerControllerImpl?
-    public var trackerController: TrackerControllerImpl {
+    var trackerController: TrackerControllerImpl {
         if let _trackerController {
             return _trackerController
         }
@@ -71,7 +70,7 @@ public class ServiceProvider: NSObject, ServiceProviderProtocol {
     }
 
     private var _sessionController: SessionControllerImpl?
-    public var sessionController: SessionControllerImpl {
+    var sessionController: SessionControllerImpl {
         if let _sessionController {
             return _sessionController
         }
@@ -81,7 +80,7 @@ public class ServiceProvider: NSObject, ServiceProviderProtocol {
     }
 
     private var _emitterController: EmitterControllerImpl?
-    public var emitterController: EmitterControllerImpl {
+    var emitterController: EmitterControllerImpl {
         if let _emitterController {
             return _emitterController
         }
@@ -91,7 +90,7 @@ public class ServiceProvider: NSObject, ServiceProviderProtocol {
     }
 
     private var _gdprController: GDPRControllerImpl?
-    public var gdprController: GDPRControllerImpl {
+    var gdprController: GDPRControllerImpl {
         if let _gdprController {
             return _gdprController
         }
@@ -101,7 +100,7 @@ public class ServiceProvider: NSObject, ServiceProviderProtocol {
     }
 
     private var _globalContextsController: GlobalContextsControllerImpl?
-    public var globalContextsController: GlobalContextsControllerImpl {
+    var globalContextsController: GlobalContextsControllerImpl {
         if let _globalContextsController {
             return _globalContextsController
         }
@@ -111,7 +110,7 @@ public class ServiceProvider: NSObject, ServiceProviderProtocol {
     }
 
     private var _subjectController: SubjectControllerImpl?
-    public var subjectController: SubjectControllerImpl {
+    var subjectController: SubjectControllerImpl {
         if let _subjectController {
             return _subjectController
         }
@@ -121,7 +120,7 @@ public class ServiceProvider: NSObject, ServiceProviderProtocol {
     }
 
     private var _networkController: NetworkControllerImpl?
-    public var networkController: NetworkControllerImpl {
+    var networkController: NetworkControllerImpl {
         if let _networkController {
             return _networkController
         }
@@ -134,12 +133,12 @@ public class ServiceProvider: NSObject, ServiceProviderProtocol {
     private var globalContextConfiguration: GlobalContextsConfiguration?
 
     // Configuration updates
-    private(set) public var networkConfigurationUpdate = NetworkConfigurationUpdate()
-    private(set) public var trackerConfigurationUpdate = TrackerConfigurationUpdate()
-    private(set) public var emitterConfigurationUpdate = EmitterConfigurationUpdate()
-    private(set) public var subjectConfigurationUpdate = SubjectConfigurationUpdate()
-    private(set) public var sessionConfigurationUpdate = SessionConfigurationUpdate()
-    private(set) public var gdprConfigurationUpdate = GDPRConfigurationUpdate()
+    private(set) var networkConfigurationUpdate = NetworkConfigurationUpdate()
+    private(set) var trackerConfigurationUpdate = TrackerConfigurationUpdate()
+    private(set) var emitterConfigurationUpdate = EmitterConfigurationUpdate()
+    private(set) var subjectConfigurationUpdate = SubjectConfigurationUpdate()
+    private(set) var sessionConfigurationUpdate = SessionConfigurationUpdate()
+    private(set) var gdprConfigurationUpdate = GDPRConfigurationUpdate()
     
     // MARK: - Init
 

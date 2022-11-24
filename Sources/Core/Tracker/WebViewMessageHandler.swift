@@ -27,22 +27,21 @@ import WebKit
 /// Handler for messages from the JavaScript library embedded in Web views.
 ///
 /// The handler parses messages from the JavaScript library calls and forwards the tracked events to be tracked by the mobile tracker.
-@objc(SPWebViewMessageHandler)
-public class WebViewMessageHandler: NSObject, WKScriptMessageHandler {
+class WebViewMessageHandler: NSObject, WKScriptMessageHandler {
     /// Callback called when the message handler receives a new message.
     ///
     /// The message dictionary should contain three properties:
     /// 1. "event" with a dictionary containing the event information (structure depends on the tracked event)
     /// 2. "context" (optional) with a list of self-describing JSONs
     /// 3. "trackers" (optional) with a list of tracker namespaces to track the event with
-    public func userContentController(
+    func userContentController(
         _ userContentController: WKUserContentController,
         didReceive message: WKScriptMessage
     ) {
         receivedMesssage(message)
     }
     
-    public func receivedMesssage(_ message: WKScriptMessage) {
+    func receivedMesssage(_ message: WKScriptMessage) {
         if let body = message.body as? [AnyHashable : Any],
            let event = body["event"] as? [AnyHashable : Any],
            let command = body["command"] as? String {

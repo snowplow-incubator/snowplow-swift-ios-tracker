@@ -21,17 +21,16 @@
 
 import Foundation
 
-@objc(SPNetworkControllerImpl)
-public class NetworkControllerImpl: Controller, NetworkController {
+class NetworkControllerImpl: Controller, NetworkController {
     private var requestCallback: RequestCallback?
 
-    public var isCustomNetworkConnection: Bool {
+    var isCustomNetworkConnection: Bool {
         return emitter.networkConnection != nil && !(emitter.networkConnection is DefaultNetworkConnection)
     }
 
     // MARK: - Properties
 
-    public var endpoint: String? {
+    var endpoint: String? {
         get {
             return emitter.urlEndpoint
         }
@@ -40,7 +39,7 @@ public class NetworkControllerImpl: Controller, NetworkController {
         }
     }
 
-    public var method: HttpMethodOptions {
+    var method: HttpMethodOptions {
         get {
             return emitter.method
         }
@@ -49,7 +48,7 @@ public class NetworkControllerImpl: Controller, NetworkController {
         }
     }
 
-    public var customPostPath: String? {
+    var customPostPath: String? {
         get {
             return emitter.customPostPath
         }
@@ -60,7 +59,7 @@ public class NetworkControllerImpl: Controller, NetworkController {
         }
     }
 
-    public var requestHeaders: [String : String]? {
+    var requestHeaders: [String : String]? {
         get {
             return emitter.requestHeaders
         }

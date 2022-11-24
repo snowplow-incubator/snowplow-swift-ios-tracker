@@ -21,59 +21,58 @@
 
 import Foundation
 
-@objc(SPTrackerControllerImpl)
-public class TrackerControllerImpl: Controller, TrackerController {
+class TrackerControllerImpl: Controller, TrackerController {
     
     // MARK: - Controllers
 
-    public var network: NetworkController? {
+    var network: NetworkController? {
         return serviceProvider.networkController
     }
 
-    public var emitter: EmitterController? {
+    var emitter: EmitterController? {
         return serviceProvider.emitterController
     }
 
-    public var gdpr: GDPRController? {
+    var gdpr: GDPRController? {
         return serviceProvider.gdprController
     }
 
-    public var globalContexts: GlobalContextsController? {
+    var globalContexts: GlobalContextsController? {
         return serviceProvider.globalContextsController
     }
 
-    public var subject: SubjectController? {
+    var subject: SubjectController? {
         return serviceProvider.subjectController
     }
 
-    public var sessionController: SessionControllerImpl {
+    var sessionController: SessionControllerImpl {
         return serviceProvider.sessionController
     }
 
-    public var session: SessionController? {
+    var session: SessionController? {
         let sessionController = serviceProvider.sessionController
         return sessionController.isEnabled ? sessionController : nil
     }
 
     // MARK: - Control methods
 
-    public func pause() {
+    func pause() {
         dirtyConfig.isPaused = true
         tracker.pauseEventTracking()
     }
 
-    public func resume() {
+    func resume() {
         dirtyConfig.isPaused = false
         tracker.resumeEventTracking()
     }
 
-    public func track(_ event: Event) -> UUID? {
+    func track(_ event: Event) -> UUID? {
         return tracker.track(event)
     }
 
     // MARK: - Properties' setters and getters
 
-    public var appId: String {
+    var appId: String {
         get {
             return tracker.appId
         }
@@ -84,11 +83,11 @@ public class TrackerControllerImpl: Controller, TrackerController {
         }
     }
 
-    public var namespace: String {
+    var namespace: String {
         return (tracker).trackerNamespace
     }
 
-    public var devicePlatform: DevicePlatform {
+    var devicePlatform: DevicePlatform {
         get {
             return tracker.devicePlatform
         }
@@ -99,7 +98,7 @@ public class TrackerControllerImpl: Controller, TrackerController {
         }
     }
 
-    public var base64Encoding: Bool {
+    var base64Encoding: Bool {
         get {
             return tracker.base64Encoded
         }
@@ -110,7 +109,7 @@ public class TrackerControllerImpl: Controller, TrackerController {
         }
     }
 
-    public var logLevel: LogLevel {
+    var logLevel: LogLevel {
         get {
             return tracker.logLevel
         }
@@ -121,7 +120,7 @@ public class TrackerControllerImpl: Controller, TrackerController {
         }
     }
 
-    public var loggerDelegate: LoggerDelegate? {
+    var loggerDelegate: LoggerDelegate? {
         get {
             return Logger.delegate
         }
@@ -130,7 +129,7 @@ public class TrackerControllerImpl: Controller, TrackerController {
         }
     }
 
-    public var applicationContext: Bool {
+    var applicationContext: Bool {
         get {
             return tracker.applicationContext
         }
@@ -141,7 +140,7 @@ public class TrackerControllerImpl: Controller, TrackerController {
         }
     }
 
-    public var platformContext: Bool {
+    var platformContext: Bool {
         get {
             return tracker.subject?.platformContext ?? false
         }
@@ -152,10 +151,7 @@ public class TrackerControllerImpl: Controller, TrackerController {
         }
     }
 
-    func setGeoLocationContext(_ geoLocationContext: Bool) {
-    }
-
-    public var geoLocationContext: Bool {
+    var geoLocationContext: Bool {
         get {
             return tracker.subject?.geoLocationContext ?? false
         }
@@ -166,7 +162,7 @@ public class TrackerControllerImpl: Controller, TrackerController {
         }
     }
 
-    public var diagnosticAutotracking: Bool {
+    var diagnosticAutotracking: Bool {
         get {
             return tracker.trackerDiagnostic
         }
@@ -177,7 +173,7 @@ public class TrackerControllerImpl: Controller, TrackerController {
         }
     }
 
-    public var exceptionAutotracking: Bool {
+    var exceptionAutotracking: Bool {
         get {
             return tracker.exceptionEvents
         }
@@ -188,7 +184,7 @@ public class TrackerControllerImpl: Controller, TrackerController {
         }
     }
 
-    public var installAutotracking: Bool {
+    var installAutotracking: Bool {
         get {
             return tracker.installEvent
         }
@@ -199,7 +195,7 @@ public class TrackerControllerImpl: Controller, TrackerController {
         }
     }
 
-    public var lifecycleAutotracking: Bool {
+    var lifecycleAutotracking: Bool {
         get {
             return tracker.lifecycleEvents
         }
@@ -210,7 +206,7 @@ public class TrackerControllerImpl: Controller, TrackerController {
         }
     }
 
-    public var deepLinkContext: Bool {
+    var deepLinkContext: Bool {
         get {
             return tracker.deepLinkContext
         }
@@ -221,7 +217,7 @@ public class TrackerControllerImpl: Controller, TrackerController {
         }
     }
 
-    public var screenContext: Bool {
+    var screenContext: Bool {
         get {
             return tracker.screenContext
         }
@@ -232,7 +228,7 @@ public class TrackerControllerImpl: Controller, TrackerController {
         }
     }
 
-    public var screenViewAutotracking: Bool {
+    var screenViewAutotracking: Bool {
         get {
             return tracker.autotrackScreenViews
         }
@@ -243,7 +239,7 @@ public class TrackerControllerImpl: Controller, TrackerController {
         }
     }
 
-    public var trackerVersionSuffix: String? {
+    var trackerVersionSuffix: String? {
         get {
             return tracker.trackerVersionSuffix
         }
@@ -256,7 +252,7 @@ public class TrackerControllerImpl: Controller, TrackerController {
         }
     }
 
-    public var sessionContext: Bool {
+    var sessionContext: Bool {
         get {
             return tracker.sessionContext
         }
@@ -266,8 +262,8 @@ public class TrackerControllerImpl: Controller, TrackerController {
             tracker.sessionContext = newValue
         }
     }
-    
-    public var userAnonymisation: Bool {
+
+    var userAnonymisation: Bool {
         get {
             return tracker.userAnonymisation
         }
@@ -278,11 +274,11 @@ public class TrackerControllerImpl: Controller, TrackerController {
         }
     }
 
-    public var isTracking: Bool {
+    var isTracking: Bool {
         return tracker.isTracking
     }
 
-    public var version: String {
+    var version: String {
         return kSPVersion
     }
 

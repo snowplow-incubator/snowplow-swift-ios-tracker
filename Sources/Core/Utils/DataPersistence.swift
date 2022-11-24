@@ -29,7 +29,7 @@ let kSessionFilenameV1 = "session.dict"
 let kSessionFilenamePrefixV2_2 = "session"
 var sessionKey = "session"
 
-public class DataPersistence: NSObject {
+class DataPersistence: NSObject {
     var data: [String : [String : NSObject]] {
         get {
             objc_sync_enter(self)

@@ -21,13 +21,12 @@
 
 import Foundation
 
-@objc(SPNetworkConfigurationUpdate)
-public class NetworkConfigurationUpdate: NSObject {
-    @objc public var sourceConfig: NetworkConfiguration?
+class NetworkConfigurationUpdate: NSObject {
+    public var sourceConfig: NetworkConfiguration?
 
     var customPostPathUpdated = false
     private var _customPostPath: String?
-    @objc public var customPostPath: String? {
+    var customPostPath: String? {
         get {
             return customPostPathUpdated ? _customPostPath : sourceConfig?.customPostPath
         }
@@ -39,7 +38,7 @@ public class NetworkConfigurationUpdate: NSObject {
 
     var requestHeadersUpdated = false
     private var _requestHeaders: [String : String]?
-    @objc public var requestHeaders: [String : String]? {
+    var requestHeaders: [String : String]? {
         get {
             return requestHeadersUpdated ? _requestHeaders : sourceConfig?.requestHeaders
         }
@@ -49,21 +48,21 @@ public class NetworkConfigurationUpdate: NSObject {
         }
     }
 
-    @objc public var endpoint: String? {
+    var endpoint: String? {
         return (sourceConfig)?.endpoint
     }
 
-    @objc public var method: HttpMethodOptions {
+    var method: HttpMethodOptions {
         // TODO: return nil
         return ((sourceConfig)?.method) ?? EmitterDefaults.httpMethod
     }
 
-    @objc public var `protocol`: ProtocolOptions {
+    var `protocol`: ProtocolOptions {
         // TODO: return nil
         return ((sourceConfig)?.protocol) ?? EmitterDefaults.httpProtocol
     }
 
-    public var networkConnection: NetworkConnection? {
+    var networkConnection: NetworkConnection? {
         return (sourceConfig)?.networkConnection
     }
 }

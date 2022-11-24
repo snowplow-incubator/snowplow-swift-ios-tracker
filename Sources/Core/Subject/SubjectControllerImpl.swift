@@ -1,5 +1,5 @@
 //
-//  SPSubjectControllerImpl.swift
+//  SubjectControllerImpl.swift
 //  Snowplow
 //
 //  Copyright (c) 2013-2022 Snowplow Analytics Ltd. All rights reserved.
@@ -21,11 +21,10 @@
 
 import Foundation
 
-@objc(SPSubjectControllerImpl)
-public class SubjectControllerImpl: Controller, SubjectController {
+class SubjectControllerImpl: Controller, SubjectController {
     // MARK: - Properties
 
-    public var userId: String? {
+    var userId: String? {
         get {
             return subject?.userId
         }
@@ -36,7 +35,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
         }
     }
 
-    public var networkUserId: String? {
+    var networkUserId: String? {
         get {
             return subject?.networkUserId
         }
@@ -47,7 +46,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
         }
     }
 
-    public var domainUserId: String? {
+    var domainUserId: String? {
         get {
             return subject?.domainUserId
         }
@@ -58,7 +57,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
         }
     }
 
-    public var useragent: String? {
+    var useragent: String? {
         get {
             return subject?.useragent
         }
@@ -69,7 +68,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
         }
     }
 
-    public var ipAddress: String? {
+    var ipAddress: String? {
         get {
             return subject?.ipAddress
         }
@@ -80,7 +79,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
         }
     }
 
-    public var timezone: String? {
+    var timezone: String? {
         get {
             return subject?.timezone
         }
@@ -91,7 +90,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
         }
     }
 
-    public var language: String? {
+    var language: String? {
         get {
             return subject?.language
         }
@@ -102,7 +101,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
         }
     }
 
-    public var screenResolution: SPSize? {
+    var screenResolution: SPSize? {
         get {
             return subject?.screenResolution
         }
@@ -113,7 +112,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
         }
     }
 
-    public var screenViewPort: SPSize? {
+    var screenViewPort: SPSize? {
         get {
             return subject?.screenViewPort
         }
@@ -124,7 +123,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
         }
     }
 
-    public var colorDepth: NSNumber? {
+    var colorDepth: NSNumber? {
         get {
             if let subject = subject {
                 return subject.colorDepth
@@ -140,7 +139,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
 
     // MARK: - GeoLocalization
 
-    public var geoLatitude: NSNumber? {
+    var geoLatitude: NSNumber? {
         get {
             return subject?.geoLatitude
         }
@@ -149,7 +148,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
         }
     }
 
-    public var geoLongitude: NSNumber? {
+    var geoLongitude: NSNumber? {
         get {
             return subject?.geoLongitude
         }
@@ -158,7 +157,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
         }
     }
 
-    public var geoLatitudeLongitudeAccuracy: NSNumber? {
+    var geoLatitudeLongitudeAccuracy: NSNumber? {
         get {
             return subject?.geoLatitudeLongitudeAccuracy
         }
@@ -167,7 +166,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
         }
     }
 
-    public var geoAltitude: NSNumber? {
+    var geoAltitude: NSNumber? {
         get {
             return subject?.geoAltitude
         }
@@ -176,7 +175,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
         }
     }
 
-    public var geoAltitudeAccuracy: NSNumber? {
+    var geoAltitudeAccuracy: NSNumber? {
         get {
             return subject?.geoAltitudeAccuracy
         }
@@ -185,7 +184,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
         }
     }
 
-    public var geoSpeed: NSNumber? {
+    var geoSpeed: NSNumber? {
         get {
             return subject?.geoSpeed
         }
@@ -194,7 +193,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
         }
     }
 
-    public var geoBearing: NSNumber? {
+    var geoBearing: NSNumber? {
         get {
             return subject?.geoBearing
         }
@@ -203,7 +202,7 @@ public class SubjectControllerImpl: Controller, SubjectController {
         }
     }
 
-    public var geoTimestamp: NSNumber? {
+    var geoTimestamp: NSNumber? {
         get {
             return subject?.geoTimestamp
         }

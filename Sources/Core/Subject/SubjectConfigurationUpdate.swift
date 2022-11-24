@@ -20,9 +20,8 @@
 
 import Foundation
 
-@objc(SPSubjectConfigurationUpdate)
-public class SubjectConfigurationUpdate: SubjectConfiguration {
-    @objc public var sourceConfig: SubjectConfiguration?
+class SubjectConfigurationUpdate: SubjectConfiguration {
+    var sourceConfig: SubjectConfiguration?
     var userIdUpdated = false
     var networkUserIdUpdated = false
     var domainUserIdUpdated = false
@@ -34,7 +33,7 @@ public class SubjectConfigurationUpdate: SubjectConfiguration {
     var screenViewPortUpdated = false
     var colorDepthUpdated = false
 
-    @objc public override var userId: String? {
+    override var userId: String? {
         get {
             return ((sourceConfig == nil || userIdUpdated) ? super.userId : sourceConfig?.userId)
         }
@@ -44,7 +43,7 @@ public class SubjectConfigurationUpdate: SubjectConfiguration {
         }
     }
 
-    @objc public override var networkUserId: String? {
+    override var networkUserId: String? {
         get {
             return ((sourceConfig == nil || networkUserIdUpdated) ? super.networkUserId : sourceConfig?.networkUserId)
         }
@@ -54,7 +53,7 @@ public class SubjectConfigurationUpdate: SubjectConfiguration {
         }
     }
 
-    @objc public override var domainUserId: String? {
+    override var domainUserId: String? {
         get {
             return ((sourceConfig == nil || domainUserIdUpdated) ? super.domainUserId : sourceConfig?.domainUserId)
         }
@@ -64,7 +63,7 @@ public class SubjectConfigurationUpdate: SubjectConfiguration {
         }
     }
 
-    @objc public override var useragent: String? {
+    override var useragent: String? {
         get {
             return ((sourceConfig == nil || useragentUpdated) ? super.useragent : sourceConfig?.useragent)
         }
@@ -74,7 +73,7 @@ public class SubjectConfigurationUpdate: SubjectConfiguration {
         }
     }
 
-    @objc public override var ipAddress: String? {
+    override var ipAddress: String? {
         get {
             return ((sourceConfig == nil || ipAddressUpdated) ? super.ipAddress : sourceConfig?.ipAddress)
         }
@@ -84,7 +83,7 @@ public class SubjectConfigurationUpdate: SubjectConfiguration {
         }
     }
 
-    @objc public override var timezone: String? {
+    override var timezone: String? {
         get {
             return ((sourceConfig == nil || timezoneUpdated) ? super.timezone : sourceConfig?.timezone)
         }
@@ -94,7 +93,7 @@ public class SubjectConfigurationUpdate: SubjectConfiguration {
         }
     }
 
-    @objc public override var language: String? {
+    override var language: String? {
         get {
             return ((sourceConfig == nil || languageUpdated) ? super.language : sourceConfig?.language)
         }
@@ -104,7 +103,7 @@ public class SubjectConfigurationUpdate: SubjectConfiguration {
         }
     }
 
-    @objc public override var screenResolution: SPSize? {
+    override var screenResolution: SPSize? {
         get {
             return ((sourceConfig == nil || screenResolutionUpdated) ? super.screenResolution : sourceConfig?.screenResolution)
         }
@@ -114,7 +113,7 @@ public class SubjectConfigurationUpdate: SubjectConfiguration {
         }
     }
 
-    @objc public override var screenViewPort: SPSize? {
+    override var screenViewPort: SPSize? {
         get {
             return ((sourceConfig == nil || screenViewPortUpdated) ? super.screenViewPort : sourceConfig?.screenViewPort)
         }
@@ -124,7 +123,7 @@ public class SubjectConfigurationUpdate: SubjectConfiguration {
         }
     }
 
-    @objc public override var colorDepth: NSNumber? {
+    override var colorDepth: NSNumber? {
         get {
             return ((sourceConfig == nil || colorDepthUpdated) ? super.colorDepth : sourceConfig?.colorDepth)
         }

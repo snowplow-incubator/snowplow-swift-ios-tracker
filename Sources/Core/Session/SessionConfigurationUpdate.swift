@@ -21,15 +21,14 @@
 
 import Foundation
 
-@objc(SPSessionConfigurationUpdate)
-public class SessionConfigurationUpdate: SessionConfiguration {
-    @objc public var sourceConfig: SessionConfiguration?
-    @objc public var isPaused = false
+class SessionConfigurationUpdate: SessionConfiguration {
+    var sourceConfig: SessionConfiguration?
+    var isPaused = false
     var foregroundTimeoutInSecondsUpdated = false
     var backgroundTimeoutInSecondsUpdated = false
     var onSessionStateUpdateUpdated = false
 
-    @objc public override var foregroundTimeoutInSeconds: Int {
+    override var foregroundTimeoutInSeconds: Int {
         get {
             return ((sourceConfig == nil || foregroundTimeoutInSecondsUpdated) ? super.foregroundTimeoutInSeconds : sourceConfig?.foregroundTimeoutInSeconds) ?? 1800
         }
@@ -39,7 +38,7 @@ public class SessionConfigurationUpdate: SessionConfiguration {
         }
     }
 
-    @objc public override var backgroundTimeoutInSeconds: Int {
+    override var backgroundTimeoutInSeconds: Int {
         get {
             return ((sourceConfig == nil || backgroundTimeoutInSecondsUpdated) ? super.backgroundTimeoutInSeconds : sourceConfig?.backgroundTimeoutInSeconds) ?? 1800
         }
@@ -49,7 +48,7 @@ public class SessionConfigurationUpdate: SessionConfiguration {
         }
     }
 
-    @objc public override var onSessionStateUpdate: ((_ sessionState: SessionState) -> Void)? {
+    override var onSessionStateUpdate: ((_ sessionState: SessionState) -> Void)? {
         get {
             return ((sourceConfig == nil || onSessionStateUpdateUpdated) ? super.onSessionStateUpdate : sourceConfig?.onSessionStateUpdate)
         }

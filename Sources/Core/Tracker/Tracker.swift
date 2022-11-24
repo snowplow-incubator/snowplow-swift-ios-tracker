@@ -25,8 +25,7 @@ func uncaughtExceptionHandler(_ exception: NSException?) {
 }
 
 /// This class is used for tracking events, and delegates them to other classes responsible for sending, storage, etc.
-@objc(SPTracker)
-public class Tracker: NSObject {
+class Tracker: NSObject {
     private var platformContextSchema: String = ""
     private var dataCollection = true
 
@@ -63,7 +62,7 @@ public class Tracker: NSObject {
 
     private var _emitter: Emitter
     /// The emitter used to send events.
-    public var emitter: Emitter {
+    var emitter: Emitter {
         get {
             return _emitter
         }
@@ -73,14 +72,14 @@ public class Tracker: NSObject {
     }
 
     /// The subject used to represent the current user and persist user information.
-    public var subject: Subject?
+    var subject: Subject?
     
     /// Whether to use Base64 encoding for events.
-    public var base64Encoded = TrackerDefaults.base64Encoded
+    var base64Encoded = TrackerDefaults.base64Encoded
     
     /// A unique identifier for an application.
     private var _appId: String
-    public var appId: String {
+    var appId: String {
         get {
             return _appId
         }
@@ -94,7 +93,7 @@ public class Tracker: NSObject {
     
     private(set) var _trackerNamespace: String
     /// The identifier for the current tracker.
-    public var trackerNamespace: String {
+    var trackerNamespace: String {
         get {
             return _trackerNamespace
         }
@@ -108,7 +107,7 @@ public class Tracker: NSObject {
     
     /// Version suffix for tracker wrappers.
     private var _trackerVersionSuffix: String = TrackerDefaults.trackerVersionSuffix
-    public var trackerVersionSuffix: String {
+    var trackerVersionSuffix: String {
         get {
             return _trackerVersionSuffix
         }
@@ -120,9 +119,9 @@ public class Tracker: NSObject {
         }
     }
     
-    public var devicePlatform: DevicePlatform = TrackerDefaults.devicePlatform
+    var devicePlatform: DevicePlatform = TrackerDefaults.devicePlatform
 
-    public var logLevel: LogLevel {
+    var logLevel: LogLevel {
         get {
             return Logger.logLevel
         }
@@ -131,7 +130,7 @@ public class Tracker: NSObject {
         }
     }
 
-    public var loggerDelegate: LoggerDelegate? {
+    var loggerDelegate: LoggerDelegate? {
         get {
             return Logger.delegate
         }
@@ -141,7 +140,7 @@ public class Tracker: NSObject {
     }
     
     private var _sessionContext = false
-    public var sessionContext: Bool {
+    var sessionContext: Bool {
         get {
             return _sessionContext
         }
@@ -160,7 +159,7 @@ public class Tracker: NSObject {
     }
     
     private var _deepLinkContext = false
-    public var deepLinkContext: Bool {
+    var deepLinkContext: Bool {
         get {
             return _deepLinkContext
         }
@@ -177,7 +176,7 @@ public class Tracker: NSObject {
     }
     
     private var _screenContext = false
-    public var screenContext: Bool {
+    var screenContext: Bool {
         get {
             return _screenContext
         }
@@ -193,12 +192,12 @@ public class Tracker: NSObject {
         }
     }
     
-    public var applicationContext = TrackerDefaults.applicationContext
+    var applicationContext = TrackerDefaults.applicationContext
     
-    public var autotrackScreenViews = TrackerDefaults.autotrackScreenViews
+    var autotrackScreenViews = TrackerDefaults.autotrackScreenViews
     
     private var _foregroundTimeout = TrackerDefaults.foregroundTimeout
-    public var foregroundTimeout: Int {
+    var foregroundTimeout: Int {
         get {
             return _foregroundTimeout
         }
@@ -211,7 +210,7 @@ public class Tracker: NSObject {
     }
     
     private var _backgroundTimeout = TrackerDefaults.backgroundTimeout
-    public var backgroundTimeout: Int {
+    var backgroundTimeout: Int {
         get {
             return _backgroundTimeout
         }
@@ -226,7 +225,7 @@ public class Tracker: NSObject {
     private var _lifecycleEvents = false
     /// Returns whether lifecyle events is enabled.
     /// - Returns: Whether background and foreground events are sent.
-    public var lifecycleEvents: Bool {
+    var lifecycleEvents: Bool {
         get {
             return _lifecycleEvents
         }
@@ -242,12 +241,12 @@ public class Tracker: NSObject {
         }
     }
     
-    public var exceptionEvents = TrackerDefaults.exceptionEvents
-    public var installEvent = TrackerDefaults.installEvent
-    public var trackerDiagnostic = TrackerDefaults.trackerDiagnostic
+    var exceptionEvents = TrackerDefaults.exceptionEvents
+    var installEvent = TrackerDefaults.installEvent
+    var trackerDiagnostic = TrackerDefaults.trackerDiagnostic
     
     private var _userAnonymisation = TrackerDefaults.userAnonymisation
-    public var userAnonymisation: Bool {
+    var userAnonymisation: Bool {
         get {
             return _userAnonymisation
         }
@@ -263,11 +262,11 @@ public class Tracker: NSObject {
         return Array(globalContextGenerators.keys)
     }
     /// Dictionary of global contexts generators.
-    public var globalContextGenerators: [String : GlobalContext] = [:]
+    var globalContextGenerators: [String : GlobalContext] = [:]
 
     /// GDPR context
     /// You can enable or disable the context by setting this property
-    public var gdprContext: GDPRContext?
+    var gdprContext: GDPRContext?
     
     private var stateManager = StateManager()
 

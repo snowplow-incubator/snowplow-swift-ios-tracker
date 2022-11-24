@@ -21,29 +21,28 @@
 
 import Foundation
 
-@objc(SPSessionControllerImpl)
-public class SessionControllerImpl: Controller, SessionController {
+class SessionControllerImpl: Controller, SessionController {
     var isEnabled: Bool {
         return session != nil
     }
 
-    public func pause() {
+    func pause() {
         dirtyConfig.isPaused = true
         session?.stopChecker()
     }
 
-    public func resume() {
+    func resume() {
         dirtyConfig.isPaused = false
         session?.startChecker()
     }
 
-    public func startNewSession() {
+    func startNewSession() {
         session?.startNewSession()
     }
 
     // MARK: - Properties
 
-    public var foregroundTimeout: Measurement<UnitDuration> {
+    var foregroundTimeout: Measurement<UnitDuration> {
         get {
             return Measurement(value: Double(foregroundTimeoutInSeconds), unit: .seconds)
         }
@@ -53,7 +52,7 @@ public class SessionControllerImpl: Controller, SessionController {
         }
     }
 
-    public var foregroundTimeoutInSeconds: Int {
+    var foregroundTimeoutInSeconds: Int {
         get {
             if let session = session {
                 if isEnabled {
@@ -71,7 +70,7 @@ public class SessionControllerImpl: Controller, SessionController {
         }
     }
 
-    public var backgroundTimeout: Measurement<UnitDuration> {
+    var backgroundTimeout: Measurement<UnitDuration> {
         get {
             return Measurement(value: Double(backgroundTimeoutInSeconds), unit: .seconds)
         }
@@ -81,7 +80,7 @@ public class SessionControllerImpl: Controller, SessionController {
         }
     }
 
-    public var backgroundTimeoutInSeconds: Int {
+    var backgroundTimeoutInSeconds: Int {
         get {
             if let session = session {
                 if isEnabled {
@@ -99,7 +98,7 @@ public class SessionControllerImpl: Controller, SessionController {
         }
     }
 
-    public var onSessionStateUpdate: ((_ sessionState: SessionState) -> Void)? {
+    var onSessionStateUpdate: ((_ sessionState: SessionState) -> Void)? {
         get {
             if !isEnabled {
 //                SPLogTrack(nil, "Attempt to access SessionController fields when disabled")
@@ -114,7 +113,7 @@ public class SessionControllerImpl: Controller, SessionController {
         }
     }
 
-    public var sessionIndex: Int {
+    var sessionIndex: Int {
         if !isEnabled {
 //            SPLogTrack(nil, "Attempt to access SessionController fields when disabled")
             return -1
@@ -122,7 +121,7 @@ public class SessionControllerImpl: Controller, SessionController {
         return session?.state?.sessionIndex ?? -1
     }
 
-    public var sessionId: String? {
+    var sessionId: String? {
         if !isEnabled {
 //            SPLogTrack(nil, "Attempt to access SessionController fields when disabled")
             return nil
@@ -130,7 +129,7 @@ public class SessionControllerImpl: Controller, SessionController {
         return session?.state?.sessionId
     }
 
-    public var userId: String? {
+    var userId: String? {
         if !isEnabled {
 //            SPLogTrack(nil, "Attempt to access SessionController fields when disabled")
             return nil
@@ -138,7 +137,7 @@ public class SessionControllerImpl: Controller, SessionController {
         return session?.userId
     }
 
-    public var isInBackground: Bool {
+    var isInBackground: Bool {
         if !isEnabled {
 //            SPLogTrack(nil, "Attempt to access SessionController fields when disabled")
             return false
@@ -146,7 +145,7 @@ public class SessionControllerImpl: Controller, SessionController {
         return session?.inBackground ?? false
     }
 
-    public var backgroundIndex: Int {
+    var backgroundIndex: Int {
         if !isEnabled {
 //            SPLogTrack(nil, "Attempt to access SessionController fields when disabled")
             return -1
@@ -154,7 +153,7 @@ public class SessionControllerImpl: Controller, SessionController {
         return session?.backgroundIndex ?? -1
     }
 
-    public var foregroundIndex: Int {
+    var foregroundIndex: Int {
         if !isEnabled {
 //            PLogTrack(nil, "Attempt to access SessionController fields when disabled")
             return -1

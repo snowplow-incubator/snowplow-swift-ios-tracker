@@ -21,13 +21,12 @@
 
 import Foundation
 
-@objc(SPGdprContext)
-public class GDPRContext: NSObject {
-    @objc private(set) public var basis: GDPRProcessingBasis
-    @objc private(set) public var basisString: String
-    @objc private(set) public var documentId: String?
-    @objc private(set) public var documentVersion: String?
-    @objc private(set) public var documentDescription: String?
+class GDPRContext: NSObject {
+    private(set) var basis: GDPRProcessingBasis
+    private(set) var basisString: String
+    private(set) var documentId: String?
+    private(set) var documentVersion: String?
+    private(set) var documentDescription: String?
 
     /// Set a GDPR context for the tracker
     /// - Parameters:
@@ -35,7 +34,7 @@ public class GDPRContext: NSObject {
     ///   - documentId: Document ID.
     ///   - documentVersion: Version of the document.
     ///   - documentDescription: Description of the document.
-    @objc public init(
+    init(
         basis basisForProcessing: GDPRProcessingBasis,
         documentId: String?,
         documentVersion: String?,
@@ -50,7 +49,7 @@ public class GDPRContext: NSObject {
     }
 
     /// Return context with value stored about GDPR processing.
-    @objc public var context: SelfDescribingJson {
+    var context: SelfDescribingJson {
         get {
             var data: [String : String] = [:]
             data[kSPBasisForProcessing] = basisString

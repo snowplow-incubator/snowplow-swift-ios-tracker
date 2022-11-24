@@ -23,8 +23,7 @@ import Foundation
 
 /// @class Subject
 /// This class is used to access and persist user information, it represents the current user being tracked.
-@objc(SPSubject)
-public class Subject : NSObject {
+class Subject : NSObject {
     private var standardDict = Payload()
     private var platformContextManager = PlatformContext()
     private var geoLocationDict: [String : NSObject] = [:]

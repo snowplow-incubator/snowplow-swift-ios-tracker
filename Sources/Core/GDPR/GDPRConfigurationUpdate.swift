@@ -21,14 +21,13 @@
 
 import Foundation
 
-@objc(SPGDPRConfigurationUpdate)
-public class GDPRConfigurationUpdate: GDPRConfiguration {
-    @objc public var sourceConfig: GDPRConfiguration?
+class GDPRConfigurationUpdate: GDPRConfiguration {
+    var sourceConfig: GDPRConfiguration?
     var gdpr: GDPRContext?
     var isEnabled = false
     var gdprUpdated = false
 
-    public override var basisForProcessing: GDPRProcessingBasis {
+    override var basisForProcessing: GDPRProcessingBasis {
         get {
             return ((sourceConfig == nil || basisForProcessingUpdated) ? super.basisForProcessing : sourceConfig?.basisForProcessing)!
         }
@@ -38,7 +37,7 @@ public class GDPRConfigurationUpdate: GDPRConfiguration {
         }
     }
 
-    public override var documentId: String? {
+    override var documentId: String? {
         get {
             return ((sourceConfig == nil || documentIdUpdated) ? super.documentId : sourceConfig?.documentId)
         }
@@ -48,7 +47,7 @@ public class GDPRConfigurationUpdate: GDPRConfiguration {
         }
     }
 
-    public override var documentVersion: String? {
+    override var documentVersion: String? {
         get {
             return ((sourceConfig == nil || documentVersionUpdated) ? super.documentVersion : sourceConfig?.documentVersion)
         }
@@ -58,7 +57,7 @@ public class GDPRConfigurationUpdate: GDPRConfiguration {
         }
     }
 
-    public override var documentDescription: String? {
+    override var documentDescription: String? {
         get {
             return ((sourceConfig == nil || documentDescriptionUpdated) ? super.documentDescription : sourceConfig?.documentDescription)
         }
@@ -68,45 +67,27 @@ public class GDPRConfigurationUpdate: GDPRConfiguration {
         }
     }
 
-    // Private methods
-
     var basisForProcessingUpdated: Bool {
-        get {
-            return gdprUpdated
-        }
-        set {
-            gdprUpdated = newValue
-        }
+        get { return gdprUpdated }
+        set { gdprUpdated = newValue }
     }
 
     var documentIdUpdated: Bool {
-        get {
-            return gdprUpdated
-        }
-        set {
-            gdprUpdated = newValue
-        }
+        get { return gdprUpdated }
+        set { gdprUpdated = newValue }
     }
 
-    public var documentVersionUpdated: Bool {
-        get {
-            return gdprUpdated
-        }
-        set {
-            gdprUpdated = newValue
-        }
+    var documentVersionUpdated: Bool {
+        get { return gdprUpdated }
+        set { gdprUpdated = newValue }
     }
 
-    public var documentDescriptionUpdated: Bool {
-        get {
-            return gdprUpdated
-        }
-        set {
-            gdprUpdated = newValue
-        }
+    var documentDescriptionUpdated: Bool {
+        get { return gdprUpdated }
+        set { gdprUpdated = newValue }
     }
     
-    @objc public init() {
+    public init() {
         super.init(basis: .consent, documentId: nil, documentVersion: nil, documentDescription: nil)
     }
     

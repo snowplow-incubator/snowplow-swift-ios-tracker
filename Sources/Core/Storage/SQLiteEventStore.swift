@@ -31,8 +31,7 @@ let _queryDeleteId = "DELETE FROM 'events' WHERE id=?"
 let _queryDeleteIds = "DELETE FROM 'events' WHERE id IN (%@)"
 let _queryDeleteAll = "DELETE FROM 'events'"
 
-@objc(SPSQLiteEventStore)
-public class SQLiteEventStore: NSObject, EventStore {
+class SQLiteEventStore: NSObject, EventStore {
     var namespace: String
     var sqliteFilename: String
     var dbPath: String
@@ -82,11 +81,11 @@ public class SQLiteEventStore: NSObject, EventStore {
     }
 
     ///  Basic initializer that creates a database event table (if one does not exist) and then closes the connection.
-    @objc public convenience init(namespace: String?) {
+    convenience init(namespace: String?) {
         self.init(namespace: namespace, limit: 250)
     }
 
-    @objc public init(namespace: String?, limit: Int) {
+    init(namespace: String?, limit: Int) {
         self.namespace = namespace ?? ""
         sendLimit = limit
 
@@ -118,7 +117,7 @@ public class SQLiteEventStore: NSObject, EventStore {
         // Create database
         queue = FMDatabaseQueue(path: dbPath)
         super.init()
-        createTable()
+        _ = createTable()
     }
 
     deinit {
@@ -127,11 +126,11 @@ public class SQLiteEventStore: NSObject, EventStore {
 
     // MARK: SPEventStore implementation methods
 
-    public func addEvent(_ payload: Payload) {
-        insertDictionaryData(payload.getAsDictionary())
+    func addEvent(_ payload: Payload) {
+        _ = insertDictionaryData(payload.getAsDictionary())
     }
 
-    public func removeEvent(withId storeId: Int64) -> Bool {
+    func removeEvent(withId storeId: Int64) -> Bool {
         var res = false
         queue?.inDatabase({ db in
             if db.open() {
@@ -142,7 +141,7 @@ public class SQLiteEventStore: NSObject, EventStore {
         return res
     }
 
-    public func removeEvents(withIds storeIds: [NSNumber]) -> Bool {
+    func removeEvents(withIds storeIds: [NSNumber]) -> Bool {
         var res = false
         queue?.inDatabase({ db in
             if db.open() && storeIds.count != 0 {
@@ -155,7 +154,7 @@ public class SQLiteEventStore: NSObject, EventStore {
         return res
     }
 
-    public func removeAllEvents() -> Bool {
+    func removeAllEvents() -> Bool {
         var res = false
         queue?.inDatabase({ db in
             if db.open() {
@@ -166,7 +165,7 @@ public class SQLiteEventStore: NSObject, EventStore {
         return res
     }
 
-    public func count() -> UInt {
+    func count() -> UInt {
         var num: UInt = 0
         queue?.inDatabase({ db in
             if db.open() {
@@ -181,7 +180,7 @@ public class SQLiteEventStore: NSObject, EventStore {
         return num
     }
 
-    public func emittableEvents(withQueryLimit queryLimit: UInt) -> [EmitterEvent] {
+    func emittableEvents(withQueryLimit queryLimit: UInt) -> [EmitterEvent] {
         return getAllEventsLimited(UInt(sendLimit)) ?? []
     }
 

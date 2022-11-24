@@ -21,8 +21,7 @@
 
 import Foundation
 
-@objc
-public protocol ServiceProviderProtocol: AnyObject {
+protocol ServiceProviderProtocol: AnyObject {
     var namespace: String { get }
     var isTrackerInitialized: Bool { get }
     var tracker: Tracker { get }

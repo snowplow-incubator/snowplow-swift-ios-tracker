@@ -21,12 +21,11 @@
 
 import Foundation
 
-@objc(SPEmitterControllerImpl)
-public class EmitterControllerImpl: Controller, EmitterController {
+class EmitterControllerImpl: Controller, EmitterController {
 
     // MARK: - Properties
 
-    public var bufferOption: BufferOption {
+    var bufferOption: BufferOption {
         get {
             return emitter.bufferOption
         }
@@ -37,7 +36,7 @@ public class EmitterControllerImpl: Controller, EmitterController {
         }
     }
 
-    public var byteLimitGet: Int {
+    var byteLimitGet: Int {
         get {
             return emitter.byteLimitGet
         }
@@ -48,7 +47,7 @@ public class EmitterControllerImpl: Controller, EmitterController {
         }
     }
 
-    public var byteLimitPost: Int {
+    var byteLimitPost: Int {
         get {
             return emitter.byteLimitPost
         }
@@ -59,7 +58,7 @@ public class EmitterControllerImpl: Controller, EmitterController {
         }
     }
 
-    public var serverAnonymisation: Bool {
+    var serverAnonymisation: Bool {
         get {
             return emitter.serverAnonymisation
         }
@@ -70,7 +69,7 @@ public class EmitterControllerImpl: Controller, EmitterController {
         }
     }
 
-    public var emitRange: Int {
+    var emitRange: Int {
         get {
             return emitter.emitRange
         }
@@ -81,7 +80,7 @@ public class EmitterControllerImpl: Controller, EmitterController {
         }
     }
 
-    public var threadPoolSize: Int {
+    var threadPoolSize: Int {
         get {
             return emitter.emitThreadPoolSize
         }
@@ -93,7 +92,7 @@ public class EmitterControllerImpl: Controller, EmitterController {
     }
 
     private var _requestCallback: RequestCallback?
-    public var requestCallback: RequestCallback? {
+    var requestCallback: RequestCallback? {
         get {
             return _requestCallback
         }
@@ -103,15 +102,15 @@ public class EmitterControllerImpl: Controller, EmitterController {
         }
     }
 
-    public var dbCount: Int {
+    var dbCount: Int {
         return Int(emitter.dbCount)
     }
 
-    public var isSending: Bool {
+    var isSending: Bool {
         return emitter.isSending
     }
     
-    public var customRetryForStatusCodes: [Int : Bool]? {
+    var customRetryForStatusCodes: [Int : Bool]? {
         get {
             return emitter.customRetryForStatusCodes
         }
@@ -124,16 +123,16 @@ public class EmitterControllerImpl: Controller, EmitterController {
 
     // MARK: - Methods
 
-    public func flush() {
+    func flush() {
         emitter.flush()
     }
 
-    public func pause() {
+    func pause() {
         dirtyConfig.isPaused = true
         emitter.pauseEmit()
     }
 
-    public func resume() {
+    func resume() {
         dirtyConfig.isPaused = false
         emitter.resumeEmit()
     }

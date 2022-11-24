@@ -24,15 +24,15 @@ import Foundation
 let kRulePattern = "^iglu:((?:(?:[a-zA-Z0-9-_]+|\\*)\\.)+(?:[a-zA-Z0-9-_]+|\\*))\\/([a-zA-Z0-9-_\\.]+|\\*)\\/([a-zA-Z0-9-_\\.]+|\\*)\\/([1-9][0-9]*|\\*)-(0|[1-9][0-9]*|\\*)-(0|[1-9][0-9]*|\\*)$"
 let kUriPattern = "^iglu:((?:(?:[a-zA-Z0-9-_]+)\\.)+(?:[a-zA-Z0-9-_]+))\\/([a-zA-Z0-9-_]+)\\/([a-zA-Z0-9-_]+)\\/([1-9][0-9]*)\\-(0|[1-9][0-9]*)\\-(0|[1-9][0-9]*)$"
 
-public class SchemaRule: Equatable {
+class SchemaRule: Equatable {
     private(set) var rule: String
     private(set) var ruleParts: [String]
 
-    public func copy(with zone: NSZone? = nil) -> Any {
+    func copy(with zone: NSZone? = nil) -> Any {
         return SchemaRule(rule: rule) as Any
     }
 
-    public required init?(rule: String) {
+    required init?(rule: String) {
         self.rule = rule
         guard let parts = SchemaRule.parts(fromUri: rule, regexPattern: kRulePattern) else { return nil }
         // reject rule if vendor format isn't valid
@@ -42,7 +42,7 @@ public class SchemaRule: Equatable {
         ruleParts = parts
     }
 
-    public func match(withUri uri: String) -> Bool {
+    func match(withUri uri: String) -> Bool {
         guard let uriParts = SchemaRule.parts(fromUri: uri, regexPattern: kUriPattern) else {
             return false
         }
@@ -135,7 +135,7 @@ public class SchemaRule: Equatable {
         return true
     }
     
-    public static func == (lhs: SchemaRule, rhs: SchemaRule) -> Bool {
+    static func == (lhs: SchemaRule, rhs: SchemaRule) -> Bool {
         return lhs.rule == rhs.rule
     }
 

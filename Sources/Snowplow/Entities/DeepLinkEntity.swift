@@ -1,0 +1,46 @@
+//
+// SPDeepLinkEntity.swift
+// Snowplow
+//
+// Copyright (c) 2013-2022 Snowplow Analytics Ltd. All rights reserved.
+//
+// This program is licensed to you under the Apache License Version 2.0,
+// and you may not use this file except in compliance with the Apache License
+// Version 2.0. You may obtain a copy of the Apache License Version 2.0 at
+// http://www.apache.org/licenses/LICENSE-2.0.
+//
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the Apache License Version 2.0 is distributed on
+// an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+// express or implied. See the Apache License Version 2.0 for the specific
+// language governing permissions and limitations there under.
+//
+// License: Apache License Version 2.0
+//
+
+import Foundation
+
+/// Entity that indicates a deep-link has been received and processed.
+public class DeepLinkEntity: SelfDescribingJson {
+    public static let schema = "iglu:com.snowplowanalytics.mobile/deep_link/jsonschema/1-0-0"
+    public static let paramReferrer = "referrer"
+    public static let paramUrl = "url"
+    
+    public var url: String
+    public var referrer: String?
+
+    public init(url: String) {
+        self.url = url
+        super.init(schema: DeepLinkEntity.schema, andData: nil)
+    }
+
+    override public var data: NSObject? {
+        get {
+            var data: [String: NSObject] = [:]
+            data[DeepLinkEntity.paramUrl] = url as NSObject
+            data[DeepLinkEntity.paramReferrer] = referrer as NSObject?
+            return data as NSObject
+        }
+        set {}
+    }
+}

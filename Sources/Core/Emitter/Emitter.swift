@@ -24,12 +24,11 @@ import Foundation
 /// This class sends events to the collector.
 let POST_WRAPPER_BYTES = 88
 
-@objc(SPEmitter)
-public class Emitter: NSObject, EmitterEventProcessing {
+class Emitter: NSObject, EmitterEventProcessing {
     
     private var timer: Timer?
     /// Whether the emitter is currently sending.
-    private(set) public var isSending = false
+    private(set) var isSending = false
     private var dataOperationQueue: OperationQueue = OperationQueue()
     private var builderFinished = false
 
@@ -37,7 +36,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
 
     private var _urlEndpoint: String?
     /// Collector endpoint.
-    public var urlEndpoint: String? {
+    var urlEndpoint: String? {
         get {
             if builderFinished {
                 return networkConnection?.urlEndpoint?.absoluteString
@@ -52,8 +51,8 @@ public class Emitter: NSObject, EmitterEventProcessing {
         }
     }
 
-    var _namespace: String?
-    public var namespace: String? {
+    private var _namespace: String?
+    var namespace: String? {
         get {
             return _namespace
         }
@@ -71,7 +70,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
 
     private var _method: HttpMethodOptions = EmitterDefaults.httpMethod
     /// Chosen HTTP method - .get or .post.
-    public var method: HttpMethodOptions {
+    var method: HttpMethodOptions {
         get {
             return _method
         }
@@ -85,7 +84,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
     
     private var _protocol: ProtocolOptions = EmitterDefaults.httpProtocol
     /// Security of requests - ProtocolHttp or ProtocolHttps.
-    public var `protocol`: ProtocolOptions {
+    var `protocol`: ProtocolOptions {
         get {
             return _protocol
         }
@@ -98,7 +97,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
     }
     private var _bufferOption: BufferOption = EmitterDefaults.bufferOption
     /// Buffer option
-    public var bufferOption: BufferOption {
+    var bufferOption: BufferOption {
         get {
             return _bufferOption
         }
@@ -111,7 +110,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
     
     private weak var _callback: RequestCallback?
     /// Callbacks supplied with number of failures and successes of sent events.
-    public var callback: RequestCallback? {
+    var callback: RequestCallback? {
         get {
             return _callback
         }
@@ -122,7 +121,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
     
     private var _emitRange = EmitterDefaults.emitRange
     /// Number of events retrieved from the database when needed.
-    public var emitRange: Int {
+    var emitRange: Int {
         get {
             return _emitRange
         }
@@ -135,7 +134,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
     
     private var _emitThreadPoolSize = EmitterDefaults.emitThreadPoolSize
     /// Number of threads used for emitting events.
-    public var emitThreadPoolSize: Int {
+    var emitThreadPoolSize: Int {
         get {
             return _emitThreadPoolSize
         }
@@ -154,7 +153,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
     
     private var _byteLimitGet = EmitterDefaults.byteLimitGet
     /// Byte limit for GET requests.
-    public var byteLimitGet: Int {
+    var byteLimitGet: Int {
         get {
             return _byteLimitGet
         }
@@ -168,7 +167,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
     
     private var _byteLimitPost = EmitterDefaults.byteLimitPost
     /// Byte limit for POST requests.
-    public var byteLimitPost: Int {
+    var byteLimitPost: Int {
         get {
             return _byteLimitPost
         }
@@ -182,7 +181,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
 
     private var _serverAnonymisation = EmitterDefaults.serverAnonymisation
     /// Whether to anonymise server-side user identifiers including the `network_userid` and `user_ipaddress`.
-    public var serverAnonymisation: Bool {
+    var serverAnonymisation: Bool {
         get {
             return _serverAnonymisation
         }
@@ -196,7 +195,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
 
     private var _customPostPath: String?
     /// Custom endpoint path for POST requests.
-    public var customPostPath: String? {
+    var customPostPath: String? {
         get {
             return _customPostPath
         }
@@ -210,7 +209,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
 
     /// Custom header requests.
     private var _requestHeaders: [String : String]?
-    public var requestHeaders: [String : String]? {
+    var requestHeaders: [String : String]? {
         get {
             return _requestHeaders
         }
@@ -224,7 +223,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
 
     private var _networkConnection: NetworkConnection?
     /// Custom NetworkConnection istance to handle connection outside the emitter.
-    public var networkConnection: NetworkConnection? {
+    var networkConnection: NetworkConnection? {
         get {
             return _networkConnection
         }
@@ -237,7 +236,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
     }
     
     private var _eventStore: EventStore?
-    public var eventStore: EventStore? {
+    var eventStore: EventStore? {
         get {
             return _eventStore
         }
@@ -250,7 +249,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
     
     /// Custom retry rules for HTTP status codes.
     private var _customRetryForStatusCodes: [Int : Bool] = [:]
-    public var customRetryForStatusCodes: [Int : Bool]? {
+    var customRetryForStatusCodes: [Int : Bool]? {
         get {
             return _customRetryForStatusCodes
         }
@@ -317,7 +316,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
 
     // MARK: - Pause/Resume methods
 
-    public func resumeTimer() {
+    func resumeTimer() {
         weak var weakSelf = self
 
         if timer != nil {
@@ -332,26 +331,26 @@ public class Emitter: NSObject, EmitterEventProcessing {
     }
 
     /// Suspends timer for periodically sending events to collector.
-    public func pauseTimer() {
+    func pauseTimer() {
         timer?.invalidate()
         timer = nil
     }
 
     /// Allows sending events to collector.
-    public func resumeEmit() {
+    func resumeEmit() {
         pausedEmit = false
         flush()
     }
 
     /// Suspends sending events to collector.
-    public func pauseEmit() {
+    func pauseEmit() {
         pausedEmit = true
     }
 
     /// Insert a Payload object into the buffer to be sent to collector.
     /// This method will add the payload to the database and flush (send all events).
     /// - Parameter eventPayload: A Payload containing a completed event to be added into the buffer.
-    public func addPayload(toBuffer eventPayload: Payload) {
+    func addPayload(toBuffer eventPayload: Payload) {
         weak var weakSelf = self
 
         DispatchQueue.global(qos: .default).async(execute: {
@@ -366,7 +365,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
     }
 
     /// Empties the buffer of events using the respective HTTP request method.
-    @objc public func flush() {
+    func flush() {
         if Thread.isMainThread {
             DispatchQueue.global(qos: .default).async(execute: { [self] in
                 sendGuard()

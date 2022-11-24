@@ -21,23 +21,22 @@
 
 import Foundation
 
-public typealias OnFetchCallback = (FetchedConfigurationBundle, ConfigurationState) -> Void
+typealias OnFetchCallback = (FetchedConfigurationBundle, ConfigurationState) -> Void
 
 /// This class fetch a configuration from a remote source otherwise it provides a cached configuration.
 /// It can manage multiple sources and multiple caches.
-@objc(SPConfigurationProvider)
-public class ConfigurationProvider: NSObject {
+class ConfigurationProvider {
     private var remoteConfiguration: RemoteConfiguration
     private var cache: ConfigurationCache
     private var fetcher: ConfigurationFetcher?
     private var defaultBundle: FetchedConfigurationBundle?
     private var cacheBundle: FetchedConfigurationBundle?
 
-    @objc public convenience init(remoteConfiguration: RemoteConfiguration) {
+    convenience init(remoteConfiguration: RemoteConfiguration) {
         self.init(remoteConfiguration: remoteConfiguration, defaultConfigurationBundles: nil)
     }
 
-    @objc public init(remoteConfiguration: RemoteConfiguration, defaultConfigurationBundles defaultBundles: [ConfigurationBundle]?) {
+    init(remoteConfiguration: RemoteConfiguration, defaultConfigurationBundles defaultBundles: [ConfigurationBundle]?) {
         self.remoteConfiguration = remoteConfiguration
         cache = ConfigurationCache(remoteConfiguration: remoteConfiguration)
         if let defaultBundles {
@@ -49,7 +48,7 @@ public class ConfigurationProvider: NSObject {
         }
     }
 
-    @objc public func retrieveConfigurationOnlyRemote(_ onlyRemote: Bool, onFetchCallback: @escaping OnFetchCallback) {
+    func retrieveConfigurationOnlyRemote(_ onlyRemote: Bool, onFetchCallback: @escaping OnFetchCallback) {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
         if !onlyRemote {
@@ -81,7 +80,7 @@ public class ConfigurationProvider: NSObject {
 
     // Private methods
 
-    func schemaCompatibility(_ schema: String) -> Bool {
+    private func schemaCompatibility(_ schema: String) -> Bool {
         return schema.hasPrefix("http://iglucentral.com/schemas/com.snowplowanalytics.mobile/remote_config/jsonschema/1-")
     }
 }

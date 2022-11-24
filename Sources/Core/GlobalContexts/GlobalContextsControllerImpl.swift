@@ -21,10 +21,9 @@
 
 import Foundation
 
-@objc(SPGlobalContextsControllerImpl)
-public class GlobalContextsControllerImpl: Controller, GlobalContextsController {
+class GlobalContextsControllerImpl: Controller, GlobalContextsController {
 
-    public var contextGenerators: [String : GlobalContext] {
+    var contextGenerators: [String : GlobalContext] {
         get {
             return tracker.globalContextGenerators
         }
@@ -33,15 +32,15 @@ public class GlobalContextsControllerImpl: Controller, GlobalContextsController 
         }
     }
 
-    public func add(tag: String, contextGenerator generator: GlobalContext) -> Bool {
+    func add(tag: String, contextGenerator generator: GlobalContext) -> Bool {
         return tracker.add(generator, tag: tag)
     }
 
-    public func remove(tag: String) -> GlobalContext? {
+    func remove(tag: String) -> GlobalContext? {
         return tracker.removeGlobalContext(tag)
     }
 
-    public var tags: [String] {
+    var tags: [String] {
         return tracker.globalContextTags
     }
 

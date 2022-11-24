@@ -28,9 +28,9 @@ import Foundation
 //#define SPLogDebug(format, ...) [SPLogger debug:NSStringFromClass(self.class) message:[[NSString alloc] initWithFormat:format, ##__VA_ARGS__]]
 //#define SPLogVerbose(format, ...) [SPLogger verbose:NSStringFromClass(self.class) message:[[NSString alloc] initWithFormat:format, ##__VA_ARGS__]]
 
-public class Logger: NSObject {
+class Logger: NSObject {
     private static var _logLevel: LogLevel = .off
-    public class var logLevel: LogLevel {
+    class var logLevel: LogLevel {
         get {
             return _logLevel
         }
@@ -48,22 +48,22 @@ public class Logger: NSObject {
         }
     }
 
-    public static var delegate: LoggerDelegate?
+    static var delegate: LoggerDelegate?
 
-    public class func diagnostic(_ tag: String, message: String, errorOrException: Any?) {
+    class func diagnostic(_ tag: String, message: String, errorOrException: Any?) {
         log(.error, tag: tag, message: message)
         trackError(withTag: tag, message: message, errorOrException: errorOrException)
     }
 
-    public class func error(_ tag: String, message: String) {
+    class func error(_ tag: String, message: String) {
         log(.error, tag: tag, message: message)
     }
 
-    public class func debug(_ tag: String, message: String) {
+    class func debug(_ tag: String, message: String) {
         log(.debug, tag: tag, message: message)
     }
 
-    public class func verbose(_ tag: String, message: String) {
+    class func verbose(_ tag: String, message: String) {
         log(.verbose, tag: tag, message: message)
     }
 

@@ -116,7 +116,7 @@ class StateManager: NSObject {
         stateMachines.append(contentsOf: eventSchemaToEntitiesGenerator["*"] ?? [])
         
         for stateMachine in stateMachines {
-            let state = event.state?.state(withIdentifier: stateMachine.identifier)
+            let state = event.state.state(withIdentifier: stateMachine.identifier)
             if let entities = stateMachine.entities(from: event, state: state) {
                 result.append(contentsOf: entities)
             }
@@ -133,7 +133,7 @@ class StateManager: NSObject {
         var stateMachines = eventSchemaToPayloadUpdater[schema] ?? []
         stateMachines.append(contentsOf: eventSchemaToPayloadUpdater["*"] ?? [])
         for stateMachine in stateMachines {
-            let state = event.state?.state(withIdentifier: stateMachine.identifier)
+            let state = event.state.state(withIdentifier: stateMachine.identifier)
             if let payloadValues = stateMachine.payloadValues(from: event, state: state) {
                 if !event.addPayloadValues(payloadValues) {
                     failures += 1

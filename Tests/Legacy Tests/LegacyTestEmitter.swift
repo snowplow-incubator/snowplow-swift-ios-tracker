@@ -118,6 +118,8 @@ class LegacyTestEmitter: XCTestCase {
         // Allow timer to be set
         RunLoop.main.run(until: Date(timeIntervalSinceNow: 1))
         emitter.resumeTimer()
+        
+        emitter.flush()
     }
 
     // MARK: - Emitting tests
@@ -289,7 +291,7 @@ class LegacyTestEmitter: XCTestCase {
 
         XCTAssertEqual(0, emitter.dbCount)
         networkConnection.statusCode = 200
-        let prevSendingCount = networkConnection.sendingCount
+        _ = networkConnection.sendingCount
         emitter.addPayload(toBuffer: payloads[14])
 
         for _ in 0..<10 {
@@ -299,19 +301,6 @@ class LegacyTestEmitter: XCTestCase {
         XCTAssertEqual(0, emitter.dbCount)
 
         emitter.flush()
-    }
-
-    // MARK: - Emitter builder
-
-    func emitter(with networkConnection: NetworkConnection, bufferOption: BufferOption = .single) -> Emitter {
-        let emitter = Emitter(networkConnection: networkConnection) { emitter in
-            emitter.bufferOption = bufferOption
-            emitter.emitRange = 200
-            emitter.byteLimitGet = 20000
-            emitter.byteLimitPost = 25000
-            emitter.eventStore = MockEventStore()
-        }
-        return emitter
     }
 
     func testRemovesEventsFromQueueOnNoRetryStatus() {
@@ -358,6 +347,19 @@ class LegacyTestEmitter: XCTestCase {
         XCTAssertEqual(1, emitter.dbCount)
 
         emitter.flush()
+    }
+
+    // MARK: - Emitter builder
+
+    func emitter(with networkConnection: NetworkConnection, bufferOption: BufferOption = .single) -> Emitter {
+        let emitter = Emitter(networkConnection: networkConnection) { emitter in
+            emitter.bufferOption = bufferOption
+            emitter.emitRange = 200
+            emitter.byteLimitGet = 20000
+            emitter.byteLimitPost = 25000
+            emitter.eventStore = MockEventStore()
+        }
+        return emitter
     }
 
     // MARK: - Service methods
