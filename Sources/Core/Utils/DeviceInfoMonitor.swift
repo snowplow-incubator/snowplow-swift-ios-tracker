@@ -188,8 +188,9 @@ class DeviceInfoMonitor {
             carrier = networkInfo.subscriberCellularProvider
         }
         return carrier?.carrierName ?? ""
-        #endif
+        #else
         return ""
+        #endif
     }
 
     /// Returns the Network Technology the device is using.

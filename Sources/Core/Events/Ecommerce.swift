@@ -75,7 +75,7 @@ public class Ecommerce : PrimitiveAbstract {
     override public func endProcessing(withTracker tracker: Tracker?) {
         for item in items {
             item.orderId = orderId
-            tracker?.track(item)
+            _ = tracker?.track(item)
         }
     }
 }

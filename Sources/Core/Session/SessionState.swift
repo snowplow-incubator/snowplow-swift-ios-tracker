@@ -37,15 +37,15 @@ public class SessionState: NSObject, State {
     private var sessionDictionary: [String : NSObject] = [:]
 
     class func buildSessionDictionary(withFirstEventId firstEventId: String?, firstEventTimestamp: String?, currentSessionId: String, previousSessionId: String?, sessionIndex: Int, userId: String, storage: String) -> [String : NSObject] {
-        var dictionary: [AnyHashable : Any] = [:]
-        dictionary[kSPSessionPreviousId] = previousSessionId
-        dictionary[kSPSessionId] = currentSessionId
-        dictionary[kSPSessionFirstEventId] = firstEventId
-        dictionary[kSPSessionFirstEventTimestamp] = firstEventTimestamp
+        var dictionary: [String : NSObject] = [:]
+        dictionary[kSPSessionPreviousId] = previousSessionId as? NSObject ?? NSNull()
+        dictionary[kSPSessionId] = currentSessionId as NSObject
+        dictionary[kSPSessionFirstEventId] = firstEventId as? NSObject
+        dictionary[kSPSessionFirstEventTimestamp] = firstEventTimestamp as? NSObject
         dictionary[kSPSessionIndex] = NSNumber(value: sessionIndex)
-        dictionary[kSPSessionStorage] = storage
-        dictionary[kSPSessionUserId] = userId
-        return dictionary as? [String : NSObject] ?? [:]
+        dictionary[kSPSessionStorage] = storage as NSObject
+        dictionary[kSPSessionUserId] = userId as NSObject
+        return dictionary
     }
 
     init(firstEventId: String?, firstEventTimestamp: String?, currentSessionId: String, previousSessionId: String?, sessionIndex: Int, userId: String, storage: String) {
@@ -90,9 +90,9 @@ public class SessionState: NSObject, State {
 
         sessionDictionary = SessionState.buildSessionDictionary(
             withFirstEventId: firstEventId,
-            firstEventTimestamp: firstEventTimestamp ?? "",
+            firstEventTimestamp: firstEventTimestamp,
             currentSessionId: sessionId,
-            previousSessionId: previousSessionId ?? "",
+            previousSessionId: previousSessionId,
             sessionIndex: sessionIndex,
             userId: userId,
             storage: storage)
