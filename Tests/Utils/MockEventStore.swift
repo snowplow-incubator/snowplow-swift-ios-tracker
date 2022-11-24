@@ -49,7 +49,7 @@ class MockEventStore: NSObject, EventStore {
     }
 
     func removeEvents(withIds storeIds: [NSNumber]) -> Bool {
-        var result = true
+        let result = true
         for storeId in storeIds {
             db.removeValue(forKey: storeId.int64Value)
         }

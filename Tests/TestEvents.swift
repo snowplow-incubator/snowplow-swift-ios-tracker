@@ -194,7 +194,7 @@ class TestEvents: XCTestCase {
     func testScreenView() {
         let screenId = UUID()
 
-        var event = ScreenView(name: "name", screenId: screenId)
+        let event = ScreenView(name: "name", screenId: screenId)
         XCTAssertEqual("name", event.payload["name"] as? String)
     }
 

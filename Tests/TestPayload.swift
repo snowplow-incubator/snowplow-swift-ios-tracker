@@ -224,7 +224,7 @@ class TestPayload: XCTestCase {
         ]
 
         // NSDictionary conversion to JSON string
-        var somedata = try? JSONSerialization.data(withJSONObject: sample_dic, options: [])
+        let somedata = try? JSONSerialization.data(withJSONObject: sample_dic, options: [])
 
         let sample_payload = Payload()
         sample_payload.addJsonToPayload(
@@ -249,7 +249,7 @@ class TestPayload: XCTestCase {
         ]
 
         // NSDictionary conversion to JSON string
-        var somedata = try! JSONSerialization.data(withJSONObject: sample_dic, options: [])
+        let somedata = try! JSONSerialization.data(withJSONObject: sample_dic, options: [])
 
         let sample_payload = Payload()
         sample_payload.addJsonToPayload(

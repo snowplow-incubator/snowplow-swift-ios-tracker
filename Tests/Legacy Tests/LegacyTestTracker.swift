@@ -33,7 +33,7 @@ class LegacyTestTracker: XCTestCase {
 
         let subject = Subject(platformContext: true, andGeoContext: true)
 
-        let tracker = Tracker(trackerNamespace: "aNamespace", appId: "anAppId", emitter: emitter) { tracker in
+        _ = Tracker(trackerNamespace: "aNamespace", appId: "anAppId", emitter: emitter) { tracker in
             tracker.subject = subject
             tracker.base64Encoded = false
             tracker.sessionContext = true
