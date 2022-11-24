@@ -29,9 +29,7 @@ class ServiceProvider: NSObject, ServiceProviderProtocol {
     // Internal services
     private var _subject: Subject?
     var subject: Subject {
-        if let _subject {
-            return _subject
-        }
+        if let subject = _subject { return subject }
         let subject = makeSubject()
         _subject = subject
         return subject
@@ -39,9 +37,7 @@ class ServiceProvider: NSObject, ServiceProviderProtocol {
 
     private var _emitter: Emitter?
     var emitter: Emitter {
-        if let _emitter {
-            return _emitter
-        }
+        if let emitter = _emitter { return emitter }
         let emitter = makeEmitter()
         _emitter = emitter
         return emitter
@@ -49,9 +45,7 @@ class ServiceProvider: NSObject, ServiceProviderProtocol {
 
     private var _tracker: Tracker?
     var tracker: Tracker {
-        if let _tracker {
-            return _tracker
-        }
+        if let tracker = _tracker { return tracker }
         let tracker = makeTracker()
         _tracker = tracker
         return tracker
@@ -61,9 +55,7 @@ class ServiceProvider: NSObject, ServiceProviderProtocol {
 
     private var _trackerController: TrackerControllerImpl?
     var trackerController: TrackerControllerImpl {
-        if let _trackerController {
-            return _trackerController
-        }
+        if let controller = _trackerController { return controller }
         let trackerController = makeTrackerController()
         _trackerController = trackerController
         return trackerController
@@ -71,9 +63,7 @@ class ServiceProvider: NSObject, ServiceProviderProtocol {
 
     private var _sessionController: SessionControllerImpl?
     var sessionController: SessionControllerImpl {
-        if let _sessionController {
-            return _sessionController
-        }
+        if let controller = _sessionController { return controller }
         let sessionController = makeSessionController()
         _sessionController = sessionController
         return sessionController
@@ -81,9 +71,7 @@ class ServiceProvider: NSObject, ServiceProviderProtocol {
 
     private var _emitterController: EmitterControllerImpl?
     var emitterController: EmitterControllerImpl {
-        if let _emitterController {
-            return _emitterController
-        }
+        if let controller = _emitterController { return controller }
         let emitterController = makeEmitterController()
         _emitterController = emitterController
         return emitterController
@@ -91,9 +79,7 @@ class ServiceProvider: NSObject, ServiceProviderProtocol {
 
     private var _gdprController: GDPRControllerImpl?
     var gdprController: GDPRControllerImpl {
-        if let _gdprController {
-            return _gdprController
-        }
+        if let controller = _gdprController { return controller }
         let gdprController = makeGDPRController()
         _gdprController = gdprController
         return gdprController
@@ -101,8 +87,8 @@ class ServiceProvider: NSObject, ServiceProviderProtocol {
 
     private var _globalContextsController: GlobalContextsControllerImpl?
     var globalContextsController: GlobalContextsControllerImpl {
-        if let _globalContextsController {
-            return _globalContextsController
+        if let controller = _globalContextsController {
+            return controller
         }
         let globalContextsController = makeGlobalContextsController()
         _globalContextsController = globalContextsController
@@ -111,9 +97,7 @@ class ServiceProvider: NSObject, ServiceProviderProtocol {
 
     private var _subjectController: SubjectControllerImpl?
     var subjectController: SubjectControllerImpl {
-        if let _subjectController {
-            return _subjectController
-        }
+        if let controller = _subjectController { return controller }
         let subjectController = makeSubjectController()
         _subjectController = subjectController
         return subjectController
@@ -121,9 +105,7 @@ class ServiceProvider: NSObject, ServiceProviderProtocol {
 
     private var _networkController: NetworkControllerImpl?
     var networkController: NetworkControllerImpl {
-        if let _networkController {
-            return _networkController
-        }
+        if let controller = _networkController { return controller }
         let networkController = makeNetworkController()
         _networkController = networkController
         return networkController
@@ -312,8 +294,8 @@ class ServiceProvider: NSObject, ServiceProviderProtocol {
             tracker.installEvent = trackerConfig.installAutotracking
             tracker.trackerDiagnostic = trackerConfig.diagnosticAutotracking
             tracker.userAnonymisation = trackerConfig.userAnonymisation
-            if let gcConfig {
-                tracker.globalContextGenerators = gcConfig.contextGenerators
+            if let config = gcConfig {
+                tracker.globalContextGenerators = config.contextGenerators
             }
             if gdprConfig.sourceConfig != nil {
                 tracker.gdprContext = GDPRContext(

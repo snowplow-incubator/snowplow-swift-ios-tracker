@@ -102,8 +102,8 @@ public class NetworkConfiguration: Configuration {
 
     public override func copy(with zone: NSZone? = nil) -> Any {
         var copy: NetworkConfiguration?
-        if let networkConnection {
-            copy = NetworkConfiguration(networkConnection: networkConnection)
+        if let connection = networkConnection {
+            copy = NetworkConfiguration(networkConnection: connection)
         } else {
             copy = NetworkConfiguration(endpoint: endpoint ?? "", method: method )
         }

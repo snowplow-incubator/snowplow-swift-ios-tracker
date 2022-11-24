@@ -61,7 +61,7 @@ public class Payload: NSObject {
     /// - key: A key of type NSString
     public func addNumericValueToPayload(_ value: NSNumber?, forKey key: String) {
         objc_sync_enter(self)
-        if let value {
+        if let value = value {
             payload[key] = value
         } else if payload[key] != nil {
             payload.removeValue(forKey: key)

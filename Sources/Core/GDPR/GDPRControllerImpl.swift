@@ -53,7 +53,7 @@ class GDPRControllerImpl: Controller, GDPRController {
     }
 
     func enable() -> Bool {
-        if let gdpr { tracker.gdprContext = gdpr }
+        if let gdpr = gdpr { tracker.gdprContext = gdpr }
         else { return false }
         dirtyConfig.isEnabled = true
         return true

@@ -42,9 +42,9 @@ public class Structured: PrimitiveAbstract {
         var payload: [String : NSObject] = [:]
         payload[kSPStuctCategory] = category as NSObject
         payload[kSPStuctAction] = action as NSObject
-        if let label { payload[kSPStuctLabel] = label as NSObject }
-        if let property { payload[kSPStuctProperty] = property as NSObject }
-        if let value {
+        if let label = label { payload[kSPStuctLabel] = label as NSObject }
+        if let property = property { payload[kSPStuctProperty] = property as NSObject }
+        if let value = value {
             payload[kSPStuctValue] = String(format: "%.17g", value.doubleValue) as NSObject
         }
         return payload

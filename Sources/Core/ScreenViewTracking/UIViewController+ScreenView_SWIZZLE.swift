@@ -44,7 +44,7 @@ extension UIViewController {
         let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
         
         var didAddMethod = false
-        if let swizzledMethod {
+        if let swizzledMethod = swizzledMethod {
             didAddMethod = class_addMethod(
                 self,
                 originalSelector,
@@ -53,7 +53,7 @@ extension UIViewController {
         }
         
         if didAddMethod {
-            if let originalMethod {
+            if let originalMethod = originalMethod {
                 class_replaceMethod(
                     self,
                     swizzledSelector,
@@ -61,7 +61,8 @@ extension UIViewController {
                     method_getTypeEncoding(originalMethod))
             }
         } else {
-            if let originalMethod, let swizzledMethod {
+            if let originalMethod = originalMethod,
+               let swizzledMethod = swizzledMethod {
                 method_exchangeImplementations(originalMethod, swizzledMethod)
             }
         }

@@ -71,11 +71,11 @@ public class ScreenView: SelfDescribingAbstract {
         var payload: [String : NSObject] = [:]
         payload[kSPSvName] = name as NSObject
         payload[kSPSvScreenId] = screenId.uuidString as NSObject
-        if let type { payload[kSPSvType] = type as NSObject }
-        if let previousName { payload[kSPSvPreviousName] = previousName as NSObject }
-        if let previousType { payload[kSPSvPreviousType] = previousType as NSObject }
-        if let previousId { payload[kSPSvPreviousScreenId] = previousId as NSObject }
-        if let transitionType { payload[kSPSvTransitionType] = transitionType as NSObject }
+        if let type = type { payload[kSPSvType] = type as NSObject }
+        if let previousName = previousName { payload[kSPSvPreviousName] = previousName as NSObject }
+        if let previousType = previousType { payload[kSPSvPreviousType] = previousType as NSObject }
+        if let previousId = previousId { payload[kSPSvPreviousScreenId] = previousId as NSObject }
+        if let transitionType = transitionType { payload[kSPSvTransitionType] = transitionType as NSObject }
         return payload
     }
     

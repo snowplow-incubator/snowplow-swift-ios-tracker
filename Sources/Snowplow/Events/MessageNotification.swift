@@ -142,16 +142,16 @@ public class MessageNotification : SelfDescribingAbstract {
     public override var payload: [String: NSObject] {
         var payload: [String : NSObject] = [:]
         payload[kSPMessageNotificationParamAction] = action as NSObject?
-        if let attachments {
+        if let attachments = attachments {
             payload[kSPMessageNotificationParamMessageNotificationAttachments] = attachments.map { $0.data } as NSObject
         }
         payload[kSPMessageNotificationParamBody] = body as NSObject?
-        if let bodyLocArgs {
+        if let bodyLocArgs = bodyLocArgs {
             payload[kSPMessageNotificationParamBodyLocArgs] = bodyLocArgs as NSObject
         }
         payload[kSPMessageNotificationParamBodyLocKey] = bodyLocKey as NSObject?
         payload[kSPMessageNotificationParamCategory] = category as NSObject?
-        if let contentAvailable {
+        if let contentAvailable = contentAvailable {
             payload[kSPMessageNotificationParamContentAvailable] = NSNumber(value: contentAvailable)
         }
         payload[kSPMessageNotificationParamGroup] = group as NSObject?
@@ -163,7 +163,7 @@ public class MessageNotification : SelfDescribingAbstract {
         payload[kSPMessageNotificationParamTag] = tag as NSObject?
         payload[kSPMessageNotificationParamThreadIdentifier] = threadIdentifier as NSObject?
         payload[kSPMessageNotificationParamTitle] = title as NSObject?
-        if let titleLocArgs {
+        if let titleLocArgs = titleLocArgs {
             payload[kSPMessageNotificationParamTitleLocArgs] = titleLocArgs as NSObject
         }
         payload[kSPMessageNotificationParamTitleLocKey] = titleLocKey as NSObject?

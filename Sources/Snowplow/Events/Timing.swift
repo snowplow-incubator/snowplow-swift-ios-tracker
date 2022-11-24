@@ -51,7 +51,7 @@ public class Timing: SelfDescribingAbstract {
         payload[kSPUtCategory] = category as NSObject
         payload[kSPUtVariable] = variable as NSObject
         payload[kSPUtTiming] = NSNumber(value: timing)
-        if let label { payload[kSPUtLabel] = label as NSObject }
+        if let label = label { payload[kSPUtLabel] = label as NSObject }
         return payload
     }
 }

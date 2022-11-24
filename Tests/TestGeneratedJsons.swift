@@ -370,8 +370,7 @@ class TestGeneratedJsons: XCTestCase {
 
     func getJSONAsString(withFilePath filePath: String?) -> String? {
         let path = Bundle(for: TestGeneratedJsons.self).path(forResource: filePath, ofType: nil, inDirectory: "Products")
-        let data = NSData(contentsOfFile: path ?? "") as Data?
-        if let data {
+        if let data = NSData(contentsOfFile: path ?? "") as Data? {
             return String(data: data, encoding: .utf8)
         }
         return nil

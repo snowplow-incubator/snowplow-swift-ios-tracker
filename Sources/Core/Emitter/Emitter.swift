@@ -294,8 +294,8 @@ class Emitter: NSObject, EmitterEventProcessing {
         if !builderFinished && networkConnection != nil {
             return
         }
-        if let _urlEndpoint {
-            var endpoint = "\(_urlEndpoint)"
+        if let url = _urlEndpoint {
+            var endpoint = "\(url)"
             if !endpoint.hasPrefix("http") {
                 let `protocol` = self.protocol == .https ? "https://" : "http://"
                 endpoint = `protocol` + endpoint
@@ -412,15 +412,15 @@ class Emitter: NSObject, EmitterEventProcessing {
             let resultIndexArray = result.storeIds
             if result.isSuccessful {
                 successCount += resultIndexArray?.count ?? 0
-                if let resultIndexArray {
-                    removableEvents.append(contentsOf: resultIndexArray)
+                if let array = resultIndexArray {
+                    removableEvents.append(contentsOf: array)
                 }
             } else if result.shouldRetry(customRetryForStatusCodes) {
                 failedWillRetryCount += resultIndexArray?.count ?? 0
             } else {
                 failedWontRetryCount += resultIndexArray?.count ?? 0
-                if let resultIndexArray {
-                    removableEvents.append(contentsOf: resultIndexArray)
+                if let array = resultIndexArray {
+                    removableEvents.append(contentsOf: array)
                 }
                 logError(message: String(format: "Sending events to Collector failed with status %ld. Events will be dropped.", result.statusCode ?? -1))
             }

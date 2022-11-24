@@ -36,7 +36,7 @@ class ConfigurationCache: NSObject {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
         #if !(TARGET_OS_TV) && !(TARGET_OS_WATCH)
-        if let configuration {
+        if let configuration = configuration {
             return configuration
         }
         load()
@@ -58,7 +58,7 @@ class ConfigurationCache: NSObject {
         defer { objc_sync_exit(self) }
         configuration = nil
         #if !(TARGET_OS_TV) && !(TARGET_OS_WATCH)
-        if let cacheFileUrl {
+        if let cacheFileUrl = cacheFileUrl {
             do {
                 try FileManager.default.removeItem(at: cacheFileUrl)
             } catch let error {
@@ -122,14 +122,14 @@ class ConfigurationCache: NSObject {
         var url = fm.urls(for: .applicationSupportDirectory, in: .userDomainMask).last
         url = url?.appendingPathComponent("snowplow-cache")
         do {
-            if let url {
+            if let url = url {
                 try fm.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
             }
         } catch {
         }
         let fileName = String(format: "remoteConfig-%lu.data", UInt((remoteConfiguration.endpoint).hash))
         url = url?.appendingPathComponent(fileName, isDirectory: false)
-        if let url {
+        if let url = url {
             cacheFileUrl = url
         }
     }

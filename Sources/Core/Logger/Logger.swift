@@ -95,7 +95,7 @@ class Logger: NSObject {
         if level.rawValue > logLevel.rawValue {
             return
         }
-        if let delegate {
+        if let delegate = delegate {
             switch level {
             case .off:
                 // do nothing.
