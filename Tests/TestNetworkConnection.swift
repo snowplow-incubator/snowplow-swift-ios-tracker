@@ -43,9 +43,7 @@ class TestNetworkConnection: XCTestCase {
     func testGetRequestWithSuccess() {
         _ = stubRequest("GET", "^\("https")://\(TEST_URL_ENDPOINT)/i?(.*?)".regex).andReturn(200)
         
-        let connection = DefaultNetworkConnection(urlString: TEST_URL_ENDPOINT)
-        connection.httpMethod = .get
-        connection.setup()
+        let connection = DefaultNetworkConnection(urlString: TEST_URL_ENDPOINT, httpMethod: .get)
 
         let payload = Payload()
         payload.addValueToPayload("value", forKey: "key")
@@ -61,9 +59,7 @@ class TestNetworkConnection: XCTestCase {
     func testGetRequestWithNoSuccess() {
         _ = stubRequest("GET", "^\("https")://\(TEST_URL_ENDPOINT)/i?(.*?)".regex).andReturn(404)
 
-        let connection = DefaultNetworkConnection(urlString: TEST_URL_ENDPOINT)
-        connection.httpMethod = .get
-        connection.setup()
+        let connection = DefaultNetworkConnection(urlString: TEST_URL_ENDPOINT, httpMethod: .get)
         
         let payload = Payload()
         payload.addValueToPayload("value", forKey: "key")
@@ -79,9 +75,7 @@ class TestNetworkConnection: XCTestCase {
     func testPostRequestWithSuccess() {
         _ = stubRequest("POST", "^\("https")://\(TEST_URL_ENDPOINT)/i?(.*?)".regex).andReturn(200)
 
-        let connection = DefaultNetworkConnection(urlString: TEST_URL_ENDPOINT)
-        connection.httpMethod = .post
-        connection.setup()
+        let connection = DefaultNetworkConnection(urlString: TEST_URL_ENDPOINT, httpMethod: .post)
         
         let payload = Payload()
         payload.addValueToPayload("value", forKey: "key")
@@ -97,9 +91,7 @@ class TestNetworkConnection: XCTestCase {
     func testPostRequestWithNoSuccess() {
         _ = stubRequest("POST", "^\("https")://\(TEST_URL_ENDPOINT)/i?(.*?)".regex).andReturn(404)
 
-        let connection = DefaultNetworkConnection(urlString: TEST_URL_ENDPOINT)
-        connection.httpMethod = .post
-        connection.setup()
+        let connection = DefaultNetworkConnection(urlString: TEST_URL_ENDPOINT, httpMethod: .post)
 
         let payload = Payload()
         payload.addValueToPayload("value", forKey: "key")
@@ -113,30 +105,22 @@ class TestNetworkConnection: XCTestCase {
     }
 
     func testFreeEndpoint_GetHttpsUrl() {
-        let connection = DefaultNetworkConnection(urlString: "acme.test.url.com")
-        connection.httpMethod = .post
-        connection.setup()
+        let connection = DefaultNetworkConnection(urlString: "acme.test.url.com", httpMethod: .post)
         XCTAssertTrue(connection.urlEndpoint!.absoluteString.hasPrefix("https://acme.test.url.com"))
     }
 
     func testHttpsEndpoint_GetHttpsUrl() {
-        let connection = DefaultNetworkConnection(urlString: "https://acme.test.url.com")
-        connection.httpMethod = .post
-        connection.setup()
+        let connection = DefaultNetworkConnection(urlString: "https://acme.test.url.com", httpMethod: .post)
         XCTAssertTrue(connection.urlEndpoint!.absoluteString.hasPrefix("https://acme.test.url.com"))
     }
 
     func testHttpEndpoint_GetHttpUrl() {
-        let connection = DefaultNetworkConnection(urlString: "http://acme.test.url.com")
-        connection.httpMethod = .post
-        connection.setup()
+        let connection = DefaultNetworkConnection(urlString: "http://acme.test.url.com", httpMethod: .post)
         XCTAssertTrue(connection.urlEndpoint!.absoluteString.hasPrefix("http://acme.test.url.com"))
     }
 
     func testStripsTrailingSlashInEndpoint() {
-        let connection = DefaultNetworkConnection(urlString: "http://acme.test.url.com/")
-        connection.httpMethod = .get
-        connection.setup()
+        let connection = DefaultNetworkConnection(urlString: "http://acme.test.url.com/", httpMethod: .get)
         XCTAssertTrue((connection.urlEndpoint?.absoluteString == "http://acme.test.url.com/i"))
     }
 
@@ -148,10 +132,8 @@ class TestNetworkConnection: XCTestCase {
         _ = stubRequest("POST", "^\("https")://\(TEST_URL_ENDPOINT)/i?(.*?)".regex).andReturn(
             200)
 
-        let connection = DefaultNetworkConnection(urlString: TEST_URL_ENDPOINT)
-        connection.httpMethod = .post
+        let connection = DefaultNetworkConnection(urlString: TEST_URL_ENDPOINT, httpMethod: .post)
         connection.serverAnonymisation = false
-        connection.setup()
 
         let payload = Payload()
         payload.addValueToPayload("value", forKey: "key")
@@ -170,10 +152,8 @@ class TestNetworkConnection: XCTestCase {
             "*")?.andReturn(
             200)
 
-        let connection = DefaultNetworkConnection(urlString: TEST_URL_ENDPOINT)
-        connection.httpMethod = .post
+        let connection = DefaultNetworkConnection(urlString: TEST_URL_ENDPOINT, httpMethod: .post)
         connection.serverAnonymisation = true
-        connection.setup()
 
         let payload = Payload()
         payload.addValueToPayload("value", forKey: "key")
@@ -192,10 +172,8 @@ class TestNetworkConnection: XCTestCase {
             "*")?.andReturn(
             200)
 
-        let connection = DefaultNetworkConnection(urlString: TEST_URL_ENDPOINT)
-        connection.httpMethod = .get
+        let connection = DefaultNetworkConnection(urlString: TEST_URL_ENDPOINT, httpMethod: .get)
         connection.serverAnonymisation = true
-        connection.setup()
 
         let payload = Payload()
         payload.addValueToPayload("value", forKey: "key")

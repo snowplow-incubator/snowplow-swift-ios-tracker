@@ -231,8 +231,7 @@ public class SQLiteEventStore: NSObject, EventStore {
                 if let s = try? db.executeQuery(_querySelectId, values: [id_]) {
                     while s.next() {
                         if let data = s.data(forColumn: "eventData"),
-                           let dict = try? JSONSerialization.jsonObject(with: data) as? [String: NSObject],
-                           let dict {
+                           let dict = try? JSONSerialization.jsonObject(with: data) as? [String: NSObject] {
                             let payload = Payload(dictionary: dict)
                             event = EmitterEvent(payload: payload, storeId: id_)
                         }
@@ -265,8 +264,7 @@ public class SQLiteEventStore: NSObject, EventStore {
                     while s.next() {
                         let index = s.longLongInt(forColumn: "ID")
                         if let data = s.data(forColumn: "eventData"),
-                           let dict = try? JSONSerialization.jsonObject(with: data) as? [String: NSObject],
-                           let dict {
+                           let dict = try? JSONSerialization.jsonObject(with: data) as? [String: NSObject] {
                             let payload = Payload(dictionary: dict)
                             let event = EmitterEvent(payload: payload, storeId: index)
                             res.append(event)

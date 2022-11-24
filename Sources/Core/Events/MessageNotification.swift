@@ -58,7 +58,7 @@ func triggerToString(_ trigger: MessageNotificationTrigger) -> String {
 
 /// An event that represents the reception of a push notification (or a locally generated one).
 @objc(SPMessageNotification)
-public class MessageNotification : NSObject {
+public class MessageNotification : SelfDescribingAbstract {
     /// The action associated with the notification.
     @objc public var action: String?
     /// Attachments added to the notification (they can be part of the data object).
@@ -137,11 +137,11 @@ public class MessageNotification : NSObject {
         return event
     }
     
-    @objc public var schema: String {
+    @objc public override var schema: String {
         return kSPMessageNotificationSchema
     }
     
-    @objc public var payload: [String: NSObject] {
+    @objc public override var payload: [String: NSObject] {
         var payload: [String : NSObject] = [:]
         payload[kSPMessageNotificationParamAction] = action as NSObject?
         if let attachments {

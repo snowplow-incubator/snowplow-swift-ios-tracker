@@ -51,7 +51,6 @@ public class ConfigurationFetcher: NSObject {
 
     @objc public func resolveRequest(with data: Data) {
         if let jsonObject = try? JSONSerialization.jsonObject(with: data) as? [String : NSObject],
-           let jsonObject,
            let fetchedConfigurationBundle = FetchedConfigurationBundle(dictionary: jsonObject) {
             onFetchCallback(fetchedConfigurationBundle, ConfigurationState.fetched)
         }

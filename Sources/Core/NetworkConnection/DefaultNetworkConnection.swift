@@ -21,51 +21,34 @@
 
 import Foundation
 
-@objc public protocol DefaultNetworkConnectionBuilder: NSObjectProtocol {
-    /// Builder method to set the collector endpoint.
-    /// - Parameter urlEndpoint: The collector endpoint.
-    var urlString: String { get set }
-    /// Builder method to set HTTP method.
-    /// - Parameter method: Should be SPHttpMethodGet or SPHttpMethodPost.
-    var httpMethod: HttpMethodOptions { get set }
-    /// Builder method to set thread pool size.
-    /// - Parameter emitThreadPoolSize: The number of threads used by the emitter.
-    var emitThreadPoolSize: Int { get set }
-    /// Builder method to set byte limit for GET requests.
-    /// - Parameter byteLimitGet: Maximum event size for a GET request.
-    var byteLimitGet: Int { get set }
-    /// Builder method to set byte limit for POST requests.
-    /// - Parameter byteLimitPost: Maximum event size for a POST request.
-    var byteLimitPost: Int { get set }
-    /// Builder method to set a custom POST path.
-    /// - Parameter customPath: A custom path that is used on the endpoint to send requests.
-    var customPostPath: String? { get set }
-    /// Builder method to set request headers.
-    /// - Parameter requestHeadersKeyValue: custom headers (key, value) for http requests.
-    var requestHeaders: [String : String]? { get set }
-    /// Builder method to set the server anonymisation flag.
-    /// - Parameter serverAnonymisation: Whether to anonymise server-side user identifiers including the `network_userid` and `user_ipaddress`
-    var serverAnonymisation: Bool { get set }
-}
-
-public class DefaultNetworkConnection: NSObject, NetworkConnection, DefaultNetworkConnectionBuilder {
-    private var `protocol`: ProtocolOptions = .https
+public class DefaultNetworkConnection: NetworkConnection {
+    private var _protocol: ProtocolOptions = .https
+    // The protocol for connection to the collector
+    public var `protocol`: ProtocolOptions {
+        get {
+            return _protocol
+        }
+        set {
+            _protocol = newValue
+            if builderFinished { setup() }
+        }
+    }
 
     private var _urlString: String
+    /// The collector endpoint.
     public var urlString: String {
         get {
             return urlEndpoint?.absoluteString ?? _urlString
         }
         set {
             _urlString = newValue
-            if builderFinished {
-                setup()
-            }
+            if builderFinished { setup() }
         }
     }
     private(set) public var urlEndpoint: URL?
 
     private var _httpMethod: HttpMethodOptions = .post
+    /// HTTP method, should be .get or .post.
     public var httpMethod: HttpMethodOptions {
         get {
             return _httpMethod
@@ -79,6 +62,7 @@ public class DefaultNetworkConnection: NSObject, NetworkConnection, DefaultNetwo
     }
 
     private var _emitThreadPoolSize = 15
+    /// The number of threads used by the emitter.
     public var emitThreadPoolSize: Int {
         get {
             return _emitThreadPoolSize
@@ -90,22 +74,33 @@ public class DefaultNetworkConnection: NSObject, NetworkConnection, DefaultNetwo
             }
         }
     }
-
+    /// Maximum event size for a GET request.
     public var byteLimitGet: Int = 40000
+    /// Maximum event size for a POST request.
     public var byteLimitPost = 40000
+    /// A custom path that is used on the endpoint to send requests.
     public var customPostPath: String?
+    /// Custom headers (key, value) for http requests.
     public var requestHeaders: [String : String]?
+    /// Whether to anonymise server-side user identifiers including the `network_userid` and `user_ipaddress`
     public var serverAnonymisation = false
     private var dataOperationQueue = OperationQueue()
     private var builderFinished = false
     
-    public init(urlString: String) {
+    public init(urlString: String,
+                httpMethod: HttpMethodOptions = EmitterDefaults.httpMethod,
+                protocol: ProtocolOptions = EmitterDefaults.httpProtocol,
+                customPostPath: String? = nil) {
         self._urlString = urlString
+        self.httpMethod = httpMethod
+        self.protocol = `protocol`
+        self.customPostPath = customPostPath
+        setup()
     }
 
     // MARK: - Implement SPNetworkConnection protocol
     
-    func setup() {
+    private func setup() {
         // Decode url to extract protocol
         let url = URL(string: _urlString)
         var endpoint = _urlString

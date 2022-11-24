@@ -23,13 +23,13 @@ import Foundation
 
 @objc(SPSessionState)
 public class SessionState: NSObject, State {
-    private(set) var firstEventId: String?
-    private(set) var firstEventTimestamp: String?
-    private(set) var previousSessionId: String?
-    private(set) var sessionId: String
-    private(set) var sessionIndex = 0
-    private(set) var storage: String
-    var userId: String
+    public private(set) var firstEventId: String?
+    public private(set) var firstEventTimestamp: String?
+    public private(set) var previousSessionId: String?
+    public private(set) var sessionId: String
+    public private(set) var sessionIndex = 0
+    public private(set) var storage: String
+    public private(set) var userId: String
 
     var sessionContext: [String : NSObject] {
         return sessionDictionary

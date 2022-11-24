@@ -72,9 +72,9 @@ class TestRequestResult: XCTestCase {
     }
 
     func testFailedRequestWithCustomNoRetryStatus() {
-        var customRetryRules: [NSNumber : NSNumber] = [:]
-        customRetryRules[NSNumber(value: 403)] = NSNumber(value: true)
-        customRetryRules[NSNumber(value: 500)] = NSNumber(value: false)
+        var customRetryRules: [Int : Bool] = [:]
+        customRetryRules[403] = true
+        customRetryRules[500] = false
 
         var result = RequestResult(statusCode: 403, oversize: false, storeIds: [])
         XCTAssertEqual(result.shouldRetry(customRetryRules), true)

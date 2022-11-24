@@ -51,7 +51,7 @@ public protocol EmitterConfigurationProtocol: AnyObject {
     var requestCallback: RequestCallback? { get set }
     ///  Custom retry rules for HTTP status codes returned from the Collector.
     ///  The dictionary is a mapping of integers (status codes) to booleans (true for retry and false for not retry).
-    var customRetryForStatusCodes: [NSNumber : NSNumber]? { get set }
+    var customRetryForStatusCodes: [Int : Bool]? { get set }
     /// Whether to anonymise server-side user identifiers including the `network_userid` and `user_ipaddress`
     var serverAnonymisation: Bool { get set }
 }
@@ -63,29 +63,29 @@ public protocol EmitterConfigurationProtocol: AnyObject {
 public class EmitterConfiguration: Configuration, EmitterConfigurationProtocol {
     /// Sets whether the buffer should send events instantly or after the buffer
     /// has reached it's limit. By default, this is set to BufferOption Default.
-    @objc public var bufferOption: BufferOption = .single
+    @objc public var bufferOption: BufferOption = EmitterDefaults.bufferOption
 
     /// Maximum number of events collected from the EventStore to be sent in a request.
-    @objc public var emitRange: Int = 150
+    @objc public var emitRange: Int = EmitterDefaults.emitRange
 
     /// Maximum number of threads working in parallel in the tracker to send requests.
-    @objc public var threadPoolSize: Int = 15
+    @objc public var threadPoolSize: Int = EmitterDefaults.emitThreadPoolSize
 
     /// Maximum amount of bytes allowed to be sent in a payload in a GET request.
-    @objc public var byteLimitGet: Int = 40000
+    @objc public var byteLimitGet: Int = EmitterDefaults.byteLimitGet
 
     /// Maximum amount of bytes allowed to be sent in a payload in a POST request.
-    @objc public var byteLimitPost: Int = 40000
+    @objc public var byteLimitPost: Int = EmitterDefaults.byteLimitPost
 
     /// Callback called for each request performed by the tracker to the collector.
     @objc public var requestCallback: RequestCallback?
 
     /// Custom retry rules for HTTP status codes returned from the Collector.
     /// The dictionary is a mapping of integers (status codes) to booleans (true for retry and false for not retry).
-    @objc public var customRetryForStatusCodes: [NSNumber : NSNumber]?
+    @objc public var customRetryForStatusCodes: [Int : Bool]?
 
     /// Whether to anonymise server-side user identifiers including the `network_userid` and `user_ipaddress`
-    @objc public var serverAnonymisation: Bool = false
+    @objc public var serverAnonymisation: Bool = EmitterDefaults.serverAnonymisation
 
     /// Custom component with full ownership for persisting events before to be sent to the collector.
     /// If it's not set the tracker will use a SQLite database as default EventStore.
@@ -142,7 +142,7 @@ public class EmitterConfiguration: Configuration, EmitterConfigurationProtocol {
         threadPoolSize = coder.decodeInteger(forKey: "threadPoolSize")
         byteLimitGet = coder.decodeInteger(forKey: "byteLimitGet")
         byteLimitPost = coder.decodeInteger(forKey: "byteLimitPost")
-        customRetryForStatusCodes = coder.decodeObject(forKey: "customRetryForStatusCodes") as? [NSNumber : NSNumber]
+        customRetryForStatusCodes = coder.decodeObject(forKey: "customRetryForStatusCodes") as? [Int : Bool]
         serverAnonymisation = coder.decodeBool(forKey: "serverAnonymisation")
     }
 }

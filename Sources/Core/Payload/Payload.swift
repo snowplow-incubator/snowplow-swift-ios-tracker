@@ -98,8 +98,7 @@ public class Payload: NSObject {
         typeWhenEncoded typeEncoded: String?,
         typeWhenNotEncoded typeNotEncoded: String?
     ) {
-        guard let object = try? JSONSerialization.jsonObject(with: json) as? [String : NSObject],
-              let _ = object else { return }
+        guard let _ = try? JSONSerialization.jsonObject(with: json) as? [String : NSObject] else { return }
         if encode {
             guard let typeEncoded else { return }
             var encodedString = json.base64EncodedString(options: [])

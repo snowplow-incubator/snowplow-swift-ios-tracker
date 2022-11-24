@@ -1,5 +1,5 @@
 //
-//  SPNetworkConnection.swift
+//  EmitterDefaults.swift
 //  Snowplow
 //
 //  Copyright (c) 2013-2022 Snowplow Analytics Ltd. All rights reserved.
@@ -15,21 +15,19 @@
 //  express or implied. See the Apache License Version 2.0 for the specific
 //  language governing permissions and limitations there under.
 //
-//  Authors: Alex Benini
+//  Authors: Matus Tomlein
 //  License: Apache License Version 2.0
 //
 
 import Foundation
 
-/// Interface for the component that
-/// sends events to the collector.
-public protocol NetworkConnection {
-    /// Send requests to the collector.
-    /// - Parameter requests: to send,
-    /// - Returns: results of the sending operation.
-    func sendRequests(_ requests: [Request]) -> [RequestResult]
-    /// - Returns: http method used to send requests to the collector.
-    var httpMethod: HttpMethodOptions { get }
-    /// - Returns: URL of the collector.
-    var urlEndpoint: URL? { get }
+public class EmitterDefaults {
+    public private(set) static var httpMethod: HttpMethodOptions = .post
+    public private(set) static var httpProtocol: ProtocolOptions = .https
+    public private(set) static var emitRange = 150
+    public private(set) static var emitThreadPoolSize = 15
+    public private(set) static var byteLimitGet = 40000
+    public private(set) static var byteLimitPost = 40000
+    public private(set) static var serverAnonymisation = false
+    public private(set) static var bufferOption: BufferOption = .defaultGroup
 }

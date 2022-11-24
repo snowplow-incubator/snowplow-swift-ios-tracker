@@ -427,6 +427,14 @@
 		6B9DA6D8292E5FE6006D721A /* TestSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA6D7292E5FE6006D721A /* TestSubject.swift */; };
 		6B9DA6DA292E6010006D721A /* TestServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA6D9292E6010006D721A /* TestServiceProvider.swift */; };
 		6B9DA6DC292E6034006D721A /* LegacyTestSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA6DB292E6034006D721A /* LegacyTestSubject.swift */; };
+		6B9DA6DF292F4A0C006D721A /* EmitterDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA6DD292F49B2006D721A /* EmitterDefaults.swift */; };
+		6B9DA6E0292F4A0D006D721A /* EmitterDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA6DD292F49B2006D721A /* EmitterDefaults.swift */; };
+		6B9DA6E1292F4A0D006D721A /* EmitterDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA6DD292F49B2006D721A /* EmitterDefaults.swift */; };
+		6B9DA6E2292F4A0E006D721A /* EmitterDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA6DD292F49B2006D721A /* EmitterDefaults.swift */; };
+		6B9DA6E4292F4ED9006D721A /* TrackerDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA6E3292F4ED9006D721A /* TrackerDefaults.swift */; };
+		6B9DA6E5292F4ED9006D721A /* TrackerDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA6E3292F4ED9006D721A /* TrackerDefaults.swift */; };
+		6B9DA6E6292F4ED9006D721A /* TrackerDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA6E3292F4ED9006D721A /* TrackerDefaults.swift */; };
+		6B9DA6E7292F4ED9006D721A /* TrackerDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA6E3292F4ED9006D721A /* TrackerDefaults.swift */; };
 		6BABE8BD291BFCAD00F6798A /* TrackerConfigurationUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABE8BC291BFCAD00F6798A /* TrackerConfigurationUpdate.swift */; };
 		6BABE8BE291BFCAD00F6798A /* TrackerConfigurationUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABE8BC291BFCAD00F6798A /* TrackerConfigurationUpdate.swift */; };
 		6BABE8BF291BFCAD00F6798A /* TrackerConfigurationUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABE8BC291BFCAD00F6798A /* TrackerConfigurationUpdate.swift */; };
@@ -678,6 +686,8 @@
 		6B9DA6D7292E5FE6006D721A /* TestSubject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSubject.swift; sourceTree = "<group>"; };
 		6B9DA6D9292E6010006D721A /* TestServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestServiceProvider.swift; sourceTree = "<group>"; };
 		6B9DA6DB292E6034006D721A /* LegacyTestSubject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyTestSubject.swift; sourceTree = "<group>"; };
+		6B9DA6DD292F49B2006D721A /* EmitterDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmitterDefaults.swift; sourceTree = "<group>"; };
+		6B9DA6E3292F4ED9006D721A /* TrackerDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerDefaults.swift; sourceTree = "<group>"; };
 		6BABE8BC291BFCAD00F6798A /* TrackerConfigurationUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerConfigurationUpdate.swift; sourceTree = "<group>"; };
 		6BABEB6B291CE94900F6798A /* NetworkConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConfiguration.swift; sourceTree = "<group>"; };
 		6BABEB70291CF1B900F6798A /* SessionConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionConfiguration.swift; sourceTree = "<group>"; };
@@ -1065,6 +1075,7 @@
 				6B85873B2923E024006E4A5F /* EmitterControllerImpl.swift */,
 				6BABED3E291E833D00F6798A /* EmitterConfigurationUpdate.swift */,
 				6B9DA5E22927D1F7006D721A /* EmitterEventProcessing.swift */,
+				6B9DA6DD292F49B2006D721A /* EmitterDefaults.swift */,
 			);
 			path = Emitter;
 			sourceTree = "<group>";
@@ -1121,6 +1132,7 @@
 				6BABE8BC291BFCAD00F6798A /* TrackerConfigurationUpdate.swift */,
 				6B9DA5B529269755006D721A /* TrackerEvent.swift */,
 				6B9DA6002927E669006D721A /* State.swift */,
+				6B9DA6E3292F4ED9006D721A /* TrackerDefaults.swift */,
 			);
 			path = Tracker;
 			sourceTree = "<group>";
@@ -1536,6 +1548,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B9DA6332928CAA3006D721A /* Tracker.swift in Sources */,
+				6B9DA6E4292F4ED9006D721A /* TrackerDefaults.swift in Sources */,
 				6B9DA62E2928C08D006D721A /* DataPersistence.swift in Sources */,
 				6B9DA6292928B2FC006D721A /* Session.swift in Sources */,
 				6B85876D292509AD006E4A5F /* ConfigurationFetcher.swift in Sources */,
@@ -1621,6 +1634,7 @@
 				6B8586F6292388C9006E4A5F /* SessionController.swift in Sources */,
 				6B9DA5E32927D1F7006D721A /* EmitterEventProcessing.swift in Sources */,
 				6B9DA55729261E5B006D721A /* ConsentGranted.swift in Sources */,
+				6B9DA6DF292F4A0C006D721A /* EmitterDefaults.swift in Sources */,
 				6B9DA66F292BBCDE006D721A /* SNOWReachability.swift in Sources */,
 				6B85877C29251CBD006E4A5F /* NetworkConnection.swift in Sources */,
 				6B9DA68D292BF03C006D721A /* TrackerConstants.swift in Sources */,
@@ -1692,6 +1706,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B9DA649292B5487006D721A /* DevicePlatform.swift in Sources */,
+				6B9DA6E5292F4ED9006D721A /* TrackerDefaults.swift in Sources */,
 				6B85874B2923E5A2006E4A5F /* GlobalContextsControllerImpl.swift in Sources */,
 				6B0CCFCF29236B0B0054954B /* GDPRContext.swift in Sources */,
 				6B0CCFCA292284390054954B /* GDPRConfigurationUpdate.swift in Sources */,
@@ -1777,6 +1792,7 @@
 				6B85875F2924DA67006E4A5F /* FetchedConfigurationBundle.swift in Sources */,
 				6BABED4A291E884900F6798A /* ConfigurationBundle.swift in Sources */,
 				6B85876A292509AD006E4A5F /* ConfigurationCache.swift in Sources */,
+				6B9DA6E0292F4A0D006D721A /* EmitterDefaults.swift in Sources */,
 				6B9DA68E292BF03C006D721A /* TrackerConstants.swift in Sources */,
 				6B85870A29239A9D006E4A5F /* MemoryEventStore.swift in Sources */,
 				6B9DA662292BAE5F006D721A /* ServiceProviderProtocol.swift in Sources */,
@@ -1806,6 +1822,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B9DA64A292B5487006D721A /* DevicePlatform.swift in Sources */,
+				6B9DA6E6292F4ED9006D721A /* TrackerDefaults.swift in Sources */,
 				6B85874C2923E5A2006E4A5F /* GlobalContextsControllerImpl.swift in Sources */,
 				6B0CCFD029236B0B0054954B /* GDPRContext.swift in Sources */,
 				6B0CCFCB292284390054954B /* GDPRConfigurationUpdate.swift in Sources */,
@@ -1891,6 +1908,7 @@
 				6B8587602924DA67006E4A5F /* FetchedConfigurationBundle.swift in Sources */,
 				6BABED4B291E884900F6798A /* ConfigurationBundle.swift in Sources */,
 				6B85876B292509AD006E4A5F /* ConfigurationCache.swift in Sources */,
+				6B9DA6E1292F4A0D006D721A /* EmitterDefaults.swift in Sources */,
 				6B85870B29239A9D006E4A5F /* MemoryEventStore.swift in Sources */,
 				6B9DA663292BAE5F006D721A /* ServiceProviderProtocol.swift in Sources */,
 				6B85873E2923E025006E4A5F /* EmitterController.swift in Sources */,
@@ -1927,6 +1945,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B9DA668292BAE5F006D721A /* ServiceProvider.swift in Sources */,
+				6B9DA6E7292F4ED9006D721A /* TrackerDefaults.swift in Sources */,
 				6B9DA645292B5197006D721A /* ScreenState.swift in Sources */,
 				6B85874D2923E5A2006E4A5F /* GlobalContextsControllerImpl.swift in Sources */,
 				6B9DA6362928CAA3006D721A /* Tracker.swift in Sources */,
@@ -2012,6 +2031,7 @@
 				6B9DA5AA29268B0E006D721A /* TrackerError.swift in Sources */,
 				6BABED51291E8B6F00F6798A /* GlobalContextsConfiguration.swift in Sources */,
 				6B9DA690292BF03C006D721A /* TrackerConstants.swift in Sources */,
+				6B9DA6E2292F4A0E006D721A /* EmitterDefaults.swift in Sources */,
 				6B9DA5FF2927E635006D721A /* LifecycleState.swift in Sources */,
 				6B8587612924DA67006E4A5F /* FetchedConfigurationBundle.swift in Sources */,
 				6BABED4C291E884900F6798A /* ConfigurationBundle.swift in Sources */,
@@ -2109,7 +2129,6 @@
 				PRODUCT_NAME = SnowplowTracker;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -2161,7 +2180,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.snowplowanalytics.Snowplow-iOS";
 				PRODUCT_NAME = SnowplowTracker;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -2220,7 +2238,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Tests/Tests-bridging-header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -2278,7 +2295,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Tests/Tests-bridging-header.h";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -2384,7 +2400,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -2442,7 +2457,6 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -2497,7 +2511,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -2713,7 +2726,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
@@ -2768,7 +2781,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};

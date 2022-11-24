@@ -69,8 +69,8 @@ public class Emitter: NSObject, EmitterEventProcessing {
         }
     }
 
-    private var _method: HttpMethodOptions = .post
-    /// Chosen HTTP method - HttpMethodGet or HttpMethodPost.
+    private var _method: HttpMethodOptions = EmitterDefaults.httpMethod
+    /// Chosen HTTP method - .get or .post.
     public var method: HttpMethodOptions {
         get {
             return _method
@@ -83,7 +83,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
         }
     }
     
-    private var _protocol: ProtocolOptions = .https
+    private var _protocol: ProtocolOptions = EmitterDefaults.httpProtocol
     /// Security of requests - ProtocolHttp or ProtocolHttps.
     public var `protocol`: ProtocolOptions {
         get {
@@ -96,7 +96,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
             }
         }
     }
-    private var _bufferOption: BufferOption = .defaultGroup
+    private var _bufferOption: BufferOption = EmitterDefaults.bufferOption
     /// Buffer option
     public var bufferOption: BufferOption {
         get {
@@ -120,7 +120,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
         }
     }
     
-    private var _emitRange = 150
+    private var _emitRange = EmitterDefaults.emitRange
     /// Number of events retrieved from the database when needed.
     public var emitRange: Int {
         get {
@@ -133,7 +133,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
         }
     }
     
-    private var _emitThreadPoolSize = 15
+    private var _emitThreadPoolSize = EmitterDefaults.emitThreadPoolSize
     /// Number of threads used for emitting events.
     public var emitThreadPoolSize: Int {
         get {
@@ -152,7 +152,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
         }
     }
     
-    private var _byteLimitGet = 40000
+    private var _byteLimitGet = EmitterDefaults.byteLimitGet
     /// Byte limit for GET requests.
     public var byteLimitGet: Int {
         get {
@@ -166,7 +166,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
         }
     }
     
-    private var _byteLimitPost = 40000
+    private var _byteLimitPost = EmitterDefaults.byteLimitPost
     /// Byte limit for POST requests.
     public var byteLimitPost: Int {
         get {
@@ -180,7 +180,7 @@ public class Emitter: NSObject, EmitterEventProcessing {
         }
     }
 
-    private var _serverAnonymisation = false
+    private var _serverAnonymisation = EmitterDefaults.serverAnonymisation
     /// Whether to anonymise server-side user identifiers including the `network_userid` and `user_ipaddress`.
     public var serverAnonymisation: Bool {
         get {
@@ -249,8 +249,8 @@ public class Emitter: NSObject, EmitterEventProcessing {
     }
     
     /// Custom retry rules for HTTP status codes.
-    private var _customRetryForStatusCodes: [NSNumber : NSNumber] = [:]
-    public var customRetryForStatusCodes: [NSNumber : NSNumber]? {
+    private var _customRetryForStatusCodes: [Int : Bool] = [:]
+    public var customRetryForStatusCodes: [Int : Bool]? {
         get {
             return _customRetryForStatusCodes
         }
@@ -266,24 +266,32 @@ public class Emitter: NSObject, EmitterEventProcessing {
     
     // MARK: - Initialization
     
-    init(urlEndpoint: String) {
+    init(urlEndpoint: String,
+         builder: ((Emitter) -> (Void))) {
         super.init()
         self._urlEndpoint = urlEndpoint
-    }
+        
+        builder(self)
+        setup()
+   }
     
-    init(networkConnection: NetworkConnection) {
+    init(networkConnection: NetworkConnection,
+         builder: ((Emitter) -> (Void))) {
         super.init()
         self._networkConnection = networkConnection
+        
+        builder(self)
+        setup()
     }
 
-    func setup() {
+    private func setup() {
         dataOperationQueue.maxConcurrentOperationCount = emitThreadPoolSize
         setupNetworkConnection()
         resumeTimer()
         builderFinished = true
     }
 
-    func setupNetworkConnection() {
+    private func setupNetworkConnection() {
         if !builderFinished && networkConnection != nil {
             return
         }
@@ -293,17 +301,16 @@ public class Emitter: NSObject, EmitterEventProcessing {
                 let `protocol` = self.protocol == .https ? "https://" : "http://"
                 endpoint = `protocol` + endpoint
             }
-            let defaultNetworkConnection = DefaultNetworkConnection(urlString: endpoint)
-            if let customPostPath {
-                defaultNetworkConnection.customPostPath = customPostPath
-            }
-            defaultNetworkConnection.httpMethod = method
+            let defaultNetworkConnection = DefaultNetworkConnection(
+                urlString: endpoint,
+                httpMethod: method,
+                customPostPath: customPostPath
+            )
             defaultNetworkConnection.requestHeaders = requestHeaders
             defaultNetworkConnection.emitThreadPoolSize = emitThreadPoolSize
             defaultNetworkConnection.byteLimitGet = byteLimitGet
             defaultNetworkConnection.byteLimitPost = byteLimitPost
             defaultNetworkConnection.serverAnonymisation = serverAnonymisation
-            defaultNetworkConnection.setup()
             _networkConnection = defaultNetworkConnection
         }
     }

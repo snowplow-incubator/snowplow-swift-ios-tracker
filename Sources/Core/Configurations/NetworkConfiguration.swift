@@ -52,7 +52,7 @@ public class NetworkConfiguration: Configuration {
     /// Protocol used to send events to the collector.
     @objc private(set) public var `protocol`: ProtocolOptions
     /// See `NetworkConfiguration(NetworkConnection)`
-    @objc public var networkConnection: NetworkConnection?
+    public var networkConnection: NetworkConnection?
     /// A custom path which will be added to the endpoint URL to specify the
     /// complete URL of the collector when paired with the POST method.
     @objc public var customPostPath: String?
@@ -79,8 +79,7 @@ public class NetworkConfiguration: Configuration {
     ///                 In case the URL doesn't include the schema/protocol, the HTTPS protocol is
     ///                 automatically selected.
     ///   - method: The method used to send the requests (GET or POST).
-    @objc
-    public init(endpoint: String, method: HttpMethodOptions) {
+    public init(endpoint: String, method: HttpMethodOptions = EmitterDefaults.httpMethod) {
         let url = URL(string: endpoint)
         if url?.scheme == "https" {
             self.protocol = ProtocolOptions.https
@@ -97,17 +96,9 @@ public class NetworkConfiguration: Configuration {
         customPostPath = nil
     }
 
-    /// - Parameter endpoint: URL of the collector that is going to receive the events tracked by the tracker.
-    ///                 The URL can include the schema/protocol (e.g.: `http://collector-url.com`).
-    ///                 In case the URL doesn't include the schema/protocol, the HTTPS protocol is
-    ///                 automatically selected.
-    @objc public convenience init(endpoint: String) {
-        self.init(endpoint: endpoint, method: HttpMethodOptions.post)
-    }
-
     /// - Parameter networkConnection: The NetworkConnection component which will control the
     ///                          communication between the tracker and the collector.
-    @objc public init(networkConnection: NetworkConnection?) {
+    public init(networkConnection: NetworkConnection?) {
         endpoint = nil
         self.protocol = .https
         method = .post

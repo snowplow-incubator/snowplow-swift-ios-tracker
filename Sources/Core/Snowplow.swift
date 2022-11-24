@@ -294,7 +294,7 @@ public class Snowplow: NSObject {
     /// Subscribe to events tracked in a Web view using the Snowplow WebView tracker JavaScript library.
     /// - Parameter webViewConfiguration: Configuration of the Web view to subscribe to events from
 
-    class func subscribeToWebViewEvents(with webViewConfiguration: WKWebViewConfiguration) {
+    public class func subscribeToWebViewEvents(with webViewConfiguration: WKWebViewConfiguration) {
         let messageHandler = WebViewMessageHandler()
 
         webViewConfiguration.userContentController.add(messageHandler, name: "snowplow")

@@ -249,30 +249,29 @@ public class ServiceProvider: NSObject, ServiceProviderProtocol {
     func makeEmitter() -> Emitter {
         let networkConfig = networkConfigurationUpdate
         let emitterConfig = emitterConfigurationUpdate
-        let emitter: Emitter
         
-        if let networkConnection = networkConfig.networkConnection {
-            emitter = Emitter(networkConnection: networkConnection)
-        } else {
-            emitter = Emitter(urlEndpoint: networkConfig.endpoint!)
+        let builder = { (emitter: Emitter) in
             emitter.method = networkConfig.method
             emitter.protocol = networkConfig.protocol
+            emitter.customPostPath = networkConfig.customPostPath
+            emitter.requestHeaders = networkConfig.requestHeaders
+            emitter.emitThreadPoolSize = emitterConfig.threadPoolSize
+            emitter.byteLimitGet = emitterConfig.byteLimitGet
+            emitter.byteLimitPost = emitterConfig.byteLimitPost
+            emitter.serverAnonymisation = emitterConfig.serverAnonymisation
+            emitter.emitRange = emitterConfig.emitRange
+            emitter.bufferOption = emitterConfig.bufferOption
+            emitter.eventStore = emitterConfig.eventStore
+            emitter.callback = emitterConfig.requestCallback
+            emitter.customRetryForStatusCodes = emitterConfig.customRetryForStatusCodes
         }
-        
-        emitter.customPostPath = networkConfig.customPostPath
-        emitter.requestHeaders = networkConfig.requestHeaders
-        emitter.emitRange = emitterConfig.emitRange
-        emitter.bufferOption = emitterConfig.bufferOption
-        emitter.eventStore = emitterConfig.eventStore
-        emitter.byteLimitPost = emitterConfig.byteLimitPost
-        emitter.byteLimitGet = emitterConfig.byteLimitGet
-        emitter.emitThreadPoolSize = emitterConfig.threadPoolSize
-        emitter.callback = emitterConfig.requestCallback
-        emitter.customRetryForStatusCodes = emitterConfig.customRetryForStatusCodes
-        emitter.serverAnonymisation = emitterConfig.serverAnonymisation
-        
-        // Finish building
-        emitter.setup()
+
+        let emitter: Emitter
+        if let networkConnection = networkConfig.networkConnection {
+            emitter = Emitter(networkConnection: networkConnection, builder: builder)
+        } else {
+            emitter = Emitter(urlEndpoint: networkConfig.endpoint!, builder: builder)
+        }
         
         if emitterConfig.isPaused {
             emitter.pauseEmit()
@@ -292,41 +291,39 @@ public class ServiceProvider: NSObject, ServiceProviderProtocol {
         let tracker = Tracker(
             trackerNamespace: namespace,
             appId: trackerConfig.appId,
-            trackerVersionSuffix: trackerConfig.trackerVersionSuffix,
             emitter: emitter
-        )
-        tracker.subject = subject
-        tracker.base64Encoded = trackerConfig.base64Encoding
-        tracker.logLevel = trackerConfig.logLevel
-        tracker.loggerDelegate = trackerConfig.loggerDelegate
-        tracker.devicePlatform = trackerConfig.devicePlatform
-        tracker.sessionContext = trackerConfig.sessionContext
-        tracker.applicationContext = trackerConfig.applicationContext
-        tracker.deepLinkContext = trackerConfig.deepLinkContext
-        tracker.screenContext = trackerConfig.screenContext
-        tracker.autotrackScreenViews = trackerConfig.screenViewAutotracking
-        tracker.lifecycleEvents = trackerConfig.lifecycleAutotracking
-        tracker.installEvent = trackerConfig.installAutotracking
-        tracker.exceptionEvents = trackerConfig.exceptionAutotracking
-        tracker.trackerDiagnostic = trackerConfig.diagnosticAutotracking
-        tracker.userAnonymisation = trackerConfig.userAnonymisation
-        
-        tracker.backgroundTimeout = sessionConfig.backgroundTimeoutInSeconds
-        tracker.foregroundTimeout = sessionConfig.foregroundTimeoutInSeconds
-        if let gcConfig {
-            tracker.globalContextGenerators = gcConfig.contextGenerators
+        ) { tracker in
+            if let suffix = trackerConfig.trackerVersionSuffix {
+                tracker.trackerVersionSuffix = suffix
+            }
+            tracker.sessionContext = trackerConfig.sessionContext
+            tracker.foregroundTimeout = sessionConfig.foregroundTimeoutInSeconds
+            tracker.backgroundTimeout = sessionConfig.backgroundTimeoutInSeconds
+            tracker.exceptionEvents = trackerConfig.exceptionAutotracking
+            tracker.subject = subject
+            tracker.base64Encoded = trackerConfig.base64Encoding
+            tracker.logLevel = trackerConfig.logLevel
+            tracker.loggerDelegate = trackerConfig.loggerDelegate
+            tracker.devicePlatform = trackerConfig.devicePlatform
+            tracker.applicationContext = trackerConfig.applicationContext
+            tracker.deepLinkContext = trackerConfig.deepLinkContext
+            tracker.screenContext = trackerConfig.screenContext
+            tracker.autotrackScreenViews = trackerConfig.screenViewAutotracking
+            tracker.lifecycleEvents = trackerConfig.lifecycleAutotracking
+            tracker.installEvent = trackerConfig.installAutotracking
+            tracker.trackerDiagnostic = trackerConfig.diagnosticAutotracking
+            tracker.userAnonymisation = trackerConfig.userAnonymisation
+            if let gcConfig {
+                tracker.globalContextGenerators = gcConfig.contextGenerators
+            }
+            if gdprConfig.sourceConfig != nil {
+                tracker.gdprContext = GDPRContext(
+                    basis: gdprConfig.basisForProcessing,
+                    documentId: gdprConfig.documentId,
+                    documentVersion: gdprConfig.documentVersion,
+                    documentDescription: gdprConfig.documentDescription)
+            }
         }
-        if gdprConfig.sourceConfig != nil {
-            tracker.gdprContext = GDPRContext(
-                basis: gdprConfig.basisForProcessing,
-                documentId: gdprConfig.documentId,
-                documentVersion: gdprConfig.documentVersion,
-                documentDescription: gdprConfig.documentDescription)
-        }
-        
-        // Finish building
-        tracker.setup()
-        tracker.checkInstall()
         
         if trackerConfigurationUpdate.isPaused {
             tracker.pauseEventTracking()

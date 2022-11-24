@@ -29,31 +29,29 @@ let TEST_SERVER_TRACKER = "http://www.notarealurl.com"
 
 class LegacyTestTracker: XCTestCase {
     func testTrackerSetup() {
-        let emitter = Emitter(urlEndpoint: "not-real.com")
-        emitter.setup()
+        let emitter = Emitter(urlEndpoint: "not-real.com") { emitter in }
 
         let subject = Subject(platformContext: true, andGeoContext: true)
 
-        let tracker = Tracker(trackerNamespace: "aNamespace", appId: "anAppId", trackerVersionSuffix: nil, emitter: emitter)
-        tracker.subject = subject
-        tracker.base64Encoded = false
-        tracker.sessionContext = true
-        tracker.setup()
+        let tracker = Tracker(trackerNamespace: "aNamespace", appId: "anAppId", emitter: emitter) { tracker in
+            tracker.subject = subject
+            tracker.base64Encoded = false
+            tracker.sessionContext = true
+        }
     }
 
     func testTrackerBuilderAndOptions() {
-        let emitter = Emitter(urlEndpoint: TEST_SERVER_TRACKER)
-        emitter.setup()
+        let emitter = Emitter(urlEndpoint: TEST_SERVER_TRACKER) { emitter in}
 
         let subject = Subject(platformContext: true, andGeoContext: true)
 
-        let tracker = Tracker(trackerNamespace: "aNamespace", appId: "anAppId", trackerVersionSuffix: nil, emitter: emitter)
-        tracker.subject = subject
-        tracker.base64Encoded = false
-        tracker.sessionContext = true
-        tracker.foregroundTimeout = 300
-        tracker.backgroundTimeout = 150
-        tracker.setup()
+        let tracker = Tracker(trackerNamespace: "aNamespace", appId: "anAppId", emitter: emitter) { tracker in
+            tracker.subject = subject
+            tracker.base64Encoded = false
+            tracker.sessionContext = true
+            tracker.foregroundTimeout = 300
+            tracker.backgroundTimeout = 150
+        }
 
         // Test builder setting properly
 
@@ -92,8 +90,7 @@ class LegacyTestTracker: XCTestCase {
         XCTAssertNotEqual(tracker.subject, subject)
         XCTAssertEqual(tracker.subject, subject2)
 
-        let emitter2 = Emitter(urlEndpoint: TEST_SERVER_TRACKER)
-        emitter2.setup()
+        let emitter2 = Emitter(urlEndpoint: TEST_SERVER_TRACKER) { emitter in}
         tracker.emitter = emitter2
         XCTAssertNotEqual(tracker.emitter, emitter)
         XCTAssertEqual(tracker.emitter, emitter2)
@@ -110,20 +107,19 @@ class LegacyTestTracker: XCTestCase {
     }
 
     func testTrackerPayload() {
-        let emitter = Emitter(urlEndpoint: TEST_SERVER_TRACKER)
-        emitter.setup()
+        let emitter = Emitter(urlEndpoint: TEST_SERVER_TRACKER) { emitter in}
 
         let subject = Subject(platformContext: true, andGeoContext: true)
 
-        let tracker = Tracker(trackerNamespace: "aNamespace", appId: "anAppId", trackerVersionSuffix: nil, emitter: emitter)
-        tracker.subject = subject
-        tracker.devicePlatform = .general
-        tracker.appId = "anAppId"
-        tracker.base64Encoded = false
-        tracker.sessionContext = true
-        tracker.foregroundTimeout = 300
-        tracker.backgroundTimeout = 150
-        tracker.setup()
+        let tracker = Tracker(trackerNamespace: "aNamespace", appId: "anAppId", emitter: emitter) { tracker in
+            tracker.subject = subject
+            tracker.devicePlatform = .general
+            tracker.appId = "anAppId"
+            tracker.base64Encoded = false
+            tracker.sessionContext = true
+            tracker.foregroundTimeout = 300
+            tracker.backgroundTimeout = 150
+        }
 
         let event = Structured(category: "Category", action: "Action")
         let trackerEvent = TrackerEvent(event: event, state: nil)

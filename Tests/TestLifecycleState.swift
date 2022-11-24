@@ -33,14 +33,13 @@ class TestLifecycleState: XCTestCase {
 
     func testLifecycleStateMachine() {
         let eventStore = MockEventStore()
-        let emitter = Emitter(urlEndpoint: "http://snowplow-fake-url.com")
-        emitter.eventStore = eventStore
-        emitter.setup()
-        let tracker = Tracker(trackerNamespace: "namespace", appId: nil, trackerVersionSuffix: nil, emitter: emitter)
-        tracker.base64Encoded = false
-        tracker.lifecycleEvents = true
-        tracker.setup()
-        tracker.checkInstall()
+        let emitter = Emitter(urlEndpoint: "http://snowplow-fake-url.com") { emitter in
+            emitter.eventStore = eventStore
+        }
+        let tracker = Tracker(trackerNamespace: "namespace", appId: nil, emitter: emitter) { tracker in
+            tracker.base64Encoded = false
+            tracker.lifecycleEvents = true
+        }
 
         // Send events
         _ = tracker.track(Timing(category: "category", variable: "variable", timing: 123))

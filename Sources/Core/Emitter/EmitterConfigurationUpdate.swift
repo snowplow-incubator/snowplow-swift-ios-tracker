@@ -56,7 +56,7 @@ public class EmitterConfigurationUpdate: EmitterConfiguration {
 
     @objc public override var bufferOption: BufferOption {
         get {
-            return ((sourceConfig == nil || bufferOptionUpdated) ? super.bufferOption : sourceConfig?.bufferOption) ?? BufferOption.defaultGroup
+            return ((sourceConfig == nil || bufferOptionUpdated) ? super.bufferOption : sourceConfig?.bufferOption) ?? EmitterDefaults.bufferOption
         }
         set {
             super.bufferOption = newValue
@@ -76,7 +76,7 @@ public class EmitterConfigurationUpdate: EmitterConfiguration {
 
     @objc public override var threadPoolSize: Int {
         get {
-            return ((sourceConfig == nil || threadPoolSizeUpdated) ? super.threadPoolSize : sourceConfig?.threadPoolSize) ?? 0
+            return ((sourceConfig == nil || threadPoolSizeUpdated) ? super.threadPoolSize : sourceConfig?.threadPoolSize) ?? EmitterDefaults.emitThreadPoolSize
         }
         set {
             super.threadPoolSize = newValue
@@ -86,7 +86,7 @@ public class EmitterConfigurationUpdate: EmitterConfiguration {
 
     @objc public override var byteLimitGet: Int {
         get {
-            return ((sourceConfig == nil || byteLimitGetUpdated) ? super.byteLimitGet : sourceConfig?.byteLimitGet) ?? 0
+            return ((sourceConfig == nil || byteLimitGetUpdated) ? super.byteLimitGet : sourceConfig?.byteLimitGet) ?? EmitterDefaults.byteLimitGet
         }
         set {
             super.byteLimitGet = newValue
@@ -96,7 +96,7 @@ public class EmitterConfigurationUpdate: EmitterConfiguration {
 
     @objc public override var byteLimitPost: Int {
         get {
-            return ((sourceConfig == nil || byteLimitPostUpdated) ? super.byteLimitPost : sourceConfig?.byteLimitPost) ?? 0
+            return ((sourceConfig == nil || byteLimitPostUpdated) ? super.byteLimitPost : sourceConfig?.byteLimitPost) ?? EmitterDefaults.byteLimitPost
         }
         set {
             super.byteLimitPost = newValue
@@ -104,7 +104,7 @@ public class EmitterConfigurationUpdate: EmitterConfiguration {
         }
     }
 
-    @objc public override var customRetryForStatusCodes: [NSNumber : NSNumber]? {
+    @objc public override var customRetryForStatusCodes: [Int : Bool]? {
         get {
             return ((sourceConfig == nil || customRetryForStatusCodesUpdated) ? super.customRetryForStatusCodes : sourceConfig?.customRetryForStatusCodes)
         }
@@ -116,7 +116,7 @@ public class EmitterConfigurationUpdate: EmitterConfiguration {
 
     @objc public override var serverAnonymisation: Bool {
         get {
-            return ((sourceConfig == nil || serverAnonymisationUpdated) ? super.serverAnonymisation : sourceConfig?.serverAnonymisation) ?? false
+            return ((sourceConfig == nil || serverAnonymisationUpdated) ? super.serverAnonymisation : sourceConfig?.serverAnonymisation) ?? EmitterDefaults.serverAnonymisation
         }
         set {
             super.serverAnonymisation = newValue

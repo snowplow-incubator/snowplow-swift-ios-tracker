@@ -86,30 +86,30 @@ public class TrackerConfiguration: Configuration, TrackerConfigurationProtocol {
     /// It sets the logger delegate that receive logs from the tracker.
     @objc public var loggerDelegate: LoggerDelegate?
     /// Whether application context is sent with all the tracked events.
-    @objc public var applicationContext = true
+    @objc public var applicationContext = TrackerDefaults.applicationContext
     /// Whether mobile/platform context is sent with all the tracked events.
-    @objc public var platformContext = true
+    @objc public var platformContext = TrackerDefaults.platformContext
     /// Whether geo-location context is sent with all the tracked events.
-    @objc public var geoLocationContext = false
+    @objc public var geoLocationContext = TrackerDefaults.geoLocationContext
     /// Whether session context is sent with all the tracked events.
-    @objc public var sessionContext = true
+    @objc public var sessionContext = TrackerDefaults.sessionContext
     /// Whether deepLink context is sent with all the ScreenView events.
-    @objc public var deepLinkContext = true
+    @objc public var deepLinkContext = TrackerDefaults.deepLinkContext
     /// Whether screen context is sent with all the tracked events.
-    @objc public var screenContext = true
+    @objc public var screenContext = TrackerDefaults.screenContext
     /// Whether enable automatic tracking of ScreenView events.
-    @objc public var screenViewAutotracking = true
+    @objc public var screenViewAutotracking = TrackerDefaults.autotrackScreenViews
     /// Whether enable automatic tracking of background and foreground transitions.
-    @objc public var lifecycleAutotracking = false
+    @objc public var lifecycleAutotracking = TrackerDefaults.lifecycleEvents
     /// Whether enable automatic tracking of install event.
-    @objc public var installAutotracking = true
+    @objc public var installAutotracking = TrackerDefaults.installEvent
     /// Whether enable crash reporting.
-    @objc public var exceptionAutotracking = true
+    @objc public var exceptionAutotracking = TrackerDefaults.exceptionEvents
     /// Whether enable diagnostic reporting.
-    @objc public var diagnosticAutotracking: Bool = false
+    @objc public var diagnosticAutotracking: Bool = TrackerDefaults.trackerDiagnostic
     /// Whether to anonymise client-side user identifiers in session (userId, previousSessionId), subject (userId, networkUserId, domainUserId, ipAddress) and platform context entities (IDFA)
     /// Setting this property on a running tracker instance starts a new session (if sessions are tracked).
-    @objc public var userAnonymisation: Bool = false
+    @objc public var userAnonymisation: Bool = TrackerDefaults.userAnonymisation
     /// Decorate the v_tracker field in the tracker protocol.
     /// @note Do not use. Internal use only.
     @objc public var trackerVersionSuffix: String?

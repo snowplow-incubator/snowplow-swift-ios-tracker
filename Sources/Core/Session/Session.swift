@@ -41,9 +41,9 @@ class Session {
     public var onSessionStateUpdate: ((_ sessionState: SessionState) -> Void)?
     
     /// The currently set Foreground Timeout in milliseconds
-    public var foregroundTimeout = 1800
+    public var foregroundTimeout = TrackerDefaults.foregroundTimeout
     /// The currently set Background Timeout in milliseconds
-    public var backgroundTimeout = 1800
+    public var backgroundTimeout = TrackerDefaults.backgroundTimeout
 
     private var isNewSession = true
     private var isSessionCheckerEnabled = false

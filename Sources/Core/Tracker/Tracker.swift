@@ -76,7 +76,7 @@ public class Tracker: NSObject {
     public var subject: Subject?
     
     /// Whether to use Base64 encoding for events.
-    public var base64Encoded = true
+    public var base64Encoded = TrackerDefaults.base64Encoded
     
     /// A unique identifier for an application.
     private var _appId: String
@@ -107,7 +107,7 @@ public class Tracker: NSObject {
     }
     
     /// Version suffix for tracker wrappers.
-    private var _trackerVersionSuffix: String = ""
+    private var _trackerVersionSuffix: String = TrackerDefaults.trackerVersionSuffix
     public var trackerVersionSuffix: String {
         get {
             return _trackerVersionSuffix
@@ -120,15 +120,7 @@ public class Tracker: NSObject {
         }
     }
     
-    private var _devicePlatform: DevicePlatform = Utilities.platform
-    public var devicePlatform: DevicePlatform {
-        get {
-            return _devicePlatform
-        }
-        set(devicePlatform) {
-            _devicePlatform = devicePlatform
-        }
-    }
+    public var devicePlatform: DevicePlatform = TrackerDefaults.devicePlatform
 
     public var logLevel: LogLevel {
         get {
@@ -201,11 +193,11 @@ public class Tracker: NSObject {
         }
     }
     
-    public var applicationContext = false
+    public var applicationContext = TrackerDefaults.applicationContext
     
-    public var autotrackScreenViews = false
+    public var autotrackScreenViews = TrackerDefaults.autotrackScreenViews
     
-    private var _foregroundTimeout = 1800
+    private var _foregroundTimeout = TrackerDefaults.foregroundTimeout
     public var foregroundTimeout: Int {
         get {
             return _foregroundTimeout
@@ -218,8 +210,7 @@ public class Tracker: NSObject {
         }
     }
     
-    private var _backgroundTimeout = 1800
-
+    private var _backgroundTimeout = TrackerDefaults.backgroundTimeout
     public var backgroundTimeout: Int {
         get {
             return _backgroundTimeout
@@ -251,11 +242,11 @@ public class Tracker: NSObject {
         }
     }
     
-    public var exceptionEvents = false
-    public var installEvent = false
-    public var trackerDiagnostic = false
+    public var exceptionEvents = TrackerDefaults.exceptionEvents
+    public var installEvent = TrackerDefaults.installEvent
+    public var trackerDiagnostic = TrackerDefaults.trackerDiagnostic
     
-    private var _userAnonymisation = false
+    private var _userAnonymisation = TrackerDefaults.userAnonymisation
     public var userAnonymisation: Bool {
         get {
             return _userAnonymisation
@@ -288,22 +279,29 @@ public class Tracker: NSObject {
         return dataCollection
     }
 
-    init(trackerNamespace: String, appId: String?, trackerVersionSuffix: String?, emitter: Emitter) {
+    init(trackerNamespace: String,
+         appId: String?,
+         emitter: Emitter,
+         builder: ((Tracker) -> (Void))) {
         self._emitter = emitter
         self._appId = appId ?? ""
         self._trackerNamespace = trackerNamespace
         
         super.init()
+        builder(self)
         
-        self.trackerVersionSuffix = trackerVersionSuffix ?? ""
+        self.trackerVersionSuffix = trackerVersionSuffix
         #if os(iOS)
         platformContextSchema = kSPMobileContextSchema
         #else
         platformContextSchema = kSPDesktopContextSchema
         #endif
+        
+        setup()
+        checkInstall()
     }
 
-    func setup() {
+    private func setup() {
         emitter.namespace = trackerNamespace // Needed to correctly send events to the right EventStore
         setTrackerData()
         
@@ -339,7 +337,7 @@ public class Tracker: NSObject {
         builderFinished = true
     }
 
-    func checkInstall() {
+    private func checkInstall() {
         if installEvent {
             let installTracker = InstallTracker()
             let previousTimestamp = installTracker.previousInstallTimestamp

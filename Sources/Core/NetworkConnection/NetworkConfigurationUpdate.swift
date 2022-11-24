@@ -55,15 +55,15 @@ public class NetworkConfigurationUpdate: NSObject {
 
     @objc public var method: HttpMethodOptions {
         // TODO: return nil
-        return ((sourceConfig)?.method) ?? .post
+        return ((sourceConfig)?.method) ?? EmitterDefaults.httpMethod
     }
 
     @objc public var `protocol`: ProtocolOptions {
         // TODO: return nil
-        return ((sourceConfig)?.protocol) ?? .https
+        return ((sourceConfig)?.protocol) ?? EmitterDefaults.httpProtocol
     }
 
-    @objc public var networkConnection: NetworkConnection? {
+    public var networkConnection: NetworkConnection? {
         return (sourceConfig)?.networkConnection
     }
 }

@@ -91,11 +91,11 @@ public class Logger: NSObject {
         }
         #if SNOWPLOW_TEST
         // NSLog doesn't work on test target
-        let output = "[\(["Off", "Error", "Error", "Debug", "Verbose"][level])] \(tag): \(message)"
+        let output = "[\(["Off", "Error", "Error", "Debug", "Verbose"][level.rawValue])] \(tag): \(message)"
         print("\(output.utf8CString)")
         #elseif DEBUG
         // Log should be printed only during debugging
-        print("[\(["Off", "Error", "Debug", "Verbose"][level])] \(tag): \(message)")
+        print("[\(["Off", "Error", "Debug", "Verbose"][level.rawValue])] \(tag): \(message)")
         #endif
     }
 

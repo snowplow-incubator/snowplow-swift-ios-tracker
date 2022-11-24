@@ -111,7 +111,7 @@ public class EmitterControllerImpl: Controller, EmitterController {
         return emitter.isSending
     }
     
-    public var customRetryForStatusCodes: [NSNumber : NSNumber]? {
+    public var customRetryForStatusCodes: [Int : Bool]? {
         get {
             return emitter.customRetryForStatusCodes
         }

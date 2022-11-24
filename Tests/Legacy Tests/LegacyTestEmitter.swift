@@ -58,14 +58,14 @@ class LegacyTestEmitter: XCTestCase {
     func testEmitterBuilderAndOptions() {
         let `protocol` = "https"
 
-        let emitter = Emitter(urlEndpoint: TEST_SERVER_EMITTER)
-        emitter.method = .post
-        emitter.emitRange = 500
-        emitter.emitThreadPoolSize = 30
-        emitter.byteLimitGet = 30000
-        emitter.byteLimitPost = 35000
-        emitter.protocol = .https
-        emitter.setup()
+        let emitter = Emitter(urlEndpoint: TEST_SERVER_EMITTER) { emitter in
+            emitter.method = .post
+            emitter.protocol = .https
+            emitter.emitThreadPoolSize = 30
+            emitter.byteLimitGet = 30000
+            emitter.byteLimitPost = 35000
+            emitter.emitRange = 500
+        }
 
         var url = "\(`protocol`)://\(TEST_SERVER_EMITTER)/com.snowplowanalytics.snowplow/tp2"
 
@@ -80,15 +80,15 @@ class LegacyTestEmitter: XCTestCase {
         XCTAssertEqual(emitter.byteLimitPost, 35000)
         XCTAssertEqual(emitter.protocol, .https)
 
-        let customPathEmitter = Emitter(urlEndpoint: TEST_SERVER_EMITTER)
-        customPathEmitter.method = .post
-        customPathEmitter.customPostPath = "/com.acme.company/tpx"
-        customPathEmitter.emitRange = 500
-        customPathEmitter.emitThreadPoolSize = 30
-        customPathEmitter.byteLimitGet = 30000
-        customPathEmitter.byteLimitPost = 35000
-        customPathEmitter.protocol = .https
-        customPathEmitter.setup()
+        let customPathEmitter = Emitter(urlEndpoint: TEST_SERVER_EMITTER) { emitter in
+            emitter.method = .post
+            emitter.protocol = .https
+            emitter.customPostPath = "/com.acme.company/tpx"
+            emitter.emitThreadPoolSize = 30
+            emitter.byteLimitGet = 30000
+            emitter.byteLimitPost = 35000
+            emitter.emitRange = 500
+        }
 
         let customUrl = "\(`protocol`)://\(TEST_SERVER_EMITTER)/com.acme.company/tpx"
         XCTAssertTrue((customPathEmitter.urlEndpoint == customUrl))
@@ -304,12 +304,13 @@ class LegacyTestEmitter: XCTestCase {
     // MARK: - Emitter builder
 
     func emitter(with networkConnection: NetworkConnection, bufferOption: BufferOption = .single) -> Emitter {
-        let emitter = Emitter(networkConnection: networkConnection)
-        emitter.bufferOption = bufferOption
-        emitter.emitRange = 200
-        emitter.byteLimitGet = 20000
-        emitter.byteLimitPost = 25000
-        emitter.eventStore = MockEventStore()
+        let emitter = Emitter(networkConnection: networkConnection) { emitter in
+            emitter.bufferOption = bufferOption
+            emitter.emitRange = 200
+            emitter.byteLimitGet = 20000
+            emitter.byteLimitPost = 25000
+            emitter.eventStore = MockEventStore()
+        }
         return emitter
     }
 
@@ -335,9 +336,9 @@ class LegacyTestEmitter: XCTestCase {
         let networkConnection = MockNetworkConnection(requestOption: .get, statusCode: 500)
         let emitter = self.emitter(with: networkConnection, bufferOption: .single)
 
-        var customRules: [NSNumber : NSNumber] = [:]
-        customRules[NSNumber(value: 403)] = NSNumber(value: true)
-        customRules[NSNumber(value: 500)] = NSNumber(value: false)
+        var customRules: [Int : Bool] = [:]
+        customRules[403] = true
+        customRules[500] = false
         emitter.customRetryForStatusCodes = customRules
 
         emitter.addPayload(toBuffer: generatePayloads(1).first!)

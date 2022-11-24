@@ -67,13 +67,14 @@ class TestScreenState: XCTestCase {
 
     func testScreenStateMachine() {
         let eventStore = MockEventStore()
-        let emitter = Emitter(urlEndpoint: "http://snowplow-fake-url.com")
-        emitter.eventStore = eventStore
-        emitter.setup()
-        let tracker = Tracker(trackerNamespace: "namespace", appId: nil, trackerVersionSuffix: nil, emitter: emitter)
-        tracker.base64Encoded = false
-        tracker.screenContext = true
-        tracker.setup()
+        let emitter = Emitter(urlEndpoint: "http://snowplow-fake-url.com") { emitter in
+            emitter.eventStore = eventStore
+        }
+        let tracker = Tracker(trackerNamespace: "namespace", appId: nil, emitter: emitter) { tracker in
+            tracker.base64Encoded = false
+            tracker.screenContext = true
+            tracker.applicationContext = false
+        }
 
         // Send events
         _ = tracker.track(Timing(category: "category", variable: "variable", timing: 123))

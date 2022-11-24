@@ -53,7 +53,7 @@ public class TrackerConfigurationUpdate: TrackerConfiguration {
 
     @objc override public var devicePlatform: DevicePlatform {
         get {
-            return ((sourceConfig == nil) || devicePlatformUpdated) ? super.devicePlatform : sourceConfig?.devicePlatform ?? .mobile
+            return ((sourceConfig == nil) || devicePlatformUpdated) ? super.devicePlatform : sourceConfig?.devicePlatform ?? TrackerDefaults.devicePlatform
         }
         set {
             super.devicePlatform = newValue
@@ -63,7 +63,7 @@ public class TrackerConfigurationUpdate: TrackerConfiguration {
 
     @objc override public var base64Encoding: Bool {
         get {
-            return ((sourceConfig == nil) || base64EncodingUpdated) ? super.base64Encoding : sourceConfig?.base64Encoding ?? true
+            return ((sourceConfig == nil) || base64EncodingUpdated) ? super.base64Encoding : sourceConfig?.base64Encoding ?? TrackerDefaults.base64Encoded
         }
         set {
             super.base64Encoding = newValue
@@ -93,7 +93,7 @@ public class TrackerConfigurationUpdate: TrackerConfiguration {
 
     @objc override public var applicationContext: Bool {
         get {
-            return ((sourceConfig == nil) || applicationContextUpdated) ? super.applicationContext : sourceConfig?.applicationContext ?? true
+            return ((sourceConfig == nil) || applicationContextUpdated) ? super.applicationContext : sourceConfig?.applicationContext ?? TrackerDefaults.applicationContext
         }
         set {
             super.applicationContext = newValue
@@ -103,7 +103,7 @@ public class TrackerConfigurationUpdate: TrackerConfiguration {
 
     @objc override public var platformContext: Bool {
         get {
-            return ((sourceConfig == nil) || platformContextUpdated) ? super.platformContext : sourceConfig?.platformContext ?? true
+            return ((sourceConfig == nil) || platformContextUpdated) ? super.platformContext : sourceConfig?.platformContext ?? TrackerDefaults.platformContext
         }
         set {
             super.platformContext = newValue
@@ -113,7 +113,7 @@ public class TrackerConfigurationUpdate: TrackerConfiguration {
 
     @objc override public var geoLocationContext: Bool {
         get {
-            return ((sourceConfig == nil) || geoLocationContextUpdated) ? super.geoLocationContext : sourceConfig?.geoLocationContext ?? false
+            return ((sourceConfig == nil) || geoLocationContextUpdated) ? super.geoLocationContext : sourceConfig?.geoLocationContext ?? TrackerDefaults.geoLocationContext
         }
         set {
             super.geoLocationContext = newValue
@@ -123,7 +123,7 @@ public class TrackerConfigurationUpdate: TrackerConfiguration {
 
     @objc override public var deepLinkContext: Bool {
         get {
-            return ((sourceConfig == nil) || deepLinkContextUpdated) ? super.deepLinkContext : sourceConfig?.deepLinkContext ?? true
+            return ((sourceConfig == nil) || deepLinkContextUpdated) ? super.deepLinkContext : sourceConfig?.deepLinkContext ?? TrackerDefaults.deepLinkContext
         }
         set {
             super.deepLinkContext = newValue
@@ -133,7 +133,7 @@ public class TrackerConfigurationUpdate: TrackerConfiguration {
 
     @objc override public var sessionContext: Bool {
         get {
-            return ((sourceConfig == nil) || sessionContextUpdated) ? super.sessionContext : sourceConfig?.sessionContext ?? true
+            return ((sourceConfig == nil) || sessionContextUpdated) ? super.sessionContext : sourceConfig?.sessionContext ?? TrackerDefaults.sessionContext
         }
         set {
             super.sessionContext = newValue
@@ -143,7 +143,7 @@ public class TrackerConfigurationUpdate: TrackerConfiguration {
 
     @objc override public var screenContext: Bool {
         get {
-            return ((sourceConfig == nil) || screenContextUpdated) ? super.screenContext : sourceConfig?.screenContext ?? true
+            return ((sourceConfig == nil) || screenContextUpdated) ? super.screenContext : sourceConfig?.screenContext ?? TrackerDefaults.screenContext
         }
         set {
             super.screenContext = newValue
@@ -153,7 +153,7 @@ public class TrackerConfigurationUpdate: TrackerConfiguration {
 
     @objc override public var screenViewAutotracking: Bool {
         get {
-            return ((sourceConfig == nil) || screenViewAutotrackingUpdated) ? super.screenViewAutotracking : sourceConfig?.screenViewAutotracking ?? true
+            return ((sourceConfig == nil) || screenViewAutotrackingUpdated) ? super.screenViewAutotracking : sourceConfig?.screenViewAutotracking ?? TrackerDefaults.autotrackScreenViews
         }
         set {
             super.screenViewAutotracking = newValue
@@ -163,7 +163,7 @@ public class TrackerConfigurationUpdate: TrackerConfiguration {
 
     @objc override public var lifecycleAutotracking: Bool {
         get {
-            return ((sourceConfig == nil) || lifecycleAutotrackingUpdated) ? super.lifecycleAutotracking : sourceConfig?.lifecycleAutotracking ?? false
+            return ((sourceConfig == nil) || lifecycleAutotrackingUpdated) ? super.lifecycleAutotracking : sourceConfig?.lifecycleAutotracking ?? TrackerDefaults.lifecycleEvents
         }
         set {
             super.lifecycleAutotracking = newValue
@@ -173,7 +173,7 @@ public class TrackerConfigurationUpdate: TrackerConfiguration {
 
     @objc override public var installAutotracking: Bool {
         get {
-            return ((sourceConfig == nil) || installAutotrackingUpdated) ? super.installAutotracking : sourceConfig?.installAutotracking ?? true
+            return ((sourceConfig == nil) || installAutotrackingUpdated) ? super.installAutotracking : sourceConfig?.installAutotracking ?? TrackerDefaults.installEvent
         }
         set {
             super.installAutotracking = newValue
@@ -183,7 +183,7 @@ public class TrackerConfigurationUpdate: TrackerConfiguration {
 
     @objc override public var exceptionAutotracking: Bool {
         get {
-            return ((sourceConfig == nil) || exceptionAutotrackingUpdated) ? super.exceptionAutotracking : sourceConfig?.exceptionAutotracking ?? true
+            return ((sourceConfig == nil) || exceptionAutotrackingUpdated) ? super.exceptionAutotracking : sourceConfig?.exceptionAutotracking ?? TrackerDefaults.exceptionEvents
         }
         set {
             super.exceptionAutotracking = newValue
@@ -193,7 +193,7 @@ public class TrackerConfigurationUpdate: TrackerConfiguration {
 
     @objc override public var diagnosticAutotracking: Bool {
         get {
-            return ((sourceConfig == nil) || diagnosticAutotrackingUpdated) ? super.diagnosticAutotracking : sourceConfig?.diagnosticAutotracking ?? false
+            return ((sourceConfig == nil) || diagnosticAutotrackingUpdated) ? super.diagnosticAutotracking : sourceConfig?.diagnosticAutotracking ?? TrackerDefaults.trackerDiagnostic
         }
         set {
             super.diagnosticAutotracking = newValue
@@ -203,7 +203,7 @@ public class TrackerConfigurationUpdate: TrackerConfiguration {
 
     @objc override public var userAnonymisation: Bool {
         get {
-            return ((sourceConfig == nil) || userAnonymisationUpdated) ? super.userAnonymisation : sourceConfig?.userAnonymisation ?? false
+            return ((sourceConfig == nil) || userAnonymisationUpdated) ? super.userAnonymisation : sourceConfig?.userAnonymisation ?? TrackerDefaults.userAnonymisation
         }
         set {
             super.userAnonymisation = newValue

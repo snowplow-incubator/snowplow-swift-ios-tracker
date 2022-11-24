@@ -24,7 +24,7 @@ import UserNotifications
 #endif
 
 @objc(SPPushNotification)
-public class PushNotification : NSObject {
+public class PushNotification : SelfDescribingAbstract {
     public var date: String
     public var action: String
     public var trigger: String
@@ -71,11 +71,11 @@ public class PushNotification : NSObject {
 
     #endif
 
-    @objc public var schema: String {
+    @objc public override var schema: String {
         return kSPPushNotificationSchema
     }
 
-    @objc public var payload: [String : NSObject] {
+    @objc public override var payload: [String : NSObject] {
         var data: [String: NSObject] = [
             kSPPushTrigger: trigger as NSObject,
             kSPPushAction: action as NSObject,
