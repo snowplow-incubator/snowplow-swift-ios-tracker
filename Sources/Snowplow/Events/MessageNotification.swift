@@ -1,5 +1,5 @@
 //
-// SPMessageNotification.m
+// MessageNotification.m
 // Snowplow
 //
 // Copyright (c) 2013-2022 Snowplow Analytics Ltd. All rights reserved.
@@ -52,7 +52,7 @@ public enum MessageNotificationTrigger: Int {
 func triggerToString(_ trigger: MessageNotificationTrigger) -> String {
     return [
         "push", "location", "calendar", "timeInterval", "other"
-    ][trigger.rawValue] ?? "other"
+    ][trigger.rawValue]
 }
 
 /// An event that represents the reception of a push notification (or a locally generated one).
