@@ -39,7 +39,7 @@ class ConfigurationProvider {
     init(remoteConfiguration: RemoteConfiguration, defaultConfigurationBundles defaultBundles: [ConfigurationBundle]?) {
         self.remoteConfiguration = remoteConfiguration
         cache = ConfigurationCache(remoteConfiguration: remoteConfiguration)
-        if let defaultBundles {
+        if let defaultBundles = defaultBundles {
             let bundle = FetchedConfigurationBundle(
                 schema: "http://iglucentral.com/schemas/com.snowplowanalytics.mobile/remote_config/jsonschema/1-0-0",
                 configurationVersion: NSInteger.min)
@@ -55,9 +55,9 @@ class ConfigurationProvider {
             if cacheBundle == nil {
                 cacheBundle = cache.read()
             }
-            if let cacheBundle {
+            if let cacheBundle = cacheBundle {
                 onFetchCallback(cacheBundle, .cached)
-            } else if let defaultBundle {
+            } else if let defaultBundle = defaultBundle {
                 onFetchCallback(defaultBundle, .default)
             }
         }

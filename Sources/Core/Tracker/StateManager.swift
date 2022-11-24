@@ -148,7 +148,7 @@ class StateManager: NSObject {
     func add(toSchemaRegistry schemaRegistry: inout [String : [StateMachineProtocol]], schemas: [String], stateMachine: StateMachineProtocol?) {
         for eventSchema in schemas {
             var array = schemaRegistry[eventSchema] ?? []
-            if let stateMachine {
+            if let stateMachine = stateMachine {
                 array.append(stateMachine)
             }
             schemaRegistry[eventSchema] = array

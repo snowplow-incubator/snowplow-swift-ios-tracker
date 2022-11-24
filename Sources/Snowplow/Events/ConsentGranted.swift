@@ -70,7 +70,7 @@ public class ConsentGranted: SelfDescribingAbstract {
         }
 
         results.append(document.payload)
-        if let documents {
+        if let documents = documents {
             results.append(contentsOf: documents)
         }
         return results

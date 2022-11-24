@@ -43,7 +43,7 @@ class ConfigurationFetcher: NSObject {
             httpResponse = urlResponse as? HTTPURLResponse
             let isSuccessful = (httpResponse?.statusCode ?? 0) >= 200 && (httpResponse?.statusCode ?? 0) < 300
             if isSuccessful {
-                if let data { self.resolveRequest(with: data) }
+                if let data = data { self.resolveRequest(with: data) }
             }
         }.resume()
     }

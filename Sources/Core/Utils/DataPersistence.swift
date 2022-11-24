@@ -38,7 +38,7 @@ class DataPersistence: NSObject {
                 return ((UserDefaults.standard.dictionary(forKey: userDefaultsKey) ?? [:]) as? [String : [String : NSObject]]) ?? [:]
             }
             var result: [String : [String : NSObject]]? = nil
-            if let fileUrl {
+            if let fileUrl = fileUrl {
                 result = NSDictionary(contentsOf: fileUrl) as Dictionary? as? [String : [String : NSObject]]
             }
 
@@ -51,7 +51,7 @@ class DataPersistence: NSObject {
                 sessionDict[kSPSessionStorage] = "LOCAL_STORAGE"
                 // Wrap up
                 result?[sessionKey] = sessionDict as? [String : NSObject]
-                if let result, let fileUrl {
+                if let result = result, let fileUrl = fileUrl {
                     let _ = storeDictionary(result, fileURL: fileUrl)
                 }
             }
@@ -60,7 +60,7 @@ class DataPersistence: NSObject {
         }
         set(data) {
             objc_sync_enter(self)
-            if let fileUrl {
+            if let fileUrl = fileUrl {
                 let _ = storeDictionary(data, fileURL: fileUrl)
             } else {
                 UserDefaults.standard.set(data, forKey: userDefaultsKey)
@@ -112,7 +112,7 @@ class DataPersistence: NSObject {
         objc_sync_enter(DataPersistence.self)
         defer { objc_sync_exit(DataPersistence.self) }
         
-        if let instances {
+        if let instances = instances {
             if let instance = instances[escapedNamespace] {
                 return instance
             }
@@ -153,7 +153,7 @@ class DataPersistence: NSObject {
         
         UserDefaults.standard.removeObject(forKey: userDefaultsKey)
         
-        if let fileUrl {
+        if let fileUrl = fileUrl {
             do {
                 try FileManager.default.removeItem(at: fileUrl)
             } catch let error {
@@ -179,7 +179,7 @@ class DataPersistence: NSObject {
         }
         
         do {
-            if let url {
+            if let url = url {
                 try fileManager.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
                 return url
             }
@@ -187,7 +187,7 @@ class DataPersistence: NSObject {
             error = e
         }
         
-        if let error {
+        if let error = error {
             logError(message: String(format: "Unable to create directory for tracker data persistence: %@", error.localizedDescription))
         }
         return nil

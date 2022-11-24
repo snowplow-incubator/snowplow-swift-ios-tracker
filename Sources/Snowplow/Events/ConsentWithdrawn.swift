@@ -48,18 +48,18 @@ public class ConsentWithdrawn: SelfDescribingAbstract {
 
     public var allDocuments: [SelfDescribingJson] {
         var results: [SelfDescribingJson] = []
-        guard let documentId, let version else { return results }
+        guard let documentId = documentId, let version = version else { return results }
 
         let document = ConsentDocument(documentId: documentId, version: version)
-        if let name {
+        if let name = name {
             document.name = name
         }
-        if let documentDescription {
+        if let documentDescription = documentDescription {
             document.documentDescription = documentDescription
         }
 
         results.append(document.payload)
-        if let documents {
+        if let documents = documents {
             results.append(contentsOf: documents)
         }
         return results

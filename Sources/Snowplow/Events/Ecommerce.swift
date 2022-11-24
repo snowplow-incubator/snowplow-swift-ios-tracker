@@ -56,10 +56,10 @@ public class Ecommerce : PrimitiveAbstract {
     override public var payload: [String : NSObject] {
         var payload: [String : NSObject] = [:]
         payload[kSPEcommTotal] = String(format: "%.02f", totalValue) as NSObject
-        if let taxValue {
+        if let taxValue = taxValue {
             payload[kSPEcommTax] = String(format: "%.02f", taxValue) as NSObject
         }
-        if let shipping {
+        if let shipping = shipping {
             payload[kSPEcommShipping] = String(format: "%.02f", shipping) as NSObject
         }
         payload[kSPEcommId] = orderId as NSObject

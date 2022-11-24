@@ -102,7 +102,7 @@ public class GlobalContext: NSObject {
     /// - Parameter event: Event details used to filter and generate contexts.
     /// - Returns: Generated contexts.
     func contexts(from event: InspectableEvent) -> [SelfDescribingJson] {
-        if let filter {
+        if let filter = filter {
             if !filter(event) {
                 return []
             }

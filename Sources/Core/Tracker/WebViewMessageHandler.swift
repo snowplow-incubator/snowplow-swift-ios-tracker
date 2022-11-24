@@ -75,15 +75,15 @@ class WebViewMessageHandler: NSObject, WKScriptMessageHandler {
         let property = event["property"] as? String
         let value = event["value"] as? NSNumber
 
-        if let category, let action {
+        if let category = category, let action = action {
             let structured = Structured(category: category, action: action)
-            if let label {
+            if let label = label {
                 structured.label = label
             }
-            if let property {
+            if let property = property {
                 structured.property = property
             }
-            if let value {
+            if let value = value {
                 structured.value = value
             }
             track(structured, withContext: context, andTrackers: trackers)
@@ -95,12 +95,12 @@ class WebViewMessageHandler: NSObject, WKScriptMessageHandler {
         let title = event["title"] as? String
         let referrer = event["referrer"] as? String
 
-        if let url {
+        if let url = url {
             let pageView = PageView(pageUrl: url)
-            if let title {
+            if let title = title {
                 pageView.pageTitle = title
             }
-            if let referrer {
+            if let referrer = referrer {
                 pageView.referrer = referrer
             }
             track(pageView, withContext: context, andTrackers: trackers)
@@ -116,22 +116,22 @@ class WebViewMessageHandler: NSObject, WKScriptMessageHandler {
         let previousType = event["previousType"] as? String
         let transitionType = event["transitionType"] as? String
 
-        if let name, let screenId {
+        if let name = name, let screenId = screenId {
             let screenUuid = UUID(uuidString: screenId)
             let screenView = ScreenView(name: name, screenId: screenUuid)
-            if let type {
+            if let type = type {
                 screenView.type = type
             }
-            if let previousName {
+            if let previousName = previousName {
                 screenView.previousName = previousName
             }
-            if let previousId {
+            if let previousId = previousId {
                 screenView.previousId = previousId
             }
-            if let previousType {
+            if let previousType = previousType {
                 screenView.previousType = previousType
             }
-            if let transitionType {
+            if let transitionType = transitionType {
                 screenView.transitionType = transitionType
             }
             track(screenView, withContext: context, andTrackers: trackers)

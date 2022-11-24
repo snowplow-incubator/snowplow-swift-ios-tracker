@@ -117,7 +117,7 @@ public class DefaultNetworkConnection: NetworkConnection {
         let urlPrefix = `protocol` == .http ? "http://" : "https://"
         var urlSuffix = _httpMethod == .get ? kSPEndpointGet : kSPEndpointPost
         if _httpMethod == .post {
-            if let customPostPath { urlSuffix = customPostPath }
+            if let customPostPath = customPostPath { urlSuffix = customPostPath }
         }
 
         // Remove trailing slashes from endpoint to avoid double slashes when appending path
@@ -193,7 +193,7 @@ public class DefaultNetworkConnection: NetworkConnection {
         if serverAnonymisation {
             urlRequest.setValue("*", forHTTPHeaderField: "SP-Anonymous")
         }
-        if let requestHeaders {
+        if let requestHeaders = requestHeaders {
             applyValuesAndHeaderFields(requestHeaders, to: &urlRequest)
         }
         urlRequest.httpMethod = "POST"
@@ -210,7 +210,7 @@ public class DefaultNetworkConnection: NetworkConnection {
         if serverAnonymisation {
             urlRequest.setValue("*", forHTTPHeaderField: "SP-Anonymous")
         }
-        if let requestHeaders {
+        if let requestHeaders = requestHeaders {
             applyValuesAndHeaderFields(requestHeaders, to: &urlRequest)
         }
         urlRequest.httpMethod = "GET"

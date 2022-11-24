@@ -100,7 +100,7 @@ public class SelfDescribingJson: NSObject {
     /// Returns the internal NSDictionary of the self-describing JSON.
     /// - Returns: The self-describing JSON as an NSDictionary.
     public func getAsDictionary() -> [String : NSObject]? {
-        if let data {
+        if let data = data {
             return [
                 kSPSchema: schema as NSObject,
                 kSPData: data

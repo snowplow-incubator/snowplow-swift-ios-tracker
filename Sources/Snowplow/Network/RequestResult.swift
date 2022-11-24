@@ -45,7 +45,7 @@ public class RequestResult: NSObject {
 
     /// - Returns: Whether the events were successfuly sent to the Collector.
     public var isSuccessful: Bool {
-        if let statusCode {
+        if let statusCode = statusCode {
             return statusCode >= 200 && statusCode < 300
         }
         return false
@@ -65,7 +65,7 @@ public class RequestResult: NSObject {
         }
 
         // status code has a custom retry rule
-        if let statusCode {
+        if let statusCode = statusCode {
             if let retryRule = customRetryForStatusCodes?[statusCode] {
                 return retryRule
             }

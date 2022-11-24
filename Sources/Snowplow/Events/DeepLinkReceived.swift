@@ -51,7 +51,9 @@ public class DeepLinkReceived: SelfDescribingAbstract {
 
     public override var payload: [String : NSObject] {
         var payload: [String : NSObject] = [:]
-        if let referrer { payload[DeepLinkReceived.paramReferrer] = referrer as NSObject }
+        if let referrer = referrer {
+            payload[DeepLinkReceived.paramReferrer] = referrer as NSObject
+        }
         payload[DeepLinkReceived.paramUrl] = url as NSObject
         return payload
     }

@@ -53,7 +53,7 @@ public class PushNotification : SelfDescribingAbstract {
 
     public class func string(from trigger: UNNotificationTrigger?) -> String {
         var triggerType = "UNKNOWN"
-        if let trigger {
+        if let trigger = trigger {
             let triggerClass = NSStringFromClass(type(of: trigger).self)
             if triggerClass == "UNTimeIntervalNotificationTrigger" {
                 triggerType = "TIME_INTERVAL"
@@ -110,16 +110,16 @@ public class NotificationContent : NSObject {
         event[kSPPnTitle] = title as NSObject
         event[kSPPnBody] = body as NSObject
         event[kSPPnBadge] = badge
-        if let subtitle {
+        if let subtitle = subtitle {
             event[kSPPnSubtitle] = subtitle as NSObject
         }
-        if let sound {
+        if let sound = sound {
             event[kSPPnSound] = sound as NSObject
         }
-        if let launchImageName {
+        if let launchImageName = launchImageName {
             event[kSPPnLaunchImageName] = launchImageName as NSObject
         }
-        if let userInfo {
+        if let userInfo = userInfo {
             // modify contentAvailable value "1" and "0" to @YES and @NO to comply with schema
             if var aps = userInfo["aps"] as? [NSString : NSObject],
                let contentAvailable = aps["contentAvailable"] as? NSNumber {
@@ -134,7 +134,7 @@ public class NotificationContent : NSObject {
                 event[kSPPnUserInfo] = newUserInfo as NSObject
             }
         }
-        if let attachments {
+        if let attachments = attachments {
             var converting: [[AnyHashable : Any]] = []
             for attachment in attachments {
                 var newAttachment: [String : NSObject] = [:]

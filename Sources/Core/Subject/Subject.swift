@@ -138,8 +138,8 @@ class Subject : NSObject {
         }
         set {
             _screenResolution = newValue
-            if let newValue {
-                let res = "\((NSNumber(value: newValue.width)).stringValue)x\((NSNumber(value: newValue.height)).stringValue)"
+            if let size = newValue {
+                let res = "\((NSNumber(value: size.width)).stringValue)x\((NSNumber(value: size.height)).stringValue)"
                 standardDict.addValueToPayload(res, forKey: kSPResolution)
             } else {
                 standardDict.addValueToPayload(nil, forKey: kSPResolution)
@@ -154,8 +154,8 @@ class Subject : NSObject {
         }
         set {
             _screenViewPort = newValue
-            if let newValue {
-                let res = "\((NSNumber(value: newValue.width)).stringValue)x\((NSNumber(value: newValue.height)).stringValue)"
+            if let size = newValue {
+                let res = "\((NSNumber(value: size.width)).stringValue)x\((NSNumber(value: size.height)).stringValue)"
                 standardDict.addValueToPayload(res, forKey: kSPViewPort)
             } else {
                 standardDict.addValueToPayload(nil, forKey: kSPViewPort)
@@ -268,7 +268,7 @@ class Subject : NSObject {
         language = Utilities.language
         timezone = Utilities.timezone
         
-        if let config {
+        if let config = config {
             if let v = config.userId { userId = v }
             if let v = config.networkUserId { networkUserId = v }
             if let v = config.domainUserId { domainUserId = v }

@@ -253,7 +253,7 @@ class Tracker: NSObject {
         set(userAnonymisation) {
             if _userAnonymisation != userAnonymisation {
                 _userAnonymisation = userAnonymisation
-                if let session { session.startNewSession() }
+                if let session = session { session.startNewSession() }
             }
         }
     }
@@ -289,7 +289,6 @@ class Tracker: NSObject {
         super.init()
         builder(self)
         
-        self.trackerVersionSuffix = trackerVersionSuffix
         #if os(iOS)
         platformContextSchema = kSPMobileContextSchema
         #else
@@ -536,7 +535,7 @@ class Tracker: NSObject {
         if let schema = event.schema {
             let eventPayload = event.payload
             let data = SelfDescribingJson(schema: schema, andData: eventPayload as NSObject)
-            if let data = data.getAsDictionary() as? NSObject {
+            if let data = data.getAsDictionary() as NSObject? {
                 let unstructuredEventPayload: [String : NSObject] = [
                     kSPSchema: kSPUnstructSchema as NSObject,
                     kSPData: data
@@ -577,10 +576,10 @@ class Tracker: NSObject {
             }
         }
 
-        if let url {
+        if let url = url {
             payload.addValueToPayload(url, forKey: kSPPageUrl)
         }
-        if let referrer {
+        if let referrer = referrer {
             payload.addValueToPayload(referrer, forKey: kSPPageRefr)
         }
     }
@@ -610,7 +609,7 @@ class Tracker: NSObject {
         }
 
         // Add session
-        if let session {
+        if let session = session {
             if let sessionDict = session.getDictWithEventId(eventId, eventTimestamp: eventTimestamp, userAnonymisation: userAnonymisation) {
                 contexts.append(SelfDescribingJson(schema: kSPSessionContextSchema, andDictionary: sessionDict))
             } else {

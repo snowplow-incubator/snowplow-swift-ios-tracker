@@ -46,10 +46,10 @@ public class TrackerError : SelfDescribingAbstract {
         var payload: [String : NSObject] = [:]
         payload[kSPDiagnosticErrorClassName] = source as NSObject
         payload[kSPDiagnosticErrorMessage] = truncate(message, maxLength: kMaxMessageLength) as NSObject
-        if let error {
+        if let error = error {
             payload[kSPDiagnosticErrorExceptionName] = error as NSObject
         }
-        if let exception {
+        if let exception = exception {
             payload[kSPDiagnosticErrorExceptionName] = truncate(exception.name.rawValue, maxLength: kMaxExceptionNameLength) as NSObject
             let symbols = (exception).callStackSymbols
             if symbols.count != 0 {

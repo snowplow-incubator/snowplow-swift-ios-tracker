@@ -75,7 +75,7 @@ class Session {
         }
         let storedSessionDict = dataPersistence?.session
         userId = Session.retrieveUserId(withSessionDict: storedSessionDict)
-        if var storedSessionDict {
+        if var storedSessionDict = storedSessionDict {
             storedSessionDict[kSPSessionUserId] = userId as NSObject?
             state = SessionState(storedState: storedSessionDict)
             dataPersistence?.session = storedSessionDict
@@ -132,7 +132,7 @@ class Session {
         if isSessionCheckerEnabled {
             if shouldUpdate() {
                 update(withEventId: eventId, eventTimestamp: eventTimestamp)
-                if let onSessionStateUpdate, let state {
+                if let onSessionStateUpdate = onSessionStateUpdate, let state = state {
                     DispatchQueue.global(qos: .default).async(execute: {
                         onSessionStateUpdate(state)
                     })
@@ -172,7 +172,7 @@ class Session {
         // For further details: https://discourse.snowplow.io/t/rfc-mobile-trackers-v2-0
         let userDefaults = UserDefaults.standard
         let storedUserId = userDefaults.string(forKey: kSPInstallationUserId)
-        if let storedUserId {
+        if let storedUserId = storedUserId {
             userId = storedUserId
         } else {
             userDefaults.set(userId, forKey: kSPInstallationUserId)
@@ -231,14 +231,14 @@ class Session {
     }
 
     func sendBackgroundEvent() {
-        if let tracker {
+        if let tracker = tracker {
             let backgroundEvent = Background(index: backgroundIndex)
             let _ = tracker.track(backgroundEvent)
         }
     }
 
     func sendForegroundEvent() {
-        if let tracker {
+        if let tracker = tracker {
             let foregroundEvent = Foreground(index: foregroundIndex)
             let _ = tracker.track(foregroundEvent)
         }
