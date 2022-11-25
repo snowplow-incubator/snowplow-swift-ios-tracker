@@ -41,7 +41,8 @@ class TestNetworkConnection: XCTestCase {
     }
 
     func testGetRequestWithSuccess() {
-        _ = stubRequest("GET", "^\("https")://\(TEST_URL_ENDPOINT)/i?(.*?)".regex).andReturn(200)
+        let regex = try? NSRegularExpression(pattern: "^\("https")://\(TEST_URL_ENDPOINT)/i?(.*?)")
+        _ = stubRequest("GET", regex).andReturn(200)
         
         let connection = DefaultNetworkConnection(urlString: TEST_URL_ENDPOINT, httpMethod: .get)
 
@@ -57,7 +58,8 @@ class TestNetworkConnection: XCTestCase {
     }
 
     func testGetRequestWithNoSuccess() {
-        _ = stubRequest("GET", "^\("https")://\(TEST_URL_ENDPOINT)/i?(.*?)".regex).andReturn(404)
+        let regex = try? NSRegularExpression(pattern: "^\("https")://\(TEST_URL_ENDPOINT)/i?(.*?)")
+        _ = stubRequest("GET", regex).andReturn(404)
 
         let connection = DefaultNetworkConnection(urlString: TEST_URL_ENDPOINT, httpMethod: .get)
         
@@ -73,7 +75,8 @@ class TestNetworkConnection: XCTestCase {
     }
 
     func testPostRequestWithSuccess() {
-        _ = stubRequest("POST", "^\("https")://\(TEST_URL_ENDPOINT)/i?(.*?)".regex).andReturn(200)
+        let regex = try? NSRegularExpression(pattern: "^\("https")://\(TEST_URL_ENDPOINT)/i?(.*?)")
+        _ = stubRequest("POST", regex).andReturn(200)
 
         let connection = DefaultNetworkConnection(urlString: TEST_URL_ENDPOINT, httpMethod: .post)
         
@@ -89,7 +92,8 @@ class TestNetworkConnection: XCTestCase {
     }
 
     func testPostRequestWithNoSuccess() {
-        _ = stubRequest("POST", "^\("https")://\(TEST_URL_ENDPOINT)/i?(.*?)".regex).andReturn(404)
+        let regex = try? NSRegularExpression(pattern: "^\("https")://\(TEST_URL_ENDPOINT)/i?(.*?)")
+        _ = stubRequest("POST", regex).andReturn(404)
 
         let connection = DefaultNetworkConnection(urlString: TEST_URL_ENDPOINT, httpMethod: .post)
 
@@ -125,11 +129,12 @@ class TestNetworkConnection: XCTestCase {
     }
 
     func testDoesntAddHeaderWithoutServerAnonymisation() {
-        _ = stubRequest("POST", "^\("https")://\(TEST_URL_ENDPOINT)/i?(.*?)".regex).withHeader(
+        let regex = try? NSRegularExpression(pattern: "^\("https")://\(TEST_URL_ENDPOINT)/i?(.*?)")
+        _ = stubRequest("POST", regex).withHeader(
             "SP-Anonymous",
             "*")?.andReturn(
             500)
-        _ = stubRequest("POST", "^\("https")://\(TEST_URL_ENDPOINT)/i?(.*?)".regex).andReturn(
+        _ = stubRequest("POST", regex).andReturn(
             200)
 
         let connection = DefaultNetworkConnection(urlString: TEST_URL_ENDPOINT, httpMethod: .post)
@@ -147,7 +152,8 @@ class TestNetworkConnection: XCTestCase {
     }
 
     func testAddsHeaderForServerAnonymisationForPostRequest() {
-        _ = stubRequest("POST", "^\("https")://\(TEST_URL_ENDPOINT)/i?(.*?)".regex).withHeader(
+        let regex = try? NSRegularExpression(pattern: "^\("https")://\(TEST_URL_ENDPOINT)/i?(.*?)")
+        _ = stubRequest("POST", regex).withHeader(
             "SP-Anonymous",
             "*")?.andReturn(
             200)
@@ -167,7 +173,8 @@ class TestNetworkConnection: XCTestCase {
     }
 
     func testAddsHeaderForServerAnonymisationForGetRequest() {
-        _ = stubRequest("GET", "^\("https")://\(TEST_URL_ENDPOINT)/i?(.*?)".regex).withHeader(
+        let regex = try? NSRegularExpression(pattern: "^\("https")://\(TEST_URL_ENDPOINT)/i?(.*?)")
+       _ = stubRequest("GET", regex).withHeader(
             "SP-Anonymous",
             "*")?.andReturn(
             200)
