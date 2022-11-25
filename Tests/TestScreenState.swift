@@ -75,6 +75,7 @@ class TestScreenState: XCTestCase {
             tracker.screenContext = true
             tracker.applicationContext = false
         }
+        emitter.pauseEmit()
 
         // Send events
         _ = tracker.track(Timing(category: "category", variable: "variable", timing: 123))

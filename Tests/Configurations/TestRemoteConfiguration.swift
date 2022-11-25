@@ -272,7 +272,18 @@ class TestRemoteConfiguration: XCTestCase {
         cached.configurationBundle = [bundle]
         cache.write(cached)
         Thread.sleep(forTimeInterval: 5) // wait to write on cache
+        
+        // stub request for configuration (return version 1)
+        LSNocilla.sharedInstance().start()
+        _ = stubRequest("GET", endpoint as NSString)?
+            .andReturn(200)?
+            .withHeaders([
+                "Content-Type": "application/json"
+            ] as [NSString : NSString])?
+            .withBody(
+                "{\"$schema\":\"http://iglucentral.com/schemas/com.snowplowanalytics.mobile/remote_config/jsonschema/1-1-0\",\"configurationVersion\":1,\"configurationBundle\":[]}" as NSString)
 
+        // test
         let provider = ConfigurationProvider(remoteConfiguration: remoteConfig)
         var expectation = XCTestExpectation()
         provider.retrieveConfigurationOnlyRemote(false, onFetchCallback: { fetchedConfigurationBundle, configurationState in
@@ -281,16 +292,6 @@ class TestRemoteConfiguration: XCTestCase {
         })
         wait(for: [expectation], timeout: 5)
 
-        LSNocilla.sharedInstance().start()
-        _ = stubRequest("GET", endpoint as NSString)?
-            .andReturn(200)?
-            .withHeaders([
-                "Content-Type": "application/json"
-            ] as [NSString : NSString])?
-            .withBody(
-            "{\"$schema\":\"http://iglucentral.com/schemas/com.snowplowanalytics.mobile/remote_config/jsonschema/1-1-0\",\"configurationVersion\":1,\"configurationBundle\":[]}" as NSString)
-
-        // test
         expectation = XCTestExpectation()
         provider.retrieveConfigurationOnlyRemote(true, onFetchCallback: { fetchedConfigurationBundle, configurationState in
             XCTFail()
