@@ -19,6 +19,7 @@
 //  License: Apache License Version 2.0
 //
 
+#if os(iOS) || os(macOS)
 import XCTest
 @testable import SnowplowTracker
 
@@ -134,3 +135,4 @@ class TestWebViewMessageHandler: XCTestCase {
         XCTAssert(context?.contains("{\"a\":\"b\"}") ?? false)
     }
 }
+#endif

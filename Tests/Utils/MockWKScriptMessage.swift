@@ -19,6 +19,7 @@
 //  License: Apache License Version 2.0
 //
 
+#if os(iOS) || os(macOS)
 import WebKit
 
 class MockWKScriptMessage: WKScriptMessage {
@@ -34,3 +35,4 @@ class MockWKScriptMessage: WKScriptMessage {
         return messageBody!
     }
 }
+#endif

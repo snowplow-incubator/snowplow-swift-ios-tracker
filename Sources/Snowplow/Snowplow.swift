@@ -20,7 +20,9 @@
 //
 
 import Foundation
+#if os(iOS) || os(macOS)
 import WebKit
+#endif
 
 /// Entry point to instance a new Snowplow tracker.
 public class Snowplow: NSObject {
