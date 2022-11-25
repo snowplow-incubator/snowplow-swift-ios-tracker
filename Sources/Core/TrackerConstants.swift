@@ -20,7 +20,6 @@
 //
 
 import Foundation
-import UIKit
 
 // --- Version
 #if os(iOS)

@@ -19,7 +19,7 @@
 //  License: Apache License Version 2.0
 //
 
-#if !os(macOS)
+#if os(iOS) || os(tvOS)
 
 import ObjectiveC
 import UIKit

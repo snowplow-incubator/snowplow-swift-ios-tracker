@@ -94,7 +94,7 @@ class DataPersistence: NSObject {
         super.init()
         self.escapedNamespace = escapedNamespace
         userDefaultsKey = "\(kSPSessionDictionaryPrefix)_\(escapedNamespace)"
-#if !(TARGET_OS_TV || TARGET_OS_WATCH)
+#if !(os(tvOS) || os(watchOS))
         if isStoredOnFile {
             let directoryUrl = createDirectoryUrl()
             let filename = "\(kFilename)_\(escapedNamespace).\(kFilenameExt)"
@@ -194,14 +194,16 @@ class DataPersistence: NSObject {
     }
 
     func storeDictionary(_ dictionary: [AnyHashable : Any], fileURL fileUrl: URL) -> Bool {
-        var result = false
-        do {
-            try (dictionary as NSDictionary).write(to: fileUrl)
-            result = true
-        } catch let error {
-            logError(message: String(format: "Unable to write file for sessions: %@", error.localizedDescription))
-            result = false
+        if #available(iOS 11.0, macOS 10.13, watchOS 4.0, *) {
+            do {
+                try (dictionary as NSDictionary).write(to: fileUrl)
+                return true
+            } catch let error {
+                logError(message: String(format: "Unable to write file for sessions: %@", error.localizedDescription))
+            }
+        } else {
+            return (dictionary as NSDictionary).write(to: fileUrl, atomically: true)
         }
-        return result
+        return false
     }
 }

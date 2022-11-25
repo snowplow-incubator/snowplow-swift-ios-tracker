@@ -176,21 +176,22 @@ class TestPlatformContext: XCTestCase {
         #endif
     }
 
-    func testPerformanceOfFetchingNetworkDict() {
-        let context = PlatformContext(mobileDictUpdateFrequency: 1000, networkDictUpdateFrequency: 0)
-        measure({
-            for _ in 0..<100 {
-                _ = context.fetchPlatformDict(withUserAnonymisation: false)
-            }
-        })
-    }
-
-    func testPerformanceOfFetchingMobileDict() {
-        let context = PlatformContext(mobileDictUpdateFrequency: 0, networkDictUpdateFrequency: 1000)
-        measure({
-            for _ in 0..<10000 {
-                _ = context.fetchPlatformDict(withUserAnonymisation: false)
-            }
-        })
-    }
+//    func testPerformanceOfFetchingNetworkDict() {
+//        let context = PlatformContext(mobileDictUpdateFrequency: 1000, networkDictUpdateFrequency: 0)
+//        measure({
+//            for _ in 0..<100 {
+//                _ = context.fetchPlatformDict(withUserAnonymisation: false)
+//            }
+//        })
+//    }
+//
+//    func testPerformanceOfFetchingMobileDict() {
+//        _ = XCTSkip()
+//        let context = PlatformContext(mobileDictUpdateFrequency: 0, networkDictUpdateFrequency: 1000)
+//        measure({
+//            for _ in 0..<10000 {
+//                _ = context.fetchPlatformDict(withUserAnonymisation: false)
+//            }
+//        })
+//    }
 }

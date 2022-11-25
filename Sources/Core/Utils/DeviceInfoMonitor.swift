@@ -19,13 +19,15 @@
 //  License: Apache License Version 2.0
 //
 
-import CoreTelephony
 import Foundation
 import os
+#if os(watchOS)
+import WatchKit
+#else
+import CoreTelephony
+#endif
 #if os(iOS) || os(tvOS)
 import UIKit
-#elseif os(watchOS)
-import WatchKit
 #endif
 
 class DeviceInfoMonitor {
@@ -48,13 +50,13 @@ class DeviceInfoMonitor {
         let identifierManagerClass: AnyClass? = NSClassFromString("ASIdentifierManager")
         if identifierManagerClass == nil {
             logError(message: errorMsg)
-            return ""
+            return nil
         }
 
         let sharedManagerSelector = NSSelectorFromString("sharedManager")
         if !(identifierManagerClass?.responds(to: sharedManagerSelector) ?? false) {
             logError(message: errorMsg)
-            return ""
+            return nil
         }
 
         let identifierManager = (identifierManagerClass?.method(for: sharedManagerSelector))(identifierManagerClass, sharedManagerSelector)
@@ -64,13 +66,13 @@ class DeviceInfoMonitor {
             let trackingManagerClass: AnyClass? = NSClassFromString("ATTrackingManager")
             if trackingManagerClass == nil {
                 logError(message: errorMsg)
-                return ""
+                return nil
             }
 
             let trackingStatusSelector = NSSelectorFromString("trackingAuthorizationStatus")
             if !(trackingManagerClass?.responds(to: trackingStatusSelector) ?? false) {
                 logError(message: errorMsg)
-                return ""
+                return nil
             }
 
             //notDetermined = 0, restricted = 1, denied = 2, authorized = 3
@@ -78,45 +80,47 @@ class DeviceInfoMonitor {
 
             if authorizationStatus != 3 {
                 logDebug(message: String(format: "The user didn't let tracking of IDFA. Authorization status is: %d", authorizationStatus))
-                return ""
+                return nil
             }
         } else {
             let isAdvertisingTrackingEnabledSelector = NSSelectorFromString("isAdvertisingTrackingEnabled")
             if !(identifierManager?.responds(to: isAdvertisingTrackingEnabledSelector) ?? false) {
                 logError(message: errorMsg)
-                return ""
+                return nil
             }
 
             let isAdvertisingTrackingEnabled = (Bool(identifierManager?.method(for: isAdvertisingTrackingEnabledSelector) ?? false))(identifierManager, isAdvertisingTrackingEnabledSelector)
             if !isAdvertisingTrackingEnabled {
                 logError(message: "The user didn't let tracking of IDFA.")
-                return ""
+                return nil
             }
         }
 
         let advertisingIdentifierSelector = NSSelectorFromString("advertisingIdentifier")
         if !(identifierManager?.responds(to: advertisingIdentifierSelector) ?? false) {
             logError(message: "ASIdentifierManager doesn't respond to selector `advertisingIdentifier`.")
-            return ""
+            return nil
         }
 
-        let uuid = (identifierManager?.method(for: advertisingIdentifierSelector) as? UUID)(identifierManager, advertisingIdentifierSelector)
-        return uuid?.uuidString ?? ""
+        if let uuid = (identifierManager?.method(for: advertisingIdentifierSelector) as? UUID)(identifierManager, advertisingIdentifierSelector) {
+            return uuid.uuidString
+        }
         #endif
         #endif
-        return ""
+        return nil
     }
 
     /// Returns the generated identifier for vendors. More info can be found in UIDevice's identifierForVendor documentation. If you do not want to use IDFV, add the comiler flag <code>SNOWPLOW_NO_IDFV</code> to your build settings.
     /// - Returns: A string containing a formatted UUID for example E621E1F8-C36C-495A-93FC-0C247A3E6E5F.
     var appleIdfv: String? {
-        var idfv: String? = nil
         #if os(iOS) || os(tvOS)
         #if !SNOWPLOW_NO_IDFV
-        idfv = UIDevice.current.identifierForVendor?.uuidString
+        if let idfv = UIDevice.current.identifierForVendor?.uuidString {
+            return idfv
+        }
         #endif
         #endif
-        return idfv ?? ""
+        return nil
     }
 
     /// Returns the current device's vendor in the form of a string.
@@ -187,9 +191,9 @@ class DeviceInfoMonitor {
         } else {
             carrier = networkInfo.subscriberCellularProvider
         }
-        return carrier?.carrierName ?? ""
+        return carrier?.carrierName
         #else
-        return ""
+        return nil
         #endif
     }
 
@@ -202,12 +206,12 @@ class DeviceInfoMonitor {
             // `serviceCurrentRadioAccessTechnology` has a bug in the iOS 12.0 so we use it from iOS 12.1
             let carrierKey = self.carrierKey
             let services = networkInfo.serviceCurrentRadioAccessTechnology
-            return services?[carrierKey] ?? ""
+            return services?[carrierKey]
         } else {
-            return networkInfo.currentRadioAccessTechnology ?? ""
+            return networkInfo.currentRadioAccessTechnology
         }
         #else
-        return ""
+        return nil
         #endif
     }
 

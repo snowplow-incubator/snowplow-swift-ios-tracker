@@ -19,6 +19,7 @@
 //  License: Apache License Version 2.0
 //
 
+#if os(iOS)
 import Foundation
 import SystemConfiguration
 
@@ -97,3 +98,4 @@ class SNOWReachability: NSObject {
     deinit {
     }
 }
+#endif

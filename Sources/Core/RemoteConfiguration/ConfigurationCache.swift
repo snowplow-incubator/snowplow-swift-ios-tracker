@@ -27,7 +27,7 @@ class ConfigurationCache: NSObject {
 
     init(remoteConfiguration: RemoteConfiguration) {
         super.init()
-        #if !(TARGET_OS_TV) && !(TARGET_OS_WATCH)
+        #if !(os(tvOS)) && !(os(watchOS))
         createCachePath(with: remoteConfiguration)
         #endif
     }
@@ -35,7 +35,7 @@ class ConfigurationCache: NSObject {
     func read() -> FetchedConfigurationBundle? {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
-        #if !(TARGET_OS_TV) && !(TARGET_OS_WATCH)
+        #if !(os(tvOS)) && !(os(watchOS))
         if let configuration = configuration {
             return configuration
         }
@@ -47,7 +47,7 @@ class ConfigurationCache: NSObject {
     func write(_ configuration: FetchedConfigurationBundle) {
         objc_sync_enter(self)
         self.configuration = configuration
-        #if !(TARGET_OS_TV) && !(TARGET_OS_WATCH)
+        #if !(os(tvOS)) && !(os(watchOS))
         store()
         #endif
         objc_sync_exit(self)
@@ -57,7 +57,7 @@ class ConfigurationCache: NSObject {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
         configuration = nil
-        #if !(TARGET_OS_TV) && !(TARGET_OS_WATCH)
+        #if !(os(tvOS)) && !(os(watchOS))
         if let cacheFileUrl = cacheFileUrl {
             do {
                 try FileManager.default.removeItem(at: cacheFileUrl)

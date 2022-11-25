@@ -20,7 +20,9 @@
 //
 
 import Foundation
+#if os(iOS) || os(tvOS)
 import UIKit
+#endif
 
 class Session {
     /// Whether the application is in the background or foreground

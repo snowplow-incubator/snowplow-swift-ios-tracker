@@ -20,7 +20,9 @@
 //
 
 import Foundation
+#if os(iOS)
 import UIKit
+#endif
 
 /// @class PlatformContext
 /// Manages a dictionary (Payload) with platform context. Some properties for mobile platforms are updated on fetch in set intervals.

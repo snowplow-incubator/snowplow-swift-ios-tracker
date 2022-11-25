@@ -59,7 +59,7 @@ class Emitter: NSObject, EmitterEventProcessing {
         set(namespace) {
             _namespace = namespace
             if builderFinished && eventStore == nil {
-                #if TARGET_OS_TV || TARGET_OS_WATCH
+                #if os(tvOS) || os(watchOS)
                 eventStore = MemoryEventStore()
                 #else
                 eventStore = SQLiteEventStore(namespace: _namespace)
