@@ -37,27 +37,27 @@ class MockDeviceInfoMonitor: DeviceInfoMonitor {
         return customAppleIdfv
     }
 
-    override var deviceVendor: String {
+    override var deviceVendor: String? {
         increaseMethodAccessCount("deviceVendor")
         return "Apple Inc."
     }
 
-    override var deviceModel: String {
+    override var deviceModel: String? {
         increaseMethodAccessCount("deviceModel")
         return "deviceModel"
     }
 
-    override var osVersion: String {
+    override var osVersion: String? {
         increaseMethodAccessCount("osVersion")
         return "13.0.0"
     }
 
-    override var osType: String {
+    override var osType: String? {
         increaseMethodAccessCount("osType")
         return "ios"
     }
 
-    override var carrierName: String {
+    override var carrierName: String? {
         increaseMethodAccessCount("carrierName")
         return "att"
     }
@@ -67,12 +67,16 @@ class MockDeviceInfoMonitor: DeviceInfoMonitor {
         return "3g"
     }
 
+    override var carrierKey: String {
+        return ""
+    }
+
     override var networkType: String {
         increaseMethodAccessCount("networkType")
         return "wifi"
     }
 
-    override var batteryLevel: Int {
+    override var batteryLevel: Int? {
         increaseMethodAccessCount("batteryLevel")
         return 20
     }
@@ -82,7 +86,7 @@ class MockDeviceInfoMonitor: DeviceInfoMonitor {
         return "charging"
     }
 
-    override var isLowPowerModeEnabled: Bool {
+    override var isLowPowerModeEnabled: Bool? {
         increaseMethodAccessCount("isLowPowerModeEnabled")
         return false
     }
@@ -92,17 +96,17 @@ class MockDeviceInfoMonitor: DeviceInfoMonitor {
         return 100000
     }
 
-    override var appAvailableMemory: Int {
+    override var appAvailableMemory: Int? {
         increaseMethodAccessCount("appAvailableMemory")
         return 1000
     }
 
-    override var availableStorage: Int64 {
+    override var availableStorage: Int64? {
         increaseMethodAccessCount("availableStorage")
         return 9000
     }
 
-    override var totalStorage: Int {
+    override var totalStorage: Int? {
         increaseMethodAccessCount("totalStorage")
         return 900000
     }

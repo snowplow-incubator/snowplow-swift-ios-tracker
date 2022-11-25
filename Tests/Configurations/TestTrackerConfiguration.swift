@@ -109,7 +109,7 @@ class TestTrackerConfiguration: XCTestCase {
         let scheme = url?.scheme
         let derivedEndpoint = "\(scheme ?? "")://\(host ?? "")"
 
-        let `protocol` = networkConfig.protocol == .http ? "http" : networkConfig.protocol == .https ? "https" : nil
+        let `protocol`: String? = networkConfig.protocol == .http ? "http" : networkConfig.protocol == .https ? "https" : nil
 
         XCTAssertEqual(networkConfig.endpoint, derivedEndpoint)
         XCTAssertEqual(`protocol`, scheme)
