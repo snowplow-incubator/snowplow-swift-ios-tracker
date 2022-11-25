@@ -99,7 +99,7 @@ public class Payload: NSObject {
     ) {
         guard let _ = try? JSONSerialization.jsonObject(with: json) as? [String : NSObject] else { return }
         if encode {
-            guard let typeEncoded else { return }
+            guard let typeEncoded = typeEncoded else { return }
             var encodedString = json.base64EncodedString(options: [])
 
             // We need URL safe with no padding. Since there is no built-in way to do this, we transform
@@ -115,7 +115,7 @@ public class Payload: NSObject {
 
             addValueToPayload(encodedString, forKey: typeEncoded)
         } else {
-            guard let typeNotEncoded else { return }
+            guard let typeNotEncoded = typeNotEncoded else { return }
             addValueToPayload(String(data: json, encoding: .utf8), forKey: typeNotEncoded)
         }
     }

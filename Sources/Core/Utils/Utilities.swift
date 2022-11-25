@@ -98,7 +98,7 @@ class Utilities {
         mainScreen = NSScreen.main?.frame
         screenScale = NSScreen.main?.backingScaleFactor ?? 0.0
         #endif
-        if let mainScreen, let screenScale {
+        if let mainScreen = mainScreen, let screenScale = screenScale {
             let screenWidth = mainScreen.size.width * screenScale
             let screenHeight = mainScreen.size.height * screenScale
             return SPSize(width: Int(screenWidth), height: Int(screenHeight))

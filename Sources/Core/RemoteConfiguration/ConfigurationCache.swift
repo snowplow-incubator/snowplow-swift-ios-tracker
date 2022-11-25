@@ -73,28 +73,29 @@ class ConfigurationCache: NSObject {
     func load() {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
-        guard let cacheFileUrl,
+        guard let cacheFileUrl = cacheFileUrl,
               let data = try? Data(contentsOf: cacheFileUrl) else { return }
-        do {
-            if #available(iOS 12, tvOS 12, watchOS 5, macOS 10.14, *) {
+        if #available(iOS 12, tvOS 12, watchOS 5, macOS 10.14, *) {
+            do {
                 configuration = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? FetchedConfigurationBundle
-            } else {
-                let unarchiver = NSKeyedUnarchiver(forReadingWith: data)
-                configuration = unarchiver.decodeObject() as? FetchedConfigurationBundle
-                unarchiver.finishDecoding()
+            } catch let error {
+                logError(message: String(format: "Exception on getting configuration from cache: %@", error.localizedDescription))
+                configuration = nil
             }
-        } catch let error {
-            logError(message: String(format: "Exception on getting configuration from cache: %@", error.localizedDescription))
-            configuration = nil
+        } else {
+            let unarchiver = NSKeyedUnarchiver(forReadingWith: data)
+            configuration = unarchiver.decodeObject() as? FetchedConfigurationBundle
+            unarchiver.finishDecoding()
         }
     }
-
+    
     func store() {
         _ = DispatchQueue.global(qos: .default)
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
         
-        guard let configuration, let cacheFileUrl else { return }
+        guard let configuration = configuration,
+              let cacheFileUrl = cacheFileUrl else { return }
         
         do {
             var data = Data()

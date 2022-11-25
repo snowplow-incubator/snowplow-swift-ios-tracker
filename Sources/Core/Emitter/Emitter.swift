@@ -390,7 +390,7 @@ class Emitter: NSObject, EmitterEventProcessing {
     }
 
     func attemptEmit() {
-        guard let eventStore else { return }
+        guard let eventStore = eventStore else { return }
         if eventStore.count() == 0 {
             logDebug(message: "Database empty. Returning.")
             isSending = false
@@ -452,7 +452,7 @@ class Emitter: NSObject, EmitterEventProcessing {
 
     func buildRequests(fromEvents events: [EmitterEvent]) -> [Request] {
         var requests: [Request] = []
-        guard let networkConnection else { return requests }
+        guard let networkConnection = networkConnection else { return requests }
         
         let sendingTime = Utilities.getTimestamp()
         let httpMethod = networkConnection.httpMethod

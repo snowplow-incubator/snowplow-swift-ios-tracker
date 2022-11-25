@@ -31,7 +31,7 @@ class StateFuture: NSObject {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
         if computedState == nil {
-            if let stateMachine, let event {
+            if let stateMachine = stateMachine, let event = event {
                 computedState = stateMachine.transition(from: event, state: previousState?.state)
             }
             event = nil
