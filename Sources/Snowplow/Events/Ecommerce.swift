@@ -36,9 +36,11 @@ public class Ecommerce : PrimitiveAbstract {
     @objc
     public var affiliation: String?
     /// Taxes applied to the purchase.
-    public var taxValue: Double?
+    @objc
+    public var taxValue: NSNumber?
     /// Shipping number.
-    public var shipping: Double?
+    @objc
+    public var shipping: NSNumber?
     /// City for shipping.
     @objc
     public var city: String?
@@ -68,10 +70,10 @@ public class Ecommerce : PrimitiveAbstract {
         var payload: [String : NSObject] = [:]
         payload[kSPEcommTotal] = String(format: "%.02f", totalValue) as NSObject
         if let taxValue = taxValue {
-            payload[kSPEcommTax] = String(format: "%.02f", taxValue) as NSObject
+            payload[kSPEcommTax] = String(format: "%.02f", taxValue.doubleValue) as NSObject
         }
         if let shipping = shipping {
-            payload[kSPEcommShipping] = String(format: "%.02f", shipping) as NSObject
+            payload[kSPEcommShipping] = String(format: "%.02f", shipping.doubleValue) as NSObject
         }
         payload[kSPEcommId] = orderId as NSObject
         payload[kSPEcommAffiliation] = affiliation as NSObject?

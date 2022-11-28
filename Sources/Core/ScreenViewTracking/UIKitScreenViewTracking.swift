@@ -162,18 +162,6 @@ extension UIViewController {
     func _SP_top() -> UIViewController? {
        if let rootViewController = viewIfLoaded?.window?.rootViewController {
             return rootViewController
-        } else if #available(iOS 13.0, *) {
-            for scene in UIApplication.shared.connectedScenes {
-                if scene.activationState == .foregroundActive {
-                    let windowScene = scene as? UIWindowScene
-                    let sceneDelegate = windowScene?.delegate as? UIWindowSceneDelegate
-                    if let target = sceneDelegate, let window = target.window {
-                        return window?.rootViewController
-                    }
-                }
-            }
-        } else {
-            return UIApplication.shared.keyWindow?.rootViewController
         }
         return nil
     }
