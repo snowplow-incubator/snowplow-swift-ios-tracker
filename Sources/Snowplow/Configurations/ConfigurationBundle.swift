@@ -23,6 +23,7 @@ import Foundation
 /// This class represents the default configuration applied in place of the remote configuration.
 @objc(SPConfigurationBundle)
 public class ConfigurationBundle: Configuration {
+    @objc
     private(set) public var namespace: String
     @objc
     public var networkConfiguration: NetworkConfiguration?

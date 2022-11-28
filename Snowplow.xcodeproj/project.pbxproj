@@ -382,10 +382,10 @@
 		6B9DA68E292BF03C006D721A /* TrackerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA68C292BF03B006D721A /* TrackerConstants.swift */; };
 		6B9DA68F292BF03C006D721A /* TrackerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA68C292BF03B006D721A /* TrackerConstants.swift */; };
 		6B9DA690292BF03C006D721A /* TrackerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA68C292BF03B006D721A /* TrackerConstants.swift */; };
-		6B9DA692292CA13B006D721A /* UIViewController+ScreenView_SWIZZLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA691292CA13B006D721A /* UIViewController+ScreenView_SWIZZLE.swift */; };
-		6B9DA693292CA13B006D721A /* UIViewController+ScreenView_SWIZZLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA691292CA13B006D721A /* UIViewController+ScreenView_SWIZZLE.swift */; };
-		6B9DA694292CA13B006D721A /* UIViewController+ScreenView_SWIZZLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA691292CA13B006D721A /* UIViewController+ScreenView_SWIZZLE.swift */; };
-		6B9DA695292CA13B006D721A /* UIViewController+ScreenView_SWIZZLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA691292CA13B006D721A /* UIViewController+ScreenView_SWIZZLE.swift */; };
+		6B9DA692292CA13B006D721A /* UIKitScreenViewTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA691292CA13B006D721A /* UIKitScreenViewTracking.swift */; };
+		6B9DA693292CA13B006D721A /* UIKitScreenViewTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA691292CA13B006D721A /* UIKitScreenViewTracking.swift */; };
+		6B9DA694292CA13B006D721A /* UIKitScreenViewTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA691292CA13B006D721A /* UIKitScreenViewTracking.swift */; };
+		6B9DA695292CA13B006D721A /* UIKitScreenViewTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA691292CA13B006D721A /* UIKitScreenViewTracking.swift */; };
 		6B9DA69B292CB9A3006D721A /* MockNetworkConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA696292CB9A3006D721A /* MockNetworkConnection.swift */; };
 		6B9DA69C292CB9A3006D721A /* MockLoggerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA697292CB9A3006D721A /* MockLoggerDelegate.swift */; };
 		6B9DA69D292CB9A3006D721A /* MockEventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9DA698292CB9A3006D721A /* MockEventStore.swift */; };
@@ -677,7 +677,7 @@
 		6B9DA682292BDD39006D721A /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		6B9DA683292BDD3A006D721A /* LoggerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggerDelegate.swift; sourceTree = "<group>"; };
 		6B9DA68C292BF03B006D721A /* TrackerConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackerConstants.swift; sourceTree = "<group>"; };
-		6B9DA691292CA13B006D721A /* UIViewController+ScreenView_SWIZZLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ScreenView_SWIZZLE.swift"; sourceTree = "<group>"; };
+		6B9DA691292CA13B006D721A /* UIKitScreenViewTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitScreenViewTracking.swift; sourceTree = "<group>"; };
 		6B9DA696292CB9A3006D721A /* MockNetworkConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockNetworkConnection.swift; sourceTree = "<group>"; };
 		6B9DA697292CB9A3006D721A /* MockLoggerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockLoggerDelegate.swift; sourceTree = "<group>"; };
 		6B9DA698292CB9A3006D721A /* MockEventStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockEventStore.swift; sourceTree = "<group>"; };
@@ -1277,7 +1277,7 @@
 		EDC9B37A255C3D3700F4136D /* ScreenViewTracking */ = {
 			isa = PBXGroup;
 			children = (
-				6B9DA691292CA13B006D721A /* UIViewController+ScreenView_SWIZZLE.swift */,
+				6B9DA691292CA13B006D721A /* UIKitScreenViewTracking.swift */,
 				6B9DA63D292B5196006D721A /* ScreenState.swift */,
 				6B9DA63C292B5196006D721A /* ScreenStateMachine.swift */,
 			);
@@ -1611,7 +1611,7 @@
 				6B858769292509AD006E4A5F /* ConfigurationCache.swift in Sources */,
 				6B9DA56F29261E5C006D721A /* SelfDescribing.swift in Sources */,
 				6B9DA67A292BD2D7006D721A /* SchemaRuleset.swift in Sources */,
-				6B9DA692292CA13B006D721A /* UIViewController+ScreenView_SWIZZLE.swift in Sources */,
+				6B9DA692292CA13B006D721A /* UIKitScreenViewTracking.swift in Sources */,
 				6B9DA5D02927BCD6006D721A /* EmitterEvent.swift in Sources */,
 				6B9DA665292BAE5F006D721A /* ServiceProvider.swift in Sources */,
 				6B9DA57B29261E5C006D721A /* Structured.swift in Sources */,
@@ -1754,7 +1754,7 @@
 				6B9DA5CD2927BCD6006D721A /* RequestResult.swift in Sources */,
 				6B9DA657292B60E2006D721A /* Subject.swift in Sources */,
 				6B9DA5FD2927E635006D721A /* LifecycleState.swift in Sources */,
-				6B9DA693292CA13B006D721A /* UIViewController+ScreenView_SWIZZLE.swift in Sources */,
+				6B9DA693292CA13B006D721A /* UIKitScreenViewTracking.swift in Sources */,
 				6B9DA6142927E99C006D721A /* StateFuture.swift in Sources */,
 				6B8587372923DCA2006E4A5F /* NetworkConfigurationUpdate.swift in Sources */,
 				6BABE8BE291BFCAD00F6798A /* TrackerConfigurationUpdate.swift in Sources */,
@@ -1877,7 +1877,7 @@
 				6B9DA671292BBCDE006D721A /* SNOWReachability.swift in Sources */,
 				6B9DA5F22927E635006D721A /* InstallTracker.swift in Sources */,
 				6B9DA57929261E5C006D721A /* Timing.swift in Sources */,
-				6B9DA694292CA13B006D721A /* UIViewController+ScreenView_SWIZZLE.swift in Sources */,
+				6B9DA694292CA13B006D721A /* UIKitScreenViewTracking.swift in Sources */,
 				6B9DA5CE2927BCD6006D721A /* RequestResult.swift in Sources */,
 				6B9DA5FE2927E635006D721A /* LifecycleState.swift in Sources */,
 				6B9DA658292B60E2006D721A /* Subject.swift in Sources */,
@@ -2008,7 +2008,7 @@
 				6B85877F29251CBD006E4A5F /* NetworkConnection.swift in Sources */,
 				6B8F5608291BDAF900CD3F1B /* TrackerConfiguration.swift in Sources */,
 				6B9DA641292B5197006D721A /* ScreenStateMachine.swift in Sources */,
-				6B9DA695292CA13B006D721A /* UIViewController+ScreenView_SWIZZLE.swift in Sources */,
+				6B9DA695292CA13B006D721A /* UIKitScreenViewTracking.swift in Sources */,
 				6B9DA5B429269036006D721A /* SNOWError.swift in Sources */,
 				6B9DA56E29261E5C006D721A /* Foreground.swift in Sources */,
 				6B9DA57A29261E5C006D721A /* Timing.swift in Sources */,

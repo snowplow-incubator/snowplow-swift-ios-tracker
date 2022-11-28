@@ -21,7 +21,27 @@
 
 import Foundation
 
-func uncaughtExceptionHandler(_ exception: NSException?) {
+func uncaughtExceptionHandler(_ exception: NSException) {
+    let symbols = exception.callStackSymbols
+    let stacktrace = "Stacktrace:\n\(symbols)"
+    let message = exception.reason
+    DispatchQueue.global(qos: .default).sync {
+        guard let message = message else { return }
+        if message.count == 0 { return }
+    
+        // Construct userInfo
+        var userInfo: [String : NSObject] = [:]
+        userInfo["message"] = message as NSObject
+        userInfo["stacktrace"] = stacktrace as NSObject
+    
+        // Send notification to tracker
+        NotificationCenter.default.post(
+            name: NSNotification.Name("SPCrashReporting"),
+            object: nil,
+            userInfo: userInfo)
+    
+        Thread.sleep(forTimeInterval: 2.0)
+    }
 }
 
 /// This class is used for tracking events, and delegates them to other classes responsible for sending, storage, etc.
@@ -310,22 +330,23 @@ class Tracker: NSObject {
                 andTracker: self)
         }
 
+        UIKitScreenViewTracking.setup()
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(receiveScreenViewNotification(_:)),
-            name: NSNotification.Name("ScreenViewDidAppear"),
+            name: NSNotification.Name("SPScreenViewDidAppear"),
             object: nil)
 
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(receiveDiagnosticNotification(_:)),
-            name: NSNotification.Name("TrackerDiagnostic"),
+            name: NSNotification.Name("SPTrackerDiagnostic"),
             object: nil)
 
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(receiveCrashReporting(_:)),
-            name: NSNotification.Name("CrashReporting"),
+            name: NSNotification.Name("SPCrashReporting"),
             object: nil)
 
         if exceptionEvents {

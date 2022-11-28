@@ -1,5 +1,5 @@
 //
-//  UIViewController+SPScreenView_SWIZZLE.swift
+//  UIKitScreenViewTracking.swift
 //  Snowplow
 //
 //  Copyright (c) 2013-2022 Snowplow Analytics Ltd. All rights reserved.
@@ -19,43 +19,38 @@
 //  License: Apache License Version 2.0
 //
 
-#if os(iOS) || os(tvOS)
+class UIKitScreenViewTracking {
+    private static var initialized = false
 
-import ObjectiveC
-import UIKit
-
-extension UIViewController {
-    
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions
-                     launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        UIViewController.swizzleViewWillAppear()
-        return true
+    class func setup() {
+        if (initialized) { return }
+        initialized = true
+        
+        swizzle()
     }
-    
-    class func swizzleViewWillAppear() {
-        if self != UIViewController.self {
-            return
-        }
-        
-        let originalSelector = #selector(viewDidAppear(_:))
-        let swizzledSelector = #selector(sp_viewDidAppear(_:))
-        
-        let originalMethod = class_getInstanceMethod(self, originalSelector)
-        let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
-        
+
+    private class func swizzle() {
+        #if os(iOS) || os(tvOS)
+        let originalSelector = #selector(UIViewController.viewDidAppear(_:))
+        let swizzledSelector = #selector(UIViewController.sp_viewDidAppear(_:))
+        let forClass = UIViewController.self
+
+        let originalMethod = class_getInstanceMethod(forClass, originalSelector)
+        let swizzledMethod = class_getInstanceMethod(forClass, swizzledSelector)
+
         var didAddMethod = false
         if let swizzledMethod = swizzledMethod {
             didAddMethod = class_addMethod(
-                self,
+                forClass,
                 originalSelector,
                 method_getImplementation(swizzledMethod),
                 method_getTypeEncoding(swizzledMethod))
         }
-        
+
         if didAddMethod {
             if let originalMethod = originalMethod {
                 class_replaceMethod(
-                    self,
+                    forClass,
                     swizzledSelector,
                     method_getImplementation(originalMethod),
                     method_getTypeEncoding(originalMethod))
@@ -66,28 +61,40 @@ extension UIViewController {
                 method_exchangeImplementations(originalMethod, swizzledMethod)
             }
         }
+        #endif
     }
+}
 
+#if os(iOS) || os(tvOS)
+
+import ObjectiveC
+import UIKit
+
+extension UIViewController {
+    
     // MARK: - Method Swizzling
 
     @objc func sp_viewDidAppear(_ animated: Bool) {
         sp_viewDidAppear(animated)
 
-        let bundle = Bundle(for: UIViewController.self)
+        let bundle = Bundle(for: self.classForCoder)
         if !bundle.bundlePath.hasPrefix(Bundle.main.bundlePath) {
             // Ignore view controllers that don't start with the main bundle path
             return
         }
-
+        
+        guard let activeController = _SP_top() else { return }
+        let top = _SP_topViewController(activeController)
+        
         // Construct userInfo
         var userInfo: [AnyHashable : Any] = [:]
-        userInfo["viewControllerClassName"] = NSStringFromClass(UIViewController.self)
-        if let controller = _SP_top() {
-            userInfo["topViewControllerClassName"] = NSStringFromClass(type(of: controller).self)
-        }
+        userInfo["viewControllerClassName"] = String(describing: self.classForCoder)
+        userInfo["topViewControllerClassName"] = String(describing: top.self.classForCoder)
+        
         // `name` is set to snowplowId class instance variable if it exists (hence no @"id" in userInfo)
-        userInfo["name"] = _SP_getName()
-        userInfo["type"] = NSNumber(value: _SP_getTopViewControllerType().rawValue)
+        userInfo["name"] = _SP_getName(self) ?? _SP_getName(top) ?? "Unknown"
+
+        userInfo["type"] = NSNumber(value: _SP_getType(top).rawValue)
 
         // Send notification to tracker
         NotificationCenter.default.post(
@@ -110,18 +117,6 @@ extension UIViewController {
             }
         }
         return nil
-    }
-
-    func _SP_getName() -> String {
-        if let viewControllerName = _SP_getName(self) {
-            return viewControllerName
-        }
-        if let controller = _SP_top(),
-           let topViewControllerName = _SP_getName(controller) {
-            return topViewControllerName
-        }
-
-        return "Unknown"
     }
 
     func _SP_getName(_ viewController: UIViewController) -> String? {
@@ -164,25 +159,29 @@ extension UIViewController {
         return .default
     }
 
-    func _SP_getTopViewControllerType() -> ScreenType {
-        if let controller = _SP_top() {
-            return _SP_getType(controller)
-        }
-        return .default
-    }
-
     func _SP_top() -> UIViewController? {
-        if let keyWindow = view.window,
-           let rootViewController = keyWindow.rootViewController {
-            return self._SP_topViewController(rootViewController)
+       if let rootViewController = viewIfLoaded?.window?.rootViewController {
+            return rootViewController
+        } else if #available(iOS 13.0, *) {
+            for scene in UIApplication.shared.connectedScenes {
+                if scene.activationState == .foregroundActive {
+                    let windowScene = scene as? UIWindowScene
+                    let sceneDelegate = windowScene?.delegate as? UIWindowSceneDelegate
+                    if let target = sceneDelegate, let window = target.window {
+                        return window?.rootViewController
+                    }
+                }
+            }
+        } else {
+            return UIApplication.shared.keyWindow?.rootViewController
         }
         return nil
     }
 
     func _SP_topViewController(_ rootViewController: UIViewController) -> UIViewController {
         if let navigationController = rootViewController as? UINavigationController,
-           let last = navigationController.viewControllers.last {
-            return _SP_topViewController(last)
+           let visible = navigationController.visibleViewController {
+            return _SP_topViewController(visible)
         }
 
         if let tabBarController = rootViewController as? UITabBarController,

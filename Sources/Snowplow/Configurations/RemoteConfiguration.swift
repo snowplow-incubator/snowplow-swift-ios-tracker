@@ -28,7 +28,7 @@ public class RemoteConfiguration: Configuration {
     @objc
     private(set) public var endpoint: String
     /// The method used to send the request.
-    private(set) var method: HttpMethodOptions?
+    private(set) public var method: HttpMethodOptions?
     
     /// - Parameters:
     ///   - endpoint: URL of the remote configuration.

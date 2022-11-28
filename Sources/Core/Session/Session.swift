@@ -135,9 +135,9 @@ class Session {
             if shouldUpdate() {
                 update(withEventId: eventId, eventTimestamp: eventTimestamp)
                 if let onSessionStateUpdate = onSessionStateUpdate, let state = state {
-                    DispatchQueue.global(qos: .default).async(execute: {
+                    DispatchQueue.global(qos: .default).async {
                         onSessionStateUpdate(state)
-                    })
+                    }
                 }
             }
             lastSessionCheck = Utilities.getTimestamp()

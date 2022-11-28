@@ -353,7 +353,7 @@ class Emitter: NSObject, EmitterEventProcessing {
     func addPayload(toBuffer eventPayload: Payload) {
         weak var weakSelf = self
 
-        DispatchQueue.global(qos: .default).async(execute: {
+        DispatchQueue.global(qos: .default).async {
             let strongSelf = weakSelf
             if strongSelf == nil {
                 return
@@ -361,15 +361,15 @@ class Emitter: NSObject, EmitterEventProcessing {
 
             strongSelf?.eventStore?.addEvent(eventPayload)
             strongSelf?.flush()
-        })
+        }
     }
 
     /// Empties the buffer of events using the respective HTTP request method.
     func flush() {
         if Thread.isMainThread {
-            DispatchQueue.global(qos: .default).async(execute: { [self] in
+            DispatchQueue.global(qos: .default).async { [self] in
                 sendGuard()
-            })
+            }
         } else {
             sendGuard()
         }
