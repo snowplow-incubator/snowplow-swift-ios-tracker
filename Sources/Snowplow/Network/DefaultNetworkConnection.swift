@@ -197,7 +197,7 @@ public class DefaultNetworkConnection: NSObject, NetworkConnection {
     func buildPost(_ request: Request) -> URLRequest {
         var requestData: Data? = nil
         do {
-            requestData = try JSONSerialization.data(withJSONObject: request.payload?.getAsDictionary() ?? [:], options: [])
+            requestData = try JSONSerialization.data(withJSONObject: request.payload?.dictionary ?? [:], options: [])
         } catch {
         }
         let url = URL(string: urlEndpoint!.absoluteString)!
@@ -217,7 +217,7 @@ public class DefaultNetworkConnection: NSObject, NetworkConnection {
     }
 
     func buildGet(_ request: Request) -> URLRequest {
-        let payload = request.payload?.getAsDictionary() ?? [:]
+        let payload = request.payload?.dictionary ?? [:]
         let url = "\(urlEndpoint!.absoluteString)?\(Utilities.urlEncode(payload))"
         let anUrl = URL(string: url)!
         var urlRequest = URLRequest(url: anUrl)

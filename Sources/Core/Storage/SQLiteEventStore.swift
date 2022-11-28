@@ -127,7 +127,7 @@ class SQLiteEventStore: NSObject, EventStore {
     // MARK: SPEventStore implementation methods
 
     func addEvent(_ payload: Payload) {
-        _ = insertDictionaryData(payload.getAsDictionary())
+        _ = insertDictionaryData(payload.dictionary)
     }
 
     func removeEvent(withId storeId: Int64) -> Bool {
@@ -200,7 +200,7 @@ class SQLiteEventStore: NSObject, EventStore {
     ///  - Parameter payload: A SnowplowPayload instance to be inserted into the database.
     ///  - Returns: If the insert was successful, we return the rowId of the inserted entry, otherwise -1. We explicitly do this in the case of an error, sqlite would return the previous successful insert leading to incorrect data removals.
     func insertEvent(_ payload: Payload?) -> Int64 {
-        return insertDictionaryData(payload?.getAsDictionary())
+        return insertDictionaryData(payload?.dictionary)
     }
 
     func insertDictionaryData(_ dict: [AnyHashable : Any]?) -> Int64 {

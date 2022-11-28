@@ -26,6 +26,32 @@ public class Payload: NSObject {
     private var payload: [String : NSObject] = [:]
     @objc
     public var allowDiagnostic = true
+    
+    /// Returns the payload of that particular SPPayload object.
+    /// - Returns: NSDictionary of data in the object.
+    @objc
+    public var dictionary: [String : NSObject]? {
+        objc_sync_enter(self)
+        defer { objc_sync_exit(self) }
+        return payload
+    }
+
+    /// Returns the byte size of a payload.
+    /// - Returns: A long representing the byte size of the payload.
+    @objc
+    public var byteSize: Int {
+        objc_sync_enter(self)
+        defer { objc_sync_exit(self) }
+        if let data = try? JSONSerialization.data(withJSONObject: payload) {
+            return data.count
+        }
+        return 0
+    }
+
+    @objc
+    override public var description: String {
+        return dictionary?.description ?? ""
+    }
 
     ///  Initializes a newly allocated SPPayload
     ///  - Returns: A SnowplowPayload.
@@ -171,30 +197,5 @@ public class Payload: NSObject {
             base64Encoded: encode,
             typeWhenEncoded: typeEncoded,
             typeWhenNotEncoded: typeNotEncoded)
-    }
-
-    /// Returns the payload of that particular SPPayload object.
-    /// - Returns: NSDictionary of data in the object.
-    @objc
-    public func getAsDictionary() -> [String : NSObject]? {
-        objc_sync_enter(self)
-        defer { objc_sync_exit(self) }
-        return payload
-    }
-
-    /// Returns the byte size of a payload.
-    /// - Returns: A long representing the byte size of the payload.
-    @objc
-    public var byteSize: Int {
-        objc_sync_enter(self)
-        defer { objc_sync_exit(self) }
-        if let data = try? JSONSerialization.data(withJSONObject: payload) {
-            return data.count
-        }
-        return 0
-    }
-
-    override public var description: String {
-        return getAsDictionary()?.description ?? ""
     }
 }

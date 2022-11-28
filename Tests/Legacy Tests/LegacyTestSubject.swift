@@ -58,7 +58,7 @@ class LegacyTestSubject: XCTestCase {
         subject.networkUserId = "aNuid"
         subject.domainUserId = "aDuid"
 
-        guard var values = subject.getStandardDict(withUserAnonymisation: false)?.getAsDictionary() else {
+        guard var values = subject.getStandardDict(withUserAnonymisation: false)?.dictionary else {
             return XCTFail()
         }
 

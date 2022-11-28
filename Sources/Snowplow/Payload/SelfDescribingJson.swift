@@ -35,6 +35,26 @@ public class SelfDescribingJson: NSObject {
     @objc
     public var data: NSObject?
 
+    /// Returns the internal NSDictionary of the self-describing JSON.
+    /// - Returns: The self-describing JSON as an NSDictionary.
+    @objc
+    public var dictionary: [String : NSObject]? {
+        if let data = data {
+            return [
+                kSPSchema: schema as NSObject,
+                kSPData: data
+            ]
+        }
+        return nil
+    }
+
+    /// Returns a string description of the internal dictionary.
+    /// - Returns: The description of the dictionary.
+    @objc
+    override public var description: String {
+        return dictionary?.description ?? ""
+    }
+
     /// Initializes a newly allocated SPSelfDescribingJson.
     /// - Parameters:
     ///   - schema: A valid schema string.
@@ -73,7 +93,7 @@ public class SelfDescribingJson: NSObject {
     /// - Returns: An SPSelfDescribingJson.
     @objc
     public convenience init(schema: String, andPayload data: Payload) {
-        self.init(schema: schema, andData: data.getAsDictionary() as? NSObject)
+        self.init(schema: schema, andData: data.dictionary as? NSObject)
     }
 
     /// Initializes a newly allocated SPSelfDescribingJson.
@@ -83,7 +103,7 @@ public class SelfDescribingJson: NSObject {
     /// - Returns: An SPSelfDescribingJson.
     @objc
     public convenience init(schema: String, andSelfDescribingJson data: SelfDescribingJson) {
-        self.init(schema: schema, andData: data.getAsDictionary() as? NSObject)
+        self.init(schema: schema, andData: data.dictionary as? NSObject)
     }
 
     /// Sets the data field of the self-describing JSON.
@@ -97,33 +117,13 @@ public class SelfDescribingJson: NSObject {
     /// - Parameter data: An SPPayload to be nested into the data.
     @objc
     public func setData(withPayload data: Payload) {
-        return setData(withObject: data.getAsDictionary() as? NSObject)
+        return setData(withObject: data.dictionary as? NSObject)
     }
 
     /// Sets the data field of the self-describing JSON.
     /// - Parameter data: A self-describing JSON to be nested into the data.
     @objc
     public func setData(withSelfDescribingJson data: SelfDescribingJson) {
-        return setData(withObject: data.getAsDictionary() as? NSObject)
-    }
-
-    /// Returns the internal NSDictionary of the self-describing JSON.
-    /// - Returns: The self-describing JSON as an NSDictionary.
-    @objc
-    public func getAsDictionary() -> [String : NSObject]? {
-        if let data = data {
-            return [
-                kSPSchema: schema as NSObject,
-                kSPData: data
-            ]
-        }
-        return nil
-    }
-
-    /// Returns a string description of the internal dictionary.
-    /// - Returns: The description of the dictionary.
-    @objc
-    override public var description: String {
-        return getAsDictionary()?.description ?? ""
+        return setData(withObject: data.dictionary as? NSObject)
     }
 }

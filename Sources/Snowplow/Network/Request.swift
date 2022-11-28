@@ -49,13 +49,13 @@ public class Request: NSObject {
         var tempUserAgent: String? = nil
         var payloadData: [[String : NSObject]] = []
         for payload in payloads {
-            if let data = payload.getAsDictionary() {
+            if let data = payload.dictionary {
                 payloadData.append(data)
             }
             tempUserAgent = userAgent(from: payload)
         }
         let payloadBundle = SelfDescribingJson(schema: kSPPayloadDataSchema, andData: payloadData as NSObject)
-        if let payloadBundleDict = payloadBundle.getAsDictionary() {
+        if let payloadBundleDict = payloadBundle.dictionary {
             payload = Payload(dictionary: payloadBundleDict)
         }
         self.emitterEventIds = emitterEventIds
@@ -64,6 +64,6 @@ public class Request: NSObject {
     }
 
     func userAgent(from payload: Payload) -> String? {
-        return (payload.getAsDictionary()?[kSPUseragent] as? String)
+        return (payload.dictionary?[kSPUseragent] as? String)
     }
 }

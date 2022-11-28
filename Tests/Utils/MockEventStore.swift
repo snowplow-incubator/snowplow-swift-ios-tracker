@@ -76,7 +76,7 @@ class MockEventStore: NSObject, EventStore {
         var eventIds: [Int64] = []
         var events: [EmitterEvent] = []
         for (key, obj) in db {
-            let payloadCopy = Payload(dictionary: obj.getAsDictionary() ?? [:])
+            let payloadCopy = Payload(dictionary: obj.dictionary ?? [:])
             let event = EmitterEvent(payload: payloadCopy, storeId: key)
             events.append(event)
             eventIds.append(event.storeId)

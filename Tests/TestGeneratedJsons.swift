@@ -45,7 +45,7 @@ class TestGeneratedJsons: XCTestCase {
         let entities = stateMachine.entities(from: fakeEvent, state: screenState)
         let screenContext = entities?.first
         XCTAssertNotNil(screenContext)
-        XCTAssertTrue(validator!.validateJson(screenContext?.getAsDictionary()))
+        XCTAssertTrue(validator!.validateJson(screenContext?.dictionary))
     }
 
     // TODO: this test fails for reasons I don't understand
@@ -61,12 +61,12 @@ class TestGeneratedJsons: XCTestCase {
 
     func testPlatformContextJson() {
         let subject = Subject(platformContext: true, andGeoContext: true)
-        let data = subject.getPlatformDict(withUserAnonymisation: false)?.getAsDictionary()
+        let data = subject.getPlatformDict(withUserAnonymisation: false)?.dictionary
         var json: [String : NSObject]?
         #if os(iOS)
-        json = SelfDescribingJson(schema: kSPMobileContextSchema, andDictionary: data!).getAsDictionary()
+        json = SelfDescribingJson(schema: kSPMobileContextSchema, andDictionary: data!).dictionary
         #else
-        json = SelfDescribingJson(schema: kSPDesktopContextSchema, andDictionary: data!).getAsDictionary()
+        json = SelfDescribingJson(schema: kSPDesktopContextSchema, andDictionary: data!).dictionary
         #endif
         XCTAssertTrue(validator!.validateJson(json))
     }
@@ -82,7 +82,7 @@ class TestGeneratedJsons: XCTestCase {
         subject.geoAltitude = NSNumber(value: 62.3)
         subject.geoAltitudeAccuracy = NSNumber(value: 16.3)
         let data = subject.getGeoLocationDict()
-        let json = SelfDescribingJson(schema: kSPGeoContextSchema, andDictionary: data!).getAsDictionary()
+        let json = SelfDescribingJson(schema: kSPGeoContextSchema, andDictionary: data!).dictionary
         XCTAssertTrue(validator!.validateJson(json))
     }
 
@@ -94,7 +94,7 @@ class TestGeneratedJsons: XCTestCase {
             documentId: "id",
             documentVersion: "version",
             documentDescription: "description")
-        XCTAssertTrue(validator!.validateJson(gdpr.context.getAsDictionary()))
+        XCTAssertTrue(validator!.validateJson(gdpr.context.dictionary))
     }
 
     func testStructuredEventPayloadJson() {
@@ -107,10 +107,10 @@ class TestGeneratedJsons: XCTestCase {
 
         // Check that the final payload passes validation
         let trackerEvent = TrackerEvent(event: event, state: nil)
-        let data = tracker.payload(with: trackerEvent).getAsDictionary()
+        let data = tracker.payload(with: trackerEvent).dictionary
 
         let dataArray = [data] as NSObject
-        let json = SelfDescribingJson(schema: kSPPayloadDataSchema, andData: dataArray).getAsDictionary()
+        let json = SelfDescribingJson(schema: kSPPayloadDataSchema, andData: dataArray).dictionary
 
         XCTAssertTrue(validator!.validateJson(json))
     }
@@ -128,10 +128,10 @@ class TestGeneratedJsons: XCTestCase {
 
         // Check that the final payload passes validation
         let trackerEvent = TrackerEvent(event: event, state: nil)
-        let data = tracker.payload(with: trackerEvent).getAsDictionary()
+        let data = tracker.payload(with: trackerEvent).dictionary
 
         let dataArray = [data] as NSObject
-        let json = SelfDescribingJson(schema: kSPPayloadDataSchema, andData: dataArray).getAsDictionary()
+        let json = SelfDescribingJson(schema: kSPPayloadDataSchema, andData: dataArray).dictionary
 
         XCTAssertTrue(validator!.validateJson(json))
 
@@ -161,10 +161,10 @@ class TestGeneratedJsons: XCTestCase {
 
         // Check that the final payload passes validation
         let trackerEvent = TrackerEvent(event: event, state: nil)
-        let data = tracker.payload(with: trackerEvent).getAsDictionary()
+        let data = tracker.payload(with: trackerEvent).dictionary
 
         let dataArray = [data] as NSObject
-        let json = SelfDescribingJson(schema: kSPPayloadDataSchema, andData: dataArray).getAsDictionary()
+        let json = SelfDescribingJson(schema: kSPPayloadDataSchema, andData: dataArray).dictionary
 
         XCTAssertTrue(validator!.validateJson(json))
 
@@ -189,7 +189,7 @@ class TestGeneratedJsons: XCTestCase {
         event.all = false
         event.name = "Name"
 
-        let sdj = SelfDescribingJson(schema: event.schema, andDictionary: event.payload).getAsDictionary()
+        let sdj = SelfDescribingJson(schema: event.schema, andDictionary: event.payload).dictionary
         XCTAssertTrue(validator!.validateJson(sdj))
     }
 
@@ -198,7 +198,7 @@ class TestGeneratedJsons: XCTestCase {
         event.documentDescription = "Description"
         event.name = "Name"
 
-        let sdj = event.payload.getAsDictionary()
+        let sdj = event.payload.dictionary
         XCTAssertTrue(validator!.validateJson(sdj))
     }
 
@@ -207,7 +207,7 @@ class TestGeneratedJsons: XCTestCase {
         event.documentDescription = "Description"
         event.name = "Name"
 
-        let sdj = SelfDescribingJson(schema: event.schema, andDictionary: event.payload).getAsDictionary()
+        let sdj = SelfDescribingJson(schema: event.schema, andDictionary: event.payload).dictionary
         XCTAssertTrue(validator!.validateJson(sdj))
     }
 
@@ -219,10 +219,10 @@ class TestGeneratedJsons: XCTestCase {
 
         // Check that the final payload passes validation
         let trackerEvent = TrackerEvent(event: event, state: nil)
-        let data = tracker.payload(with: trackerEvent).getAsDictionary()
+        let data = tracker.payload(with: trackerEvent).dictionary
 
         let dataArray = [data] as NSObject
-        let json = SelfDescribingJson(schema: kSPPayloadDataSchema, andData: dataArray).getAsDictionary()
+        let json = SelfDescribingJson(schema: kSPPayloadDataSchema, andData: dataArray).dictionary
 
         XCTAssertTrue(validator!.validateJson(json))
     }
@@ -250,31 +250,31 @@ class TestGeneratedJsons: XCTestCase {
 
         // Check that the main payload passes validation
         let trackerEvent = TrackerEvent(event: event, state: nil)
-        var data = tracker.payload(with: trackerEvent).getAsDictionary()
+        var data = tracker.payload(with: trackerEvent).dictionary
 
         var dataArray = [data] as NSObject
-        var json = SelfDescribingJson(schema: kSPPayloadDataSchema, andData: dataArray).getAsDictionary()
+        var json = SelfDescribingJson(schema: kSPPayloadDataSchema, andData: dataArray).dictionary
 
         XCTAssertTrue(validator!.validateJson(json))
 
         // Check that the item payload passes validation
-        data = tracker.payload(with: trackerEvent).getAsDictionary()
+        data = tracker.payload(with: trackerEvent).dictionary
 
         dataArray = [data] as NSObject
-        json = SelfDescribingJson(schema: kSPPayloadDataSchema, andData: dataArray).getAsDictionary()
+        json = SelfDescribingJson(schema: kSPPayloadDataSchema, andData: dataArray).dictionary
 
         XCTAssertTrue(validator!.validateJson(json))
     }
 
     func testTimingEventJson() {
         let event = Timing(category: "DemoTimingCategory", variable: "DemoTimingVariable", timing: 5)
-        let sdj = SelfDescribingJson(schema: event.schema, andDictionary: event.payload).getAsDictionary()
+        let sdj = SelfDescribingJson(schema: event.schema, andDictionary: event.payload).dictionary
         XCTAssertTrue(validator!.validateJson(sdj))
     }
 
     func testScreenViewEventJson() {
         let event = ScreenView(name: "DemoScreenName", screenId: UUID())
-        let sdj = SelfDescribingJson(schema: event.schema, andDictionary: event.payload).getAsDictionary()
+        let sdj = SelfDescribingJson(schema: event.schema, andDictionary: event.payload).dictionary
         XCTAssertTrue(validator!.validateJson(sdj))
     }
 
@@ -306,7 +306,7 @@ class TestGeneratedJsons: XCTestCase {
 
         let event = PushNotification(date: "date", action: "action", trigger: "PUSH", category: "category", thread: "thread", notification: content)
 
-        let sdj = SelfDescribingJson(schema: event.schema, andDictionary: event.payload).getAsDictionary()
+        let sdj = SelfDescribingJson(schema: event.schema, andDictionary: event.payload).dictionary
         XCTAssertTrue(validator!.validateJson(sdj))
     }
 
@@ -322,26 +322,26 @@ class TestGeneratedJsons: XCTestCase {
             ] as NSObject
         ]
         let event = MessageNotification.messageNotification(userInfo: userInfo, defaultTitle: nil, defaultBody: nil)
-        let sdj = SelfDescribingJson(schema: event!.schema, andDictionary: event!.payload).getAsDictionary()
+        let sdj = SelfDescribingJson(schema: event!.schema, andDictionary: event!.payload).dictionary
         XCTAssertTrue(validator!.validateJson(sdj))
     }
 
     func testApplicationInstallJson() {
         let installEvent = SelfDescribingJson(schema: kSPApplicationInstallSchema, andDictionary: [String : NSObject]())
-        let json = installEvent.getAsDictionary()
+        let json = installEvent.dictionary
         XCTAssertTrue(validator!.validateJson(json))
     }
 
     func testApplicationContextJson() {
         let json = Utilities.getApplicationContext(withVersion: "testversion", andBuild: "testbuild")
-        XCTAssertTrue(validator!.validateJson(json.getAsDictionary()))
+        XCTAssertTrue(validator!.validateJson(json.dictionary))
     }
 
     func testErrorEventJson() {
         let event = SNOWError(message: "some error message")
         event.name = "some exception name"
         event.stackTrace = "some stack trace"
-        let sdj = SelfDescribingJson(schema: event.schema, andDictionary: event.payload).getAsDictionary()
+        let sdj = SelfDescribingJson(schema: event.schema, andDictionary: event.payload).dictionary
         XCTAssertTrue(validator!.validateJson(sdj))
     }
 
@@ -353,10 +353,10 @@ class TestGeneratedJsons: XCTestCase {
 
         // Check that the final payload passes validation
         let trackerEvent = TrackerEvent(event: event, state: nil)
-        let data = tracker.payload(with: trackerEvent).getAsDictionary()
+        let data = tracker.payload(with: trackerEvent).dictionary
 
         let dataArray = [data] as NSObject
-        let json = SelfDescribingJson(schema: kSPPayloadDataSchema, andData: dataArray).getAsDictionary()
+        let json = SelfDescribingJson(schema: kSPPayloadDataSchema, andData: dataArray).dictionary
         XCTAssertTrue(validator!.validateJson(json))
 
         // Check that the nested context json passes validation

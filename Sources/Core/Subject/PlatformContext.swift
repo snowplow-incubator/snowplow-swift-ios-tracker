@@ -83,7 +83,7 @@ class PlatformContext {
         #endif
         if userAnonymisation {
             // mask user identifiers
-            let copy = Payload(dictionary: platformDict.getAsDictionary() ?? [:])
+            let copy = Payload(dictionary: platformDict.dictionary ?? [:])
             copy.addValueToPayload(nil, forKey: kSPMobileAppleIdfa)
             copy.addValueToPayload(nil, forKey: kSPMobileAppleIdfv)
             return copy
@@ -120,7 +120,7 @@ class PlatformContext {
     func setEphemeralMobileDict() {
         lastUpdatedEphemeralMobileDict = Date().timeIntervalSince1970
 
-        if let currentDict = platformDict.getAsDictionary() {
+        if let currentDict = platformDict.dictionary {
             if currentDict[kSPMobileAppleIdfa] == nil {
                 platformDict.addValueToPayload(deviceInfoMonitor.appleIdfa, forKey: kSPMobileAppleIdfa)
             }

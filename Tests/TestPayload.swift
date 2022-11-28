@@ -35,7 +35,7 @@ class TestPayload: XCTestCase {
         let sample_payload = Payload()
 
         XCTAssertEqual(
-            sample_payload.getAsDictionary(),
+            sample_payload.dictionary,
             [String : NSObject]())
 
     }
@@ -48,7 +48,7 @@ class TestPayload: XCTestCase {
         let sample_payload = Payload(dictionary: sample_dict)
 
         XCTAssertEqual(
-            sample_payload.getAsDictionary(),
+            sample_payload.dictionary,
             sample_dict)
         XCTAssertTrue(sample_payload.description.contains("\"Key1\": Value1"))
         XCTAssertTrue(sample_payload.description.contains("\"Key2\": Value2"))
@@ -66,7 +66,7 @@ class TestPayload: XCTestCase {
         let sample_payload = Payload(dictionary: sample_dict)
 
         XCTAssertNotEqual(
-            sample_payload.getAsDictionary(),
+            sample_payload.dictionary,
             sample_dict2,
             "Payload is not initialized with the correct JSON or NSDictionary")
     }
@@ -80,7 +80,7 @@ class TestPayload: XCTestCase {
 
 
         XCTAssertEqual(
-            sample_payload.getAsDictionary(),
+            sample_payload.dictionary,
             sample_dict)
     }
 
@@ -93,7 +93,7 @@ class TestPayload: XCTestCase {
 
 
         XCTAssertNotEqual(
-            sample_payload.getAsDictionary(),
+            sample_payload.dictionary,
             sample_dict,
             "Payload should not be the same as sample_dict")
     }
@@ -110,14 +110,14 @@ class TestPayload: XCTestCase {
         sample_payload.addValueToPayload("Value2", forKey: "Key2")
 
         XCTAssertEqual(
-            sample_payload.getAsDictionary(),
+            sample_payload.dictionary,
             sample_dict_final)
     }
 
     func testAddNilValueToPayload() {
         let payload = Payload()
         payload.addValueToPayload(nil, forKey: "foo")
-        XCTAssertEqual(payload.getAsDictionary(), [String : NSObject]())
+        XCTAssertEqual(payload.dictionary, [String : NSObject]())
     }
 
     func testAddNilValueToPayloadUnsetsKey() {
@@ -125,7 +125,7 @@ class TestPayload: XCTestCase {
             "foo": "bar" as NSObject
         ])
         payload.addValueToPayload(nil, forKey: "foo")
-        XCTAssertEqual(payload.getAsDictionary(), [String : NSObject]())
+        XCTAssertEqual(payload.dictionary, [String : NSObject]())
     }
 
     func testAddNumericValueToPayload() {
@@ -137,7 +137,7 @@ class TestPayload: XCTestCase {
 
 
         XCTAssertEqual(
-            sample_payload.getAsDictionary(),
+            sample_payload.dictionary,
             sample_dict)
     }
 
@@ -147,7 +147,7 @@ class TestPayload: XCTestCase {
 
 
         XCTAssertEqual(
-            sample_payload.getAsDictionary(),
+            sample_payload.dictionary,
             [String : NSObject]())
     }
 
@@ -159,7 +159,7 @@ class TestPayload: XCTestCase {
 
 
         XCTAssertEqual(
-            sample_payload.getAsDictionary(),
+            sample_payload.dictionary,
             [String : NSObject]())
     }
 
@@ -171,7 +171,7 @@ class TestPayload: XCTestCase {
         sample_payload.addDictionaryToPayload(sample_dic)
 
         XCTAssertEqual(
-            sample_payload.getAsDictionary(),
+            sample_payload.dictionary,
             sample_dic)
     }
 
@@ -190,7 +190,7 @@ class TestPayload: XCTestCase {
         sample_payload.addDictionaryToPayload(sample_dic2)
 
         XCTAssertEqual(
-            sample_payload.getAsDictionary(),
+            sample_payload.dictionary,
             sample_dict_final)
     }
 
@@ -209,7 +209,7 @@ class TestPayload: XCTestCase {
         sample_payload.addDictionaryToPayload(sample_dic2)
 
         XCTAssertEqual(
-            sample_payload.getAsDictionary(),
+            sample_payload.dictionary,
             sample_dict_final)
     }
 
@@ -234,7 +234,7 @@ class TestPayload: XCTestCase {
             typeWhenNotEncoded: "type_notenc")
 
         XCTAssertEqual(
-            sample_payload.getAsDictionary(),
+            sample_payload.dictionary,
             sample_enc)
     }
 
@@ -259,7 +259,7 @@ class TestPayload: XCTestCase {
             typeWhenNotEncoded: "type_notenc")
 
         XCTAssertEqual(
-            sample_payload.getAsDictionary(),
+            sample_payload.dictionary,
             sample_enc)
     }
 
@@ -279,7 +279,7 @@ class TestPayload: XCTestCase {
             typeWhenNotEncoded: "type_notenc")
 
         XCTAssertEqual(
-            sample_payload.getAsDictionary(),
+            sample_payload.dictionary,
             sample_enc)
     }
 
@@ -299,7 +299,7 @@ class TestPayload: XCTestCase {
             typeWhenNotEncoded: "type_notenc")
 
         XCTAssertEqual(
-            sample_payload.getAsDictionary(),
+            sample_payload.dictionary,
             sample_enc)
     }
 
@@ -307,7 +307,7 @@ class TestPayload: XCTestCase {
         let sample_payload = Payload()
 
         XCTAssertEqual(
-            sample_payload.getAsDictionary(),
+            sample_payload.dictionary,
             [String : NSObject]())
     }
 
@@ -320,7 +320,7 @@ class TestPayload: XCTestCase {
         ])
 
         XCTAssertEqual(
-            sample_payload.getAsDictionary(),
+            sample_payload.dictionary,
             sample_dict)
     }
 }

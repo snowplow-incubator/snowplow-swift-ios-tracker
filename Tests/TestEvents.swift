@@ -63,7 +63,7 @@ class TestEvents: XCTestCase {
         let payload = events.first?.payload
 
         // Check v_tracker field
-        let deviceTimestamp = payload?.getAsDictionary()?["dtm"] as? String
+        let deviceTimestamp = payload?.dictionary?["dtm"] as? String
         let expected = String(format: "%lld", Int64(currentTimestamp.timeIntervalSince1970 * 1000))
         XCTAssertEqual(expected, deviceTimestamp)
     }
@@ -95,8 +95,8 @@ class TestEvents: XCTestCase {
         let payload = events.first?.payload
 
         // Check url and referrer fields
-        let url = payload?.getAsDictionary()?[kSPPageUrl] as? String
-        let referrer = payload?.getAsDictionary()?[kSPPageRefr] as? String
+        let url = payload?.dictionary?[kSPPageUrl] as? String
+        let referrer = payload?.dictionary?[kSPPageRefr] as? String
         XCTAssertEqual(url, "url")
         XCTAssertEqual(referrer, "referrer")
     }
@@ -132,20 +132,20 @@ class TestEvents: XCTestCase {
 
         var screenViewPayload: Payload? = nil
         for event in events {
-            if (event.payload.getAsDictionary()?["eid"] as? String) == screenViewId?.uuidString {
+            if (event.payload.dictionary?["eid"] as? String) == screenViewId?.uuidString {
                 screenViewPayload = event.payload
             }
         }
         XCTAssertNotNil(screenViewPayload)
 
         // Check the DeepLink context entity properties
-        let screenViewContext = screenViewPayload?.getAsDictionary()?["co"] as? String
+        let screenViewContext = screenViewPayload?.dictionary?["co"] as? String
         XCTAssertTrue(screenViewContext?.contains("\"referrer\":\"the_referrer\"") ?? false)
         XCTAssertTrue(screenViewContext?.contains("\"url\":\"the_url\"") ?? false)
 
         // Check url and referrer fields for atomic table
-        let url = screenViewPayload?.getAsDictionary()?[kSPPageUrl] as? String
-        let referrer = screenViewPayload?.getAsDictionary()?[kSPPageRefr] as? String
+        let url = screenViewPayload?.dictionary?[kSPPageUrl] as? String
+        let referrer = screenViewPayload?.dictionary?[kSPPageRefr] as? String
         XCTAssertEqual(url, "the_url")
         XCTAssertEqual(referrer, "the_referrer")
     }

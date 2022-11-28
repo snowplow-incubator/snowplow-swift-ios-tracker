@@ -44,7 +44,7 @@ class TestSelfDescribingJson: XCTestCase {
         let sdj = SelfDescribingJson(
             schema: "iglu:acme.com/test_event/jsonschema/1-0-0",
             andDictionary: data)
-        XCTAssertEqual(expected, sdj.getAsDictionary())
+        XCTAssertEqual(expected, sdj.dictionary)
     }
 
     func testInitWithSPPayload() {
@@ -59,7 +59,7 @@ class TestSelfDescribingJson: XCTestCase {
         let sdj = SelfDescribingJson(
             schema: "iglu:acme.com/test_event/jsonschema/1-0-0",
             andPayload: data)
-        XCTAssertEqual(expected, sdj.getAsDictionary())
+        XCTAssertEqual(expected, sdj.dictionary)
     }
 
     func testInitWithSPSelfDescribingJson() {
@@ -81,7 +81,7 @@ class TestSelfDescribingJson: XCTestCase {
         let sdj = SelfDescribingJson(
             schema: "iglu:acme.com/test_event/jsonschema/1-0-0",
             andSelfDescribingJson: data)
-        XCTAssertEqual(expected, sdj.getAsDictionary())
+        XCTAssertEqual(expected, sdj.dictionary)
     }
 
     func testUpdateSchema() {
@@ -98,7 +98,7 @@ class TestSelfDescribingJson: XCTestCase {
             schema: "iglu:acme.com/test_event/jsonschema/1-0-0",
             andDictionary: data)
         sdj.schema = "iglu:acme.com/test_event_2/jsonschema/1-0-0"
-        XCTAssertEqual(expected, sdj.getAsDictionary())
+        XCTAssertEqual(expected, sdj.dictionary)
     }
     
     func testUpdateDataWithObject() {
@@ -116,7 +116,7 @@ class TestSelfDescribingJson: XCTestCase {
         sdj.setData(withObject: [
             "world": "hello"
         ] as NSObject)
-        XCTAssertEqual(expected, sdj.getAsDictionary())
+        XCTAssertEqual(expected, sdj.dictionary)
     }
     
     func testUpdateDataWithSPPayload() {
@@ -134,7 +134,7 @@ class TestSelfDescribingJson: XCTestCase {
                 "hello": "world"
             ])
         sdj.setData(withPayload: data)
-        XCTAssertEqual(expected, sdj.getAsDictionary())
+        XCTAssertEqual(expected, sdj.dictionary)
     }
 
     func testUpdateDataWithSPSelfDescribingJson() {
@@ -159,7 +159,7 @@ class TestSelfDescribingJson: XCTestCase {
                 "hello": "world"
             ])
         sdj.setData(withSelfDescribingJson: data)
-        XCTAssertEqual(expected, sdj.getAsDictionary())
+        XCTAssertEqual(expected, sdj.dictionary)
     }
 }
 

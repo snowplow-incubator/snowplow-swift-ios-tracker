@@ -300,7 +300,7 @@ class Subject : NSObject {
 
     func getStandardDict(withUserAnonymisation userAnonymisation: Bool) -> Payload? {
         if userAnonymisation {
-            var copy = standardDict.getAsDictionary() ?? [:]
+            var copy = standardDict.dictionary ?? [:]
             copy.removeValue(forKey: kSPUid)
             copy.removeValue(forKey: kSPDomainUid)
             copy.removeValue(forKey: kSPNetworkUid)

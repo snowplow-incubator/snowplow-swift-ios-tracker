@@ -25,7 +25,7 @@ import XCTest
 class TestPlatformContext: XCTestCase {
     func testContainsPlatformInfo() {
         let context = PlatformContext()
-        let platformDict = context.fetchPlatformDict(withUserAnonymisation: false).getAsDictionary()
+        let platformDict = context.fetchPlatformDict(withUserAnonymisation: false).dictionary
         XCTAssertNotNil(platformDict)
         XCTAssertNotNil(platformDict)
     }
@@ -33,7 +33,7 @@ class TestPlatformContext: XCTestCase {
     func testContainsMobileInfo() {
         #if os(iOS)
         let context = PlatformContext()
-        let platformDict = context.fetchPlatformDict(withUserAnonymisation: false).getAsDictionary()
+        let platformDict = context.fetchPlatformDict(withUserAnonymisation: false).dictionary
         XCTAssertNotNil(platformDict)
         XCTAssertNotNil(platformDict)
         #endif
@@ -42,7 +42,7 @@ class TestPlatformContext: XCTestCase {
     func testAddsAllMockedInfo() {
         let deviceInfoMonitor = MockDeviceInfoMonitor()
         let context = PlatformContext(mobileDictUpdateFrequency: 0, networkDictUpdateFrequency: 1, deviceInfoMonitor: deviceInfoMonitor)
-        guard let platformDict = context.fetchPlatformDict(withUserAnonymisation: false).getAsDictionary() else {
+        guard let platformDict = context.fetchPlatformDict(withUserAnonymisation: false).dictionary else {
             return XCTFail()
         }
         XCTAssertEqual("appleIdfa" as NSObject, platformDict[kSPMobileAppleIdfa])
@@ -168,7 +168,7 @@ class TestPlatformContext: XCTestCase {
         #if os(iOS)
         let deviceInfoMonitor = MockDeviceInfoMonitor()
         let context = PlatformContext(mobileDictUpdateFrequency: 0, networkDictUpdateFrequency: 1, deviceInfoMonitor: deviceInfoMonitor)
-        guard let platformDict = context.fetchPlatformDict(withUserAnonymisation: true).getAsDictionary() else {
+        guard let platformDict = context.fetchPlatformDict(withUserAnonymisation: true).dictionary else {
             return XCTFail()
         }
         XCTAssertNil(platformDict[kSPMobileAppleIdfa])

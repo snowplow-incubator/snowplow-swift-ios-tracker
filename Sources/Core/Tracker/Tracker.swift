@@ -518,7 +518,7 @@ class Tracker: NSObject {
             payload.addValueToPayload(String(format: "%lld", ttInMilliSeconds), forKey: kSPTrueTimestamp)
         }
         payload.addDictionaryToPayload(trackerData)
-        if let subjectDict = subject?.getStandardDict(withUserAnonymisation: userAnonymisation)?.getAsDictionary() {
+        if let subjectDict = subject?.getStandardDict(withUserAnonymisation: userAnonymisation)?.dictionary {
             payload.addDictionaryToPayload(subjectDict)
         }
         payload.addValueToPayload(devicePlatformToString(devicePlatform), forKey: kSPPlatform)
@@ -535,7 +535,7 @@ class Tracker: NSObject {
         if let schema = event.schema {
             let eventPayload = event.payload
             let data = SelfDescribingJson(schema: schema, andData: eventPayload as NSObject)
-            if let data = data.getAsDictionary() as NSObject? {
+            if let data = data.dictionary as NSObject? {
                 let unstructuredEventPayload: [String : NSObject] = [
                     kSPSchema: kSPUnstructSchema as NSObject,
                     kSPData: data
@@ -590,7 +590,7 @@ class Tracker: NSObject {
 
     func addBasicContexts(toContexts contexts: inout [SelfDescribingJson], eventId: String, eventTimestamp: Int64, isService: Bool) {
         if subject != nil {
-            if let platformDict = subject?.getPlatformDict(withUserAnonymisation: userAnonymisation)?.getAsDictionary() {
+            if let platformDict = subject?.getPlatformDict(withUserAnonymisation: userAnonymisation)?.dictionary {
                 contexts.append(SelfDescribingJson(schema: platformContextSchema, andDictionary: platformDict))
             }
             if let geoLocationDict = subject?.getGeoLocationDict() {
@@ -640,13 +640,13 @@ class Tracker: NSObject {
         }
         var data: [[String : NSObject]] = []
         for context in contexts {
-            if let dict = context.getAsDictionary() {
+            if let dict = context.dictionary {
                 data.append(dict)
             }
         }
 
         let finalContext = SelfDescribingJson(schema: kSPContextSchema, andData: data as NSObject)
-        if let dict = finalContext.getAsDictionary() {
+        if let dict = finalContext.dictionary {
             payload.addDictionaryToPayload(
                 dict,
                 base64Encoded: base64Encoded,

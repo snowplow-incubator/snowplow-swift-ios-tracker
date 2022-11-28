@@ -47,7 +47,7 @@ class TestSQLiteEventStore: XCTestCase {
         _ = eventStore.insertEvent(payload)
 
         XCTAssertEqual(eventStore.count(), 1)
-        XCTAssertEqual(eventStore.getEventWithId(1)?.payload.getAsDictionary(), payload.getAsDictionary())
+        XCTAssertEqual(eventStore.getEventWithId(1)?.payload.dictionary, payload.dictionary)
         XCTAssertEqual(eventStore.getLastInsertedRowId(), 1)
         _ = eventStore.removeEvent(withId: 1)
 
@@ -134,7 +134,7 @@ class TestSQLiteEventStore: XCTestCase {
         XCTAssertTrue(FileManager.default.fileExists(atPath: newDbPath))
         XCTAssertEqual(1, eventStore.count())
         for event in eventStore.getAllEvents() ?? [] {
-            XCTAssertEqual("value", event.payload.getAsDictionary()?["key"] as? String)
+            XCTAssertEqual("value", event.payload.dictionary?["key"] as? String)
         }
     }
 

@@ -60,7 +60,7 @@ class TestScreenState: XCTestCase {
         XCTAssertEqual(screenState.isValid, true)
         XCTAssertNotNil(screenState.payload)
         let payload = screenState.payload
-        let dictionary = payload?.getAsDictionary()
+        let dictionary = payload?.dictionary
         XCTAssertEqual(dictionary?[kSPScreenName] as? String, "some name")
         XCTAssertEqual(dictionary?[kSPScreenId] as? String, uuid)
     }
@@ -85,7 +85,7 @@ class TestScreenState: XCTestCase {
         }
         var payload = eventStore.db[Int64(eventStore.lastInsertedRow)]
         _ = eventStore.removeAllEvents()
-        var entities = (payload?.getAsDictionary()?["co"]) as? String
+        var entities = (payload?.dictionary?["co"]) as? String
         XCTAssertNil(entities)
 
         let uuid = UUID()
@@ -96,7 +96,7 @@ class TestScreenState: XCTestCase {
         }
         payload = eventStore.db[Int64(eventStore.lastInsertedRow)]
         _ = eventStore.removeAllEvents()
-        entities = (payload?.getAsDictionary()?["co"]) as? String
+        entities = (payload?.dictionary?["co"]) as? String
         XCTAssertNotNil(entities)
         XCTAssertTrue(entities!.contains(uuid.uuidString))
 
@@ -107,7 +107,7 @@ class TestScreenState: XCTestCase {
         }
         payload = eventStore.db[Int64(eventStore.lastInsertedRow)]
         _ = eventStore.removeAllEvents()
-        entities = (payload?.getAsDictionary()?["co"]) as? String
+        entities = (payload?.dictionary?["co"]) as? String
         XCTAssertNotNil(entities)
         XCTAssertTrue(entities!.contains(uuid.uuidString))
 
@@ -119,10 +119,10 @@ class TestScreenState: XCTestCase {
         }
         payload = eventStore.db[Int64(eventStore.lastInsertedRow)]
         _ = eventStore.removeAllEvents()
-        entities = (payload?.getAsDictionary()?["co"]) as? String
+        entities = (payload?.dictionary?["co"]) as? String
         XCTAssertNotNil(entities)
         XCTAssertTrue(entities!.contains(uuid2.uuidString))
-        let eventPayload = (payload?.getAsDictionary()?["ue_pr"]) as? String
+        let eventPayload = (payload?.dictionary?["ue_pr"]) as? String
         XCTAssertNotNil(eventPayload)
         XCTAssertTrue(eventPayload!.contains(uuid.uuidString))
         XCTAssertTrue(eventPayload!.contains(uuid2.uuidString))
@@ -134,7 +134,7 @@ class TestScreenState: XCTestCase {
         }
         payload = eventStore.db[Int64(eventStore.lastInsertedRow)]
         _ = eventStore.removeAllEvents()
-        entities = (payload?.getAsDictionary()?["co"]) as? String
+        entities = (payload?.dictionary?["co"]) as? String
         XCTAssertNotNil(entities)
         XCTAssertTrue(entities!.contains(uuid2.uuidString))
     }

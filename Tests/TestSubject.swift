@@ -27,7 +27,7 @@ class TestSubject: XCTestCase {
         let subject = Subject(platformContext: true, andGeoContext: false)
         let platformDict = subject.getPlatformDict(withUserAnonymisation: false)
         XCTAssertNotNil(platformDict)
-        XCTAssertNotNil(platformDict?.getAsDictionary()?[kSPPlatformOsType])
+        XCTAssertNotNil(platformDict?.dictionary?[kSPPlatformOsType])
     }
 
     func testDoesntReturnPlatformContextIfDisabled() {
@@ -61,7 +61,7 @@ class TestSubject: XCTestCase {
         subject.domainUserId = "aDuid"
         subject.language = "EN"
 
-        guard let values = subject.getStandardDict(withUserAnonymisation: true)?.getAsDictionary() else {
+        guard let values = subject.getStandardDict(withUserAnonymisation: true)?.dictionary else {
             return XCTFail()
         }
         XCTAssertNil(values[kSPUid])
