@@ -72,7 +72,7 @@ jobs:
           .scripts/test_ios_demo.sh -app SnowplowObjCDemo -podfile Podfile -ios "${BUILD_WORKSPACE_OBJC_DEMO}" "${BUILD_DEST_IOS}" "${BUILD_SCHEME_OBJC_DEMO}"
 
   build_swift_cocoapods_demo_app:
-    name: "Swift demo (Cocoapods ${{ matrix.podfile.type }}) (iOS ${{ matrix.version.ios }})"
+    name: "Swift demo (Cocoapods) (iOS ${{ matrix.version.ios }})"
     needs: test_framework
     runs-on: macos-${{ matrix.version.macos }}
     env:
@@ -83,10 +83,6 @@ jobs:
       matrix:
         version:
           - {ios: '14.4', iphone: iPhone 12 Pro, watchos: '7.2', watch: Apple Watch Series 5 - 44mm, macos: '11', xcode: 12.4}
-        podfile:
-          - {file: Podfile, type: "no directive"}
-          - {file: Podfile_frameworks, type: "use_frameworks! directive"}
-          - {file: Podfile_modular_headers, type: "use_modular_headers! directive"}
 
     steps:
       - name: Checkout
@@ -113,7 +109,7 @@ jobs:
         run: |
           cd examples/demo/ 
           . .scripts/setup.sh
-          .scripts/test_ios_demo.sh -app SnowplowSwiftCocoapodsDemo -podfile ${{matrix.podfile.file}} -ios "${BUILD_WORKSPACE_SWIFT_DEMO}" "${BUILD_DEST_IOS}" "${BUILD_SCHEME_SWIFT_DEMO_IOS}" -watch "${BUILD_DEST_PAIRED}" "${BUILD_SCHEME_SWIFT_DEMO_WATCH}"
+          .scripts/test_ios_demo.sh -app SnowplowSwiftCocoapodsDemo -podfile Podfile -ios "${BUILD_WORKSPACE_SWIFT_DEMO}" "${BUILD_DEST_IOS}" "${BUILD_SCHEME_SWIFT_DEMO_IOS}" -watch "${BUILD_DEST_PAIRED}" "${BUILD_SCHEME_SWIFT_DEMO_WATCH}"
 
   build_swift_spm_demo_app:
     name: "Swift demo (SPM) (iOS ${{ matrix.version.ios }})"
