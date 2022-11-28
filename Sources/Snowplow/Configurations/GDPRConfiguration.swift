@@ -20,26 +20,36 @@
 
 import Foundation
 
+@objc(SPGDPRConfigurationProtocol)
 public protocol GDPRConfigurationProtocol: AnyObject {
     /// Basis for processing.
+    @objc
     var basisForProcessing: GDPRProcessingBasis { get }
     /// ID of a GDPR basis document.
+    @objc
     var documentId: String? { get }
     /// Version of the document.
+    @objc
     var documentVersion: String? { get }
     /// Description of the document.
+    @objc
     var documentDescription: String? { get }
 }
 
 /// This class allows the GDPR configuration of the tracker.
+@objc(SPGDPRConfiguration)
 public class GDPRConfiguration: Configuration, GDPRConfigurationProtocol {
     /// Basis for processing.
+    @objc
     public var basisForProcessing: GDPRProcessingBasis
     /// ID of a GDPR basis document.
+    @objc
     public var documentId: String?
     /// Version of the document.
+    @objc
     public var documentVersion: String?
     /// Description of the document.
+    @objc
     public var documentDescription: String?
 
     /// Enables GDPR context to be sent with each event.
@@ -48,6 +58,7 @@ public class GDPRConfiguration: Configuration, GDPRConfigurationProtocol {
     ///   - documentId: ID of a GDPR basis document.
     ///   - documentVersion: Version of the document.
     ///   - documentDescription: Description of the document.
+    @objc
     public init(
         basis basisForProcessing: GDPRProcessingBasis,
         documentId: String?,
@@ -63,6 +74,7 @@ public class GDPRConfiguration: Configuration, GDPRConfigurationProtocol {
 
     // MARK: - NSCopying
 
+    @objc
     public override func copy(with zone: NSZone? = nil) -> Any {
         let copy = GDPRConfiguration(basis: basisForProcessing,
                                      documentId: documentId,
@@ -73,8 +85,10 @@ public class GDPRConfiguration: Configuration, GDPRConfigurationProtocol {
 
     // MARK: - NSSecureCodin
     
+    @objc
     public override class var supportsSecureCoding: Bool { return true }
 
+    @objc
     public override func encode(with coder: NSCoder) {
         coder.encode(basisForProcessing.rawValue, forKey: "basisForProcessing")
         coder.encode(documentId, forKey: "documentId")

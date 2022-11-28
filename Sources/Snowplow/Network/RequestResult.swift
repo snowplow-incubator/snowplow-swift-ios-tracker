@@ -21,29 +21,35 @@
 
 import Foundation
 
+@objc(SPRequestResult)
 public class RequestResult: NSObject {
     /// Returns the HTTP status code from Collector.
-    private(set) var statusCode: Int?
+    public private(set) var statusCode: Int?
     /// Was the request oversize
-    private(set) var isOversize: Bool
+    @objc
+    public private(set) var isOversize: Bool
     /// Returns the stored index array, needed to remove the events after sending.
-    private(set) var storeIds: [NSNumber]?
+    @objc
+    public private(set) var storeIds: [NSNumber]?
 
+    @objc
     public convenience override init() {
-        self.init(statusCode: nil, oversize: false, storeIds: [])
+        self.init(statusCode: -1, oversize: false, storeIds: [])
     }
 
     /// Creates a request result object
     /// - Parameters:
     ///   - statusCode: HTTP status code from collector response
     ///   - storeIds: the event indexes in the database
-    public init(statusCode: Int?, oversize isOversize: Bool, storeIds: [NSNumber]?) {
-        self.statusCode = statusCode
+    @objc
+    public init(statusCode: NSNumber?, oversize isOversize: Bool, storeIds: [NSNumber]?) {
+        self.statusCode = statusCode?.intValue
         self.isOversize = isOversize
         self.storeIds = storeIds
     }
-
+    
     /// - Returns: Whether the events were successfuly sent to the Collector.
+    @objc
     public var isSuccessful: Bool {
         if let statusCode = statusCode {
             return statusCode >= 200 && statusCode < 300

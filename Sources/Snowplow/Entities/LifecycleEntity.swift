@@ -25,21 +25,30 @@ let kSPLifecycleEntitySchema = "iglu:com.snowplowanalytics.mobile/application_li
 let kSPLifecycleEntityParamIndex = "index"
 let kSPLifecycleEntityParamIsVisible = "isVisible"
 
+@objc(SPLifecycleEntity)
 public class LifecycleEntity: SelfDescribingJson {
 
+    @objc
     public init(isVisible: Bool) {
         var parameters: [String : NSObject] = [:]
         parameters[kSPLifecycleEntityParamIsVisible] = NSNumber(value: isVisible)
         super.init(schema: kSPLifecycleEntitySchema, andData: parameters as NSObject)
     }
 
-    // --- Builder Methods
-
-    public func index(_ index: NSNumber?) -> Self {
-        if let data = data,
-           var parameters = data as? [String : NSObject] {
-            parameters[kSPLifecycleEntityParamIndex] = index
+    @objc
+    public var index: NSNumber? {
+        set {
+            if let data = data,
+               var parameters = data as? [String : NSObject] {
+                parameters[kSPLifecycleEntityParamIndex] = newValue
+            }
         }
-        return self
+        get {
+            if let data = data,
+               let parameters = data as? [String : NSObject] {
+                return parameters[kSPLifecycleEntityParamIndex] as? NSNumber
+            }
+            return nil
+        }
     }
 }

@@ -22,12 +22,15 @@
 import Foundation
 
 /// A background transition event.
+@objc(SPBackground)
 public class Background: SelfDescribingAbstract {
     /// Index indicating the current transition.
+    @objc
     public var index: Int
 
     /// Creates a brackground transition event.
     /// - Parameter index: indicate the current transition.
+    @objc
     public init(index: Int) {
         self.index = index
     }

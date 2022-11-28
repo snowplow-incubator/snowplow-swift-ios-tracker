@@ -21,6 +21,7 @@
 
 import Foundation
 
+@objc(SPDevicePlatform)
 public enum DevicePlatform : Int {
     case web = 0
     case mobile

@@ -41,6 +41,7 @@ let kSPMessageNotificationParamTitleLocArgs = "titleLocArgs"
 let kSPMessageNotificationParamTitleLocKey = "titleLocKey"
 let kSPMessageNotificationParamTrigger = "trigger"
 
+@objc
 public enum MessageNotificationTrigger: Int {
     case push = 0
     case location
@@ -56,44 +57,62 @@ func triggerToString(_ trigger: MessageNotificationTrigger) -> String {
 }
 
 /// An event that represents the reception of a push notification (or a locally generated one).
+@objc(SPMessageNotification)
 public class MessageNotification : SelfDescribingAbstract {
     /// The action associated with the notification.
+    @objc
     public var action: String?
     /// Attachments added to the notification (they can be part of the data object).
+    @objc
     public var attachments: [MessageNotificationAttachment]?
     /// The notification's body.
+    @objc
     public var body: String
     /// Variable string values to be used in place of the format specifiers in bodyLocArgs to use to localize the body text to the user's current localization.
+    @objc
     public var bodyLocArgs: [String]?
     /// The key to the body string in the app's string resources to use to localize the body text to the user's current localization.
+    @objc
     public var bodyLocKey: String?
     /// The category associated to the notification.
+    @objc
     public var category: String?
     /// The application is notified of the delivery of the notification if it's in the foreground or background, the app will be woken up (iOS only).
     public var contentAvailable: Bool?
     /// The group which this notification is part of.
+    @objc
     public var group: String?
     /// The icon associated to the notification (Android only).
+    @objc
     public var icon: String?
     /// The number of items this notification represents. It's the badge number on iOS.
     public var notificationCount: Int?
     /// The time when the event of the notification occurred.
+    @objc
     public var notificationTimestamp: String?
     /// The sound played when the device receives the notification.
+    @objc
     public var sound: String?
     /// The notification's subtitle. (iOS only)
+    @objc
     public var subtitle: String?
     /// An identifier similar to 'group' but usable for different purposes (Android only).
+    @objc
     public var tag: String?
     /// An identifier similar to 'group' but usable for different purposes (iOS only).
+    @objc
     public var threadIdentifier: String?
     /// The notification's title.
+    @objc
     public var title: String
     /// Variable string values to be used in place of the format specifiers in titleLocArgs to use to localize the title text to the user's current localization.
+    @objc
     public var titleLocArgs: [String]?
     /// The key to the title string in the app's string resources to use to localize the title text to the user's current localization.
+    @objc
     public var titleLocKey: String?
     /// The trigger that raised the notification message.
+    @objc
     public var trigger: MessageNotificationTrigger
     
     /// Creates a Message Notification event that represents a push notification or a local notification.
@@ -101,12 +120,14 @@ public class MessageNotification : SelfDescribingAbstract {
     /// @param title Title of message notification.
     /// @param body Body content of the message notification.
     /// @param trigger The trigger that raised this notification: remote notification (push), position related (location), date-time related (calendar, timeInterval) or app generated (other).
+    @objc
     public init(title: String, body: String, trigger: MessageNotificationTrigger) {
         self.title = title
         self.body = body
         self.trigger = trigger
     }
     
+    @objc
     public class func messageNotification(userInfo: [String: NSObject], defaultTitle: String?, defaultBody: String?) -> MessageNotification? {
         guard let aps = userInfo["aps"] as? [String : NSObject] else {
             return nil

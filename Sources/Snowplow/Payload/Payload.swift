@@ -21,12 +21,15 @@
 
 import Foundation
 
+@objc(SPPayload)
 public class Payload: NSObject {
     private var payload: [String : NSObject] = [:]
+    @objc
     public var allowDiagnostic = true
 
     ///  Initializes a newly allocated SPPayload
     ///  - Returns: A SnowplowPayload.
+    @objc
     public override init() {
         super.init()
     }
@@ -34,6 +37,7 @@ public class Payload: NSObject {
     ///  Initializes a newly allocated SPPayload with an existing object of type NSDictionary.
     ///  - Parameter dictionary: An object of NSDictionary.
     ///  - Returns: A SnowplowPayload.
+    @objc
     public init(dictionary: [String : NSObject]) {
         super.init()
         payload = dictionary
@@ -43,6 +47,7 @@ public class Payload: NSObject {
     /// - Parameters:
     /// - value: A NSString value
     /// - key: A key of type NSString
+    @objc
     public func addValueToPayload(_ value: String?, forKey key: String) {
         objc_sync_enter(self)
         if value == nil || value?.count == 0 {
@@ -59,6 +64,7 @@ public class Payload: NSObject {
     /// - Parameters:
     /// - value: A NSNumber value
     /// - key: A key of type NSString
+    @objc
     public func addNumericValueToPayload(_ value: NSNumber?, forKey key: String) {
         objc_sync_enter(self)
         if let value = value {
@@ -72,6 +78,7 @@ public class Payload: NSObject {
     ///  Adds a dictionary of attributes to be appended into the SPPayload instance. It does NOT overwrite the existing data in the object.
     ///  All attribute values must be NSString types to be added; all others are discarded.
     ///  - Parameter dictionary: An object of NSDictionary.
+    @objc
     public func addDictionaryToPayload(_ dictionary: [String : NSObject]?) {
         if dictionary == nil {
             return
@@ -91,6 +98,7 @@ public class Payload: NSObject {
     ///  - encode: Boolean option to choose whether the JSON data should be encoded.
     ///  - typeEncoded: If the data is to be encoded, the result will be a value of the key in typeEncoded.
     ///  - typeNotEncoded: If the data is NOT going to be encoded, the result will be a value of the key in typeWhenNotEncoded.
+    @objc
     public func addJsonToPayload(
         _ json: Data,
         base64Encoded encode: Bool,
@@ -126,6 +134,7 @@ public class Payload: NSObject {
     ///  - encode: Boolean option to choose whether the JSON data should be encoded.
     ///  - typeEncoded: If the data is to be encoded, the result will be a value of the key in typeEncoded.
     ///  - typeNotEncoded: If the data is NOT going to be encoded, the result will be a value of the key in typeWhenNotEncoded.
+    @objc
     public func addJsonStringToPayload(
         _ json: String,
         base64Encoded encode: Bool,
@@ -148,6 +157,7 @@ public class Payload: NSObject {
     ///  - encode: Boolean option to choose whether the JSON data should be encoded.
     ///  - typeEncoded: If the data is to be encoded, the result will be a value of the key in typeEncoded.
     ///  - typeNotEncoded: If the data is NOT going to be encoded, the result will be a value of the key in typeWhenNotEncoded.
+    @objc
     public func addDictionaryToPayload(
         _ dictionary: [String : NSObject],
         base64Encoded encode: Bool,
@@ -165,6 +175,7 @@ public class Payload: NSObject {
 
     /// Returns the payload of that particular SPPayload object.
     /// - Returns: NSDictionary of data in the object.
+    @objc
     public func getAsDictionary() -> [String : NSObject]? {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
@@ -173,7 +184,8 @@ public class Payload: NSObject {
 
     /// Returns the byte size of a payload.
     /// - Returns: A long representing the byte size of the payload.
-    public func byteSize() -> Int {
+    @objc
+    public var byteSize: Int {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
         if let data = try? JSONSerialization.data(withJSONObject: payload) {

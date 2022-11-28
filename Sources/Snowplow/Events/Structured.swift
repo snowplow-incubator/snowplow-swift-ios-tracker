@@ -22,18 +22,26 @@
 import Foundation
 
 /// A structured event.
+@objc(SPStructured)
 public class Structured: PrimitiveAbstract {
+    @objc
     public var category: String
+    @objc
     public var action: String
+    @objc
     public var label: String?
+    @objc
     public var property: String?
+    @objc
     public var value: NSNumber?
 
+    @objc
     public init(category: String, action: String) {
         self.category = category
         self.action = action
     }
 
+    @objc
     override public var eventName: String {
         return kSPEventStructured
     }

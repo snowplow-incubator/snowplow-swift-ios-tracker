@@ -521,9 +521,9 @@ class Emitter: NSObject, EmitterEventProcessing {
     }
 
     func isOversize(_ payload: Payload, byteLimit: Int, previousPayloads: [Payload]) -> Bool {
-        var totalByteSize = payload.byteSize()
+        var totalByteSize = payload.byteSize
         for previousPayload in previousPayloads {
-            totalByteSize += previousPayload.byteSize()
+            totalByteSize += previousPayload.byteSize
         }
         let wrapperBytes = previousPayloads.count > 0 ? (previousPayloads.count + POST_WRAPPER_BYTES) : 0
         return totalByteSize + wrapperBytes > byteLimit

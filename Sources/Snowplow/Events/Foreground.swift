@@ -22,12 +22,15 @@
 import Foundation
 
 /// A foreground transition event.
+@objc(SPForeground)
 public class Foreground: SelfDescribingAbstract {
     /// Indicate the current transition.
+    @objc
     public var index: Int
 
     /// Creates a foreground transition event.
     /// - Parameter index: indicate the current transition.
+    @objc
     public init(index: Int) {
         self.index = index
     }

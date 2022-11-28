@@ -20,20 +20,26 @@
 
 import Foundation
 
+@objc(SPConfiguration)
 public class Configuration: NSObject, NSCopying, NSSecureCoding {
+    @objc
     public convenience init?(dictionary: [String : NSObject]) {
         self.init()
     }
 
+    @objc
     public func copy(with zone: NSZone? = nil) -> Any {
         return Configuration()
     }
 
+    @objc
     public func encode(with coder: NSCoder) {
     }
 
+    @objc
     public class var supportsSecureCoding: Bool { return true }
     
+    @objc
     required convenience public init?(coder: NSCoder) {
         self.init()
     }

@@ -22,7 +22,9 @@
 import Foundation
 
 /// A self-describing event.
+@objc(SPSelfDescribing)
 public class SelfDescribing: SelfDescribingAbstract {
+    @objc
     public var eventData: SelfDescribingJson {
         set {
             schema = newValue.schema
@@ -33,11 +35,13 @@ public class SelfDescribing: SelfDescribingAbstract {
         }
     }
     private var _schema: String
+    @objc
     override public var schema: String {
         get { return _schema }
         set { _schema = newValue }
     }
     private var _payload: [String: NSObject]
+    @objc
     override public var payload: [String : NSObject] {
         get { return _payload }
         set {
@@ -45,10 +49,12 @@ public class SelfDescribing: SelfDescribingAbstract {
         }
     }
 
+    @objc
     public convenience init(eventData: SelfDescribingJson) {
         self.init(schema: eventData.schema, payload: eventData.data as! [String : NSObject])
     }
 
+    @objc
     public init(schema: String, payload: [String : NSObject]) {
         self._schema = schema
         self._payload = payload

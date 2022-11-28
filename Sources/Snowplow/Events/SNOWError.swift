@@ -21,11 +21,16 @@
 
 import Foundation
 
+@objc(SPSNOWError)
 public class SNOWError: SelfDescribingAbstract {
+    @objc
     public var message: String
+    @objc
     public var name: String?
+    @objc
     public var stackTrace: String?
     
+    @objc
     public init(message: String) {
         self.message = message
     }

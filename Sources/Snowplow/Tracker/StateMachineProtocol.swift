@@ -21,12 +21,20 @@
 
 import Foundation
 
+@objc(SPStateMachineProtocol)
 public protocol StateMachineProtocol {
+    @objc
     var identifier: String { get }
+    @objc
     var subscribedEventSchemasForTransitions: [String] { get }
+    @objc
     var subscribedEventSchemasForEntitiesGeneration: [String] { get }
+    @objc
     var subscribedEventSchemasForPayloadUpdating: [String] { get }
+    @objc
     func transition(from event: Event, state: State?) -> State?
+    @objc
     func entities(from event: InspectableEvent, state: State?) -> [SelfDescribingJson]?
+    @objc
     func payloadValues(from event: InspectableEvent, state: State?) -> [String : NSObject]?
 }

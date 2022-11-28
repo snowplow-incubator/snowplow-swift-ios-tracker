@@ -21,26 +21,33 @@
 import Foundation
 
 /// A deep-link received in the app.
+@objc(SPDeepLinkReceived)
 public class DeepLinkReceived: SelfDescribingAbstract {
     /// Referrer URL, source of this deep-link.
+    @objc
     public var referrer: String?
     /// URL in the received deep-link.
+    @objc
     public var url: String
 
     /// Creates a deep-link received event.
     /// @param url URL in the received deep-link.
+    @objc
     public init(url: String) {
         self.url = url
     }
     
+    @objc
     public class var schema: String {
         return "iglu:com.snowplowanalytics.mobile/deep_link_received/jsonschema/1-0-0"
     }
 
+    @objc
     public class var paramUrl: String {
         return "url"
     }
 
+    @objc
     public class var paramReferrer: String {
         return "referrer"
     }

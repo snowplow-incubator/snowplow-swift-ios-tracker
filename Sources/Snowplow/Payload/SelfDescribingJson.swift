@@ -25,11 +25,14 @@ import Foundation
 /// The class that represents self-describing JSONs.
 /// This class holds the information of a self-describing JSON.
 /// - seealso: SPPayload
+@objc(SPSelfDescribingJson)
 public class SelfDescribingJson: NSObject {
     /// the schema URI for this self-describing JSON.
+    @objc
     public var schema: String
     
     /// Data of the self-describing JSON.
+    @objc
     public var data: NSObject?
 
     /// Initializes a newly allocated SPSelfDescribingJson.
@@ -37,6 +40,7 @@ public class SelfDescribingJson: NSObject {
     ///   - schema: A valid schema string.
     ///   - data: Data to set for data field of the self-describing JSON, should be an NSDictionary.
     /// - Returns: An SPSelfDescribingJson.
+    @objc
     public init(schema: String, andData data: NSObject?) {
         self.schema = schema
         super.init()
@@ -48,6 +52,7 @@ public class SelfDescribingJson: NSObject {
     ///   - schema: A valid schema string.
     ///   - data: Dictionary to set for data field of the self-describing JSON.
     /// - Returns: An SPSelfDescribingJson.
+    @objc
     public convenience init(schema: String, andDictionary data: [String : NSObject]) {
         self.init(schema: schema, andData: data as NSObject)
     }
@@ -66,6 +71,7 @@ public class SelfDescribingJson: NSObject {
     ///   - schema: A valid schema string.
     ///   - data: Payload to set for data field of the self-describing JSON.
     /// - Returns: An SPSelfDescribingJson.
+    @objc
     public convenience init(schema: String, andPayload data: Payload) {
         self.init(schema: schema, andData: data.getAsDictionary() as? NSObject)
     }
@@ -75,30 +81,35 @@ public class SelfDescribingJson: NSObject {
     ///   - schema: A valid schema URI.
     ///   - data: Self-describing JSON to set for data field of the self-describing JSON.
     /// - Returns: An SPSelfDescribingJson.
+    @objc
     public convenience init(schema: String, andSelfDescribingJson data: SelfDescribingJson) {
         self.init(schema: schema, andData: data.getAsDictionary() as? NSObject)
     }
 
     /// Sets the data field of the self-describing JSON.
     /// - Parameter data: An NSObject to be nested into the data.
+    @objc
     public func setData(withObject data: NSObject?) {
         self.data = data
     }
 
     /// Sets the data field of the self-describing JSON.
     /// - Parameter data: An SPPayload to be nested into the data.
+    @objc
     public func setData(withPayload data: Payload) {
         return setData(withObject: data.getAsDictionary() as? NSObject)
     }
 
     /// Sets the data field of the self-describing JSON.
     /// - Parameter data: A self-describing JSON to be nested into the data.
+    @objc
     public func setData(withSelfDescribingJson data: SelfDescribingJson) {
         return setData(withObject: data.getAsDictionary() as? NSObject)
     }
 
     /// Returns the internal NSDictionary of the self-describing JSON.
     /// - Returns: The self-describing JSON as an NSDictionary.
+    @objc
     public func getAsDictionary() -> [String : NSObject]? {
         if let data = data {
             return [
@@ -111,6 +122,7 @@ public class SelfDescribingJson: NSObject {
 
     /// Returns a string description of the internal dictionary.
     /// - Returns: The description of the dictionary.
+    @objc
     override public var description: String {
         return getAsDictionary()?.description ?? ""
     }

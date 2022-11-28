@@ -21,11 +21,16 @@
 
 import Foundation
 
+@objc(SPRequest)
 public class Request: NSObject {
-    private(set) var payload: Payload?
-    private(set) var emitterEventIds: [NSNumber]?
-    private(set) var oversize = false
-    private(set) var customUserAgent: String?
+    @objc
+    public private(set) var payload: Payload?
+    @objc
+    public private(set) var emitterEventIds: [NSNumber]?
+    @objc
+    public private(set) var oversize = false
+    @objc
+    public private(set) var customUserAgent: String?
 
     convenience init(payload: Payload, emitterEventId: Int64) {
         self.init(payload: payload, emitterEventId: emitterEventId, oversize: false)
@@ -57,8 +62,6 @@ public class Request: NSObject {
         customUserAgent = tempUserAgent
         oversize = false
     }
-
-    // MARK: Private methods
 
     func userAgent(from payload: Payload) -> String? {
         return (payload.getAsDictionary()?[kSPUseragent] as? String)

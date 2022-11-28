@@ -21,6 +21,7 @@
 
 import Foundation
 
+@objc(SPEmitterEvent)
 public class EmitterEvent: NSObject {
     private(set) var payload: Payload
     private(set) var storeId: Int64
@@ -30,6 +31,7 @@ public class EmitterEvent: NSObject {
         self.storeId = storeId
     }
 
+    @objc
     override public var description: String {
         return String(format: "EmitterEvent{ %lld }", storeId)
     }

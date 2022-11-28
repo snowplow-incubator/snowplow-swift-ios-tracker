@@ -21,10 +21,14 @@
 
 import Foundation
 
+@objc
 public class SPSize: NSObject, NSCoding {
-    private(set) var width = 0
-    private(set) var height = 0
+    @objc
+    public private(set) var width = 0
+    @objc
+    public private(set) var height = 0
 
+    @objc
     public init(width: Int, height: Int) {
         super.init()
         self.width = width

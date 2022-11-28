@@ -21,9 +21,11 @@
 
 import Foundation
 
-public class DefaultNetworkConnection: NetworkConnection {
+@objc(SPDefaultNetworkConnection)
+public class DefaultNetworkConnection: NSObject, NetworkConnection {
     private var _protocol: ProtocolOptions = .https
     // The protocol for connection to the collector
+    @objc
     public var `protocol`: ProtocolOptions {
         get {
             return _protocol
@@ -36,6 +38,7 @@ public class DefaultNetworkConnection: NetworkConnection {
 
     private var _urlString: String
     /// The collector endpoint.
+    @objc
     public var urlString: String {
         get {
             return urlEndpoint?.absoluteString ?? _urlString
@@ -45,10 +48,12 @@ public class DefaultNetworkConnection: NetworkConnection {
             if builderFinished { setup() }
         }
     }
+    @objc
     private(set) public var urlEndpoint: URL?
 
     private var _httpMethod: HttpMethodOptions = .post
     /// HTTP method, should be .get or .post.
+    @objc
     public var httpMethod: HttpMethodOptions {
         get {
             return _httpMethod
@@ -63,6 +68,7 @@ public class DefaultNetworkConnection: NetworkConnection {
 
     private var _emitThreadPoolSize = 15
     /// The number of threads used by the emitter.
+    @objc
     public var emitThreadPoolSize: Int {
         get {
             return _emitThreadPoolSize
@@ -77,21 +83,27 @@ public class DefaultNetworkConnection: NetworkConnection {
     /// Maximum event size for a GET request.
     public var byteLimitGet: Int = 40000
     /// Maximum event size for a POST request.
+    @objc
     public var byteLimitPost = 40000
     /// A custom path that is used on the endpoint to send requests.
+    @objc
     public var customPostPath: String?
     /// Custom headers (key, value) for http requests.
+    @objc
     public var requestHeaders: [String : String]?
     /// Whether to anonymise server-side user identifiers including the `network_userid` and `user_ipaddress`
+    @objc
     public var serverAnonymisation = false
     private var dataOperationQueue = OperationQueue()
     private var builderFinished = false
     
+    @objc
     public init(urlString: String,
                 httpMethod: HttpMethodOptions = EmitterDefaults.httpMethod,
                 protocol: ProtocolOptions = EmitterDefaults.httpProtocol,
                 customPostPath: String? = nil) {
         self._urlString = urlString
+        super.init()
         self.httpMethod = httpMethod
         self.protocol = `protocol`
         self.customPostPath = customPostPath
@@ -139,6 +151,7 @@ public class DefaultNetworkConnection: NetworkConnection {
         builderFinished = true
     }
 
+    @objc
     public func sendRequests(_ requests: [Request]) -> [RequestResult] {
         var results: [RequestResult] = []
 
@@ -162,8 +175,10 @@ public class DefaultNetworkConnection: NetworkConnection {
                 }.resume()
 
                 let _ = sem.wait(timeout: .distantFuture)
+                var statusCode: NSNumber?
+                if let httpResponse = httpResponse { statusCode = NSNumber(value: httpResponse.statusCode) }
 
-                let result = RequestResult(statusCode: httpResponse?.statusCode, oversize: request.oversize, storeIds: request.emitterEventIds)
+                let result = RequestResult(statusCode: statusCode, oversize: request.oversize, storeIds: request.emitterEventIds)
                 if !result.isSuccessful {
                     logError(message: "Connection error: " + (connectionError?.localizedDescription ?? "-"))
                 }

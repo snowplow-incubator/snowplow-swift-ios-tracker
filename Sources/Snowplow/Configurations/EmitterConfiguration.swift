@@ -20,59 +20,78 @@
 
 import Foundation
 
+@objc(SPEmitterConfigurationProtocol)
 public protocol EmitterConfigurationProtocol: AnyObject {
     /// Sets whether the buffer should send events instantly or after the buffer
     /// has reached it's limit. By default, this is set to BufferOption Default.
+    @objc
     var bufferOption: BufferOption { get set }
     /// Maximum number of events collected from the EventStore to be sent in a request.
+    @objc
     var emitRange: Int { get set }
     /// Maximum number of threads working in parallel in the tracker to send requests.
+    @objc
     var threadPoolSize: Int { get set }
     /// Maximum amount of bytes allowed to be sent in a payload in a GET request.
+    @objc
     var byteLimitGet: Int { get set }
     /// Maximum amount of bytes allowed to be sent in a payload in a POST request.
+    @objc
     var byteLimitPost: Int { get set }
     /// Callback called for each request performed by the tracker to the collector.
+    @objc
     var requestCallback: RequestCallback? { get set }
     ///  Custom retry rules for HTTP status codes returned from the Collector.
     ///  The dictionary is a mapping of integers (status codes) to booleans (true for retry and false for not retry).
+    @objc
     var customRetryForStatusCodes: [Int : Bool]? { get set }
     /// Whether to anonymise server-side user identifiers including the `network_userid` and `user_ipaddress`
+    @objc
     var serverAnonymisation: Bool { get set }
 }
 
 /// It allows the tracker configuration from the emission perspective.
 /// The EmitterConfiguration can be used to setup details about how the tracker should treat the events
 /// to emit to the collector.
+@objc(SPEmitterConfiguration)
 public class EmitterConfiguration: Configuration, EmitterConfigurationProtocol {
     /// Sets whether the buffer should send events instantly or after the buffer
     /// has reached it's limit. By default, this is set to BufferOption Default.
+    @objc
     public var bufferOption: BufferOption = EmitterDefaults.bufferOption
 
     /// Maximum number of events collected from the EventStore to be sent in a request.
+    @objc
     public var emitRange: Int = EmitterDefaults.emitRange
 
     /// Maximum number of threads working in parallel in the tracker to send requests.
+    @objc
     public var threadPoolSize: Int = EmitterDefaults.emitThreadPoolSize
 
     /// Maximum amount of bytes allowed to be sent in a payload in a GET request.
+    @objc
     public var byteLimitGet: Int = EmitterDefaults.byteLimitGet
 
     /// Maximum amount of bytes allowed to be sent in a payload in a POST request.
+    @objc
     public var byteLimitPost: Int = EmitterDefaults.byteLimitPost
 
     /// Callback called for each request performed by the tracker to the collector.
+    @objc
     public var requestCallback: RequestCallback?
 
     /// Custom retry rules for HTTP status codes returned from the Collector.
     /// The dictionary is a mapping of integers (status codes) to booleans (true for retry and false for not retry).
+    @objc
     public var customRetryForStatusCodes: [Int : Bool]?
 
     /// Whether to anonymise server-side user identifiers including the `network_userid` and `user_ipaddress`
+    @objc
     public var serverAnonymisation: Bool = EmitterDefaults.serverAnonymisation
 
     /// Custom component with full ownership for persisting events before to be sent to the collector.
     /// If it's not set the tracker will use a SQLite database as default EventStore.
+    @objc
     public var eventStore: EventStore?
 
     /// It sets a default EmitterConfiguration.
@@ -83,12 +102,14 @@ public class EmitterConfiguration: Configuration, EmitterConfigurationProtocol {
     ///         byteLimitGet = 40000;
     ///         byteLimitPost = 40000;
     ///         serverAnonymisation = false;
+    @objc
     public override init() {
         super.init()
     }
 
     // MARK: - NSCopying
 
+    @objc
     public override func copy(with zone: NSZone? = nil) -> Any {
         let copy = EmitterConfiguration()
         copy.bufferOption = bufferOption
@@ -105,8 +126,10 @@ public class EmitterConfiguration: Configuration, EmitterConfigurationProtocol {
 
     // MARK: - NSSecureCoding
     
+    @objc
     public override class var supportsSecureCoding: Bool { return true }
 
+    @objc
     public override func encode(with coder: NSCoder) {
         coder.encode(bufferOption, forKey: "bufferOption")
         coder.encode(emitRange, forKey: "emitRange")

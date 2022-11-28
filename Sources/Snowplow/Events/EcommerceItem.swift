@@ -21,28 +21,38 @@
 
 import Foundation
 
+@objc(SPEcommerceItem)
 public class EcommerceItem : PrimitiveAbstract {
     /// Stock Keeping Unit of the item.
+    @objc
     public var sku: String
     /// Price of the item.
+    @objc
     public var price: Double
     /// Quantity of the item.
+    @objc
     public var quantity: Int
     /// Name of the item.
+    @objc
     public var name: String?
     /// Category of the item.
+    @objc
     public var category: String?
     /// Currency used for the price of the item.
+    @objc
     public var currency: String?
     /// OrderID of the order that contains this item.
+    @objc
     public var orderId: String?
 
+    @objc
     public init(sku: String, price: Double, quantity: Int) {
         self.sku = sku
         self.price = price
         self.quantity = quantity
     }
 
+    @objc
     override public var eventName: String {
         return kSPEventEcommItem
     }

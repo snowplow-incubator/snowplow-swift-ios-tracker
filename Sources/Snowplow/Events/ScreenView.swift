@@ -22,6 +22,7 @@
 import Foundation
 
 /// An enum for screen types.
+@objc(SPScreenType)
 public enum ScreenType : Int {
     // sourced from `View Controller Catalog for iOS`
     case `default`
@@ -35,29 +36,40 @@ public enum ScreenType : Int {
 }
 
 /// A screenview event.
+@objc(SPScreenView)
 public class ScreenView: SelfDescribingAbstract {
     /// Name of the screen.
+    @objc
     public var name: String
     /// Identifier of the screen.
+    @objc
     public var screenId: UUID
     /// Type of screen.
+    @objc
     public var type: String?
     /// Name of the previous screen.
+    @objc
     public var previousName: String?
     /// Identifier of the previous screen.
+    @objc
     public var previousId: String?
     /// Type of the previous screen.
+    @objc
     public var previousType: String?
     /// Type of transition between previous and current screen,
+    @objc
     public var transitionType: String?
     /// Name of the ViewController subclass.
+    @objc
     public var viewControllerClassName: String?
     /// Name of the top ViewController subclass.
+    @objc
     public var topViewControllerClassName: String?
 
     /// Creates a screenview event.
     /// @param name Name of the screen.
     /// @param screenId Identifier of the screen.
+    @objc
     public init(name: String, screenId: UUID?) {
         self.screenId = screenId ?? UUID()
         self.name = name
@@ -78,7 +90,8 @@ public class ScreenView: SelfDescribingAbstract {
         if let transitionType = transitionType { payload[kSPSvTransitionType] = transitionType as NSObject }
         return payload
     }
-    
+
+    @objc
     public class func stringWithScreenType(_ screenType: ScreenType) -> String? {
         let arr = [
             "Default",

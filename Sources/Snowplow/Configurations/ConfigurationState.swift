@@ -22,6 +22,7 @@
 import Foundation
 
 /// State of retrieved remote configuration that states where the configuration was retrieved from.
+@objc(SPConfigurationState)
 public enum ConfigurationState: Int {
     /// The default configuration was used.
     case `default`

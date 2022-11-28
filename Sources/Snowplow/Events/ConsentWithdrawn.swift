@@ -22,18 +22,25 @@
 import Foundation
 
 /// A consent withdrawn event.
+@objc(SPConsentWithdrawn)
 public class ConsentWithdrawn: SelfDescribingAbstract {
     /// Consent to all.
+    @objc
     public var all = false
     /// Identifier of the first document.
+    @objc
     public var documentId: String?
     /// Version of the first document.
+    @objc
     public var version: String?
     /// Name of the first document.
+    @objc
     public var name: String?
     /// Description of the first document.
+    @objc
     public var documentDescription: String?
     /// Other documents.
+    @objc
     public var documents: [SelfDescribingJson]?
 
     public override var schema: String {
@@ -46,6 +53,7 @@ public class ConsentWithdrawn: SelfDescribingAbstract {
         ]
     }
 
+    @objc
     public var allDocuments: [SelfDescribingJson] {
         var results: [SelfDescribingJson] = []
         guard let documentId = documentId, let version = version else { return results }

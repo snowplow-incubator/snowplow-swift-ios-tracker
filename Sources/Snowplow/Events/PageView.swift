@@ -23,22 +23,28 @@ import Foundation
 
 /// A pageview event.
 /// @deprecated This event has been designed for web trackers, not suitable for mobile apps. Use DeepLinkReceived event to track deep link received in the app.
+@objc(SPPageView)
 public class PageView : PrimitiveAbstract {
     /// Page url.
+    @objc
     public var pageUrl: String
     /// Page title.
+    @objc
     public var pageTitle: String?
     /// Page referrer url.
+    @objc
     public var referrer: String?
 
     /// Creates a Page View event
     /// @param pageUrl Page URL
     /// @param pageTitle Page title
     /// @param referrer Page referrer URL
+    @objc
     public init(pageUrl: String) {
         self.pageUrl = pageUrl
     }
     
+    @objc
     override public var eventName: String {
         return kSPEventPageView
     }

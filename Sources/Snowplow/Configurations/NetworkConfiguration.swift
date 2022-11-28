@@ -22,27 +22,35 @@ import Foundation
 
 /// Represents the network communication configuration
 /// allowing the tracker to be able to send events to the Snowplow collector.
+@objc(SPNetworkConfiguration)
 public class NetworkConfiguration: Configuration {
     /// URL (without schema/protocol) used to send events to the collector.
+    @objc
     private(set) public var endpoint: String?
     // TODO: make this optional once Swift-only
     /// Method used to send events to the collector.
+    @objc
     private(set) public var method: HttpMethodOptions
     // TODO: make this optional once Swift-only
     /// Method used to send events to the collector.
     /// Protocol used to send events to the collector.
+    @objc
     private(set) public var `protocol`: ProtocolOptions
     /// See `NetworkConfiguration(NetworkConnection)`
+    @objc
     public var networkConnection: NetworkConnection?
     /// A custom path which will be added to the endpoint URL to specify the
     /// complete URL of the collector when paired with the POST method.
+    @objc
     public var customPostPath: String?
     ///  Custom headers for http requests.
+    @objc
     public var requestHeaders: [String : String]?
 
     // TODO: add -> @property () NSInteger timeout;
 
     /// Allow endpoint and method only.
+    @objc
     public convenience init?(dictionary: [String : NSObject]) {
         if let endpoint = dictionary["endpoint"] as? String {
             let method = dictionary["method"] as? String
@@ -59,6 +67,7 @@ public class NetworkConfiguration: Configuration {
     ///                 In case the URL doesn't include the schema/protocol, the HTTPS protocol is
     ///                 automatically selected.
     ///   - method: The method used to send the requests (GET or POST).
+    @objc
     public init(endpoint: String, method: HttpMethodOptions = EmitterDefaults.httpMethod) {
         let url = URL(string: endpoint)
         if url?.scheme == "https" {
@@ -78,6 +87,7 @@ public class NetworkConfiguration: Configuration {
 
     /// - Parameter networkConnection: The NetworkConnection component which will control the
     ///                          communication between the tracker and the collector.
+    @objc
     public init(networkConnection: NetworkConnection?) {
         endpoint = nil
         self.protocol = .https
@@ -86,20 +96,9 @@ public class NetworkConfiguration: Configuration {
         customPostPath = nil
     }
 
-    // MARK: - Builder
-
-    func customPostPath(_ value: String?) -> Self {
-        customPostPath = value
-        return self
-    }
-
-    func requestHeaders(_ value: [AnyHashable : Any]?) -> Self {
-        requestHeaders = value as? [String : String]
-        return self
-    }
-
     // MARK: - NSCopying
 
+    @objc
     public override func copy(with zone: NSZone? = nil) -> Any {
         var copy: NetworkConfiguration?
         if let connection = networkConnection {
@@ -113,8 +112,10 @@ public class NetworkConfiguration: Configuration {
 
     // MARK: - NSSecureCoding
     
+    @objc
     public override class var supportsSecureCoding: Bool { return true }
 
+    @objc
     public override func encode(with coder: NSCoder) {
         coder.encode(endpoint, forKey: "endpoint")
         coder.encode(self.protocol.rawValue, forKey: "protocol")

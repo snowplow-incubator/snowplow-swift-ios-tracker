@@ -21,34 +21,45 @@
 
 import Foundation
 
+@objc(SPEcommerce)
 public class Ecommerce : PrimitiveAbstract {
     /// Identifier of the order.
+    @objc
     public var orderId: String
     /// Total amount of the order.
+    @objc
     public var totalValue: Double
     /// Items purchased.
+    @objc
     public var items: [EcommerceItem]
     /// Identifies an affiliation.
+    @objc
     public var affiliation: String?
     /// Taxes applied to the purchase.
     public var taxValue: Double?
     /// Shipping number.
     public var shipping: Double?
     /// City for shipping.
+    @objc
     public var city: String?
     /// State for shipping.
+    @objc
     public var state: String?
     /// Country for shipping.
+    @objc
     public var country: String?
     /// Currency used for totalValue and taxValue.
+    @objc
     public var currency: String?
 
+    @objc
     public init(orderId: String, totalValue: Double, items: [EcommerceItem]?) {
         self.orderId = orderId
         self.totalValue = totalValue
         self.items = items ?? []
     }
 
+    @objc
     override public var eventName: String {
         return kSPEventEcomm
     }

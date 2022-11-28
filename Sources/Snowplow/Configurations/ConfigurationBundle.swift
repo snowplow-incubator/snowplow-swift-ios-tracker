@@ -21,13 +21,19 @@
 import Foundation
 
 /// This class represents the default configuration applied in place of the remote configuration.
+@objc(SPConfigurationBundle)
 public class ConfigurationBundle: Configuration {
     private(set) public var namespace: String
+    @objc
     public var networkConfiguration: NetworkConfiguration?
+    @objc
     public var trackerConfiguration: TrackerConfiguration?
+    @objc
     public var subjectConfiguration: SubjectConfiguration?
+    @objc
     public var sessionConfiguration: SessionConfiguration?
 
+    @objc
     public var configurations: [Configuration] {
         var array: [Configuration] = []
         if let networkConfiguration = networkConfiguration {
@@ -45,15 +51,18 @@ public class ConfigurationBundle: Configuration {
         return array
     }
 
+    @objc
     public convenience init(namespace: String) {
         self.init(namespace: namespace, networkConfiguration: nil)
     }
 
+    @objc
     public init(namespace: String, networkConfiguration: NetworkConfiguration?) {
         self.namespace = namespace
         self.networkConfiguration = networkConfiguration
     }
 
+    @objc
     public init?(dictionary: [String : NSObject]) {
         if let namespace = dictionary["namespace"] as? String {
             self.namespace = namespace
@@ -77,6 +86,7 @@ public class ConfigurationBundle: Configuration {
 
     // MARK: - NSCopying
 
+    @objc
     override public func copy(with zone: NSZone? = nil) -> Any {
         let copy = ConfigurationBundle(namespace: namespace)
         copy.networkConfiguration = networkConfiguration?.copy(with: zone) as? NetworkConfiguration
@@ -88,8 +98,10 @@ public class ConfigurationBundle: Configuration {
 
     // MARK: - NSSecureCoding
     
+    @objc
     public override class var supportsSecureCoding: Bool { return true }
 
+    @objc
     override public func encode(with coder: NSCoder) {
         coder.encode(namespace, forKey: "namespace")
         coder.encode(networkConfiguration, forKey: "networkConfiguration")

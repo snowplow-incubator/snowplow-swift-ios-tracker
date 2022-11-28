@@ -21,6 +21,7 @@
 
 import Foundation
 
+@objc(SPGDPRProcessingBasis)
 public enum GDPRProcessingBasis : Int {
     case consent = 0
     case contract = 1

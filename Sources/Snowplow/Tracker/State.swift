@@ -21,5 +21,6 @@
 
 import Foundation
 
+@objc(SPState)
 public protocol State {
 }

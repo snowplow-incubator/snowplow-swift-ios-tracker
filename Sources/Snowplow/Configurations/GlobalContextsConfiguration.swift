@@ -20,24 +20,31 @@
 
 import Foundation
 
+@objc(SPGlobalContextsConfigurationProtocol)
 public protocol GlobalContextsConfigurationProtocol: AnyObject {
+    @objc
     var contextGenerators: [String : GlobalContext] { get set }
     /// Add a GlobalContext generator to the configuration of the tracker.
     /// - Parameters:
     ///   - tag: The label identifying the generator in the tracker.
     ///   - generator: The GlobalContext generator.
     /// - Returns: Whether the adding operation has succeeded.
+    @objc
     func add(tag: String, contextGenerator generator: GlobalContext) -> Bool
     /// Remove a GlobalContext generator from the configuration of the tracker.
     /// - Parameter tag: The label identifying the generator in the tracker.
     /// - Returns: Whether the removing operation has succeded.
+    @objc
     func remove(tag: String) -> GlobalContext?
 }
 
 /// This class allows the setup of Global Contexts which are attached to selected events.
+@objc(SPGlobalContextsConfiguration)
 public class GlobalContextsConfiguration: Configuration, GlobalContextsConfigurationProtocol {
+    @objc
     public var contextGenerators: [String : GlobalContext] = [:]
 
+    @objc
     public func add(tag: String, contextGenerator generator: GlobalContext) -> Bool {
         if (contextGenerators)[tag] != nil {
             return false
@@ -46,6 +53,7 @@ public class GlobalContextsConfiguration: Configuration, GlobalContextsConfigura
         return true
     }
 
+    @objc
     public func remove(tag: String) -> GlobalContext? {
         let toDelete = (contextGenerators)[tag]
         if toDelete != nil {
@@ -56,6 +64,7 @@ public class GlobalContextsConfiguration: Configuration, GlobalContextsConfigura
 
     // MARK: - NSCopying
 
+    @objc
     public override func copy(with zone: NSZone? = nil) -> Any {
         let copy = GlobalContextsConfiguration()
         copy.contextGenerators = contextGenerators

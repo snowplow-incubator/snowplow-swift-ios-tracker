@@ -25,6 +25,7 @@ import WebKit
 #endif
 
 /// Entry point to instance a new Snowplow tracker.
+@objc(SPSnowplow)
 public class Snowplow: NSObject {
     private static var serviceProviderInstances: [String : ServiceProvider] = [:]
     private static var configurationProvider: ConfigurationProvider?
@@ -56,6 +57,7 @@ public class Snowplow: NSObject {
     ///   - onSuccess: The callback called when a configuration (cached or downloaded) is set.
     ///                  It passes two arguments: list of the namespaces associated to the created trackers
     ///                  and the state of the configuration – whether it was retrieved from cache or fetched over the network.
+    @objc
     public class func setup(remoteConfiguration: RemoteConfiguration, defaultConfiguration defaultBundles: [ConfigurationBundle]?, onSuccess: @escaping (_ namespaces: [String]?, _ configurationState: ConfigurationState) -> Void) {
         configurationProvider = ConfigurationProvider(remoteConfiguration: remoteConfiguration, defaultConfigurationBundles: defaultBundles)
         configurationProvider?.retrieveConfigurationOnlyRemote(false, onFetchCallback: { fetchedConfigurationBundle, configurationState in
@@ -82,6 +84,7 @@ public class Snowplow: NSObject {
     ///
     /// - Parameter onSuccess: The callback called when a configuration (cached or downloaded) is set It passes the list of the namespaces associated
     ///                  to the created trackers.
+    @objc
     public class func refresh(onSuccess: @escaping (_ namespaces: [String]?, _ configurationState: ConfigurationState) -> Void) {
         configurationProvider?.retrieveConfigurationOnlyRemote(true, onFetchCallback: { fetchedConfigurationBundle, configurationState in
             let bundles = fetchedConfigurationBundle.configurationBundle
@@ -114,6 +117,7 @@ public class Snowplow: NSObject {
     ///   - endpoint: The URL of the collector.
     ///   - method: The method for the requests to the collector (GET or POST).
     /// - Returns: The tracker instance created.
+    @objc
     public class func createTracker(namespace: String, endpoint: String, method: HttpMethodOptions) -> TrackerController? {
         let networkConfiguration = NetworkConfiguration(endpoint: endpoint, method: method)
         return createTracker(namespace: namespace, network: networkConfiguration, configurations: [])
@@ -141,6 +145,7 @@ public class Snowplow: NSObject {
     ///   - networkConfiguration: The NetworkConfiguration object with settings for the communication with the
     ///                collector.
     /// - Returns: The tracker instance created.
+    @objc
     public class func createTracker(namespace: String, network networkConfiguration: NetworkConfiguration) -> TrackerController? {
         return createTracker(namespace: namespace, network: networkConfiguration, configurations: [])
     }
@@ -169,6 +174,7 @@ public class Snowplow: NSObject {
     ///   - configurations: All the configuration objects with the details about the fine tuning of
     ///                       the tracker.
     /// - Returns: The tracker instance created.
+    @objc
     public class func createTracker(namespace: String, network networkConfiguration: NetworkConfiguration, configurations: [Configuration]) -> TrackerController? {
         if let serviceProvider = serviceProviderInstances[namespace] {
             serviceProvider.reset(withConfigurations: configurations + [networkConfiguration])
@@ -182,6 +188,7 @@ public class Snowplow: NSObject {
 
     /// The default tracker instance is the first created in the app, but that can be overridden programmatically
     /// calling `setTrackerAsDefault(TrackerController)`.
+    @objc
     public class func defaultTracker() -> TrackerController? {
         return defaultServiceProvider?.trackerController
     }
@@ -190,6 +197,7 @@ public class Snowplow: NSObject {
     ///
     /// - Parameter namespace: The namespace that identifies the tracker.
     /// - Returns: The tracker if it exist with that namespace.
+    @objc
     public class func tracker(namespace: String) -> TrackerController? {
         return serviceProviderInstances[namespace]?.trackerController
     }
@@ -200,6 +208,7 @@ public class Snowplow: NSObject {
     ///
     /// - Parameter trackerController: The new default tracker.
     /// - Returns: Whether the tracker passed is registered among the active trackers of the app.
+    @objc
     public class func setAsDefault(tracker trackerController: TrackerController?) -> Bool {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
@@ -220,6 +229,7 @@ public class Snowplow: NSObject {
     ///
     /// - Parameter trackerController: The tracker controller to remove.
     /// - Returns: Whether it has been able to remove it.
+    @objc
     public class func remove(tracker trackerController: TrackerController?) -> Bool {
         objc_sync_enter(self)
         defer { objc_sync_exit(self) }
@@ -238,6 +248,7 @@ public class Snowplow: NSObject {
     /// Remove all the trackers.
     /// The removed tracker is always stopped.
     /// See `removeTracker(TrackerController)`
+    @objc
     public class func removeAllTrackers() {
         objc_sync_enter(self)
         defaultServiceProvider = nil
@@ -250,6 +261,7 @@ public class Snowplow: NSObject {
     }
 
     /// - Returns: Set of namespace of the active trackers in the app.
+    @objc
     class public var instancedTrackerNamespaces: [String] {
         return Array(serviceProviderInstances.keys)
     }
@@ -258,7 +270,7 @@ public class Snowplow: NSObject {
 
     /// Subscribe to events tracked in a Web view using the Snowplow WebView tracker JavaScript library.
     /// - Parameter webViewConfiguration: Configuration of the Web view to subscribe to events from
-
+    @objc
     public class func subscribeToWebViewEvents(with webViewConfiguration: WKWebViewConfiguration) {
         let messageHandler = WebViewMessageHandler()
 

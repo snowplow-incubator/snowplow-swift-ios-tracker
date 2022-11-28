@@ -25,12 +25,18 @@ let kMaxExceptionNameLength = 1024
 
 import Foundation
 
+@objc(SPTrackerError)
 public class TrackerError : SelfDescribingAbstract {
+    @objc
     public var source: String
+    @objc
     public var message: String
+    @objc
     public var error: Error?
+    @objc
     public var exception: NSException?
     
+    @objc
     public init(source: String, message: String, error: Error? = nil, exception: NSException? = nil) {
         self.source = source
         self.message = message

@@ -21,13 +21,21 @@
 
 import Foundation
 
+@objc(SPSessionState)
 public class SessionState: NSObject, State {
+    @objc
     public private(set) var firstEventId: String?
+    @objc
     public private(set) var firstEventTimestamp: String?
+    @objc
     public private(set) var previousSessionId: String?
+    @objc
     public private(set) var sessionId: String
+    @objc
     public private(set) var sessionIndex = 0
+    @objc
     public private(set) var storage: String
+    @objc
     public private(set) var userId: String
 
     var sessionContext: [String : NSObject] {

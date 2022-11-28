@@ -44,12 +44,14 @@ class LifecycleStateMachine: StateMachineProtocol {
 
     func entities(from event: InspectableEvent, state: State?) -> [SelfDescribingJson]? {
         if state == nil {
-            return [LifecycleEntity(isVisible: true).index(0)]
+            let entity = LifecycleEntity(isVisible: true)
+            entity.index = 0
+            return [entity]
         }
         if let s = state as? LifecycleState {
-            return [
-                LifecycleEntity(isVisible: s.isForeground).index(s.index)
-            ]
+            let entity = LifecycleEntity(isVisible: s.isForeground)
+            entity.index = s.index
+            return [entity]
         }
         return nil
     }

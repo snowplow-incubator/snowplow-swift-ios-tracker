@@ -22,18 +22,25 @@
 import Foundation
 
 /// A consent granted event.
+@objc(SPConsentGranted)
 public class ConsentGranted: SelfDescribingAbstract {
     /// Expiration of the consent.
+    @objc
     public var expiry: String
     /// Identifier of the first document.
+    @objc
     public var documentId: String
     /// Version of the first document.
+    @objc
     public var version: String
     /// Name of the first document.
+    @objc
     public var name: String?
     /// Description of the first document.
+    @objc
     public var documentDescription: String?
     /// Other attached documents.
+    @objc
     public var documents: [SelfDescribingJson]?
 
     /// Creates a consent granted event with a first document.
@@ -41,6 +48,7 @@ public class ConsentGranted: SelfDescribingAbstract {
     ///   - expiry: consent expiration.
     ///   - documentId: identifier of the first document.
     ///   - version: version of the first document.
+    @objc
     public init(expiry: String, documentId: String, version: String) {
         self.expiry = expiry
         self.documentId = documentId
@@ -58,6 +66,7 @@ public class ConsentGranted: SelfDescribingAbstract {
     }
 
     /// Retuns the full list of attached documents.
+    @objc
     public var allDocuments: [SelfDescribingJson] {
         var results: [SelfDescribingJson] = []
 

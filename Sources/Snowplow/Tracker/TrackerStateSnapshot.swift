@@ -21,9 +21,12 @@
 
 import Foundation
 
+@objc(SPTrackerStateSnapshot)
 public protocol TrackerStateSnapshot {
     /// Get a computed state with a specific state identifier
+    @objc
     func state(withIdentifier stateIdentifier: String) -> State?
     /// Get a computed state with a specific state machine
+    @objc
     func state(withStateMachine stateMachine: StateMachineProtocol) -> State?
 }

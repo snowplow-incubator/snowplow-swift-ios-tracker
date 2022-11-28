@@ -21,6 +21,7 @@
 import Foundation
 
 /// An enum for buffer options.
+@objc(SPBufferOption)
 public enum BufferOption : Int {
     /// Sends both GET and POST requests with only a single event.  Can cause a spike in
     /// network traffic if used in correlation with a large amount of events.

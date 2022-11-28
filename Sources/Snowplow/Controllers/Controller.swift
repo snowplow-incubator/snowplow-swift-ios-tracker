@@ -20,6 +20,7 @@
 
 import Foundation
 
+@objc(SPController)
 public class Controller: NSObject {
     private(set) var serviceProvider: ServiceProviderProtocol
 

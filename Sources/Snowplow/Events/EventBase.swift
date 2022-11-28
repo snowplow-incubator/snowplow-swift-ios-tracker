@@ -22,10 +22,13 @@
 import Foundation
 
 /// This class has the basic functionality needed to represent all events
+@objc(SPEvent)
 public class Event: NSObject {
     /// The user event timestamp in milliseconds (epoch time).
+    @objc
     public var trueTimestamp: Date?
     /// The contexts attached to the event.
+    @objc
     public var contexts: [SelfDescribingJson] = []
     /// The payload of the event.
     public var payload: [String : NSObject] {
@@ -48,8 +51,10 @@ public class Event: NSObject {
 }
 
 /// The properties for all the self-describing events.
+@objc(SPSelfDescribingAbstract)
 public class SelfDescribingAbstract: Event {
     /// The schema of the event.
+    @objc
     public var schema: String {
         NSException(
             name: .internalInconsistencyException,
@@ -60,6 +65,7 @@ public class SelfDescribingAbstract: Event {
 }
 
 /// The properties for all the self-describing events.
+@objc(SPPrimitiveAbstract)
 public class PrimitiveAbstract: Event {
     /// The name of the event.
     var eventName: String {

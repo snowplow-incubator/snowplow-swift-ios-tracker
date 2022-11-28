@@ -22,26 +22,32 @@
 import Foundation
 
 /// A timing event.
+@objc(SPTiming)
 public class Timing: SelfDescribingAbstract {
     /// The timing category
+    @objc
     public var category: String
     /// The timing variable
+    @objc
     public var variable: String
     /// The time
+    @objc
     public var timing: Int
     /// The timing label
+    @objc
     public var label: String?
 
     /// Creates a timing event
     /// @param category The timing category
     /// @param variable The timing variable
     /// @param timing The time
+    @objc
     public init(category: String, variable: String, timing: Int) {
         self.category = category
         self.variable = variable
         self.timing = timing
     }
-        
+
     public override var schema: String {
         return kSPUserTimingsSchema
     }

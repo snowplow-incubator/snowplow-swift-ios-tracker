@@ -22,8 +22,10 @@ import Foundation
 
 /// Represents the configuration for fetching configurations from a remote source.
 /// For details on the correct format of a remote configuration see the official documentation.
+@objc(SPRemoteConfiguration)
 public class RemoteConfiguration: Configuration {
     /// URL of the remote configuration.
+    @objc
     private(set) public var endpoint: String
     /// The method used to send the request.
     private(set) var method: HttpMethodOptions?
@@ -33,6 +35,7 @@ public class RemoteConfiguration: Configuration {
     ///                 The URL can include the schema/protocol (e.g.: `http://remote-config-url.xyz`).
     ///                 In case the URL doesn't include the schema/protocol, the HTTPS protocol is
     ///                 automatically selected.
+    @objc
     public init(endpoint: String) {
         let url = URL(string: endpoint)
         if url?.scheme != nil && ["https", "http"].contains(url?.scheme ?? "") {
@@ -48,6 +51,7 @@ public class RemoteConfiguration: Configuration {
     ///                 In case the URL doesn't include the schema/protocol, the HTTPS protocol is
     ///                 automatically selected.
     ///   - method: The method used to send the requests (GET or POST).
+    @objc
     public convenience init(endpoint: String, method: HttpMethodOptions) {
         self.init(endpoint: endpoint)
         self.method = method
@@ -55,6 +59,7 @@ public class RemoteConfiguration: Configuration {
 
     // MARK: - NSCopying
 
+    @objc
     override public func copy(with zone: NSZone? = nil) -> Any {
         let copy = RemoteConfiguration(endpoint: endpoint)
         copy.method = method
@@ -63,11 +68,13 @@ public class RemoteConfiguration: Configuration {
 
     // MARK: - NSSecureCoding
 
+    @objc
     override public func encode(with coder: NSCoder) {
         coder.encode(endpoint, forKey: "endpoint")
         coder.encode(method?.rawValue, forKey: "method")
     }
     
+    @objc
     public override class var supportsSecureCoding: Bool { return true }
     
     required init?(coder: NSCoder) {

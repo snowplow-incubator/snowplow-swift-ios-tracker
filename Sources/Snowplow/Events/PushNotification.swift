@@ -23,14 +23,22 @@ import Foundation
 import UserNotifications
 #endif
 
+@objc(SPPushNotification)
 public class PushNotification : SelfDescribingAbstract {
+    @objc
     public var date: String
+    @objc
     public var action: String
+    @objc
     public var trigger: String
+    @objc
     public var category: String
+    @objc
     public var thread: String
+    @objc
     public var notification: NotificationContent?
 
+    @objc
     public init(date: String, action: String, trigger: String, category: String, thread: String, notification: NotificationContent?) {
         self.date = date
         self.action = action
@@ -42,6 +50,7 @@ public class PushNotification : SelfDescribingAbstract {
 
     #if os(iOS)
 
+    @objc
     public init(date: String, action: String, notificationTrigger trigger: UNNotificationTrigger?, category: String, thread: String, notification: NotificationContent?) {
         self.date = date
         self.action = action
@@ -51,6 +60,7 @@ public class PushNotification : SelfDescribingAbstract {
         self.notification = notification
     }
 
+    @objc
     public class func string(from trigger: UNNotificationTrigger?) -> String {
         var triggerType = "UNKNOWN"
         if let trigger = trigger {
@@ -89,22 +99,33 @@ public class PushNotification : SelfDescribingAbstract {
 
 // MARK:- SPNotificationContent
 
+@objc(SPNotificationContent)
 public class NotificationContent : NSObject {
+    @objc
     public var title: String
+    @objc
     public var body: String
+    @objc
     public var badge: NSNumber?
+    @objc
     public var subtitle: String?
+    @objc
     public var sound: String?
+    @objc
     public var launchImageName: String?
+    @objc
     public var userInfo: [String : NSObject]?
+    @objc
     public var attachments: [NSObject]?
 
+    @objc
     public init(title: String, body: String, badge: NSNumber?) {
         self.title = title
         self.body = body
         self.badge = badge
     }
 
+    @objc
     public var payload: [String : NSObject] {
         var event: [String : NSObject] = [:]
         event[kSPPnTitle] = title as NSObject
