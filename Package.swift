@@ -5,8 +5,8 @@ import PackageDescription
 let package = Package(
     name: "SnowplowTracker",
     platforms: [
-        .macOS("10.14"),
-        .iOS("12.0"),
+        .macOS("10.13"),
+        .iOS("11.0"),
         .tvOS("11.0"),
         .watchOS("4.0")
     ],
