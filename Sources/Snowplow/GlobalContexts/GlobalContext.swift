@@ -27,7 +27,7 @@ import Foundation
 public typealias GeneratorBlock = (InspectableEvent) -> [SelfDescribingJson]
 /// Block signature for context filtering, takes event information and decide if the context needs to be generated.
 /// - Parameter event: informations about the event to process.
-/// - Returns: weather the context has to be generated.
+/// - Returns: whether the context has to be generated.
 public typealias FilterBlock = (InspectableEvent) -> Bool
 // MARK: - SPContextGenerator
 

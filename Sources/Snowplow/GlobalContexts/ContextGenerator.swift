@@ -27,7 +27,7 @@ import Foundation
 public protocol ContextGenerator: NSObjectProtocol {
     /// Takes event information and decide if the context needs to be generated.
     /// - Parameter event: informations about the event to process.
-    /// - Returns: weather the context has to be generated.
+    /// - Returns: whether the context has to be generated.
     @objc
     func filter(from event: InspectableEvent) -> Bool
     /// Takes event information and generates a context.

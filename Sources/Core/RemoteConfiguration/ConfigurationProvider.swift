@@ -23,7 +23,7 @@ import Foundation
 
 typealias OnFetchCallback = (FetchedConfigurationBundle, ConfigurationState) -> Void
 
-/// This class fetch a configuration from a remote source otherwise it provides a cached configuration.
+/// This class fetches a configuration from a remote source otherwise it provides a cached configuration.
 /// It can manage multiple sources and multiple caches.
 class ConfigurationProvider {
     private var remoteConfiguration: RemoteConfiguration

@@ -232,8 +232,8 @@ class ServiceProvider: NSObject, ServiceProviderProtocol {
         let emitterConfig = emitterConfigurationUpdate
         
         let builder = { (emitter: Emitter) in
-            emitter.method = networkConfig.method
-            emitter.protocol = networkConfig.protocol
+            if let method = networkConfig.method { emitter.method = method }
+            if let prtcl = networkConfig.protocol { emitter.protocol = prtcl }
             emitter.customPostPath = networkConfig.customPostPath
             emitter.requestHeaders = networkConfig.requestHeaders
             emitter.emitThreadPoolSize = emitterConfig.threadPoolSize

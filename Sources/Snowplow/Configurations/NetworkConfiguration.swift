@@ -27,11 +27,9 @@ public class NetworkConfiguration: Configuration {
     /// URL (without schema/protocol) used to send events to the collector.
     @objc
     private(set) public var endpoint: String?
-    // TODO: make this optional once Swift-only
     /// Method used to send events to the collector.
     @objc
     private(set) public var method: HttpMethodOptions
-    // TODO: make this optional once Swift-only
     /// Method used to send events to the collector.
     /// Protocol used to send events to the collector.
     @objc

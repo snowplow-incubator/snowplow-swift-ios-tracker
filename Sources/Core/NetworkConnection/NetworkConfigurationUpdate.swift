@@ -52,14 +52,12 @@ class NetworkConfigurationUpdate: NSObject {
         return (sourceConfig)?.endpoint
     }
 
-    var method: HttpMethodOptions {
-        // TODO: return nil
-        return ((sourceConfig)?.method) ?? EmitterDefaults.httpMethod
+    var method: HttpMethodOptions? {
+        return ((sourceConfig)?.method)
     }
 
-    var `protocol`: ProtocolOptions {
-        // TODO: return nil
-        return ((sourceConfig)?.protocol) ?? EmitterDefaults.httpProtocol
+    var `protocol`: ProtocolOptions? {
+        return ((sourceConfig)?.protocol)
     }
 
     var networkConnection: NetworkConnection? {
